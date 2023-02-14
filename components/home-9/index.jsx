@@ -12,6 +12,7 @@ import Block5 from "../block/Block5";
 import JobFeatured12 from "../job-featured/JobFeatured12";
 import LoginPopup from "../common/form/login/LoginPopup";
 import MobileMenu from "../header/MobileMenu";
+import RegBanner2 from "../block/RegBanner2";
 
 const index = () => {
   return (
@@ -27,7 +28,13 @@ const index = () => {
 
       <Hero9 />
       {/* <!-- End Hero Section --> */}
-
+      <section className="registeration-banners">
+        <div className="auto-container">
+          <div className="row" data-aos="fade-up">
+            <RegBanner2 />
+          </div>
+        </div>
+      </section>
       <section className="job-section">
         <div className="auto-container wow fadeInUp">
           <div className="sec-title text-center">
@@ -42,7 +49,8 @@ const index = () => {
         </div>
       </section>
       {/* <!-- End Job Section --> */}
-
+     
+      {/* <!-- End Registeration Banners --> */}
       <Block5 />
       {/* <!-- End Steps Section --> */}
 

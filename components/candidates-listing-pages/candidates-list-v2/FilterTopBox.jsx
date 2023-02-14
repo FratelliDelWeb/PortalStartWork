@@ -159,58 +159,6 @@ const FilterTopBox = () => {
             </div>
         ));
 
-
-        
-    let UserList = candidatesData.map((candidate) => (
-        <div
-            className="candidate-block-four col-lg-6 col-md-6 col-sm-12"
-            key={candidate._id}
-        >
-            <div className="inner-box">
-                <ul className="job-other-info">
-                    <li className="green">Featured</li>
-                </ul>
-
-                <span className="thumb">
-                 
-                </span>
-                <h3 className="name">
-                    <Link href={`/candidates-single-v1/${candidate._id}`}>
-                        {candidate.name}
-                    </Link>
-                </h3>
-            
-
-                <ul className="job-info">
-                    <li>
-                        <span className="icon flaticon-map-locator"></span>{" "}
-                        {candidate.location}
-                    </li>
-                    <li>
-                        <span className="icon flaticon-money"></span> $
-                        {candidate.role} / hour
-                    </li>
-                </ul>
-                {/* End candidate-info */}
-
-               {/*  <ul className="post-tags">
-                    {candidate?.tags?.map((val, i) => (
-                        <li key={i}>
-                            <a href="#">{val}</a>
-                        </li>
-                    ))}
-                </ul> */}
-                {/* End tags */}
-
-                <Link
-                    href={`/candidates-single-v1/${candidate._id}`}
-                    className="theme-btn btn-style-three"
-                >
-                    View Profile
-                </Link>
-            </div>
-        </div>
-    ));
     // sort handler
     const sortHandler = (e) => {
         dispatch(addSort(e.target.value));
@@ -255,7 +203,7 @@ const FilterTopBox = () => {
                     {/* Collapsible sidebar button */}
 
                     <div className="text">
-                        <strong>{UserList?.length}</strong> jobs
+                        <strong>{content?.length}</strong> jobs
                     </div>
                 </div>
                 {/* End showing-result */}
@@ -336,7 +284,7 @@ const FilterTopBox = () => {
             </div>
             {/* End top filter bar box */}
 
-            <div className="row">{UserList}</div>
+            <div className="row">{content}</div>
             {/* End .row */}
 
             <Pagination />

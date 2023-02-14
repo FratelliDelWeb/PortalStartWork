@@ -4,17 +4,16 @@ const RegBanner2 = () => {
   const regBannerContent = [
     {
       id: 1,
-      name: "Employers",
-      text: ` Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt. Labore et dolore nostrud exercitation.`,
+      name: "Azienda",
+      text: `Sei un'Azienda?
+      Cerchi dipendenti scopri tutti i nostri professioni disponibili!`,
       avatar: "images/resource/employ.png",
       bannerClass: "banner-style-one",
     },
     {
       id: 2,
-      name: "Candidate",
-      text: ` Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt. Labore et dolore nostrud exercitation.`,
+      name: "Lavoratore",
+      text: ` Compila il modulo per esserre inserito tra i nostri professionisti`,
       avatar: "images/resource/candidate.png",
       bannerClass: "banner-style-two",
     },

@@ -105,7 +105,7 @@ const HeaderNavContent = () => {
                             </div>
                         </div>
                     </li>
-                    {/* End findjobs menu items */}
+                    {/* End findjobs menu items 
 
                     <li
                         className={`${
@@ -168,7 +168,7 @@ const HeaderNavContent = () => {
                             </li>
                         </ul>
                     </li>
-                    {/* End Employers menu items */}
+                     End Employers menu items */}
 
                     <li
                         className={`${
@@ -231,7 +231,7 @@ const HeaderNavContent = () => {
                             </li>
                         </ul>
                     </li>
-                    {/* End Candidates menu items */}
+                    {/* End Candidates menu items
 
                     <li
                         className={`${
@@ -261,7 +261,7 @@ const HeaderNavContent = () => {
                             ))}
                         </ul>
                     </li>
-                    {/* End Blog menu items */}
+                  * End Blog menu items */}
 
                     <li
                         className={`${

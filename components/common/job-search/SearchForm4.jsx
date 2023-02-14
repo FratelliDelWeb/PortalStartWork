@@ -10,7 +10,7 @@ const SearchForm4 = () => {
       <div className="row">
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-4 col-md-12 col-sm-12">
-          <label>What job are you looking for?</label>
+          <label>Che tipo di lavoratore cerchi?</label>
           <span className="icon flaticon-search-1"></span>
           <input
             type="text"
@@ -21,7 +21,7 @@ const SearchForm4 = () => {
 
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-3 col-md-12 col-sm-12 location">
-          <label>Where?</label>
+          <label>Dove?</label>
           <span className="icon flaticon-map-locator"></span>
           <input type="text" name="field_name" placeholder="City or postcode" />
         </div>
@@ -48,9 +48,9 @@ const SearchForm4 = () => {
           <button
             type="submit"
             className="theme-btn btn-style-two"
-            onClick={() => Router.push("/job-list-v6")}
+            onClick={() => Router.push("/candidates-list-v5")}
           >
-            Find Jobs
+            Cerca Candidato
           </button>
         </div>
       </div>

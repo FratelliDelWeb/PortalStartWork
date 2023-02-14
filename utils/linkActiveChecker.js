@@ -20,7 +20,7 @@ export const isActiveParentChaild = (data = [], path) => {
                 path.replace(/\/\d+/, "")
         );
     }
-};
+}; 
 
 // is active link check
 export const isActiveLink = (menuPath, routePath) => {
