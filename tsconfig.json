@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/api/canidati.ts", "lib/mongodb.ts"  ],
+, "pages/api/candidati.ts", "lib/dbConnect.ts"  ],
   "exclude": [
     "node_modules"
   ]
