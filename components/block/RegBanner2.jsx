@@ -9,6 +9,7 @@ const RegBanner2 = () => {
       Cerchi dipendenti scopri tutti i nostri professioni disponibili!`,
       avatar: "images/resource/employ.png",
       bannerClass: "banner-style-one",
+      btnTxt : "Cerca Professionista",
     },
     {
       id: 2,
@@ -16,6 +17,7 @@ const RegBanner2 = () => {
       text: ` Compila il modulo per esserre inserito tra i nostri professionisti`,
       avatar: "images/resource/candidate.png",
       bannerClass: "banner-style-two",
+      btnTxt : "Candidati",
     },
   ];
   return (
@@ -30,7 +32,7 @@ const RegBanner2 = () => {
               <h3>{item.name}</h3>
               <p>{item.text}</p>
               <Link href="/register" className="theme-btn btn-style-five">
-                Register Account
+                 {item.btnTxt}
               </Link>
             </div>
             <figure className="image">
