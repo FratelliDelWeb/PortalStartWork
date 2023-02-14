@@ -8,13 +8,16 @@ import Footer from "./Footer";
 import Funfact from "../fun-fact-counter/Funfact";
 import Testimonia4 from "../testimonial/Testimonial4";
 import JobCategorie1 from "../job-categories/JobCategorie1";
+import JobCategorie7 from "../job-categories/JobCategorie7";
+
 import Block5 from "../block/Block5";
 import JobFeatured12 from "../job-featured/JobFeatured12";
 import LoginPopup from "../common/form/login/LoginPopup";
 import MobileMenu from "../header/MobileMenu";
 import RegBanner2 from "../block/RegBanner2";
 
-const index = () => {
+const index = ( {dataCL}) => {
+  console.log(dataCL)
   return (
     <>
       <LoginPopup />
@@ -28,6 +31,35 @@ const index = () => {
 
       <Hero9 />
       {/* <!-- End Hero Section --> */}
+      
+      <section className="layout-pt-120 layout-pb-60">
+        <div className="auto-container">
+          <div className="row justify-content-between align-items-end">
+            <div className="col-lg-6">
+              <div className="sect-title">
+                <h2 className="fw-700">Categorie professionisti</h2>
+                <div className="text mt-9">
+                  Scopri tutti gli ambiti ricoperti dai nostri profesisoniscti
+                </div>
+              </div>
+            </div>
+            {/* End sectitle */}
+            <div className="col-auto">
+              <a href="#" className="button-icon -arrow text-dark-blue">
+                Vedi Tutti
+                <span className="fa fa-angle-right ms-1"></span>
+              </a>
+            </div>
+          </div>
+          {/* End .row */}
+
+          <div className="row grid-flex pt-50" data-aos="fade-up">
+            <JobCategorie7 />
+          </div>
+          {/* End .row */}
+        </div>
+      </section>
+      {/* <!-- End Job Categories --> */}ù
       <section className="registeration-banners">
         <div className="auto-container">
           <div className="row" data-aos="fade-up">
@@ -35,6 +67,28 @@ const index = () => {
           </div>
         </div>
       </section>
+
+
+
+      
+      <section className="candidates-section">
+        <div className="auto-container">
+          <div className="sec-title">
+            <h2>Ultimi professionisti inseriti</h2>
+            <div className="text">
+            Scopri i nuovi candidati , visualizza la scheda e contattaci 
+            </div>
+          </div>
+          <Candidates dataCL = {dataCL}/>
+          <div className="carousel-outer" data-aos="fade-up">
+            <div className="candidates-carousel default-dots">
+            
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <!-- End Candidates Section --> */}
+       {/*
       <section className="job-section">
         <div className="auto-container wow fadeInUp">
           <div className="sec-title text-center">
@@ -48,7 +102,7 @@ const index = () => {
           </div>
         </div>
       </section>
-      {/* <!-- End Job Section --> */}
+      <!-- End Job Section --> */}
      
       {/* <!-- End Registeration Banners --> */}
       <Block5 />
@@ -56,7 +110,7 @@ const index = () => {
 
       <CallToAction7 />
       {/* <!-- End Call To Action --> */}
-
+  {/*
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
@@ -69,30 +123,13 @@ const index = () => {
             data-aos="fade-up"
             data-aos-anchor-placement="top-bottom"
           >
-            {/* <!-- Category Block --> */}
+            {/* <!-- Category Block --> 
             <JobCategorie1 />
           </div>
         </div>
       </section>
       {/* End Job Categorie Section */}
 
-      <section className="candidates-section">
-        <div className="auto-container">
-          <div className="sec-title">
-            <h2>Featured Candidates</h2>
-            <div className="text">
-              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
-            </div>
-          </div>
-
-          <div className="carousel-outer" data-aos="fade-up">
-            <div className="candidates-carousel default-dots">
-              <Candidates />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <!-- End Candidates Section --> */}
 
       <section
         className="testimonial-section style-two alternate"
@@ -127,7 +164,7 @@ const index = () => {
           </div>
         </div>
       </div>
-      {/* <!-- Fun Fact Section --> */}
+      {/* <!-- Fun Fact Section --> 
 
       <section className="news-section">
         <div className="auto-container">
@@ -137,12 +174,12 @@ const index = () => {
               Fresh job related news content posted each day.
             </div>
           </div>
-          {/* End ."sec-title */}
+          {/* End ."sec-title 
           <div className="row" data-aos="fade-up">
             <Blog />
           </div>
         </div>
-      </section>
+      </section>*/}
       {/* <!-- End News Section --> */}
 
       <CallToAction6 />

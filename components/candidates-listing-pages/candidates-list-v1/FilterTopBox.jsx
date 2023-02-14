@@ -2,7 +2,6 @@ import Link from "next/link";
 import ListingShowing from "../components/ListingShowing";
 import candidatesData from "../../../data/candidates";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
 import {
     addCandidateGender,
     addCategory,
@@ -21,7 +20,8 @@ import {
     clearQualification,
 } from "../../../features/candidate/candidateSlice";
 
-const FilterTopBox = () => {
+const FilterTopBox = ( {dataCL}) => {
+    console.log(dataCL);
     const {
         keyword,
         location,
@@ -33,14 +33,11 @@ const FilterTopBox = () => {
         qualifications,
         sort,
         perPage,
-        
     } = useSelector((state) => state.candidateFilter) || {};
 
     const dispatch = useDispatch();
-   
-   
 
-
+    // keyword filter
     const keywordFilter = (item) =>
         keyword !== ""
             ? item?.name?.toLowerCase().includes(keyword?.toLowerCase()) && item
@@ -56,7 +53,7 @@ const FilterTopBox = () => {
     const destinationFilter = (item) =>
         item?.destination?.min >= destination?.min &&
         item?.destination?.max <= destination?.max;
-    console.log(candidatesData)
+
     // category filter
     const categoryFilter = (item) =>
         category !== ""
@@ -100,81 +97,75 @@ const FilterTopBox = () => {
     // sort filter
     const sortFilter = (a, b) =>
         sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
-        console.log(dataEx);
 
-        var dataEx;
-
-        var content 
-        fetch("http://localhost:3000/api/canidati")
-          .then((response) => response.json())
-          .then((data) => {
-            dataEx = data
-            console.log(dataEx);
-
-            content = dataEx.map((candidate) => (
-
-                <div className="candidate-block-three" key={candidate._id}>
-                    <div className="inner-box">
-                        <div className="content">
-                            <figure className="image">
-                                
-                               {/*  <img src={candidate.avatar} alt="candidates" /> */}
-                            </figure>
-                            <h4 className="name">
-                                <Link
-                                    href={`/candidates-single-v1/${candidate._id}`}
-                                >
-                                    {candidate.name}
-                                </Link>
-                            </h4>
-    
-                            <ul className="candidate-info">
-                                <li className="designation">
-                                    {candidate.email}
-                                </li>
-                                <li>
-                                    <span className="icon flaticon-map-locator"></span>{" "}
-                                    {candidate.location}
-                                </li>
-                                <li>
-                                    <span className="icon flaticon-money"></span> $
-                                    {candidate} / hour
-                                </li>
-                            </ul>
-                            {/* End candidate-info */}
-    
-                            <ul className="post-tags">
-                                {candidate.tags.map((val, i) => (
-                                    <li key={i}>
-                                        <a href="#">{val}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        {/* End content */}
-    
-                        <div className="btn-box">
-                            <button className="bookmark-btn me-2">
-                                <span className="flaticon-bookmark"></span>
-                            </button>
-                            {/* End bookmark-btn */}
-    
+    let content = dataCL
+        ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
+       /*  ?.filter(keywordFilter)
+        ?.filter(locationFilter)
+        ?.filter(destinationFilter)
+        ?.filter(categoryFilter)
+        ?.filter(genderFilter)
+        ?.filter(datePostedFilter)
+        ?.filter(experienceFilter)
+        ?.filter(qualificationFilter)
+        ?.sort(sortFilter) */
+        ?.map((candidate) => (
+            <div className="candidate-block-three" key={candidate._id}>
+                <div className="inner-box">
+                    <div className="content">
+                        <figure className="image">
+                            <img src={candidate.avatar} alt="candidates" />
+                        </figure>
+                        <h4 className="name">
                             <Link
-                                href={`/candidates-single-v1/${candidate.id}`}
-                                className="theme-btn btn-style-three"
+                                href={`/candidates-single-v1/${candidate._id}`}
                             >
-                                <span className="btn-title">View Profile</span>
+                                {candidate.name}
                             </Link>
-                        </div>
-                        {/* End btn-box */}
+                        </h4>
+
+                        <ul className="candidate-info">
+                            <li className="designation">
+                                {candidate.designation}
+                            </li>
+                            <li>
+                                <span className="icon flaticon-map-locator"></span>{" "}
+                                {candidate.location}
+                            </li>
+                            <li>
+                                <span className="icon flaticon-money"></span> $
+                                {candidate.hourlyRate} / hour
+                            </li>
+                        </ul>
+                        {/* End candidate-info */}
+
+                        <ul className="post-tags">
+                            {candidate.tags.map((val, i) => (
+                                <li key={i}>
+                                    <a href="#">{val}</a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
+                    {/* End content */}
+
+                    <div className="btn-box">
+                        <button className="bookmark-btn me-2">
+                            <span className="flaticon-bookmark"></span>
+                        </button>
+                        {/* End bookmark-btn */}
+
+                        <Link
+                            href={`/candidates-single-v1/${candidate._id}`}
+                            className="theme-btn btn-style-three"
+                        >
+                            <span className="btn-title">View Profile</span>
+                        </Link>
+                    </div>
+                    {/* End btn-box */}
                 </div>
-            ));
-           
-          })
-          .catch((err) => err);
- 
-  
+            </div>
+        ));
 
     // sort handler
     const sortHandler = (e) => {
@@ -221,7 +212,7 @@ const FilterTopBox = () => {
                     {/* Collapsible sidebar button */}
 
                     <div className="text">
-                        <strong>{content}</strong> jobs
+                        <strong>{content?.length}</strong> jobs
                     </div>
                 </div>
                 {/* End showing-result */}

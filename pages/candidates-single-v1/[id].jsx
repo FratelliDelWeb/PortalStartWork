@@ -13,15 +13,20 @@ import GalleryBox from "../../components/candidates-single-pages/shared-componen
 import Social from "../../components/candidates-single-pages/social/Social";
 import JobSkills from "../../components/candidates-single-pages/shared-components/JobSkills";
 import AboutVideo from "../../components/candidates-single-pages/shared-components/AboutVideo";
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/candidates');
+  const data = await res.json();
 
-const CandidateSingleDynamicV1 = () => {
+  return{props:{dataCL : data}}
+}
+const CandidateSingleDynamicV1 = ({dataCL}) => {
   const router = useRouter();
   const [candidate, setCandidates] = useState({});
   const id = router.query.id;
 
   useEffect(() => {
     if (!id) <h1>Loading...</h1>;
-    else setCandidates(candidates.find((item) => item.id == id));
+    else setCandidates(dataCL.find((item) => item._id == id));
 
     return () => {};
   }, [id]);

@@ -150,7 +150,7 @@ const FilterTopBox = () => {
                     {/* End tags */}
 
                     <Link
-                        href={`/candidates-single-v1/${candidate.id}`}
+                        href={`/candidates-single-v1/${candidate._id}`}
                         className="theme-btn btn-style-three"
                     >
                         View Profile
