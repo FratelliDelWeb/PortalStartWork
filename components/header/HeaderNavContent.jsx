@@ -105,6 +105,14 @@ const HeaderNavContent = () => {
                             </div>
                         </div>
                     </li>
+
+                    <li>
+                    <Link href="/users-dashboard/dashboard">
+                    Dashboard
+                                    </Link>
+                     
+                    </li>
+                    
                     {/* End findjobs menu items 
 
                     <li

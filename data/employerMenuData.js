@@ -1,54 +1,54 @@
 module.exports = [
   {
     id: 1,
-    name: "Dashboard",
+    name: "Home",
     icon: "la-home",
     routePath: "/employers-dashboard/dashboard",
     active: "active",
   },
   {
     id: 2,
-    name: "Company Profile",
+    name: "Profilo",
     icon: "la-user-tie",
     routePath: "/employers-dashboard/company-profile",
     active: "",
   },
   {
     id: 3,
-    name: "Post a New Job",
+    name: "Inserisci candidato",
     icon: "la-paper-plane",
     routePath: "/employers-dashboard/post-jobs",
     active: "",
   },
-  {
+ /*  {
     id: 4,
     name: "Manage Jobs",
     icon: "la-briefcase",
     routePath: "/employers-dashboard/manage-jobs",
     active: "",
-  },
+  }, */
   {
     id: 5,
-    name: "All Applicants",
+    name: "Ultimi Candidati",
     icon: "la-file-invoice",
     routePath: "/employers-dashboard/all-applicants",
     active: "",
   },
   {
     id: 6,
-    name: "Shortlisted Resumes",
+    name: "Cerca Candidato",
     icon: "la-bookmark-o",
     routePath: "/employers-dashboard/shortlisted-resumes",
     active: "",
   },
-  {
+/*   {
     id: 7,
     name: "Packages",
     icon: "la-box",
     routePath: "/employers-dashboard/packages",
     active: "",
-  },
-  {
+  }, */
+/*   {
     id: 8,
     name: "Messages",
     icon: "la-comment-o",
@@ -61,10 +61,10 @@ module.exports = [
     icon: "la-bell",
     routePath: "/employers-dashboard/resume-alerts",
     active: "",
-  },
+  }, */
   {
     id: 10,
-    name: "Change Password",
+    name: "Cambia password",
     icon: "la-lock",
     routePath: "/employers-dashboard/change-password",
     active: "",
