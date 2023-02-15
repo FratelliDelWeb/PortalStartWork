@@ -4,8 +4,7 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import WidgetContentBox from "./components/WidgetContentBox";
-import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
+import PackageDataTable from "./components/PackageDataTable";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
@@ -29,7 +28,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Tutti i candidati" />
+          <BreadCrumb title="Packages!" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -37,19 +36,22 @@ const index = () => {
 
           <div className="row">
             <div className="col-lg-12">
-              {/* <!-- Ls widget --> */}
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Candidati</h4>
-                    <WidgetTopFilterBox />
+                    <h4>My Packages</h4>
                   </div>
-                  {/* End top widget filter bar */}
+                  {/* End widget-title */}
 
-                  <WidgetContentBox />
+                  <div className="widget-content">
+                    <div className="table-outer">
+                      <PackageDataTable />
+                    </div>
+                  </div>
                   {/* End widget-content */}
                 </div>
               </div>
+              {/* <!-- Ls widget --> */}
             </div>
           </div>
           {/* End .row */}

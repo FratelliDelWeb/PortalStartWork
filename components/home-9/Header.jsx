@@ -31,8 +31,8 @@ const Header = () => {
           <div className="nav-outer">
             <div className="logo-box">
               <div className="logo">
-                <Link href="/">
-                  <img src="/images/logo-2.svg" alt="brand" />
+                <Link style={{color: 'white'}}href="/">
+               <b> StartWork</b>
                 </Link>
               </div>
             </div>
@@ -51,13 +51,13 @@ const Header = () => {
                 data-bs-toggle="modal"
                 data-bs-target="#loginPopupModal"
               >
-                Login / Register
+               ACCEDI
               </a>
               <Link
                 href="/employers-dashboard/post-jobs"
                 className="theme-btn btn-style-five"
               >
-                Job Post
+                CANDIDATI
               </Link>
             </div>
           </div>

@@ -11,7 +11,7 @@ const index = ({dataCL}) => {
    console.log(dataCL)
     return (
         <>
-            <Seo pageTitle="Home-9" />
+            <Seo pageTitle="STARTWORK" />
             <Home9 dataCL = {dataCL}/> 
         </>
     );

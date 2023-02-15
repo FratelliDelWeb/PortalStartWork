@@ -105,6 +105,14 @@ const HeaderNavContent = () => {
                             </div>
                         </div>
                     </li>
+
+                    <li>
+                    <Link href="/users-dashboard/dashboard">
+                    Dashboard
+                                    </Link>
+                     
+                    </li>
+                    
                     {/* End findjobs menu items 
 
                     <li
@@ -180,7 +188,7 @@ const HeaderNavContent = () => {
                                 : ""
                         } dropdown`}
                     >
-                        <span>Candidates</span>
+                        <span>Cerca Professionista</span>
                         <ul>
                             {candidateItems.map((item) => (
                                 <li className="dropdown" key={item.id}>

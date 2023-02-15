@@ -6,10 +6,9 @@ const CallToAction6 = () => {
       <div className="auto-container">
         <div className="outer-box">
           <div className="sec-title light">
-            <h2>Gat a question?</h2>
+            <h2>Hai domande?</h2>
             <div className="text">
-              We are here to help. Check out our FAQs, send us an email or call
-              us at 1 <br />
+              Sei un azienda cerchi candidati? O un vuoii entrare a far parte de inosstri porfessionissti? Contattaci ora al numero: <br />
               <a href="#">(900) 777-7777.</a>
             </div>
           </div>
@@ -17,7 +16,7 @@ const CallToAction6 = () => {
 
           <div className="btn-box">
             <Link href="/faq" className="theme-btn btn-style-three">
-              Get Started
+            Chiama ora
             </Link>
           </div>
         </div>

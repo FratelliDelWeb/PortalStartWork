@@ -4,8 +4,7 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import WidgetContentBox from "./components/WidgetContentBox";
-import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
+import Form from "./components/Form";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
@@ -29,30 +28,22 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Tutti i candidati" />
+          <BreadCrumb title="Change Password!" />
           {/* breadCrumb */}
 
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <div className="row">
-            <div className="col-lg-12">
-              {/* <!-- Ls widget --> */}
-              <div className="ls-widget">
-                <div className="tabs-box">
-                  <div className="widget-title">
-                    <h4>Candidati</h4>
-                    <WidgetTopFilterBox />
-                  </div>
-                  {/* End top widget filter bar */}
+          <div className="ls-widget">
+            <div className="widget-title">
+              <h4>Change Password</h4>
+            </div>
 
-                  <WidgetContentBox />
-                  {/* End widget-content */}
-                </div>
-              </div>
+            <div className="widget-content">
+              <Form />
             </div>
           </div>
-          {/* End .row */}
+          {/* <!-- Ls widget --> */}
         </div>
         {/* End dashboard-outer */}
       </section>
