@@ -9,8 +9,8 @@ import Funfact from "../fun-fact-counter/Funfact";
 import Testimonia4 from "../testimonial/Testimonial4";
 import JobCategorie1 from "../job-categories/JobCategorie1";
 import JobCategorie7 from "../job-categories/JobCategorie7";
-
-import Block5 from "../block/Block5";
+import  About9 from "../about/About9"
+import Block6 from "../block/Block6";
 import JobFeatured12 from "../job-featured/JobFeatured12";
 import LoginPopup from "../common/form/login/LoginPopup";
 import MobileMenu from "../header/MobileMenu";
@@ -105,10 +105,10 @@ const index = ( {dataCL}) => {
       <!-- End Job Section --> */}
      
       {/* <!-- End Registeration Banners --> */}
-      <Block5 />
-      {/* <!-- End Steps Section --> */}
+      <About9 />
+            {/* <!-- End Steps Section --> */}
 
-      <CallToAction7 />
+     {/*  <CallToAction7 /> */}
       {/* <!-- End Call To Action --> */}
   {/*
       <section className="job-categories">
@@ -128,15 +128,14 @@ const index = ( {dataCL}) => {
           </div>
         </div>
       </section>
-      {/* End Job Categorie Section */}
-
+      {/* End Job Categorie Section 
 
       <section
         className="testimonial-section style-two alternate"
         style={{ backgroundImage: "url(images/background/9.png)" }}
       >
         <div className="auto-container">
-          {/* <!-- Sec Title --> */}
+          {/* <!-- Sec Title --> 
           <div className="sec-title light text-center">
             <h2>Testimonials From Our Customers</h2>
             <div className="text">
@@ -145,18 +144,18 @@ const index = ( {dataCL}) => {
           </div>
 
           <div className="carousel-outer" data-aos="fade-up">
-            {/* <!-- Testimonial Carousel --> */}
+            {/* <!-- Testimonial Carousel -->
             <div className="testimonial-carousel-three gap-x25">
               <Testimonia4 />
             </div>
           </div>
-          {/* End .carousel-outer */}
+          {/* End .carousel-outer
         </div>
-        {/* End auto-container */}
+        {/* End auto-container 
       </section>
       {/* <!-- End Testimonial Section --> */}
 
-      {/* <!-- Fun Fact Section --> */}
+      {/* <!-- Fun Fact Section --> 
       <div className="fun-fact-section style-two">
         <div className="auto-container">
           <div className="row" data-aos="fade-in">

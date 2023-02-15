@@ -26,8 +26,8 @@ const About9 = () => {
                 >
                   <span className="icon flaticon-email-3"></span>
                   <p>
-                    Work Inquiry From <br />
-                    Ali Tufan
+                    Contatto email <br />
+                    24H
                   </p>
                 </div>
 
@@ -37,7 +37,7 @@ const About9 = () => {
                   data-aos-delay="1100"
                   data-aos="fade-in"
                 >
-                  <p>10k+ Candidates</p>
+                  <p>150+ Candidati</p>
                   <div className="image">
                     <img
                       src="images/resource/multi-peoples.png"
@@ -54,9 +54,9 @@ const About9 = () => {
                 >
                   <span className="icon flaticon-file"></span>
                   <div className="inner">
-                    <p>Upload Your CV</p>
+                    <p>Costruisci il tuo CV</p>
                     <span className="sub-text">
-                      It only takes a few seconds
+                      Entra nei professionisti
                     </span>
                   </div>
                 </div>
@@ -69,20 +69,18 @@ const About9 = () => {
               <div data-aos="fade-right">
                 <div className="sec-title">
                   <h2 className="fw-700">
-                    Professional CV is your ticket to the dream job
+                  Il CV professionale è il tuo biglietto per il lavoro dei sogni
                   </h2>
                   <div className="text mt-30">
-                    To start searching for jobs, you can attend job fairs online
-                    or in person, use job boards and career websites or reach
-                    out directly to recruiters in a targeted company to broaden
-                    your network.
+                  Per iniziare a cercare lavoro, puoi inscriverti al nostro portale del lavoro o di persona!
+                  Inizia la tua nuova carriera, un reclutatore ti affianchera nella costruzione del tuo Profilo e verra inserito tra i nostri professionisti.
                   </div>
                 </div>
                 <Link
                   href="/candidates-dashboard/cv-manager"
                   className="theme-btn btn-style-one"
                 >
-                  Post Resume
+                 Compila modulo
                 </Link>
               </div>
             </div>
