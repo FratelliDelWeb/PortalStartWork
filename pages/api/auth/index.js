@@ -1,4 +1,4 @@
-const jwtSecret = "4715aed3c946f7b0a38e6b534a9583628d84e96d10fbc04700770d572af3dce43625dd";
+/* const jwtSecret = process.env.JWT_KEY;
 const jwt = require("jsonwebtoken");
 
 exports.adminAuth = (req, res, next) => {
@@ -15,7 +15,9 @@ exports.adminAuth = (req, res, next) => {
       next();
     });
   } else {
-    return res.status(401).json({ message: "Not authorized, token not available" });
+    return res
+      .status(401)
+      .json({ message: "Not authorized, token not available" });
   }
 };
 
@@ -32,6 +34,9 @@ exports.userAuth = (req, res, next) => {
       next();
     });
   } else {
-    return res.status(401).json({ message: "Not authorized, token not available" });
+    return res
+      .status(401)
+      .json({ message: "Not authorized, token not available" });
   }
 };
+ */

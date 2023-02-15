@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/api/candidati.ts", "lib/dbConnect.ts"  ],
+, "pages/api/candidati.ts", "lib/dbConnect.ts", "pages/middleware.js"  ],
   "exclude": [
     "node_modules"
   ]
