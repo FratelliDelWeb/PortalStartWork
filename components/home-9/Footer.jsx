@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="footer-column about-widget">
                 <div className="logo">
                   <a href="#">
-                    <img src="/images/logo-2.svg" alt="brand" />
+                    <b>STARTWORK</b>
                   </a>
                 </div>
                 <p className="phone-num">

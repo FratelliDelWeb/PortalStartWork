@@ -180,7 +180,7 @@ const HeaderNavContent = () => {
                                 : ""
                         } dropdown`}
                     >
-                        <span>Candidates</span>
+                        <span>Cerca Professionista</span>
                         <ul>
                             {candidateItems.map((item) => (
                                 <li className="dropdown" key={item.id}>
