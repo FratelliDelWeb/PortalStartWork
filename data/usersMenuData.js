@@ -6,17 +6,11 @@ module.exports = [
     routePath: "/users-dashboard/dashboard",
     active: "active",
   },
+ 
   {
     id: 2,
-    name: "Profilo",
-    icon: "la-user-tie",
-    routePath: "/users-dashboard/company-profile",
-    active: "",
-  },
-  {
-    id: 3,
     name: "Inserisci candidato",
-    icon: "la-paper-plane",
+    icon: "la-file-medical",
     routePath: "/users-dashboard/post-jobs",
     active: "",
   },
@@ -28,16 +22,16 @@ module.exports = [
     active: "",
   }, */
   {
-    id: 5,
+    id: 3,
     name: "Ultimi Candidati",
-    icon: "la-file-invoice",
+    icon: "la-id-card",
     routePath: "/users-dashboard/all-applicants",
     active: "",
   },
   {
-    id: 6,
+    id: 4,
     name: "Cerca Candidato",
-    icon: "la-bookmark-o",
+    icon: "la-search",
     routePath: "/users-dashboard/shortlisted-resumes",
     active: "",
   },
@@ -63,6 +57,13 @@ module.exports = [
     active: "",
   }, */
   {
+    id: 5,
+    name: "Profilo",
+    icon: "la-user-tie",
+    routePath: "/users-dashboard/company-profile",
+    active: "",
+  },
+  {
     id: 10,
     name: "Cambia password",
     icon: "la-lock",
@@ -76,11 +77,11 @@ module.exports = [
     routePath: "/login",
     active: "",
   },
-  {
+/*   {
     id: 12,
     name: "Delete Profile",
     icon: "la-trash",
     routePath: "/",
     active: "",
-  },
+  }, */
 ];
