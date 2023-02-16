@@ -35,31 +35,9 @@ const FormContent = () => {
         if (data.message === "User successfully Logged in") {
           alert("login successful");
           window.localStorage.setItem("token", data.user);
-        }
-        if (data.role !== "admin") {
-          fetch("/basic").then((response) => {
-            response.json();
-            const staus = response.status;
-            console.log(response);
-            console.log(staus);
-            if (staus === 200 || staus === 201) {
-              window.location.href = "/dashboard";
-            } else {
-              alert("Nome o password errati");
-            }
-          });
+          window.location.href = "/users-dashboard/dashboard";
         } else {
-          fetch("/admin").then((response) => {
-            response.json();
-            const staus = response.status;
-            console.log(response);
-            console.log(staus);
-            if (staus === 200 || staus === 201) {
-              window.location.href = "/dashboard";
-            } else {
-              alert("Nome o password errati");
-            }
-          });
+          alert("Nome o password errati");
         }
       });
   }

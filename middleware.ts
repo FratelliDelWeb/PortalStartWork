@@ -60,6 +60,23 @@ export default async function middleware(req: NextRequest) {
         console.log("Middleware - JWT Error - Redirect to => " + req.nextUrl);
         return NextResponse.redirect(req.nextUrl);
       }
+      } else if(pathname.startsWith("/area-privata")){
+        if (jwt === undefined) {
+          req.nextUrl.pathname = "/login";
+          return NextResponse.redirect(req.nextUrl);
+        }
+        try {
+          await verify(jwt.value, secret);
+          console.log("Middleware - JWT Verification Passed - Next")
+          return NextResponse.next();
+        } catch (error) {
+          console.log(error)
+          console.log("Middleware - JWT Error - Actual Url => " + req.nextUrl);
+          req.nextUrl.pathname = "/login";
+          console.log("Middleware - JWT Error - Redirect to => " + req.nextUrl);
+          return NextResponse.redirect(req.nextUrl);
+        }
+
       }
     }
   return NextResponse.next();
