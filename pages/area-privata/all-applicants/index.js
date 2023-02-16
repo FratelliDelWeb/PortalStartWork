@@ -1,18 +1,33 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import AllApplicants from "../../../components/dashboard-pages/area-privata/all-applicants";
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/public/candidates');
+import axios from "axios";
+
+export async function getServerSideProps({ req }) {
+  const res = await axios.get("http://localhost:3000/api/candidates", {
+    withCredentials: true,
+    headers: {
+      Cookie: req.headers.cookie,
+    },
+  });
+  const data = await res.data;
+  return { props: { dataCL: data } };
+}
+
+export async function loadData() {
+  const res = await fetch("http://localhost:3000/api/candidates");
+  console.log("RES => ", res);
   const data = await res.json();
 
-  return{props:{dataCL : data}}
-} 
-const index = ({dataCL}) => {
-  console.log(dataCL)
+  return data;
+}
+
+const index = ({ dataCL }) => {
+  console.log(dataCL);
   return (
     <>
       <Seo pageTitle="All Applicants" />
-      <AllApplicants  dataCL = {dataCL}/>
+      <AllApplicants dataCL={dataCL} />
     </>
   );
 };

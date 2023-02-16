@@ -12,7 +12,7 @@ export default async function handler(
     console.log('**LOG** Candidates - getAll - Init');
 
     const data = await Model.find();
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -20,7 +20,7 @@ export default async function handler(
         "category": 1,
         "destination": 1,
     });
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

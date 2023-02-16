@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 
 const WidgetContentBox = ({dataCL}) => {
+  console.log('WidgetContentBox - dataCL => ', dataCL)
   return (
     <div className="widget-content">
       <div className="tabs-box">
@@ -64,7 +65,7 @@ const WidgetContentBox = ({dataCL}) => {
                       <div className="option-box">
                         <ul className="option-list">
                           <li>
-                            <Link href={'/area-privata/candidate'} data-text="View Aplication">
+                            <Link  href={`/area-privata/candidates/${candidate._id}`} data-text="View Aplication">
                               <span className="la la-eye"></span>
                             </Link>
                           </li>
