@@ -3,7 +3,7 @@ module.exports = [
     id: 1,
     name: "Home",
     icon: "la-home",
-    routePath: "/users-dashboard/dashboard",
+    routePath: "/area-privata/dashboard",
     active: "active",
   },
  
@@ -11,7 +11,7 @@ module.exports = [
     id: 2,
     name: "Inserisci candidato",
     icon: "la-file-medical",
-    routePath: "/users-dashboard/post-jobs",
+    routePath: "/area-privata/post-jobs",
     active: "",
   },
  /*  {
@@ -25,14 +25,14 @@ module.exports = [
     id: 3,
     name: "Ultimi Candidati",
     icon: "la-id-card",
-    routePath: "/users-dashboard/all-applicants",
+    routePath: "/area-privata/all-applicants",
     active: "",
   },
   {
     id: 4,
     name: "Cerca Candidato",
     icon: "la-search",
-    routePath: "/users-dashboard/shortlisted-resumes",
+    routePath: "/area-privata/shortlisted-resumes",
     active: "",
   },
 /*   {
@@ -60,14 +60,14 @@ module.exports = [
     id: 5,
     name: "Profilo",
     icon: "la-user-tie",
-    routePath: "/users-dashboard/company-profile",
+    routePath: "/area-privata/company-profile",
     active: "",
   },
   {
     id: 10,
     name: "Cambia password",
     icon: "la-lock",
-    routePath: "/users-dashboard/change-password",
+    routePath: "/area-privata/change-password",
     active: "",
   },
   {

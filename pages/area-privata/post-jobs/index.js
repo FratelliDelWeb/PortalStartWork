@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import PostJob from "../../../components/dashboard-pages/users-dashboard/post-jobs";
+import PostJob from "../../../components/dashboard-pages/area-privata/post-jobs";
 
 const index = () => {
   return (

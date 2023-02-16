@@ -35,7 +35,7 @@ const FormContent = () => {
         if (data.message === "User successfully Logged in") {
           alert("login successful");
           window.localStorage.setItem("token", data.user);
-          window.location.href = "/users-dashboard/dashboard";
+          window.location.href = "/area-privata/dashboard";
         } else {
           alert("Nome o password errati");
         }

@@ -107,7 +107,7 @@ const HeaderNavContent = () => {
                     </li> */}
 
                     <li>
-                    <Link href="/users-dashboard/dashboard">
+                    <Link href="/area-privata/dashboard">
                     Dashboard
                                     </Link>
                      
