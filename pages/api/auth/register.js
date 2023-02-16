@@ -1,6 +1,5 @@
 const User = require("../../../model/User");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 import dbConnect from "../../../lib/dbConnect";
 
 export default async function handler(req, res, next) {
@@ -20,12 +19,9 @@ export default async function handler(req, res, next) {
     })
       .then((user) => {
         const maxAge = 3 * 60 * 60;
-        const token = jwt.sign(
-          { id: user._id, username, role: user.role },
-          jwtSecret,
-          {
-            expiresIn: maxAge, // 3hrs in sec
-          }
+        const token = sign(
+          { id: user._id, username, role: user.role, exp: maxAge, iat: 3 },
+          jwtSecret
         );
         res.cookie("jwt", token, {
           httpOnly: true,

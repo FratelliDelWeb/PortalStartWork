@@ -9,10 +9,16 @@ export default async function middleware(req: NextRequest) {
     const {pathname} = req.nextUrl;
     console.log('On Path => ' + pathname)
 
-    if (pathname.startsWith("/api") && !pathname.endsWith("/login") && !pathname.endsWith("/register")) {
+    if(pathname.startsWith("/api/public")){
+      return NextResponse.next();
+    } else {
+      console.log("Middleware - Not a public route")
+      if (pathname.startsWith("/api") && !pathname.endsWith("/login") && !pathname.endsWith("/register")) {
+
         console.log("Middleware - Entered in private route")
         console.log("Middleware - JWT => ")
         console.log(jwt)
+
       if (jwt === undefined) {
         req.nextUrl.pathname = "/login";
         return NextResponse.redirect(req.nextUrl);
@@ -24,9 +30,12 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.next();
       } catch (error) {
         console.log(error)
-        req.nextUrl.pathname = "/login";
+        console.log("Middleware - Error - Actual Url => " + req.nextUrl);
+        req.nextUrl.pathname = "/api/public/notAuthorized";
+        console.log("Middleware - Error - Redirect to => " + req.nextUrl);
         return NextResponse.redirect(req.nextUrl);
       }
+    }
     }
   
     return NextResponse.next();

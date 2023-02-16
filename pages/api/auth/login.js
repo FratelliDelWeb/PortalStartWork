@@ -1,9 +1,9 @@
 const User = require("../../../model/User");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 import dbConnect from "../../../lib/dbConnect";
 const jwtSecret = process.env.JWT_KEY || process.env.JWT_KEY;
 import { setCookie } from "../../../utils/cookie";
+import { sign } from "../../../lib/jwt";
 
 export default async function handler(req, res, next) {
   //DB Connection
@@ -26,37 +26,27 @@ export default async function handler(req, res, next) {
       });
     } else {
       // comparing given password with hashed password
-      bcrypt.compare(password, user.password).then(function (result) {
+      bcrypt.compare(password, user.password).then(async function (result) {
         console.log(password);
         console.log(user.password);
         console.log(result);
         if (result) {
-          const maxAge = 3 * 60 * 60;
-          const token = jwt.sign(
+          const token = await sign(
             { id: user._id, username, role: user.role },
-            jwtSecret,
-            {
-              expiresIn: maxAge, // 3hrs in sec
-            }
+            jwtSecret
           );
           setCookie(res, "jwt", token, {
             path: "/",
             maxAge: 2592000,
             httpOnly: true,
           });
-          /* res.cookie("jwt", token, {
-            httpOnly: true,
-            maxAge: maxAge * 1000, // 3hrs in ms
-          }); */
           res.status(201).json({
             message: "User successfully Logged in",
             user: user._id,
             role: user.role,
           });
         } else {
-          res
-            .status(400)
-            .json({ message: "Login not successful", userRole: user.role });
+          res.status(400).json({ message: "Login not successful" });
         }
       });
     }

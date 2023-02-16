@@ -1,6 +1,4 @@
 const User = require("../../../model/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 import dbConnect from "../../../lib/dbConnect";
 
 export default async function handler(req, res, next) {
