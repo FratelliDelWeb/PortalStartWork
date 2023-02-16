@@ -1,24 +1,86 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
+import { useState } from "react";
 
 const FormContent = () => {
 
+  let initialState = {
+    username: "",
+    password: "",
+    stato: false,
+  }
+  const [state, setState] = useState(initialState);
+
+  const handleSubmit = function (e) {
+    e.preventDefault();
+    const username = state.username;
+    const password = state.password;
+    console.log(username, password);
+    fetch("/api/auth/login", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.message === "User successfully Logged in") {
+          alert("login successful");
+          window.localStorage.setItem("token", data.user);
+        }
+        if (data.role !== "admin") {
+          fetch("/basic").then((response) => {
+            response.json();
+            const staus = response.status;
+            console.log(response);
+            console.log(staus);
+            if (staus === 200 || staus === 201) {
+              window.location.href = "/dashboard";
+            } else {
+              alert("Nome o password errati");
+            }
+          });
+        } else {
+          fetch("/admin").then((response) => {
+            response.json();
+            const staus = response.status;
+            console.log(response);
+            console.log(staus);
+            if (staus === 200 || staus === 201) {
+              window.location.href = "/dashboard";
+            } else {
+              alert("Nome o password errati");
+            }
+          });
+        }
+      });
+  }
 
   return (
     <div className="form-inner">
       <h3>Login to Superio</h3>
 
       {/* <!--Login Form--> */}
-      <form  action="/api/auth/login" method="post">
+      <form  onSubmit={(e) => {
+       handleSubmit(e);
+      }} action="/api/auth/login" method="post">
         <div className="form-group">
           <label>Username</label>
-          <input type="text" name="username" placeholder="Username" required />
+          <input onChange={(e) => setState({ ...state,username: e.target.value })} type="text" name="username" placeholder="Username" required />
         </div>
         {/* name */}
 
         <div className="form-group">
           <label>Password</label>
-          <input type="password" name="password" placeholder="Password" />
+          <input onChange={(e) => setState({ ...state,password: e.target.value })} type="password" name="password" placeholder="Password" required/>
         </div>
         {/* password */}
 
