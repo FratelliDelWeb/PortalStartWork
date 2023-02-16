@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import PostJob from "../../../components/dashboard-pages/users-dashboard/post-jobs";
+import Candidato from "../../../components/dashboard-pages/users-dashboard/candidate";
 
 const index = () => {
   return (
     <>
-      <Seo pageTitle="Post Jobs" />
-      <PostJob />
+      <Seo pageTitle="Candidato" />
+      <Candidato />
     </>
   );
 };

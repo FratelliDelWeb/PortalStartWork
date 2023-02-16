@@ -27,7 +27,7 @@ const Index = () => {
 
       <DashboardEmployerSidebar />
       {/* <!-- End User Sidebar Menu --> */}
-    tesssst
+    
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
@@ -40,6 +40,23 @@ const Index = () => {
           <div className="row">
             <TopCardBlock />
           </div>
+          
+          <div className="col-lg-12">
+              {/* <!-- applicants Widget --> */}
+              <div className="applicants-widget ls-widget">
+                <div className="widget-title">
+                  <h4>Ultimi Candidati</h4>
+                </div>
+                <div className="widget-content">
+                  <div className="row">
+                    {/* <!-- Candidate block three --> */}
+
+                    <Applicants />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* End .col */}
           {/* End .row top card block */}
 
           <div className="row">
@@ -56,7 +73,7 @@ const Index = () => {
               {/* <!-- Notification Widget --> */}
               <div className="notification-widget ls-widget">
                 <div className="widget-title">
-                  <h4>Notifications</h4>
+                  <h4>Notifiche</h4>
                 </div>
                 <div className="widget-content">
                   <Notification />
@@ -65,22 +82,6 @@ const Index = () => {
             </div>
             {/* End .col */}
 
-            <div className="col-lg-12">
-              {/* <!-- applicants Widget --> */}
-              <div className="applicants-widget ls-widget">
-                <div className="widget-title">
-                  <h4>Recent Applicants</h4>
-                </div>
-                <div className="widget-content">
-                  <div className="row">
-                    {/* <!-- Candidate block three --> */}
-
-                    <Applicants />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End .col */}
           </div>
           {/* End .row profile and notificatins */}
         </div>

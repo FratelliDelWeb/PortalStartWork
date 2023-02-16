@@ -2,12 +2,14 @@ import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
 
 const FormContent = () => {
+
+
   return (
     <div className="form-inner">
       <h3>Login to Superio</h3>
 
       {/* <!--Login Form--> */}
-      <form method="post">
+      <form  action="/api/auth/login" method="post">
         <div className="form-group">
           <label>Username</label>
           <input type="text" name="username" placeholder="Username" required />
@@ -40,6 +42,7 @@ const FormContent = () => {
             className="theme-btn btn-style-one"
             type="submit"
             name="log-in"
+          
           >
             Log In
           </button>
@@ -70,7 +73,9 @@ const FormContent = () => {
       </div>
       {/* End bottom-box LoginWithSocial */}
     </div>
+    
   );
+  
 };
 
 export default FormContent;

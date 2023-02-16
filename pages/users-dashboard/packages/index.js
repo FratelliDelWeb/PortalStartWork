@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import Packages from "../../../components/dashboard-pages/employers-dashboard/packages";
+import Packages from "../../../components/dashboard-pages/users-dashboard/packages";
 
 const index = () => {
   return (

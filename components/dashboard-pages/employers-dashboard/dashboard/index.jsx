@@ -42,6 +42,22 @@ const Index = () => {
           </div>
           {/* End .row top card block */}
 
+          <div className="col-lg-12">
+              {/* <!-- applicants Widget --> */}
+              <div className="applicants-widget ls-widget">
+                <div className="widget-title">
+                  <h4>Ultimi Candidati</h4>
+                </div>
+                <div className="widget-content">
+                  <div className="row">
+                    {/* <!-- Candidate block three --> */}
+
+                    <Applicants />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* End .col */}
           <div className="row">
             <div className="col-xl-7 col-lg-12">
               {/* <!-- Graph widget --> */}
@@ -56,7 +72,7 @@ const Index = () => {
               {/* <!-- Notification Widget --> */}
               <div className="notification-widget ls-widget">
                 <div className="widget-title">
-                  <h4>Notifications</h4>
+                  <h4>Notificationsssssss</h4>
                 </div>
                 <div className="widget-content">
                   <Notification />
@@ -65,22 +81,6 @@ const Index = () => {
             </div>
             {/* End .col */}
 
-            <div className="col-lg-12">
-              {/* <!-- applicants Widget --> */}
-              <div className="applicants-widget ls-widget">
-                <div className="widget-title">
-                  <h4>Recent Applicants</h4>
-                </div>
-                <div className="widget-content">
-                  <div className="row">
-                    {/* <!-- Candidate block three --> */}
-
-                    <Applicants />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End .col */}
           </div>
           {/* End .row profile and notificatins */}
         </div>

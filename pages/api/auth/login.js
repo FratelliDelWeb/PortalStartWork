@@ -2,7 +2,7 @@ const User = require("../../../model/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 import dbConnect from "../../../lib/dbConnect";
-const jwtSecret = process.env.JWT_KEY || env.local.JWT_KEY;
+const jwtSecret = process.env.JWT_KEY || process.env.JWT_KEY;
 import { setCookie } from "../../../utils/cookie";
 
 export default async function handler(req, res, next) {

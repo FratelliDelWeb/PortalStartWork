@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import ResumeAlerts from "../../../components/dashboard-pages/employers-dashboard/resume-alerts";
+import ResumeAlerts from "../../../components/dashboard-pages/users-dashboard/resume-alerts";
 
 const index = () => {
   return (

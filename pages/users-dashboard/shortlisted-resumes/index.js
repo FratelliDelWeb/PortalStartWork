@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import ShortlistedResumes from "../../../components/dashboard-pages/employers-dashboard/shortlisted-resumes";
+import ShortlistedResumes from "../../../components/dashboard-pages/users-dashboard/shortlisted-resumes";
 
 const index = () => {
   return (

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import candidates from "../../data/candidates";
 
-const Candidates = ({dataCL}) => {
+const Candidates = () => {
   const settings = {
     dots: true,
     speed: 1400,
@@ -40,7 +40,7 @@ const Candidates = ({dataCL}) => {
   return (
     <>
       <Slider {...settings} arrows={false}>
-        {dataCL.slice(0, 12).map((dataCL) => (
+        {candidates.slice(0, 12).map((dataCL) => (
           <div className="candidate-block" key={dataCL._id}>
             <div className="inner-box">
               <figure className="image">

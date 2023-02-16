@@ -16,8 +16,8 @@ import LoginPopup from "../common/form/login/LoginPopup";
 import MobileMenu from "../header/MobileMenu";
 import RegBanner2 from "../block/RegBanner2";
 
-const index = ( {dataCL}) => {
-  console.log(dataCL)
+const index = ( ) => {
+
   return (
     <>
       <LoginPopup />
@@ -79,7 +79,7 @@ const index = ( {dataCL}) => {
             Scopri i nuovi candidati , visualizza la scheda e contattaci 
             </div>
           </div>
-          <Candidates dataCL = {dataCL}/>
+          <Candidates />
           <div className="carousel-outer" data-aos="fade-up">
             <div className="candidates-carousel default-dots">
             
