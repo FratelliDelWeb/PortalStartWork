@@ -45,11 +45,11 @@ const Applicants = () => {
 
             <div className="option-box">
               <ul className="option-list">
-                <li>
-                  <button data-text="View Aplication">
+                <link>
+                  <Link href="/users-dashboard/candidate" data-text="View Aplication">
                     <span className="la la-eye"></span>
-                  </button>
-                </li>
+                  </Link>
+                </link>
                 <li>
                   <button data-text="Approve Aplication">
                     <span className="la la-check"></span>

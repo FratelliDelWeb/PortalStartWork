@@ -2,31 +2,31 @@ const TopCardBlock = () => {
   const cardContent = [
     {
       id: 1,
-      icon: "flaticon-briefcase",
+      icon: "la-user-check",
       countNumber: "22",
       metaName: "Candidati pubblicati",
-      uiClass: "ui-blue",
+      uiClass: "ui-green",
     },
     {
       id: 2,
-      icon: "la-file-invoice",
+      icon: "la-user-plus",
       countNumber: "9382",
       metaName: "Nuovi Candidati",
-      uiClass: "ui-red",
+      uiClass: "ui-blu",
     },
     {
       id: 3,
-      icon: "la-comment-o",
+      icon: "la-user-clock",
       countNumber: "7",
       metaName: "In attesa ",
       uiClass: "ui-yellow",
     },
     {
       id: 4,
-      icon: "la-bookmark-o",
+      icon: "la-user-slash",
       countNumber: "32",
       metaName: "Scartati",
-      uiClass: "ui-green",
+      uiClass: "ui-red",
     },
   ];
 

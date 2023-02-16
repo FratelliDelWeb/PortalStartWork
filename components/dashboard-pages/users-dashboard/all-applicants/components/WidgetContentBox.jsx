@@ -64,9 +64,9 @@ const WidgetContentBox = () => {
                       <div className="option-box">
                         <ul className="option-list">
                           <li>
-                            <button data-text="View Aplication">
+                            <Link href={'/users-dashboard/candidate'} data-text="View Aplication">
                               <span className="la la-eye"></span>
-                            </button>
+                            </Link>
                           </li>
                           <li>
                             <button data-text="Approve Aplication">

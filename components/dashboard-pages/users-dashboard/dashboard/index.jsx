@@ -1,7 +1,7 @@
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
-import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
+import DashboardUsersSidebar from "../../../header/DashboardUsersSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import TopCardBlock from "./components/TopCardBlock";
 import ProfileChart from "./components/ProfileChart";
@@ -25,7 +25,7 @@ const Index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <DashboardEmployerSidebar />
+      <DashboardUsersSidebar />
       {/* <!-- End User Sidebar Menu --> */}
     
       {/* <!-- Dashboard --> */}
@@ -45,7 +45,7 @@ const Index = () => {
               {/* <!-- applicants Widget --> */}
               <div className="applicants-widget ls-widget">
                 <div className="widget-title">
-                  <h4>Ultimi Candidati</h4>
+                  <h4>Ultimi Candidati users</h4>
                 </div>
                 <div className="widget-content">
                   <div className="row">
