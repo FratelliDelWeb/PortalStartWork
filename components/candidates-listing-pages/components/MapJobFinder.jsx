@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-export default function SimpleMap() {
+export default function SimpleMap({dataCL}) {
   const defaultProps = {
     center: {
       lat: 10.99835602,

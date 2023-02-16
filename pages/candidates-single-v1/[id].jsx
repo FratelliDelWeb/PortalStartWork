@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
   console.log(context)
   console.log(context.query.id)
   const  id  = context.query.id;
-  const res = await fetch('http://localhost:3000/api/candidates/'+ id);
+  const res = await fetch('http://localhost:3000/api/public/candidates/'+ id);
   const data = await res.json();
  
   return{props:{dataCL : data}}

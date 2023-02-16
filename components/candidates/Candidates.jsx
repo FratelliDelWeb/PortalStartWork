@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import candidates from "../../data/candidates";
 
-const Candidates = () => {
+const Candidates = ({dataCL}) => {
   const settings = {
     dots: true,
     speed: 1400,
@@ -40,19 +40,19 @@ const Candidates = () => {
   return (
     <>
       <Slider {...settings} arrows={false}>
-        {candidates.slice(0, 12).map((dataCL) => (
-          <div className="candidate-block" key={dataCL._id}>
+        {dataCL.slice(0, 12).map((candidate) => (
+          <div className="candidate-block" key={candidate._id}>
             <div className="inner-box">
               <figure className="image">
-                <img src={dataCL.avatar} alt="avatar" />
+                <img src={candidate.avatar} alt="avatar" />
               </figure>
-              <h4 className="name">{dataCL.name}</h4>
-              <span className="designation">{dataCL.designation}</span>
+              <h4 className="name">{candidate.name}</h4>
+              <span className="designation">{candidate.designation}</span>
               <div className="location">
-                <i className="flaticon-map-locator"></i> {dataCL.location}
+                <i className="flaticon-map-locator"></i> {candidate.location}
               </div>
               <Link
-                href={`/candidates-single-v1/${dataCL.id}`}
+                href={`/candidates-single-v1/${candidate._id}`}
                 className="theme-btn btn-style-three"
               >
                 <span className="btn-title">View Profile</span>

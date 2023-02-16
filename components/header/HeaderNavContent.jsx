@@ -64,7 +64,7 @@ const HeaderNavContent = () => {
                     </li>
                     {/* End homepage menu items */}
 
-                    <li
+                  {/*   <li
                         className={`${
                             isActiveParent(findJobItems, router.asPath)
                                 ? "current"
@@ -104,7 +104,7 @@ const HeaderNavContent = () => {
                                 ))}
                             </div>
                         </div>
-                    </li>
+                    </li> */}
 
                     <li>
                     <Link href="/users-dashboard/dashboard">
@@ -178,7 +178,7 @@ const HeaderNavContent = () => {
                     </li>
                      End Employers menu items */}
 
-                    <li
+                 {/*    <li
                         className={`${
                             isActiveParent(candidateItems, router.asPath) ||
                             router.asPath === "/candidates-dashboard/dashboard"
@@ -238,6 +238,13 @@ const HeaderNavContent = () => {
                                 </Link>
                             </li>
                         </ul>
+                    </li> */}
+
+
+                    <li>
+                    <Link href="/candidates-list-v5">
+                    Cerca Professionista</Link>
+                     
                     </li>
                     {/* End Candidates menu items
 
@@ -282,7 +289,7 @@ const HeaderNavContent = () => {
                                 : ""
                         } dropdown`}
                     >
-                        <span>Pages</span>
+                        <span>Altro</span>
                         <ul>
                             {shopItems.map((item) => (
                                 <li className="dropdown" key={item.id}>

@@ -20,7 +20,7 @@ import {
     clearQualification,
 } from "../../../features/candidate/candidateSlice";
 
-const FilterTopBox = () => {
+const FilterTopBox = ({dataCL}) => {
     const {
         keyword,
         location,
@@ -97,8 +97,8 @@ const FilterTopBox = () => {
     const sortFilter = (a, b) =>
         sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
 
-    let content = candidatesData
-        ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
+    let content = dataCL
+     /*    ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
         ?.filter(keywordFilter)
         ?.filter(locationFilter)
         ?.filter(destinationFilter)
@@ -107,9 +107,9 @@ const FilterTopBox = () => {
         ?.filter(datePostedFilter)
         ?.filter(experienceFilter)
         ?.filter(qualificationFilter)
-        ?.sort(sortFilter)
+        ?.sort(sortFilter) */
         ?.map((candidate) => (
-            <div className="candidate-block-three" key={candidate.id}>
+            <div className="candidate-block-three" key={candidate._id}>
                 <div className="inner-box">
                     <div className="content">
                         <figure className="image">

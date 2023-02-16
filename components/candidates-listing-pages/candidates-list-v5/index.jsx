@@ -5,7 +5,7 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 
-const Index = () => {
+const Index = ({dataCL}) => {
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -44,7 +44,7 @@ const Index = () => {
 
           <div className="content-column width-50">
             <div className="ls-outer">
-              <FilterTopBox />
+              <FilterTopBox dataCL = {dataCL}/>
               {/* <!-- ls Switcher --> */}
             </div>
           </div>
