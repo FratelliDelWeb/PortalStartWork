@@ -26,13 +26,13 @@ export default async function middleware(req: NextRequest) {
 
       try {
         await verify(jwt.value, secret);
-        console.log("Middleware - Ready to next")
+        console.log("Middleware - JWT Verification Passed - Next")
         return NextResponse.next();
       } catch (error) {
         console.log(error)
-        console.log("Middleware - Error - Actual Url => " + req.nextUrl);
+        console.log("Middleware - JWT Error - Actual Url => " + req.nextUrl);
         req.nextUrl.pathname = "/api/public/notAuthorized";
-        console.log("Middleware - Error - Redirect to => " + req.nextUrl);
+        console.log("Middleware - JWT Error - Redirect to => " + req.nextUrl);
         return NextResponse.redirect(req.nextUrl);
       }
     }
