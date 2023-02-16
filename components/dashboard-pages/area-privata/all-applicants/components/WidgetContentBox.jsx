@@ -2,7 +2,7 @@ import candidatesData from "../../../../../data/candidates";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 
-const WidgetContentBox = () => {
+const WidgetContentBox = ({dataCL}) => {
   return (
     <div className="widget-content">
       <div className="tabs-box">
@@ -20,10 +20,10 @@ const WidgetContentBox = () => {
           <div className="tabs-content">
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 23).map((candidate) => (
+                {dataCL.map((candidate) => (
                   <div
                     className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
+                    key={candidate._id}
                   >
                     <div className="inner-box">
                       <div className="content">

@@ -2,11 +2,12 @@ import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import DashboadHome from "../../../components/dashboard-pages/area-privata/dashboard";
 
+
 const index = () => {
   return (
     <>
       <Seo pageTitle="Users Dashboard" />
-      <DashboadHome />
+      <DashboadHome  />
     </>
   );
 };

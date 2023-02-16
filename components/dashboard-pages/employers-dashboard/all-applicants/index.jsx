@@ -8,7 +8,8 @@ import WidgetContentBox from "./components/WidgetContentBox";
 import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
 import MenuToggler from "../../MenuToggler";
 
-const index = () => {
+const index = ({dataCL}) => {
+  console.log(dataCL);
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>

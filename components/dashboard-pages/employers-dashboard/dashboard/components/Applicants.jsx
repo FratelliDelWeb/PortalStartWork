@@ -1,13 +1,13 @@
 import Link from "next/link";
 import candidatesData from "../../../../../data/candidates";
 
-const Applicants = () => {
+const Applicants = ({dataCL}) => {
   return (
     <>
-      {candidatesData.slice(17, 23).map((candidate) => (
+      {dataCL.slice(17, 23).map((candidate) => (
         <div
           className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-          key={candidate.id}
+          key={candidate._id}
         >
           <div className="inner-box">
             <div className="content">
