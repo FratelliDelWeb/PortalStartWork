@@ -1,6 +1,7 @@
 import Select from "react-select";
 
-const FormInfoBox = () => {
+const FormInfoBox = ({dataCL}) => {
+  console.log(dataCL);
   const catOptions = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -11,25 +12,29 @@ const FormInfoBox = () => {
     { value: "Digital", label: "Digital" },
     { value: "Creative Art", label: "Creative Art" },
   ];
-
+ 
   return (
-    <form action="#" className="default-form">
-      <div className="row">
+ 
+    <>
+      
+<form action="#" className="default-form">
+
+      <div   className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Full Name</label>
-          <input type="text" name="name" placeholder="Jerome" required />
+          <label>Nome</label>
+          <input type="text" name="name" placeholder={dataCL.name}  required />
         </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Job Title</label>
-          <input type="text" name="name" placeholder="UI Designer" required />
+          <label>Lavoro</label>
+          <input type="text" name="name" placeholder={dataCL.designation} required />
         </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Phone</label>
+          <label>Telefono</label>
           <input
             type="text"
             name="name"
@@ -40,11 +45,11 @@ const FormInfoBox = () => {
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Email address</label>
+          <label>Email</label>
           <input
             type="text"
             name="name"
-            placeholder="creativelayers"
+            placeholder={dataCL.email}
             required
           />
         </div>
@@ -155,7 +160,13 @@ const FormInfoBox = () => {
           </button>
         </div>
       </div>
-    </form>
+      
+</form>
+  
+    </>
+
+
+    
   );
 };
 

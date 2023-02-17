@@ -7,6 +7,7 @@ export default async function middleware(req: NextRequest) {
     console.log('**LOG** Middleware - Init')
     console.log('Middleware - Request =>')
     const jwt = req.cookies.get("jwt");
+   
     const {pathname} = req.nextUrl;
     console.log('On Path => ' + pathname)
 

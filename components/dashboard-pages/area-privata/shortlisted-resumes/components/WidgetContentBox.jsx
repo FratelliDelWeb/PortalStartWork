@@ -1,10 +1,10 @@
 import Applicants from "./Applicants";
 
-const WidgetContentBox = () => {
+const WidgetContentBox = ({dataCL}) => {
   return (
     <div className="widget-content">
       <div className="row">
-        <Applicants />
+        <Applicants  dataCL={dataCL}/>
       </div>
       {/* <!-- Pagination --> */}
       <nav className="ls-pagination mb-5">

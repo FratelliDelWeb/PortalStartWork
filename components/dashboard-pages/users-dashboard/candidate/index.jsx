@@ -6,10 +6,11 @@ import MyProfile from "./components/my-profile";
 import SocialNetworkBox from "./components/SocialNetworkBox";
 import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
-import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
+import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
 
-const index = () => {
+
+const index = ({dataCL}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -18,7 +19,7 @@ const index = () => {
       <LoginPopup />
       {/* End Login Popup Modal */}
 
-      <DashboardCandidatesHeader />
+      <DashboardHeader />
       {/* End Header */}
 
       <MobileMenu />

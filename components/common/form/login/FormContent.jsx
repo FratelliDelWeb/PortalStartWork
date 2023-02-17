@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
 import { useState } from "react";
-
+import { cookies } from 'next/headers';
 const FormContent = () => {
 
   let initialState = {
@@ -10,7 +10,6 @@ const FormContent = () => {
     stato: false,
   }
   const [state, setState] = useState(initialState);
-
   const handleSubmit = function (e) {
     e.preventDefault();
     const username = state.username;
@@ -35,7 +34,9 @@ const FormContent = () => {
         if (data.message === "User successfully Logged in") {
           alert("login successful");
           window.localStorage.setItem("token", data.user);
+          window.sessionStorage.setItem("token", data.user);
           window.location.href = "/area-privata/dashboard";
+
         } else {
           alert("Nome o password errati");
         }

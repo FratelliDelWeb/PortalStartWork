@@ -1,8 +1,10 @@
 import MobileMenu from "../../../header/MobileMenu";
 import LoginPopup from "../../../common/form/login/LoginPopup";
-import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
+import DashboardUsersSidebar from "../../../header/DashboardUsersSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import MyProfile from "./components/my-profile";
+import MyResume from "./components/my-resume";
+
 import SocialNetworkBox from "./components/SocialNetworkBox";
 import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
@@ -10,7 +12,7 @@ import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
 
 
-const index = () => {
+const index = ({dataCL}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -25,13 +27,13 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <DashboardEmployerSidebar />
+      <DashboardUsersSidebar />
       {/* <!-- End Candidates Sidebar Menu --> */}
 
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="My Profile!" />
+          <BreadCrumb title="Profilo CANDIDATO" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -42,13 +44,20 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>My Profile</h4>
+                    <h4>ANAGRAFE CANDIDATO : {dataCL.name}</h4>
                   </div>
-                  <MyProfile />
+                  <MyProfile dataCL={dataCL} />
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
-
+              <div className="ls-widget">
+                <div className="tabs-box">
+                  <div className="widget-title">
+                    <h4> COMPETENZE CANDIDATO:  {dataCL.name}</h4>
+                  </div>
+                  <MyResume dataCL={dataCL} />
+                </div>
+              </div>
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">

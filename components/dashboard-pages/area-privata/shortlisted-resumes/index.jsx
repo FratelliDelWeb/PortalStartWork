@@ -8,7 +8,7 @@ import WidgetToFilterBox from "./components/WidgetToFilterBox";
 import WidgetContentBox from "./components/WidgetContentBox";
 import MenuToggler from "../../MenuToggler";
 
-const index = () => {
+const index = ({dataCL}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -43,7 +43,7 @@ const index = () => {
                   <WidgetToFilterBox />
                 </div>
                 {/* End widget top filter box */}
-                <WidgetContentBox />
+                <WidgetContentBox dataCL={dataCL} />
               </div>
               {/* <!-- applicants Widget --> */}
             </div>

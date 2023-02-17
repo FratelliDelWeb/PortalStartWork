@@ -60,7 +60,7 @@ module.exports = [
     id: 5,
     name: "Profilo",
     icon: "la-user-tie",
-    routePath: "/area-privata/company-profile",
+    routePath: "/area-privata/users-profile",
     active: "",
   },
   {

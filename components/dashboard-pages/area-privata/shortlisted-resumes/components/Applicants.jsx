@@ -1,13 +1,13 @@
 import Link from "next/link";
 import candidatesData from "../../../../../data/candidates";
 
-const Applicants = () => {
+const Applicants = ({dataCL}) => {
   return (
     <>
-      {candidatesData.slice(17, 23).map((candidate) => (
+      {dataCL.map((candidate) => (
         <div
           className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-          key={candidate.id}
+          key={candidate._id}
         >
           <div className="inner-box">
             <div className="content">
@@ -15,7 +15,7 @@ const Applicants = () => {
                 <img src={candidate.avatar} alt="candidates" />
               </figure>
               <h4 className="name">
-                <Link href={`/candidates-single-v1/${candidate.id}`}>
+                <Link href={`/area-privata/candidates/${candidate._id}`}>
                   {candidate.name}
                 </Link>
               </h4>
@@ -46,9 +46,9 @@ const Applicants = () => {
             <div className="option-box">
               <ul className="option-list">
                 <li>
-                  <button data-text="View Aplication">
+                <Link href={`/area-privata/candidates/${candidate._id}`} data-text="View Aplication">
                     <span className="la la-eye"></span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
                   <button data-text="Approve Aplication">

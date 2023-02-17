@@ -10,7 +10,7 @@ import Applicants from "./components/Applicants";
 import CopyrightFooter from "../../CopyrightFooter";
 import MenuToggler from "../../MenuToggler";
 
-const Index = () => {
+const Index = ({dataCL}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -51,7 +51,7 @@ const Index = () => {
                   <div className="row">
                     {/* <!-- Candidate block three --> */}
 
-                    <Applicants />
+                    <Applicants dataCL= {dataCL} />
                   </div>
                 </div>
               </div>

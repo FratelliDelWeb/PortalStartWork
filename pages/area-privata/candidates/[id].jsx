@@ -17,18 +17,11 @@ export async function getServerSideProps(context) {
 }
 
 const SingleCandidate = ({dataCL}) => {
-  const [candidate, setCandidate] = useState({});
-
-  useEffect(() => {
-    if (!dataCL) <h1>Loading...</h1>;
-    else setCandidate(dataCL);
-    return () => {};
-  }, [dataCL]);
-  console.log(candidate)
+  
   return (
     <>
       <Seo pageTitle="Candidato" />
-      <Candidato dataCL = {candidate}/>
+      <Candidato dataCL = {dataCL}/>
     </>
   );
 };
