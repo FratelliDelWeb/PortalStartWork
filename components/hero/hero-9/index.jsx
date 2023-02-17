@@ -10,7 +10,7 @@ const index = () => {
       <div className="auto-container">
         <div className="cotnent-box">
           <div className="title-box" data-aso-delay="300" data-aos="fade-up">
-            <h3>15,000+ Professionisti disponibili</h3>
+            <h3>15,000+ Candidati disponibili</h3>
             <div className="text">
               Cerca il tuo candidato in base alle tue esigenze
             </div>

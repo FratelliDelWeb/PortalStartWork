@@ -9,15 +9,19 @@ const RegBanner2 = () => {
       Cerchi dipendenti scopri tutti i nostri professioni disponibili!`,
       avatar: "images/resource/employ.png",
       bannerClass: "banner-style-one",
-      btnTxt : "Cerca Professionista",
+      btnTxt : "Cerca Candidato",
+      dataBsTarget:"",
+      href: "/candidates-list-v5"
     },
     {
       id: 2,
       name: "Lavoratore",
-      text: ` Compila il modulo per esserre inserito tra i nostri professionisti`,
+      text: ` Compila il modulo per esserre inserito tra i nostri candidati`,
       avatar: "images/resource/candidate.png",
       bannerClass: "banner-style-two",
       btnTxt : "Candidati",
+      dataBsTarget:"#candidatiPopupModal",
+  
     },
   ];
   return (
@@ -31,10 +35,16 @@ const RegBanner2 = () => {
             <div className="content">
               <h3>{item.name}</h3>
               <p>{item.text}</p>
-              <Link href="/register" className="theme-btn btn-style-five">
+              {item.name === "Lavoratore" ? (
+              <a  data-bs-toggle="modal" data-bs-target={item.dataBsTarget} className="theme-btn btn-style-five">
                  {item.btnTxt}
-              </Link>
+              </a> ) : (<a href={item.href}   data-bs-target={item.dataBsTarget} className="theme-btn btn-style-five">
+                 {item.btnTxt}
+              </a>)}
+
+            
             </div>
+        
             <figure className="image">
               <img src={item.avatar} alt="resource" />
             </figure>

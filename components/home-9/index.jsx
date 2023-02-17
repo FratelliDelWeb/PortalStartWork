@@ -13,6 +13,8 @@ import  About9 from "../about/About9"
 import Block6 from "../block/Block6";
 import JobFeatured12 from "../job-featured/JobFeatured12";
 import LoginPopup from "../common/form/login/LoginPopup";
+import CandidatiPopup from "../common/form/candidati/CandidatiPopup";
+
 import MobileMenu from "../header/MobileMenu";
 import RegBanner2 from "../block/RegBanner2";
 
@@ -21,6 +23,7 @@ const index = ({dataCL} ) => {
   return (
     <>
       <LoginPopup />
+      <CandidatiPopup></CandidatiPopup>
       {/* End Login Popup Modal */}
 
       <Header />
@@ -37,7 +40,7 @@ const index = ({dataCL} ) => {
           <div className="row justify-content-between align-items-end">
             <div className="col-lg-6">
               <div className="sect-title">
-                <h2 className="fw-700">Categorie professionisti</h2>
+                <h2 className="fw-700">Categorie candidati</h2>
                 <div className="text mt-9">
                   Scopri tutti gli ambiti ricoperti dai nostri profesisoniscti
                 </div>
@@ -74,7 +77,7 @@ const index = ({dataCL} ) => {
       <section className="candidates-section">
         <div className="auto-container">
           <div className="sec-title">
-            <h2>Ultimi professionisti inseriti</h2>
+            <h2>Ultimi candidati inseriti</h2>
             <div className="text">
             Scopri i nuovi candidati , visualizza la scheda e contattaci 
             </div>

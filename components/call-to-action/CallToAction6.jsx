@@ -8,7 +8,7 @@ const CallToAction6 = () => {
           <div className="sec-title light">
             <h2>Hai domande?</h2>
             <div className="text">
-              Sei un azienda cerchi candidati? O un vuoii entrare a far parte de inosstri porfessionissti? Contattaci ora al numero: <br />
+              Sei un azienda cerchi candidati? O un vuoii entrare a far parte de inosstri candidati? Contattaci ora al numero: <br />
               <a href="#">(900) 777-7777.</a>
             </div>
           </div>

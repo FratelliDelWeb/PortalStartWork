@@ -188,7 +188,7 @@ const HeaderNavContent = () => {
                                 : ""
                         } dropdown`}
                     >
-                        <span>Cerca Professionista</span>
+                        <span>Cerca Candidato</span>
                         <ul>
                             {candidateItems.map((item) => (
                                 <li className="dropdown" key={item.id}>
@@ -243,7 +243,7 @@ const HeaderNavContent = () => {
 
                     <li>
                     <Link href="/candidates-list-v5">
-                    Cerca Professionista</Link>
+                    Cerca Candidato</Link>
                      
                     </li>
                     {/* End Candidates menu items

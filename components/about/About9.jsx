@@ -56,7 +56,7 @@ const About9 = () => {
                   <div className="inner">
                     <p>Costruisci il tuo CV</p>
                     <span className="sub-text">
-                      Entra nei professionisti
+                      Entra nei candidati
                     </span>
                   </div>
                 </div>
@@ -73,7 +73,7 @@ const About9 = () => {
                   </h2>
                   <div className="text mt-30">
                   Per iniziare a cercare lavoro, puoi inscriverti al nostro portale del lavoro o di persona!
-                  Inizia la tua nuova carriera, un reclutatore ti affianchera nella costruzione del tuo Profilo e verra inserito tra i nostri professionisti.
+                  Inizia la tua nuova carriera, un reclutatore ti affianchera nella costruzione del tuo Profilo e verra inserito tra i nostri candidati.
                   </div>
                 </div>
                 <Link
