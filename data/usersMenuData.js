@@ -9,9 +9,23 @@ module.exports = [
  
   {
     id: 2,
-    name: "Inserisci candidato",
+    name: "Inserisci lavoro",
     icon: "la-file-medical",
     routePath: "/area-privata/post-jobs",
+    active: "",
+  },
+  {
+    id: 2,
+    name: "Inserisci candidato",
+    icon: "la-file-medical",
+    routePath: "/area-privata/post-candidates",
+    active: "",
+  },
+   {
+    id: 2,
+    name: "Annunci di lavoro",
+    icon: "la-bullhorn",
+    routePath: "/area-privata/manage-jobs",
     active: "",
   },
  /*  {

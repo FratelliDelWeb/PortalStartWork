@@ -4,9 +4,11 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardUsersSidebar from "../../../header/DashboardUsersSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import JobListingsTable from "./components/JobListingsTable";
+import PostJobSteps from "./components/PostJobSteps";
+import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
-
+import MyProfile from "./components/my-profile";
+import MyResume from "./components/my-resume";
 const index = () => {
   return (
     <div className="page-wrapper dashboard">
@@ -28,7 +30,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Manage jobs!" />
+          <BreadCrumb title="Aggiungi candidato" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -38,7 +40,18 @@ const index = () => {
             <div className="col-lg-12">
               {/* <!-- Ls widget --> */}
               <div className="ls-widget">
-                <JobListingsTable />
+                <div className="tabs-box">
+                  <div className="widget-title">
+                    <h4>Post Job</h4>
+                  </div>
+
+                  <div className="widget-content">
+                  <MyProfile />
+                    {/* End job steps form */}
+                    <MyResume  />
+                    {/* End post box form */}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
