@@ -8,8 +8,43 @@ import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
 import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-const index = () => {
+
+
+const index = ({cookie,id}) => {
+  console.log(id)
+  console.log({cookie});
+  const [posts, setPosts] = useState();
+
+
+  useEffect(() => {
+    console.log(cookie);
+    
+    if(id){
+       axios.get("http://localhost:3000/api/users/" + id, {
+        withCredentials: true,
+        headers: {
+          Cookie: {cookie},
+        },
+      }).then(
+        response => {
+    
+        response.data
+        
+  }).then((data) => {
+    
+    setPosts(data);
+    console.log(posts)
+  }).catch((err) => err);
+  console.log(posts)
+    }
+   
+  }, [id]);
+
+ 
+   
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -41,9 +76,9 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Il mio profilo</h4>
+                    <h4>Il mio profilo </h4>
                   </div>
-                  <MyProfile />
+                  <MyProfile posts = {posts} />
                 </div>
               </div>
               {/* <!-- Ls widget --> */}

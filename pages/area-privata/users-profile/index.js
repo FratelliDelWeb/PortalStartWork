@@ -4,6 +4,15 @@ import UsersProfile from "../../../components/dashboard-pages/area-privata/users
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
+
+
+export async function getServerSideProps(context) {
+
+  const cookie = context.req.headers.cookie;
+ 
+
+ return { props: { cookie: cookie } };
+}
 function setId(){
 const [id,setId] = useState();
 const token = window.localStorage.getItem("token");
@@ -17,7 +26,7 @@ return id;
 
 
 
-const index = () => {
+const index = ({cookie}) => {
  const id = setId();
  console.log(id)
   
@@ -25,7 +34,7 @@ const index = () => {
   return (
     <>
       <Seo pageTitle="Profilo" />
-      <UsersProfile   />
+      <UsersProfile cookie={cookie} id =  {id} />
     </>
   );
 };

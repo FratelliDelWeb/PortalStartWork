@@ -1,7 +1,8 @@
 import FormInfoBox from "./FormInfoBox";
 import LogoUpload from "./LogoUpload";
 
-const index = () => {
+const index = ({id}) => {
+  console.log()
   return (
     <div className="widget-content">
       <LogoUpload />
