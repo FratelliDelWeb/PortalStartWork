@@ -242,7 +242,7 @@ const HeaderNavContent = () => {
 
 
                     <li>
-                    <Link href="/candidates-list-v5">
+                    <Link href="/candidates">
                     Cerca Candidato</Link>
                      
                     </li>

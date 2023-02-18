@@ -20,7 +20,7 @@ const FilterSidebar = () => {
                 {/* End .close filter */}
 
                 <div className="filter-block">
-                    <h4>Search by Keywords</h4>
+                    <h4>Cerca per Keywords</h4>
                     <div className="form-group">
                         <SearchBox />
                     </div>
@@ -33,7 +33,7 @@ const FilterSidebar = () => {
                         <LocationBox />
                     </div>
 
-                    <p>Radius around selected destination</p>
+                    <p>Raggio di km intorno alla location selezionata</p>
                     <DestinationRangeSlider />
                 </div>
                 {/* <!-- Filter Block --> */}
@@ -47,7 +47,7 @@ const FilterSidebar = () => {
                 {/* <!-- Filter Block --> */}
 
                 <div className="filter-block">
-                    <h4>Candidate Gender</h4>
+                    <h4>Sesso del candidato</h4>
                     <div className="form-group">
                         <CandidatesGender />
                     </div>
@@ -55,19 +55,19 @@ const FilterSidebar = () => {
                 {/* <!-- Filter Block --> */}
 
                 <div className="checkbox-outer">
-                    <h4>Date Posted</h4>
+                    <h4>Data pubblicazione</h4>
                     <DatePosted />
                 </div>
                 {/* <!-- Filter Block --> */}
 
                 <div className="checkbox-outer">
-                    <h4>Experience</h4>
+                    <h4>Esperienza</h4>
                     <Experience />
                 </div>
                 {/* <!-- Filter Block --> */}
 
                 <div className=" checkbox-outer">
-                    <h4>Qualification</h4>
+                    <h4>Qualifiche</h4>
                     <Qualification />
                 </div>
                 {/* <!-- Filter Block --> */}

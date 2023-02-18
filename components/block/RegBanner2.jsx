@@ -11,7 +11,7 @@ const RegBanner2 = () => {
       bannerClass: "banner-style-one",
       btnTxt : "Cerca Candidato",
       dataBsTarget:"",
-      href: "/candidates-list-v5"
+      href: "/candidates"
     },
     {
       id: 2,

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import ListingShowing from "../components/ListingShowing";
-import candidatesData from "../../../data/candidates";
 import { useDispatch, useSelector } from "react-redux";
 import {
     addCandidateGender,
@@ -97,17 +97,28 @@ const FilterTopBox = ({dataCL}) => {
     const sortFilter = (a, b) =>
         sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
 
-    let content = dataCL
-     /*    ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
-        ?.filter(keywordFilter)
-        ?.filter(locationFilter)
-        ?.filter(destinationFilter)
-        ?.filter(categoryFilter)
-        ?.filter(genderFilter)
-        ?.filter(datePostedFilter)
-        ?.filter(experienceFilter)
-        ?.filter(qualificationFilter)
-        ?.sort(sortFilter) */
+    const handlers = {
+        showMore: function(){
+            let listToAdd = perPage?.end;
+            let totListings = listToAdd + listToAdd;
+
+            if(totListings < dataCL.length){
+                const pageData = JSON.parse(JSON.stringify({
+                    start: 0,
+                    end: totListings,
+                }));
+                dispatch(addPerPage(pageData));
+            } else {
+                const pageData = JSON.parse(JSON.stringify({
+                    start: 0,
+                    end: dataCL.length,
+                }));
+                dispatch(addPerPage(pageData));
+            }
+        }
+    }
+
+    let content = dataCL        
         ?.map((candidate) => (
             <div className="candidate-block-three" key={candidate._id}>
                 <div className="inner-box">
@@ -117,7 +128,7 @@ const FilterTopBox = ({dataCL}) => {
                         </figure>
                         <h4 className="name">
                             <Link
-                                href={`/candidates-single-v1/${candidate.id}`}
+                                href={`/candidates/${candidate._id}`}
                             >
                                 {candidate.name}
                             </Link>
@@ -133,7 +144,7 @@ const FilterTopBox = ({dataCL}) => {
                             </li>
                             <li>
                                 <span className="icon flaticon-money"></span> $
-                                {candidate.hourlyRate} / hour
+                                {candidate.hourlyRate} / l'ora
                             </li>
                         </ul>
                         {/* End candidate-info */}
@@ -155,16 +166,17 @@ const FilterTopBox = ({dataCL}) => {
                         {/* End bookmark-btn */}
 
                         <Link
-                            href={`/candidates-single-v1/${candidate.id}`}
+                            href={`/candidates/${candidate._id}`}
                             className="theme-btn btn-style-three"
                         >
-                            <span className="btn-title">View Profile</span>
+                            <span className="btn-title">Dettagli</span>
                         </Link>
                     </div>
                     {/* End btn-box */}
                 </div>
             </div>
-        ));
+        ))
+        ?.slice(perPage.start, perPage.end);
 
     // sort handler
     const sortHandler = (e) => {
@@ -176,6 +188,15 @@ const FilterTopBox = ({dataCL}) => {
         const pageData = JSON.parse(e.target.value);
         dispatch(addPerPage(pageData));
     };
+
+    useEffect(() => {
+            const pageData = JSON.parse(JSON.stringify({
+                start: 0,
+                end: 10,
+            }));
+            dispatch(addPerPage(pageData));
+            dispatch(addSort("asc"));
+    }, []);
 
     // clear handler
     const clearHandler = () => {
@@ -191,7 +212,7 @@ const FilterTopBox = ({dataCL}) => {
         dispatch(clearQualification());
         dispatch(clearQualificationF());
         dispatch(addSort(""));
-        dispatch(addPerPage({ start: 0, end: 0 }));
+        dispatch(addPerPage({ start: 0, end: 10 }));
     };
     return (
         <>
@@ -203,7 +224,7 @@ const FilterTopBox = ({dataCL}) => {
                         data-bs-toggle="offcanvas"
                         data-bs-target="#filter-sidebar"
                     >
-                        <span className="icon icon-filter"></span> Filter
+                        <span className="icon icon-filter"></span> Filtra
                     </button>
                 </div>
                 {/* End showing results */}
@@ -220,13 +241,13 @@ const FilterTopBox = ({dataCL}) => {
                     qualifications?.length !== 0 ||
                     sort !== "" ||
                     perPage?.start !== 0 ||
-                    perPage?.end !== 0 ? (
+                    perPage?.end !== 10 ? (
                         <button
                             className="btn btn-danger text-nowrap me-2"
                             style={{ minHeight: "45px", marginBottom: "15px" }}
                             onClick={clearHandler}
                         >
-                            Clear All
+                            Pulisci tutto
                         </button>
                     ) : undefined}
 
@@ -235,9 +256,9 @@ const FilterTopBox = ({dataCL}) => {
                         className="chosen-single form-select"
                         value={sort}
                     >
-                        <option value="">Sort by (default)</option>
-                        <option value="asc">Newest</option>
-                        <option value="des">Oldest</option>
+                        <option value="">Filtra per</option>
+                        <option value="asc">Nuovi</option>
+                        <option value="des">Vecchi</option>
                     </select>
                     {/* End select */}
 
@@ -252,7 +273,7 @@ const FilterTopBox = ({dataCL}) => {
                                 end: 0,
                             })}
                         >
-                            All
+                            Tutti
                         </option>
                         <option
                             value={JSON.stringify({
@@ -260,7 +281,7 @@ const FilterTopBox = ({dataCL}) => {
                                 end: 15,
                             })}
                         >
-                            15 per page
+                            15 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
@@ -268,7 +289,7 @@ const FilterTopBox = ({dataCL}) => {
                                 end: 20,
                             })}
                         >
-                            20 per page
+                            20 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
@@ -276,7 +297,7 @@ const FilterTopBox = ({dataCL}) => {
                                 end: 25,
                             })}
                         >
-                            25 per page
+                            25 per pagina
                         </option>
                     </select>
                     {/* End select */}
@@ -286,7 +307,10 @@ const FilterTopBox = ({dataCL}) => {
 
             {content}
 
-            <ListingShowing />
+            <ListingShowing 
+            maxRecords={perPage.end}
+            total={dataCL.length}
+            handlers={handlers}/>
             {/* <!-- Listing Show More --> */}
         </>
     );
