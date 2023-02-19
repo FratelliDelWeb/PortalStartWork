@@ -6,7 +6,7 @@ module.exports = [
     routePath: "/area-privata/dashboard",
     active: "active",
   },
- 
+
   {
     id: 2,
     name: "Inserisci lavoro",
@@ -21,14 +21,14 @@ module.exports = [
     routePath: "/area-privata/post-candidates",
     active: "",
   },
-   {
+  {
     id: 2,
     name: "Annunci di lavoro",
     icon: "la-bullhorn",
     routePath: "/area-privata/manage-jobs",
     active: "",
   },
- /*  {
+  /*  {
     id: 4,
     name: "Manage Jobs",
     icon: "la-briefcase",
@@ -49,14 +49,14 @@ module.exports = [
     routePath: "/area-privata/shortlisted-resumes",
     active: "",
   },
-/*   {
+  /*   {
     id: 7,
     name: "Packages",
     icon: "la-box",
     routePath: "/employers-dashboard/packages",
     active: "",
   }, */
-/*   {
+  /*   {
     id: 8,
     name: "Messages",
     icon: "la-comment-o",
@@ -71,13 +71,6 @@ module.exports = [
     active: "",
   }, */
   {
-    id: 5,
-    name: "Profilo",
-    icon: "la-user-tie",
-    routePath: "/area-privata/users-profile",
-    active: "",
-  },
-  {
     id: 10,
     name: "Cambia password",
     icon: "la-lock",
@@ -91,7 +84,7 @@ module.exports = [
     routePath: "/login",
     active: "",
   },
-/*   {
+  /*   {
     id: 12,
     name: "Delete Profile",
     icon: "la-trash",

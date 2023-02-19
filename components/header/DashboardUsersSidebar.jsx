@@ -36,13 +36,29 @@ const DashboardUsersSidebar = () => {
                             } mb-1`}
                             key={item.id}
                             onClick={menuToggleHandler}
-                        >
+                        >   
                             <Link href={item.routePath}>
                                 <i className={`la ${item.icon}`}></i>{" "}
                                 {item.name}
                             </Link>
                         </li>
                     ))}
+                    {
+                        <li
+                        className={`${
+                            isActiveLink('/area-privata/users-profile/' + window.sessionStorage.getItem("token"), router.asPath)
+                                ? "active"
+                                : ""
+                        } mb-1`}
+                        key={5}
+                        onClick={menuToggleHandler}
+                    >   
+                        <Link href={'/area-privata/users-profile/' + window.sessionStorage.getItem("token")}>
+                            <i className={`la la-user-tie`}></i>{" "}
+                            {"Profilo"}
+                        </Link>
+                    </li>
+                    }
                 </ul>
             </div>
         </div>

@@ -13,38 +13,7 @@ import React, { useState, useEffect } from "react";
 
 
 
-const index = ({cookie,id}) => {
-  console.log(id)
-  console.log({cookie});
-  const [posts, setPosts] = useState();
-
-
-  useEffect(() => {
-    console.log(cookie);
-    
-    if(id){
-       axios.get("http://localhost:3000/api/users/" + id, {
-        withCredentials: true,
-        headers: {
-          Cookie: {cookie},
-        },
-      }).then(
-        response => {
-    
-        response.data
-        
-  }).then((data) => {
-    
-    setPosts(data);
-    console.log(posts)
-  }).catch((err) => err);
-  console.log(posts)
-    }
-   
-  }, [id]);
-
- 
-   
+const index = ({user}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -78,7 +47,7 @@ const index = ({cookie,id}) => {
                   <div className="widget-title">
                     <h4>Il mio profilo </h4>
                   </div>
-                  <MyProfile posts = {posts} />
+                  <MyProfile user = {user} />
                 </div>
               </div>
               {/* <!-- Ls widget --> */}

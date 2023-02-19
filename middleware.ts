@@ -46,6 +46,7 @@ export default async function middleware(req: NextRequest) {
         console.log("Middleware - Entered in private route - List Access : User, Admin")
 
       if (jwt === undefined) {
+        console.log("Middleware - Undefined JWT - Redirect to login")
         req.nextUrl.pathname = "/login";
         return NextResponse.redirect(req.nextUrl);
       }
@@ -62,7 +63,10 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.redirect(req.nextUrl);
       }
       } else if(pathname.startsWith("/area-privata")){
+        console.log("Middleware - Entered in private route - List Access : User, Admin [Only /area-privata]")
+
         if (jwt === undefined) {
+          console.log("Middleware - Undefined JWT - Redirect to login")
           req.nextUrl.pathname = "/login";
           return NextResponse.redirect(req.nextUrl);
         }
@@ -78,7 +82,11 @@ export default async function middleware(req: NextRequest) {
           return NextResponse.redirect(req.nextUrl);
         }
 
+      } else {
+        console.log("Middleware - Unexpected URL ")
       }
     }
   return NextResponse.next();
 }
+
+export const config = { matcher : "/((?!.*\\.).*)" } ; 
