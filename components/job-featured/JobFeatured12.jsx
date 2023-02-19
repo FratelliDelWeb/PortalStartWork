@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import jobFeatured from "../../data/job-featured";
 
-const JobFeatured12 = () => {
+const JobFeatured12 = ({dataOL}) => {
   const settings = {
     dots: true,
     speed: 1400,
@@ -40,15 +40,15 @@ const JobFeatured12 = () => {
   return (
     <>
       <Slider {...settings} arrows={false}>
-        {jobFeatured.slice(11, 20).map((item) => (
-          <div className="job-block-three mb-0" key={item.id}>
+        {dataOL.map((item) => (
+          <div className="job-block-three mb-0" key={item._id}>
             <div className="inner-box">
               <div className="content">
                 <span className="company-logo">
                   <img src={item.logo} alt="brand" />
                 </span>
                 <h4>
-                  <Link href={`/job-single-v4/${item.id}`}>
+                  <Link href={`/job-single-v4/${item._id}`}>
                     {item.jobTitle}
                   </Link>
                 </h4>
@@ -68,14 +68,14 @@ const JobFeatured12 = () => {
                 {/* End .job-info */}
               </div>
               {/* End content */}
-
+{/* 
               <ul className="job-other-info">
                 {item.jobType.map((val, i) => (
                   <li key={i} className={`${val.styleClass}`}>
                     {val.type}
                   </li>
                 ))}
-              </ul>
+              </ul> */}
               {/* End .job-other-info */}
 
               <button className="bookmark-btn">

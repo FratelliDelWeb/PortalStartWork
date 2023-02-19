@@ -2,15 +2,10 @@ import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import DashboadHome from "../../../components/dashboard-pages/area-privata/dashboard";
 import axios from "axios";
-
+import {getCandidatesPrivate} from "../../../services/private/getCandidatesPrivate"
 export async function getServerSideProps({ req }) {
-  const res = await axios.get("http://localhost:3000/api/candidates", {
-    withCredentials: true,
-    headers: {
-      Cookie: req.headers.cookie,
-    },
-  });
-  const data = await res.data;
+
+  const data = await getCandidatesPrivate(req)
   return { props: { dataCL: data } };
 }
 

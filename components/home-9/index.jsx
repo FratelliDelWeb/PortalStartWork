@@ -18,8 +18,11 @@ import CandidatiPopup from "../common/form/candidati/CandidatiPopup";
 import MobileMenu from "../header/MobileMenu";
 import RegBanner2 from "../block/RegBanner2";
 
-const index = ({dataCL} ) => {
 
+
+const index = ({dataCL ,dataOL}) => {
+console.log(dataCL )
+console.log(dataOL )
   return (
     <>
       <LoginPopup />
@@ -90,6 +93,9 @@ const index = ({dataCL} ) => {
           </div>
         </div>
       </section>
+
+
+      <JobFeatured12 dataOL= {dataOL}/>
       {/* <!-- End Candidates Section --> */}
        {/*
       <section className="job-section">
@@ -192,5 +198,7 @@ const index = ({dataCL} ) => {
     </>
   );
 };
+
+
 
 export default index;

@@ -1,8 +1,18 @@
 import dynamic from "next/dynamic";
 import Seo from "../components/common/Seo";
 import Home10 from "../components/home-10";
+import {getCandidates} from "../services/public/getCandidates"
+import {getjobOffers} from "../services/public/getjobOffers"
+export async function getStaticProps() {
 
-const index = () => {
+  const data = await getCandidates();
+  const dataOffer = await getjobOffers();
+  console.log(data)
+  console.log(dataOffer);
+  // Props returned will be passed to the page component
+  return { props: { dataCL : data, dataOL : dataOffer } }
+}
+const index = ({dataCL,dataOL}) => {
   return (
     <>
       <Seo pageTitle="Home-10" />
