@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import employerMenuData from "../../data/employerMenuData";
+import areaPrivataMenuData from "../../data/areaPrivataMenuData";
 import HeaderNavContent from "./HeaderNavContent";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
@@ -80,7 +80,7 @@ const DashboardHeader = () => {
                             </a>
 
                             <ul className="dropdown-menu">
-                                {employerMenuData.map((item) => (
+                                {areaPrivataMenuData.map((item) => (
                                     <li
                                         className={`${
                                             isActiveLink(

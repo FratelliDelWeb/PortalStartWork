@@ -1,5 +1,5 @@
 import Link from "next/link";
-import employerMenuData from "../../data/employerMenuData";
+import areaPrivataMenuData from "../../data/areaPrivataMenuData";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,7 @@ const DashboardEmployerSidebar = () => {
 
             <div className="sidebar-inner">
                 <ul className="navigation">
-                    {employerMenuData.map((item) => (
+                    {areaPrivataMenuData.map((item) => (
                         <li
                             className={`${
                                 isActiveLink(item.routePath, router.asPath)

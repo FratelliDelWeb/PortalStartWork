@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import candidatesuData from "../../data/candidatesMenuData";
+import candidatesuData from "../../data/areaPrivataCandidatesMenuData";
 import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";

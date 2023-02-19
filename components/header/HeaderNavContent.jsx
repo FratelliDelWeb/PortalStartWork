@@ -112,6 +112,12 @@ const HeaderNavContent = () => {
                                     </Link>
                      
                     </li>
+                    <li>
+                    <Link href="/area-privata-candidates/dashboard">
+                    Dashboard Candidato 
+                                    </Link>
+                     
+                    </li>
                     
                     {/* End findjobs menu items 
 
