@@ -50,8 +50,14 @@ const FormContent = () => {
 
   return (
     <div className="form-inner">
-      <h3>Login to Superio</h3>
-
+      
+   
+            <div className="logo">
+              <Link href="/">
+                <img src="/images/logo.svg"  width="120px" alt="brand" />
+              </Link>
+            </div>
+            <h3>Accedi alla tua area privata</h3>
       {/* <!--Login Form--> */}
       <form  onSubmit={(e) => {
        handleSubmit(e);
@@ -73,11 +79,11 @@ const FormContent = () => {
             <div className="input-group checkboxes square">
               <input type="checkbox" name="remember-me" id="remember" />
               <label htmlFor="remember" className="remember">
-                <span className="custom-checkbox"></span> Remember me
+                <span className="custom-checkbox"></span> Ricordati di me
               </label>
             </div>
             <a href="#" className="pwd">
-              Forgot password?
+            Hai dimenticato la password?
             </a>
           </div>
         </div>
@@ -90,7 +96,7 @@ const FormContent = () => {
             name="log-in"
           
           >
-            Log In
+            ACCEDI
           </button>
         </div>
         {/* login */}
@@ -99,7 +105,7 @@ const FormContent = () => {
 
       <div className="bottom-box">
         <div className="text">
-          Don&apos;t have an account?{" "}
+          Non hai un account?Invia la tua candidatura.
           <Link
             href="#"
             className="call-modal signup"
@@ -107,15 +113,15 @@ const FormContent = () => {
             data-bs-target="#registerModal"
             data-bs-toggle="modal"
           >
-            Signup
+           Invia candidatura
           </Link>
         </div>
 
-        <div className="divider">
+       {/*  <div className="divider">
           <span>or</span>
         </div>
 
-        <LoginWithSocial />
+        <LoginWithSocial /> */}
       </div>
       {/* End bottom-box LoginWithSocial */}
     </div>
