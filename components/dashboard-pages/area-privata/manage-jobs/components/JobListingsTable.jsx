@@ -1,7 +1,7 @@
 import Link from "next/link";
 import jobs from "../../../../../data/job-featured.js";
 
-const JobListingsTable = () => {
+const JobListingsTable = ({dataOL}) => {
   return (
     <div className="tabs-box">
       <div className="widget-title">
@@ -35,8 +35,8 @@ const JobListingsTable = () => {
             </thead>
 
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
-                <tr key={item.id}>
+              {dataOL.map((item) => (
+                <tr key={item._id}>
                   <td>
                     {/* <!-- Job Block --> */}
                     <div className="job-block">
@@ -46,7 +46,7 @@ const JobListingsTable = () => {
                             <img src={item.logo} alt="logo" />
                           </span>
                           <h4>
-                            <Link href={`/job-single-v3/${item.id}`}>
+                            <Link href={`/area-privata/jobs/${item._id}`}>
                               {item.jobTitle}
                             </Link>
                           </h4>
