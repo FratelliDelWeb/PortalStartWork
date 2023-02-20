@@ -4,6 +4,8 @@
     // Other rules
     "@next/next/no-img-element": "off",
     "react-hooks/rules-of-hooks": 0,
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react/no-unescaped-entities": 0
+
   }
 }
