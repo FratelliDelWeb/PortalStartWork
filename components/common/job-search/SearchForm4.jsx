@@ -15,7 +15,7 @@ const SearchForm4 = () => {
           <input
             type="text"
             name="field_name"
-            placeholder="Job title, keywords, or company"
+            placeholder="parola chiave, web, developer..."
           />
         </div>
 
@@ -23,15 +23,15 @@ const SearchForm4 = () => {
         <div className="form-group col-lg-3 col-md-12 col-sm-12 location">
           <label>Dove?</label>
           <span className="icon flaticon-map-locator"></span>
-          <input type="text" name="field_name" placeholder="City or postcode" />
+          <input type="text" name="field_name" placeholder="CAP code" />
         </div>
 
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-3 col-md-12 col-sm-12 category">
-          <label>Categories</label>
+          <label>Categoria</label>
           <span className="icon flaticon-briefcase"></span>
           <select className="chosen-single form-select">
-            <option defaultValue="">All Categories</option>
+            <option defaultValue="">Tutte le categorie</option>
             <option defaultValue="44">Accounting / Finance</option>
             <option defaultValue="106">Automotive Jobs</option>
             <option defaultValue="46">Customer</option>

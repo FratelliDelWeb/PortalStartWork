@@ -40,9 +40,13 @@ const index = () => {
                                 Cerca  {category}
                                 <br />
                               </h3>
-                              <div className="text">
-                                Find Jobs, Employment & Career Opportunities
-                              </div>
+                              {category === "Lavoro" ? (
+                   <div className="text">
+                   Trova lavoro, opportunità di lavoro e di carriera!
+                   </div> ) : (  <div className="text">
+                              Trova il candidato giusto per te!
+                              </div> )}
+                             
                           </div>
                   </div>
 

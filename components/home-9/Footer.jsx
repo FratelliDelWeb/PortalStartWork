@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CopyrightFooter from "../footer/common-footer/CopyrightFooter";
 import FooterContent4 from "../footer/FooterContent4";
 
@@ -11,9 +12,11 @@ const Footer = () => {
             <div className="big-column col-xl-3 col-lg-3 col-md-12">
               <div className="footer-column about-widget">
                 <div className="logo">
-                  <a href="#">
-                    <b>STARTWORK</b>
-                  </a>
+                
+                <Link href="/">
+                  <img src="/images/logo.svg" width="120px" alt="brand" />
+                </Link>
+         
                 </div>
                 <p className="phone-num">
                   <span>Call us </span>
