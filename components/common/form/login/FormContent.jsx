@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
 import { useState } from "react";
-import { cookies } from 'next/headers';
+
 const FormContent = () => {
 
   let initialState = {
