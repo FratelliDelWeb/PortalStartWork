@@ -21,7 +21,7 @@ const index = ({dataOL}) => {
             <MobileMenu />
             {/* End MobileMenu */}
 
-            <Breadcrumb title="Find Jobs" meta="Jobs" />
+            <Breadcrumb title="Cerca lavoro " meta="Jobs" />
             {/* <!--End Breadcrumb Start--> */}
 
             <section className="ls-section">

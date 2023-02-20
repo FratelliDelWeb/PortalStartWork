@@ -24,11 +24,7 @@ const HeaderNavContent = () => {
                 <ul className="navigation" id="navbar">
                     {/* current dropdown */}
                     <li
-                        className={`${
-                            isActiveParent(homeItems, router.asPath)
-                                ? "current"
-                                : ""
-                        } dropdown`}
+
                     >
                         <span>Home</span>
                       {/*   <div className="mega-menu">
@@ -250,6 +246,11 @@ const HeaderNavContent = () => {
                     <li>
                     <Link href="/candidates">
                     Cerca Candidato</Link>
+                     
+                    </li>
+                    <li>
+                    <Link href="/jobs">
+                    Cerca Lavoro</Link>
                      
                     </li>
                     {/* End Candidates menu items
