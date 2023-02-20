@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Seo from "../components/common/Seo";
 import CandidatesListV5 from "../components/candidates-listing-pages/candidates-list-v5";
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/public/candidates');
+  const res = await fetch('api/public/candidates');
   const data = await res.json();
 
   return{props:{dataCL : data}}

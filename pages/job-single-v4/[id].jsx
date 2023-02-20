@@ -20,13 +20,13 @@ export const getServerSideProps = async (context) => {
   console.log(context)
   console.log(context.query.id)
   const  id  = context.query.id;
-  const res = await fetch('http://localhost:3000/api/public/jobOffers/'+ id);
+  const res = await fetch('/api/public/jobOffers/'+ id);
   const data = await res.json();
  
   return{props:{dataOL : data}}
 }
 const JobSingleDynamicV1 = ({dataOL}) => {
-  
+  console.log(dataOL)
   return (
     <>
       <Seo pageTitle="Job Single Dyanmic V1" />
