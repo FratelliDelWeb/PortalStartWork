@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import Messages from "../../../components/dashboard-pages/candidates-dashboard/messages";
+import Messages from "../../../components/dashboard-pages/area-privata-candidates/messages";
 
 const index = () => {
   return (
