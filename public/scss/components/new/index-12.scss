@@ -183,6 +183,16 @@ box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
       color:white;
       box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     }
+   
+  }
+  &.-active {
+    background-color: #6f71b0;;
+    color:white;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    padding: 15px 50px;
+    border-radius: 8px;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
   }
   &.-blue-light {
     background-color: rgba(var(--primary-color), 0.1);

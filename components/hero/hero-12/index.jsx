@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 const index = () => {
 
-  const [category, setCategory] = useState("Candidato");
+  const [category, setCategory] = useState("Lavoro");
 
 
 
@@ -22,7 +22,7 @@ const index = () => {
           data-aos-delay="100"
           data-aos="fade-left"
         >
-             {category === "Candidato" ? (
+             {category === "Lavoro" ? (
                   <img src="images/index-14/images/1.png" alt="index" />  ) : (  <img src="images/index-14/images/2.png" alt="index" /> )}
    
          </figure>
@@ -53,15 +53,15 @@ const index = () => {
                           <div className="text">
                                Cosa stai cercando ?
                               </div>
-                              <button  class="theme-btn -white mr-30" onClick={() => setCategory("Azienda")} type="button">
-                           AZIENDA 
-                              
-                              </button>
-                              <button  class="theme-btn -white" onClick={() => setCategory("Candidato")}  type="button" >
-                        CANDIDATO
+                              {category === "Lavoro" ?
+                              (<button class="theme-btn -active mr-30" onClick={() => setCategory("Lavoro")} type="button"><b>LAVORO </b></button>): 
+                              ( <button class="theme-btn -white mr-30" onClick={() => setCategory("Lavoro")} type="button"> <b>LAVORO </b> </button>)
+                              };
+                              {category === "Candidato" ?
+                              (<button class="theme-btn -active mr-30" onClick={() => setCategory("Candidato")} type="button"><b>CANDIDATO </b></button>): 
+                              ( <button class="theme-btn -white mr-30" onClick={() => setCategory("Candidato")} type="button"> <b>CANDIDATO </b> </button>)
+                              };
                              
-                              </button>
-                            
                           </div>
                   </div>
               </div>
@@ -72,7 +72,7 @@ const index = () => {
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
-                   {category === "Azienda" ? ( <SearchForm2 /> ) : (  <SearchForm4 />)}
+                   {category === "Lavoro" ? ( <SearchForm2 /> ) : (  <SearchForm4 />)}
                
               </div>
               {/* <!-- Job Search Form --> */}
