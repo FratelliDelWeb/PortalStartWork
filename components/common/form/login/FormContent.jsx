@@ -35,7 +35,12 @@ const FormContent = () => {
           alert("login successful");
           window.localStorage.setItem("token", data.user);
           window.sessionStorage.setItem("token", data.user);
-          window.location.href = "/area-privata/dashboard";
+          if(data.role === "admin"){
+            window.location.href = "/area-privata/dashboard";
+          }else if (data.role === "Basic"){
+            window.location.href = "/area-privata-candidates/dashboard";
+          }
+      
 
         } else {
           alert("Nome o password errati");
