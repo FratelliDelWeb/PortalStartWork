@@ -76,12 +76,14 @@ const About9 = () => {
                   Inizia la tua nuova carriera, un reclutatore ti affianchera nella costruzione del tuo Profilo e verra inserito tra i nostri candidati.
                   </div>
                 </div>
-                <Link
-                  href="/candidates-dashboard/cv-manager"
+                <a
+                  data-bs-target= "#candidatiPopupModal"
+                  data-bs-toggle="modal"
+             
                   className="theme-btn btn-style-one"
                 >
                  Compila modulo
-                </Link>
+                </a>
               </div>
             </div>
           </div>

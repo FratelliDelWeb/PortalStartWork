@@ -26,7 +26,8 @@ const About10 = () => {
 Ci proponiamo come partner e non come fornitori, per poter collaborare con le aziende mettendo a disposizione le nostre esperienze per soddisfare le necessità aziendali legate al mondo del lavoro con soluzioni idone
                   </div>
                 </div>
-                <a href="#" className="theme-btn -blue-outline mt-56 md:mt-16">
+                <a  data-bs-target= "#candidatiPopupModal"
+               data-bs-toggle="modal" className="theme-btn -blue-outline mt-56 md:mt-16">
                 Invia candidatura
                 </a>
               </div>

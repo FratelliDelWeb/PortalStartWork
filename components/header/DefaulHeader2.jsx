@@ -52,12 +52,14 @@ const DefaulHeader2 = () => {
               >
                ACCEDI
               </a>
-              <Link
-                href="/employers-dashboard/post-jobs"
+              <a
+                 data-bs-target= "#candidatiPopupModal"
+               data-bs-toggle="modal"
                 className="theme-btn btn-style-five"
+             
               >
                 CANDIDATI
-              </Link>
+              </a>
             </div>
           </div>
       </div>
