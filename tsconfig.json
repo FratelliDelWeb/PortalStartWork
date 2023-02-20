@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-
+    "plugins": [{"name": "next"}],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,8 +28,8 @@
     "pages/api/candidati.ts",
      "lib/dbConnect.ts", 
      "pages/middleware.js"  ],
-     "name":"next",
+   
   "exclude": [
-    "node_modules"
+    "node_modugles"
   ]
 }
