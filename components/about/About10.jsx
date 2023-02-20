@@ -22,7 +22,8 @@ const About10 = () => {
                     <br /> StarWork!
                   </h2>
                   <div className="text mt-36 md:mt-16">
-                   Az
+                  Siamo imprenditori e professionisti nel settore delle risorse umane e ne conosciamo esigenze e difficoltà.
+Ci proponiamo come partner e non come fornitori, per poter collaborare con le aziende mettendo a disposizione le nostre esperienze per soddisfare le necessità aziendali legate al mondo del lavoro con soluzioni idone
                   </div>
                 </div>
                 <a href="#" className="theme-btn -blue-outline mt-56 md:mt-16">
