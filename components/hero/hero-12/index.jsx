@@ -72,7 +72,7 @@ const index = () => {
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
-                   {category === "Azienda" ? ( <SearchForm4 /> ) : (  <SearchForm2 />)}
+                   {category === "Azienda" ? ( <SearchForm2 /> ) : (  <SearchForm4 />)}
                
               </div>
               {/* <!-- Job Search Form --> */}

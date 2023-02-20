@@ -32,7 +32,7 @@ const SearchForm2 = () => {
             className="theme-btn btn-style-one"
             onClick={() => Router.push("/job-list-v4")}
           >
-            <span className="btn-title">Find Jobs</span>
+            <span className="btn-title">Cerca Lavoro</span>
           </button>
         </div>
         {/* <!-- Form Group --> */}

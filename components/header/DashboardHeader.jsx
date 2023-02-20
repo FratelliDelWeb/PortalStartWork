@@ -37,9 +37,9 @@ const DashboardHeader = () => {
                     <div className="nav-outer">
                         <div className="logo-box">
                             <div className="logo">
-                            <Link style={{color: 'blue'}}href="/">
-                            <b> StartWork</b>
-                             </Link>
+                            <Link href="/">
+                <img src="/images/logo.svg"  alt="brand" />
+              </Link>
                             </div>
                         </div>
                         {/* End .logo-box */}
