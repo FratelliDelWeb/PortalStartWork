@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import CvManager from "../../../components/dashboard-pages/candidates-dashboard/cv-manager";
+import CvManager from "../../../components/dashboard-pages/area-privata-candidates/cv-manager"
 
 const index = () => {
   return (
