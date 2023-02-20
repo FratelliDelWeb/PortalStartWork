@@ -4,7 +4,7 @@ import Funfact2 from "../../fun-fact-counter/Funfact2";
 const index = () => {
   return (
     <section
-      className="banner-section-nine"
+      className="banner-section-nine mt-30"
       style={{ backgroundImage: "url(images/background/7.jpg)" }}
     >
       <div className="auto-container">

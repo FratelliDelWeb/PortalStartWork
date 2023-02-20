@@ -1,5 +1,7 @@
 import Header from "./Header";
 import Hero9 from "../hero/hero-9";
+import Hero12 from "../hero/hero-12";
+
 import CallToAction7 from "../call-to-action/CallToAction7";
 import Candidates from "../candidates/Candidates";
 import Blog from "../blog/Blog";
@@ -18,6 +20,7 @@ import CandidatiPopup from "../common/form/candidati/CandidatiPopup";
 import MobileMenu from "../header/MobileMenu";
 import RegBanner2 from "../block/RegBanner2";
 
+import DefaulHeader2 from "../header/DefaulHeader2";
 
 
 const index = ({dataCL ,dataOL}) => {
@@ -28,14 +31,17 @@ console.log(dataOL )
       <LoginPopup />
       <CandidatiPopup></CandidatiPopup>
       {/* End Login Popup Modal */}
-
-      <Header />
+      <div class="mb-30">
+      <DefaulHeader2 />
+      </div>
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
       {/* End MobileMenu */}
-
-      <Hero9 />
+      <div class="mt-56">
+      <Hero12  />
+        </div>
+    
       {/* <!-- End Hero Section --> */}
       
       <section className="layout-pt-120 layout-pb-60">
