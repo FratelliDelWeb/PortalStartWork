@@ -16,19 +16,17 @@ import SocialTwo from "../../components/job-single-pages/social/SocialTwo";
 import Contact from "../../components/job-single-pages/shared-components/Contact";
 import JobDetailsDescriptions from "../../components/job-single-pages/shared-components/JobDetailsDescriptions";
 import ApplyJobModalContent from "../../components/job-single-pages/shared-components/ApplyJobModalContent";
-
-const JobSingleDynamicV1 = () => {
-  const router = useRouter();
-  const [company, setCompany] = useState({});
-  const id = router.query.id;
-
-  useEffect(() => {
-    if (!id) <h1>Loading...</h1>;
-    else setCompany(jobs.find((item) => item.id == id));
-
-    return () => {};
-  }, [id]);
-
+export const getServerSideProps = async (context) => {
+  console.log(context)
+  console.log(context.query.id)
+  const  id  = context.query.id;
+  const res = await fetch('http://localhost:3000/api/public/jobOffers/'+ id);
+  const data = await res.json();
+ 
+  return{props:{dataOL : data}}
+}
+const JobSingleDynamicV1 = ({dataOL}) => {
+  
   return (
     <>
       <Seo pageTitle="Job Single Dyanmic V1" />
@@ -55,34 +53,34 @@ const JobSingleDynamicV1 = () => {
                   <div className="job-block-seven style-two">
                     <div className="inner-box">
                       <div className="content">
-                        <h4>{company?.jobTitle}</h4>
+                        <h4>{dataOL?.jobTitle}</h4>
 
                         <ul className="job-info">
                           <li>
                             <span className="icon flaticon-briefcase"></span>
-                            {company?.company}
+                            {dataOL?.company}
                           </li>
                           {/* compnay info */}
                           <li>
                             <span className="icon flaticon-map-locator"></span>
-                            {company?.location}
+                            {dataOL?.location}
                           </li>
                           {/* location info */}
                           <li>
                             <span className="icon flaticon-clock-3"></span>{" "}
-                            {company?.time}
+                            {dataOL?.time}
                           </li>
                           {/* time info */}
                           <li>
                             <span className="icon flaticon-money"></span>{" "}
-                            {company?.salary}
+                            {dataOL?.salary}
                           </li>
                           {/* salary info */}
                         </ul>
                         {/* End .job-info */}
 
                         <ul className="job-other-info">
-                          {company?.jobType?.map((val, i) => (
+                          {dataOL?.jobType?.map((val, i) => (
                             <li key={i} className={`${val.styleClass}`}>
                               {val.type}
                             </li>
@@ -199,9 +197,9 @@ const JobSingleDynamicV1 = () => {
                     <div className="widget-content">
                       <div className="company-title">
                         <div className="company-logo">
-                          <img src={company.logo} alt="resource" />
+                          <img src={dataOL.logo} alt="resource" />
                         </div>
-                        <h5 className="company-name">{company.company}</h5>
+                        <h5 className="company-name">{dataOL.company}</h5>
                         <a href="#" className="profile-link">
                           View company profile
                         </a>
@@ -212,12 +210,12 @@ const JobSingleDynamicV1 = () => {
 
                       <div className="btn-box">
                         <a
-                          href={company?.link}
+                          href={dataOL?.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="theme-btn btn-style-three"
                         >
-                          {company?.link}
+                          {dataOL?.link}
                         </a>
                       </div>
                       {/* End btn-box */}
