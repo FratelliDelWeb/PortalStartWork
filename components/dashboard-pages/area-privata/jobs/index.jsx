@@ -42,7 +42,9 @@ const index = ({dataOL}) => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
+                   
                     <h4>Lavoro ID : {dataOL.codiceJod} </h4>
+                    <h6> {dataOL.created_at}</h6>
                   </div>
 
                   <div className="widget-content">

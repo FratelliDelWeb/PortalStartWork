@@ -3,21 +3,21 @@ module.exports = [
     id: 1,
     name: "Dashboard",
     icon: "la-home",
-    routePath: "/candidates-dashboard/dashboard",
+    routePath: "/area-privata-candidates//dashboard",
     active: "active",
   },
   {
     id: 2,
-    name: "My Profile",
+    name: "Il tuo progilo",
     icon: "la-user-tie",
-    routePath: "/candidates-dashboard/my-profile",
+    routePath: "/area-privata-candidates//my-profile",
     active: "",
   },
   {
     id: 3,
     name: "My Resume",
     icon: "la la-file-invoice",
-    routePath: "/candidates-dashboard/my-resume",
+    routePath: "/area-privata-candidates//my-resume",
     active: "",
   },
  /*  {
@@ -45,7 +45,7 @@ module.exports = [
     id: 7,
     name: "CV manager",
     icon: "la la-file-invoice",
-    routePath: "/candidates-dashboard/cv-manager",
+    routePath: "/area-privata-candidates/cv-manager",
     active: "",
   },
 /*   {
@@ -64,9 +64,9 @@ module.exports = [
   }, */
   {
     id: 10,
-    name: "Change Password",
+    name: "Reimposta password",
     icon: "la-lock",
-    routePath: "/candidates-dashboard/change-password",
+    routePath: "/area-privata-candidates//change-password",
     active: "",
   },
   {

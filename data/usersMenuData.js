@@ -15,14 +15,14 @@ module.exports = [
     active: "",
   },
   {
-    id: 2,
+    id: 3,
     name: "Inserisci candidato",
     icon: "la-file-medical",
     routePath: "/area-privata/post-candidates",
     active: "",
   },
   {
-    id: 2,
+    id: 4,
     name: "Annunci di lavoro",
     icon: "la-bullhorn",
     routePath: "/area-privata/manage-jobs",
@@ -36,14 +36,14 @@ module.exports = [
     active: "",
   }, */
   {
-    id: 3,
+    id: 5,
     name: "Ultimi Candidati",
     icon: "la-id-card",
     routePath: "/area-privata/all-applicants",
     active: "",
   },
   {
-    id: 4,
+    id: 6,
     name: "Cerca Candidato",
     icon: "la-search",
     routePath: "/area-privata/shortlisted-resumes",
@@ -71,14 +71,14 @@ module.exports = [
     active: "",
   }, */
   {
-    id: 10,
+    id: 7,
     name: "Cambia password",
     icon: "la-lock",
     routePath: "/area-privata/change-password",
     active: "",
   },
   {
-    id: 11,
+    id:8,
     name: "Logout",
     icon: "la-sign-out",
     routePath: "/login",
