@@ -15,15 +15,16 @@ const index = () => {
   return (
     <section className="banner-section-three -type-12 mt-30">
       <div className="bg-image">
-      {category === "Candidato" ? (
-              <img src="images/index-13/banner/bg-2.png" alt="image" /> ) : (<img src="images/index-12/header/bg.png" alt="index" />)}
-
+  
+ 
         <figure
           className="main-image"
-          data-aos-delay="1500"
+          data-aos-delay="100"
           data-aos="fade-left"
         >
-   {/*        <img src="images/resource/employ.png" alt="index" /> */}
+             {category === "Candidato" ? (
+                  <img src="images/index-14/images/1.png" alt="index" />  ) : (  <img src="images/index-14/images/2.png" alt="index" /> )}
+   
          </figure>
       </div>
       {/* End bg-image */}

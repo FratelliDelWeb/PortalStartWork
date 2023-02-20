@@ -21,6 +21,9 @@
     right: 0;
     margin: 0 160px;
     overflow: hidden;
+    background: rgb(111,113,176);
+background: linear-gradient(90deg, rgba(111,113,176,1) 0%, rgba(22,187,178,1) 50%);
+border-radius: 20px;
 
     @media (max-width: 1600px) {
       margin: 0 60px;
@@ -169,14 +172,14 @@
   }
   &.-white {
     background-color: white;
-    color: var(--primary-color);
+    color: #6f71b0;
     padding: 15px 50px;
     border-radius: 8px;
     transition: all 0.15s ease-in-out;
 
     &:hover {
-      background-color: rgba(var(--primary-color), 0.1);
-      color: var(--primary-color);
+      background-color: #6f71b0;;
+      color:white;
     }
   }
   &.-blue-light {

@@ -43,23 +43,25 @@ const Header = () => {
           <div className="outer-box">
             <HeaderNavContent />
             {/* <!-- Main Menu End--> */}
-
+            <div className="outer-box">
             <div className="btn-box">
               <a
                 href="#"
-                className="theme-btn btn-style-three call-modal"
+                className="theme-btn btn-style-six call-modal"
                 data-bs-toggle="modal"
                 data-bs-target="#loginPopupModal"
               >
-                Login / Register
+               ACCEDI
               </a>
               <Link
                 href="/employers-dashboard/post-jobs"
-                className="theme-btn btn-style-one"
+                className="theme-btn btn-style-five"
               >
-                Job Post
+                CANDIDATI
               </Link>
             </div>
+          </div>
+           
           </div>
         </div>
       </div>
