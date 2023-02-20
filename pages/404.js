@@ -16,16 +16,16 @@ const index = () => {
         <div className="content">
           <div className="logo">
             <Link href="/">
-              <img src="/images/logo.svg" alt="brand" />
+              <img  width="320px" src="/images/logo.svg" alt="brand" />
             </Link>
           </div>
           {/* End logo */}
 
           <h1>404!</h1>
-          <p>The page you are looking for could not be found.</p>
+          <p>Pagina non trovata!</p>
 
           <Link className="theme-btn btn-style-three call-modal" href="/">
-            BACK TO HOME
+           Torna alla HOME PAGE
           </Link>
         </div>
         {/* End .content */}
