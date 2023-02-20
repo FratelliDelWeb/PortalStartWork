@@ -99,9 +99,12 @@ console.log(dataOL )
           </div>
         </div>
       </section>
+      <div className="auto-container">
+    <div className="row mt-50" data-aos="fade-up">
+    <JobFeatured12 dataOL= {dataOL}/>
 
-
-      <JobFeatured12 dataOL= {dataOL}/>
+          </div>
+          </div>
       {/* <!-- End Candidates Section --> */}
        {/*
       <section className="job-section">
