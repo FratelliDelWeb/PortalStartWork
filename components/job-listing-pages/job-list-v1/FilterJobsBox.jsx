@@ -108,8 +108,7 @@ const FilterJobsBox = ({dataOL}) => {
     const sortFilter = (a, b) =>
         sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
 
-    let content = dataOL
-     /*    ?.filter(keywordFilter)
+    let content = dataOL?.filter(keywordFilter)
         ?.filter(locationFilter)
         ?.filter(destinationFilter)
         ?.filter(categoryFilter)
@@ -120,7 +119,7 @@ const FilterJobsBox = ({dataOL}) => {
         ?.filter(tagFilter)
         ?.sort(sortFilter)
         .slice(perPage.start, perPage.end !== 0 ? perPage.end : 10)
-        ? */.map((item) => (
+        .map((item) => (
             <div className="job-block" key={item._id}>
                 <div className="inner-box">
                     <div className="content">
