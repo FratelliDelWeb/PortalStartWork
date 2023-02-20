@@ -21,8 +21,9 @@ import {
 } from "../../../features/job/jobSlice";
 
 const FilterJobsBox = ({dataOL}) => {
-    console.log(dataOL)
+   
     const { jobList, jobSort } = useSelector((state) => state.filter);
+    console.log(jobSort)
     const {
         keyword,
         location,
@@ -105,8 +106,12 @@ const FilterJobsBox = ({dataOL}) => {
     const tagFilter = (item) => (tag !== "" ? item?.tag === tag : item);
 
     // sort filter
-    const sortFilter = (a, b) =>
-        sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
+    const sortFilter = (a, b) =>{
+        console.log("aaa" , a);
+        sort === "des" ? a.codiceJod > b.codiceJod && -1 : a.codiceJod < b.codiceJod && -1;
+        console.log(sort)
+    }
+  
 
     let content = dataOL?.filter(keywordFilter)
         ?.filter(locationFilter)
@@ -181,6 +186,7 @@ const FilterJobsBox = ({dataOL}) => {
 
     // per page handler
     const perPageHandler = (e) => {
+        console.log("sss",e.target.value);
         const pageData = JSON.parse(e.target.value);
         dispatch(addPerPage(pageData));
     };
@@ -214,13 +220,13 @@ const FilterJobsBox = ({dataOL}) => {
                             data-bs-toggle="offcanvas"
                             data-bs-target="#filter-sidebar"
                         >
-                            <span className="icon icon-filter"></span> Filter
+                            <span className="icon icon-filter"></span> Filtra
                         </button>
                     </div>
                     {/* Collapsible sidebar button */}
 
                     <div className="text">
-                        Show <strong>{content?.length}</strong> jobs
+                        Mostra <strong>{content?.length}</strong> annunci
                     </div>
                 </div>
                 {/* End show-result */}
@@ -245,7 +251,7 @@ const FilterJobsBox = ({dataOL}) => {
                             className="btn btn-danger text-nowrap me-2"
                             style={{ minHeight: "45px", marginBottom: "15px" }}
                         >
-                            Clear All
+                          Pulisci tutto
                         </button>
                     ) : undefined}
 
@@ -254,7 +260,7 @@ const FilterJobsBox = ({dataOL}) => {
                         className="chosen-single form-select"
                         onChange={sortHandler}
                     >
-                        <option value="">Sort by (default)</option>
+                        <option value="">Ordina per</option>
                         <option value="asc">Newest</option>
                         <option value="des">Oldest</option>
                     </select>
@@ -271,7 +277,7 @@ const FilterJobsBox = ({dataOL}) => {
                                 end: 0,
                             })}
                         >
-                            All
+                            Tutti
                         </option>
                         <option
                             value={JSON.stringify({
@@ -279,7 +285,7 @@ const FilterJobsBox = ({dataOL}) => {
                                 end: 10,
                             })}
                         >
-                            10 per page
+                            10 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
@@ -287,7 +293,7 @@ const FilterJobsBox = ({dataOL}) => {
                                 end: 20,
                             })}
                         >
-                            20 per page
+                            20 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
@@ -295,7 +301,7 @@ const FilterJobsBox = ({dataOL}) => {
                                 end: 30,
                             })}
                         >
-                            30 per page
+                            30 per pagina
                         </option>
                     </select>
                     {/* End select */}
@@ -305,11 +311,15 @@ const FilterJobsBox = ({dataOL}) => {
             {content}
             {/* <!-- List Show More --> */}
             <div className="ls-show-more">
-                <p>Show 36 of 497 Jobs</p>
+                <p>Vedi {content?.length} di {dataOL.length - 1} Jobs</p>
                 <div className="bar">
-                    <span className="bar-inner" style={{ width: "40%" }}></span>
+                    <span className="bar-inner" style={{ width:  `${content?.length * 2}%`}}></span>
                 </div>
-                <button className="show-more">Show More</button>
+                <button onClick={perPageHandler}
+                         value={JSON.stringify({
+                            start: 0,
+                            end: dataOL.length  ,
+                        })}  className="show-more">Mostra tutti</button>
             </div>
         </>
     );

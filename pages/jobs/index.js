@@ -13,7 +13,7 @@ const index = ({dataOL}) => {
     console.log(dataOL)
   return (
     <>
-      <Seo pageTitle="Job List V1" />
+      <Seo pageTitle="Cerca Lavoro" />
       <JobListV1  dataOL= {dataOL}/>
     </>
   );

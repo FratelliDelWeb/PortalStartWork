@@ -93,7 +93,8 @@ const FilterJobBox = () => {
 
     // sort filter
     const sortFilter = (a, b) =>
-        sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
+    console.log(a)
+        sort === "des" ? a._id > b._id && -1 : a._id < b._id && -1;
 
     let content = jobs
         ?.filter(keywordFilter)

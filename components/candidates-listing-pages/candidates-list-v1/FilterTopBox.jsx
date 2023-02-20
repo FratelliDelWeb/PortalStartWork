@@ -21,7 +21,7 @@ import {
 } from "../../../features/candidate/candidateSlice";
 
 const FilterTopBox = ( {dataCL}) => {
-    console.log(dataCL);
+
     const {
         keyword,
         location,
@@ -169,12 +169,16 @@ const FilterTopBox = ( {dataCL}) => {
 
     // sort handler
     const sortHandler = (e) => {
+        console.log("eeeee" + e.target.value)
         dispatch(addSort(e.target.value));
     };
 
     // per page handler
+
     const perPageHandler = (e) => {
+        console.log("eeeee" + e.target.value)
         const pageData = JSON.parse(e.target.value);
+
         dispatch(addPerPage(pageData));
     };
 
@@ -191,7 +195,7 @@ const FilterTopBox = ( {dataCL}) => {
         dispatch(clearExperience());
         dispatch(clearQualification());
         dispatch(clearQualificationF());
-        dispatch(addSort(""));
+        dispatch(addSort("des"));
         dispatch(addPerPage({ start: 0, end: 0 }));
     };
 

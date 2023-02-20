@@ -94,8 +94,13 @@ const FilterTopBox = ({dataCL}) => {
             : item;
 
     // sort filter
-    const sortFilter = (a, b) =>
-        sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
+    const sortFilter = (a, b) =>{
+        sort === "des" ? a._id > b._id && -1 : a._id < b._id && -1;
+
+  
+    }
+ 
+       
 
     const handlers = {
         showMore: function(){
@@ -118,7 +123,8 @@ const FilterTopBox = ({dataCL}) => {
         }
     }
 
-    let content = dataCL        
+    let content = dataCL
+    ?.filter(keywordFilter)     
         ?.map((candidate) => (
             <div className="candidate-block-three" key={candidate._id}>
                 <div className="inner-box">
@@ -180,6 +186,7 @@ const FilterTopBox = ({dataCL}) => {
 
     // sort handler
     const sortHandler = (e) => {
+        console.log(e.target.value)
         dispatch(addSort(e.target.value));
     };
 
@@ -212,7 +219,7 @@ const FilterTopBox = ({dataCL}) => {
         dispatch(clearQualification());
         dispatch(clearQualificationF());
         dispatch(addSort(""));
-        dispatch(addPerPage({ start: 0, end: 10 }));
+        dispatch(addPerPage({ start: 1, end: 10 }));
     };
     return (
         <>
@@ -240,7 +247,7 @@ const FilterTopBox = ({dataCL}) => {
                     experiences?.length !== 0 ||
                     qualifications?.length !== 0 ||
                     sort !== "" ||
-                    perPage?.start !== 0 ||
+                    perPage?.start !== 1 ||
                     perPage?.end !== 10 ? (
                         <button
                             className="btn btn-danger text-nowrap me-2"
