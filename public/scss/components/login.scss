@@ -462,3 +462,12 @@ Login Section
     padding: 0;
   }
 }
+.login-candidatura {
+  max-width: 70vw;
+  box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
+  border-radius: 8px;
+
+  .modal-body {
+    padding: 0;
+  }
+}

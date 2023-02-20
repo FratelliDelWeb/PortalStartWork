@@ -5,7 +5,7 @@ const CandidatiPopup = () => {
   return (
     <>
       <div className="modal fade" id="candidatiPopupModal">
-        <div className="modal-dialog modal-lg modal-dialog-centered login-modal modal-dialog-scrollable">
+        <div className="modal-dialog modal-lg modal-dialog-centered login-candidatura modal-dialog-scrollable">
           <div className="modal-content">
             <button
               type="button"
