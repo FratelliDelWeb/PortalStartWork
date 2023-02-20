@@ -2,13 +2,13 @@ import Link from "next/link";
 
 import jobFeatured from "../../data/job-featured";
 
-const JobFeatured3 = () => {
+const JobFeatured3 = ({dataOL}) => {
   return (
     <>
-      {jobFeatured.slice(11, 20).map((item) => (
+      {dataOL.slice(0,6).map((item) => (
         <div
           className="job-block-three col-lg-4 col-md-6 col-sm-12"
-          key={item.id}
+          key={item._id}
         >
           <div className="inner-box">
             <div className="content">
@@ -16,7 +16,7 @@ const JobFeatured3 = () => {
                 <img src={item.logo} alt="item brand" />
               </span>
               <h4>
-                <Link href={`/job-single-v4/${item.id}`}>{item.jobTitle}</Link>
+                <Link href={`/job-single-v4/${item._id}`}>{item.jobTitle}</Link>
               </h4>
 
               <ul className="job-info">
@@ -34,11 +34,11 @@ const JobFeatured3 = () => {
               {/* End .job-info */}
 
               <ul className="job-other-info">
-                {item.jobType.map((val, i) => (
+              {/*   {item.jobType.map((val, i) => (
                   <li key={i} className={`${val.styleClass}`}>
                     {val.type}
                   </li>
-                ))}
+                ))} */}
               </ul>
               {/* End .job-other-info */}
 

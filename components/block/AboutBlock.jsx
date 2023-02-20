@@ -3,30 +3,30 @@ const AboutBlock = () => {
     {
       id: 1,
       icon: "images/index-14/icons/1.svg",
-      title: "Search Miloins of Jobs",
+      title: "Ricerca lavori",
       bgColor: "-purple",
-      text: `There is no one universal solution in online marketing, that's.`,
+      text: `Una soluzione per il tuo marketing online lavoratio`,
     },
     {
       id: 2,
       icon: "images/index-14/icons/2.svg",
-      title: "Location Base Search",
+      title: "Ricerca di lavoro in base alla posiione",
       bgColor: "-orange",
-      text: `There is no one universal solution in online marketing, that's.`,
+      text: `Ricerchiamo lavooro in base alle tue possibilità di trasferimento`,
     },
     {
       id: 3,
       icon: "images/index-14/icons/3.svg",
-      title: "Top Careers",
+      title: "Carriera rogresssiva",
       bgColor: "-red",
-      text: `There is no one universal solution in online marketing, that's.`,
+      text: `Aggiorna il tuo CV e fatti notanere dalle nostre migliori aziende`,
     },
     {
       id: 4,
       icon: "images/index-14/icons/4.svg",
-      title: "Recruiter directory",
+      title: "Recruiter contact",
       bgColor: "-green",
-      text: `There is no one universal solution in online marketing, that's.`,
+      text: `Accedi alla tua area privata e condividi le tue informazioni con il recruiter.`,
     },
   ];
   return (

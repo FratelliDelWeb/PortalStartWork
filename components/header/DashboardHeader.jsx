@@ -76,7 +76,7 @@ const DashboardHeader = () => {
                                     width={50}
                                     height={50}
                                 />
-                                <span className="name">My Account</span>
+                                <span className="name">Il mio Profilo</span>
                             </a>
 
                             <ul className="dropdown-menu">

@@ -31,7 +31,7 @@ const HeaderNavContent = () => {
                         } dropdown`}
                     >
                         <span>Home</span>
-                        <div className="mega-menu">
+                      {/*   <div className="mega-menu">
                             <div className="mega-menu-bar row pt-0">
                                 {homeItems.map((item) => (
                                     <div
@@ -60,7 +60,7 @@ const HeaderNavContent = () => {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div> */}
                     </li>
                     {/* End homepage menu items */}
 
@@ -106,7 +106,7 @@ const HeaderNavContent = () => {
                         </div>
                     </li> */}
 
-                    <li>
+                 {/*    <li>
                     <Link href="/area-privata/dashboard">
                     Dashboard
                                     </Link>
@@ -117,7 +117,7 @@ const HeaderNavContent = () => {
                     Dashboard Candidato 
                                     </Link>
                      
-                    </li>
+                    </li> */}
                     
                     {/* End findjobs menu items 
 

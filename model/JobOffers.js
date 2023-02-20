@@ -1,52 +1,4 @@
 
-/* const jobOffersSchema = new Mongoose.Schema(
-  {
-    jobTitle : {
-        type: String,
-        required: true,
-      },
-      company: {
-        type: String,
-        required: true,
-      },
-      logo: {
-        type: String,
-        required: true,
-      },
-      logo: {
-        type: String,
-        required: true,
-      },
-      time: {
-        type: String,
-        required: true,
-      },
-      location:{
-        type: String,
-        required: true,
-      },
-      salary:{
-        type: String,
-        required: true,
-      },
-      jobType:{
-        type: [String],
-        required: true,
-      },
-      link:{
-        type: [String],
-        required: true,  
-      },
-      experience:{
-        type: String,
-        required: true,  
-      },
-  },
-); */
-
-
-
-
 const Mongoose = require("mongoose");
 
 const jobOffersSchema = new Mongoose.Schema({
@@ -59,7 +11,14 @@ const jobOffersSchema = new Mongoose.Schema({
   qualification: {
     type: String,
     required: true,
+  },  logo: {
+    type: String,
+    required: true,
   },
+  designation :{
+    type: String,
+    required: true,
+  }
  
 });
 

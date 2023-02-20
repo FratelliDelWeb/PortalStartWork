@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Hero9 from "../hero/hero-9";
 import Hero12 from "../hero/hero-12";
-
+import Link from "next/link";
 import CallToAction7 from "../call-to-action/CallToAction7";
 import Candidates from "../candidates/Candidates";
 import Blog from "../blog/Blog";
@@ -12,8 +12,10 @@ import Testimonia4 from "../testimonial/Testimonial4";
 import JobCategorie1 from "../job-categories/JobCategorie1";
 import JobCategorie7 from "../job-categories/JobCategorie7";
 import  About9 from "../about/About9"
+import  About10 from "../about/About10"
+
 import Block6 from "../block/Block6";
-import JobFeatured12 from "../job-featured/JobFeatured12";
+import JobFeatured3 from "../job-featured/JobFeatured3";
 import LoginPopup from "../common/form/login/LoginPopup";
 import CandidatiPopup from "../common/form/candidati/CandidatiPopup";
 
@@ -71,18 +73,39 @@ console.log(dataOL )
           {/* End .row */}
         </div>
       </section>
-      {/* <!-- End Job Categories --> */}ù
+      {/* <!-- End Job Categories --> */}
       <section className="registeration-banners">
         <div className="auto-container">
           <div className="row" data-aos="fade-up">
-            <RegBanner2 />
+            <About10/>
           </div>
         </div>
       </section>
 
 
+      <div className="auto-container">
+          <div className="text-center">
+            <h2>Utlime Offerte di lavoro </h2>
+            <div className="text">
+            Conosci il tuo valore e trova il lavoro che qualifica la tua vita!
+            </div>
+          </div>
+          {/* End .sec-title */}
 
-      
+          <div className="row" data-aos="fade-up">
+            <JobFeatured3 dataOL={dataOL} />
+          </div>
+
+          <div className="btn-box">
+            <Link
+              href="/job-list-v3"
+              className="theme-btn btn-style-one bg-blue"
+            >
+              <span className="btn-title">Vedi tutte le offerte</span>
+            </Link>
+          </div>
+        </div>
+        <About9 />
       <section className="candidates-section">
         <div className="auto-container">
           <div className="sec-title">
@@ -99,12 +122,10 @@ console.log(dataOL )
           </div>
         </div>
       </section>
-      <div className="auto-container">
-    <div className="row mt-50" data-aos="fade-up">
-    <JobFeatured12 dataOL= {dataOL}/>
 
-          </div>
-          </div>
+
+
+     
       {/* <!-- End Candidates Section --> */}
        {/*
       <section className="job-section">
@@ -123,7 +144,7 @@ console.log(dataOL )
       <!-- End Job Section --> */}
      
       {/* <!-- End Registeration Banners --> */}
-      <About9 />
+    
             {/* <!-- End Steps Section --> */}
 
      {/*  <CallToAction7 /> */}

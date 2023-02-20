@@ -6,7 +6,7 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterJobsBox from "./FilterJobsBox";
 import FilterSidebar from "./FilterSidebar";
 
-const index = () => {
+const index = ({dataOL}) => {
     return (
         <>
             {/* <!-- Header Span --> */}
@@ -46,7 +46,7 @@ const index = () => {
 
                         <div className="content-column col-lg-8 col-md-12 col-sm-12">
                             <div className="ls-outer">
-                                <FilterJobsBox />
+                                <FilterJobsBox dataOL = {dataOL} />
                                 {/* <!-- ls Switcher --> */}
                             </div>
                         </div>

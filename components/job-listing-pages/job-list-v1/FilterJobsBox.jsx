@@ -20,7 +20,8 @@ import {
     clearJobTypeToggle,
 } from "../../../features/job/jobSlice";
 
-const FilterJobsBox = () => {
+const FilterJobsBox = ({dataOL}) => {
+    console.log(dataOL)
     const { jobList, jobSort } = useSelector((state) => state.filter);
     const {
         keyword,
@@ -107,8 +108,8 @@ const FilterJobsBox = () => {
     const sortFilter = (a, b) =>
         sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
 
-    let content = jobs
-        ?.filter(keywordFilter)
+    let content = dataOL
+     /*    ?.filter(keywordFilter)
         ?.filter(locationFilter)
         ?.filter(destinationFilter)
         ?.filter(categoryFilter)
@@ -119,15 +120,15 @@ const FilterJobsBox = () => {
         ?.filter(tagFilter)
         ?.sort(sortFilter)
         .slice(perPage.start, perPage.end !== 0 ? perPage.end : 10)
-        ?.map((item) => (
-            <div className="job-block" key={item.id}>
+        ? */.map((item) => (
+            <div className="job-block" key={item._id}>
                 <div className="inner-box">
                     <div className="content">
                         <span className="company-logo">
                             <img src={item.logo} alt="item brand" />
                         </span>
                         <h4>
-                            <Link href={`/job-single-v1/${item.id}`}>
+                            <Link href={`/jobs/${item._id}`}>
                                 {item.jobTitle}
                             </Link>
                         </h4>
@@ -156,13 +157,13 @@ const FilterJobsBox = () => {
                         </ul>
                         {/* End .job-info */}
 
-                        <ul className="job-other-info">
+                      {/*   <ul className="job-other-info">
                             {item?.jobType?.map((val, i) => (
                                 <li key={i} className={`${val.styleClass}`}>
                                     {val.type}
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
                         {/* End .job-other-info */}
 
                         <button className="bookmark-btn">
