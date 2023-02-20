@@ -5,37 +5,35 @@ const FooterContent4 = () => {
   const footerContent = [
     {
       id: 1,
-      title: "For Candidates",
+      title: "Per i candidati ",
       colClass: "col-lg-3",
       menuList: [
-        { name: "Browse Jobs", route: "/" },
-        { name: "Browse Categories", route: "/" },
-        { name: "Candidate Dashboard", route: "/" },
-        { name: "Job Alerts", route: "/" },
-        { name: "My Bookmarks", route: "/" },
+        { name: "Cerca lavoro", route: "/jobs" },
+        { name: "Invia candidatura", route: "/" },
+        { name: "Accedi alla tua area riservata", route: "/login" },
+     
       ],
     },
     {
       id: 2,
-      title: "For Employers",
+      title: "Per le aziende ",
       colClass: "col-lg-3",
       menuList: [
-        { name: "Browse Candidates", route: "/" },
-        { name: "Employer Dashboard", route: "/" },
-        { name: "Add Job", route: "/" },
-        { name: "Job Packages", route: "/" },
+        { name: "Cerca Lavoro", route: "/" },
+        { name: "Contattaci", route: "/" },
+        { name: "Accedi alla tua area riservata", route: "/login" },
+     
       ],
     },
     {
       id: 3,
-      title: "About Us",
+      title: "Link Utili",
       colClass: "col-lg-2",
       menuList: [
-        { name: "Job Page", route: "/" },
-        { name: "Job Page Alternative", route: "/" },
-        { name: "Resume Page", route: "/" },
-        { name: "Blog", route: "/" },
-        { name: "Contact", route: "/" },
+       
+        { name: "Faq", route: "/" },
+        { name: "Privacy", route: "/" },
+        { name: "Contatti", route: "/" },
       ],
     },
   ];
@@ -63,10 +61,10 @@ const FooterContent4 = () => {
 
       <div className="footer-column col-lg-4 col-md-12 col-sm-12">
         <div className="footer-widget">
-          <h4 className="widget-title">Join Us On</h4>
+          <h4 className="widget-title">Unisciti a noi </h4>
           <div className="widget-content">
             <div className="newsletter-form">
-              <div className="text">We don’t send spam so don’t worry.</div>
+              <div className="text">Lascia la tua mail per essere ricontattato</div>
               <SearchForm />
             </div>
           </div>

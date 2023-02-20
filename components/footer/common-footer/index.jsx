@@ -16,14 +16,14 @@ const index = ({ footerStyle = "" }) => {
                   </a>
                 </div>
                 <p className="phone-num">
-                  <span>Call us </span>
-                  <a href="thebeehost@support.com">123 456 7890</a>
+                  <span>Contatti </span>
+                  <a href="thebeehost@support.com">081 277 9565</a>
                 </p>
                 <p className="address">
-                  329 Queensberry Street, North Melbourne VIC
-                  <br /> 3051, Australia. <br />
+                Via Napoli n. 159 80013 
+                  <br /> Casalnuovo di Napoli NA <br />
                   <a href="mailto:support@superio.com" className="email">
-                    support@superio.com
+                  info@start-work.it
                   </a>
                 </p>
               </div>
