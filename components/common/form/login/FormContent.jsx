@@ -76,7 +76,7 @@ const validateInput = (e) => {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.message === "User successfully Logged in") {
-          alert("login successful");
+       
           setokLogin("ok");
           window.localStorage.setItem("token", data.user);
           window.sessionStorage.setItem("token", data.user);
@@ -89,9 +89,10 @@ const validateInput = (e) => {
       
 
         } else {
-          setError({...error,login: data.error +  " - " + data.error} )
+          setError({...error,login: data.message +  " - " + data.error} )
           console.log(error.login)
-          alert("Nome o password errati");
+          setokLogin("");
+         
         }
       });
   }
@@ -138,7 +139,9 @@ const validateInput = (e) => {
           </div>
         </div>
         {/* forgot password */}
-
+        <div className="form-group">
+        {error.login  && <span className='err'>{error.login}</span>}
+        </div>
         <div className="form-group">
           <button
            className={!okLogin  ?  "heme-btn btn-style-one " :  "d-none" } 
@@ -153,8 +156,10 @@ const validateInput = (e) => {
           </button>
           {okLogin && <Loader></Loader>}
           
-          {error.login && <span className='err'>{error.login}</span>}
+      
         </div>
+        
+
         {/* login */}
       </form>
       {/* End form */}
