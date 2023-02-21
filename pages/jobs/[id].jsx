@@ -62,12 +62,12 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                   <span className="company-logo">
                     <img src={dataOL?.logo} alt="logo" />
                   </span>
-                  <h4>{dataOL?.jobTitle}</h4>
-
+                  <h4 class="m-0">{dataOL?.jobTitle}</h4>
+                    <p>Codice Offerta: {dataOL?.codiceJod}</p>
                   <ul className="job-info">
                     <li>
                       <span className="icon flaticon-briefcase"></span>
-                      {dataOL?.company}
+                      {dataOL?.category}
                     </li>
                     {/* compnay info */}
                     <li>
@@ -80,10 +80,10 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                       {dataOL?.time}
                     </li>
                     {/* time info */}
-                    <li>
+               {/*      <li>
                       <span className="icon flaticon-money"></span>{" "}
                       {dataOL?.salary}
-                    </li>
+                    </li> */}
                     {/* salary info */}
                   </ul>
                   {/* End .job-info */}
@@ -182,8 +182,8 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                 <aside className="sidebar">
                   <div className="sidebar-widget">
                     {/* <!-- Job Overview --> */}
-                    <h4 className="widget-title">Job Overview</h4>
-                    <JobOverView />
+                    <h4 className="widget-title">Dettagli annuncio di lavoro</h4>
+                    <JobOverView  dataOL={dataOL}/>
 
                     {/* <!-- Map Widget --> */}
                     <h4 className="widget-title">Job Location</h4>

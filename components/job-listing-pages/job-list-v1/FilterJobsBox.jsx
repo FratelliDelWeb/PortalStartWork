@@ -113,9 +113,9 @@ const FilterJobsBox = ({dataOL}) => {
     const sortFilter = (a, b) =>{
       
         sort === "des" ?  dataOL.sort((a, b) => {  
-            return a.codiceJod - b.codiceJod  
+            return a.codiceJod - b.codiceJod 
           })  :   dataOL.sort((a, b) => {  
-            return  b.codiceJod - a.codiceJod 
+            return  b.codiceJod - a.codiceJod  
           })   ;
       
     }

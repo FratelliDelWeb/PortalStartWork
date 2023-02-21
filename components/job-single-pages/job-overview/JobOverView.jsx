@@ -1,4 +1,4 @@
-const JobOverView = () => {
+const JobOverView = ({dataOL}) => {
   return (
     <div className="widget-content">
       <ul className="job-overview">
@@ -14,28 +14,28 @@ const JobOverView = () => {
         </li>
         <li>
           <i className="icon icon-location"></i>
-          <h5>Location:</h5>
-          <span>London, UK</span>
+          <h5>LOCALITÀ:</h5>
+          <span>{dataOL.location}</span>
         </li>
         <li>
           <i className="icon icon-user-2"></i>
-          <h5>Job Title:</h5>
-          <span>Designer</span>
+          <h5>AREA PROFESSIONALE:</h5>
+          <span>{dataOL.category}</span>
         </li>
         <li>
           <i className="icon icon-clock"></i>
-          <h5>Hours:</h5>
-          <span>50h / week</span>
+          <h5>FILIALE</h5>
+          <span>{dataOL.company}</span>
         </li>
         <li>
           <i className="icon icon-rate"></i>
-          <h5>Rate:</h5>
-          <span>$15 - $25 / hour</span>
+          <h5>OFFERTA NUMERO:</h5>
+          <span>{dataOL.codiceJod}-{dataOL._id}</span>
         </li>
         <li>
           <i className="icon icon-salary"></i>
-          <h5>Salary:</h5>
-          <span>$35k - $45k</span>
+          <h5>TIPO DI CONTRATTO</h5>
+          <span>{dataOL.jobType[0].type}</span>
         </li>
       </ul>
     </div>
