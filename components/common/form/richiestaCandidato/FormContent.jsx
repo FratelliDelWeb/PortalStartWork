@@ -1,11 +1,13 @@
-const Contact = () => {
+
+import DestinationRangeSlider from "../../../candidates-listing-pages/components/DestinationRangeSlider"
+const FormContent = ({dataCL}) => {
   return (
-    <form>
+    <form  method="post">
 
       <div className="row clearfix">
       <div className="col-lg-12 col-md-12 col-sm-12 form-group">
          <h5>
-          Richiesta di contattato per candidato
+          Richiesta di contattato per candidato  {dataCL._id}
          </h5>
         </div>
         <div className="col-lg-6 col-md-12 col-sm-12 form-group">
@@ -68,4 +70,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default FormContent;

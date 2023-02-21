@@ -13,7 +13,7 @@ import GalleryBox from "../../components/candidates-single-pages/shared-componen
 import Social from "../../components/candidates-single-pages/social/Social";
 import JobSkills from "../../components/candidates-single-pages/shared-components/JobSkills";
 import AboutVideo from "../../components/candidates-single-pages/shared-components/AboutVideo";
-
+import RichiestaPopup from "../../components/common/form/richiestaCandidato/RichiestaPopup";
 export const getServerSideProps = async (context) => {
   const  id  = context.query.id;
   const res = await fetch('http://localhost:3000/api/public/candidates/'+ id);
@@ -35,7 +35,7 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
 
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
-
+      <RichiestaPopup dataCL={dataCL}></RichiestaPopup>
       <LoginPopup />
       {/* End Login Popup Modal */}
 
@@ -81,11 +81,13 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
 
                 <div className="btn-box">
                   <a
-                    className="theme-btn btn-style-one"
-                    href="/images/sample.pdf"
-                    download
+                    data-bs-target="#richiestaPopupModal"
+                    data-bs-toggle="modal"
+                  className="theme-btn btn-style-one"
+                     /*  href="/images/sample.pdf"
+                    download */
                   >
-                    Scarica il CV
+                    Invia richiesta
                   </a>
                   <button className="bookmark-btn">
                     <i className="flaticon-bookmark"></i>

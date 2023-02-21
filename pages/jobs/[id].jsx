@@ -100,7 +100,7 @@ const JobSingleDynamicV1 = ({dataOL}) => {
 
                 <div className="btn-box">
                   <a
-                    href="#"
+                   
                     className="theme-btn btn-style-one"
                     data-bs-toggle="modal"
                     data-bs-target="#applyJobModal"
