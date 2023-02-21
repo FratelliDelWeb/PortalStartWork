@@ -1,20 +1,76 @@
 import Select from "react-select";
+import { useState } from "react";
 
 const FormInfoBox = ({user}) => {
-  console.log(user)
+
+
+  const [ClienteEdit, setClienteEdit] = useState({
+    id: `${user._id}`,
+    username: `${user.username}`,
+    email: `${user.email}`,
+    role : `${user.role}`
+    });
+
+    console.log(ClienteEdit)
+
+    const setEditData = (user ,ClienteEdit ) => {
+
+      let  eitData= {
+         "id": user._id,
+         "fields" : [
+           {
+             "name" : "username",
+             "from" : user.username,
+             "to" : ClienteEdit.username,
+           },
+          
+         {
+           "name" : "email",
+           "from" : user.email,
+           "to" : ClienteEdit.email,
+         },
+         {
+         "name" : "role",
+         "from" : user.role,
+         "to" : ClienteEdit.role,
+       },
+     
+      ]
+       };
+       console.log(eitData);
+       editCliente(eitData);
+       
+     }
+
+     const editCliente = async (eitData) => {
+      const res = await fetch('http://localhost:3000/api/candidatesModify'+ eitData);
+      const data = await res.json();
+
+       
+       
+     }
+
   const roleUser = [
     { value: "Admin", label: "AMMINISTRATORE" },
     { value: "Operator", label: "OPERATORE" },
     { value: "Candidate", label: "CANDIDATO" },
   ];
 
+
+
+  const handleSubmit = function (e,user,ClienteEdit) {
+    e.preventDefault();
+    setEditData(user,ClienteEdit)
+ 
+
+  }
   return (
-    <form action="#" className="default-form">
+    <form onSubmit={setEditData(user,ClienteEdit)} className="default-form">
       <div className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Username</label>
-          <input type="text" name="name" placeholder={user?.username}  defaultValue={user?.username} required />
+          <input  onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })}type="text" name="username" placeholder={user?.username}  defaultValue={user?.username} required />
         </div>
 
         {/* <!-- Input --> */}

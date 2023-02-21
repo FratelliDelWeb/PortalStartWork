@@ -46,8 +46,7 @@ const index = ({user}) => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Benvenuto  <br>
-                    </br>{user.username} </h4>
+                  <h5>{user.username} </h5>
                     <p>{user._id}</p>
                   </div>
                   <MyProfile user = {user} />
