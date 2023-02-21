@@ -3,7 +3,7 @@ import InputRange from "react-input-range";
 import { useDispatch, useSelector } from "react-redux";
 import { addDestination } from "../../../features/filter/candidateFilterSlice";
 
-const DestinationRangeSlider = () => {
+const DestinationRangeSlider = ({value}) => {
     const { destination } = useSelector((state) => state.candidateFilter);
     const [getDestination, setDestination] = useState({
         min: destination.min,

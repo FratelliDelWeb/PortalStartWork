@@ -2,6 +2,9 @@ import Register from "../register/Register";
 import FormContent from "./FormContent";
 
 const CandidatiPopup = () => {
+
+
+    
   return (
     <>
       <div className="modal fade" id="candidatiPopupModal">
@@ -18,7 +21,9 @@ const CandidatiPopup = () => {
               {/* <!-- Login modal --> */}
         
               <div id="login-modal">
-                      <h2>INVIA CANDIDATURA</h2>
+                      <h2>INVIA CANDIDATURA </h2>
+                      <h4>REGISTRATI A START-WORK</h4>
+
               <p>Un nostro consulente ti ricontatterà per completare il tuo profilo e rendero visibile sul sito!</p>
                 {/* <!-- Login Form --> */}
                 <div className="login-form default-form">
