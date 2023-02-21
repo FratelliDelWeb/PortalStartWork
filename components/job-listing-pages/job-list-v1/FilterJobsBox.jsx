@@ -19,8 +19,10 @@ import {
     clearExperienceToggle,
     clearJobTypeToggle,
 } from "../../../features/job/jobSlice";
+import { useState } from "react";
 
 const FilterJobsBox = ({dataOL}) => {
+   console.log(dataOL)
    
     const { jobList, jobSort } = useSelector((state) => state.filter);
     console.log(jobSort)
@@ -34,6 +36,8 @@ const FilterJobsBox = ({dataOL}) => {
         experience,
         salary,
         tag,
+        codiceJod,
+
     } = jobList || {};
 
     const { sort, perPage } = jobSort;
@@ -108,8 +112,12 @@ const FilterJobsBox = ({dataOL}) => {
     // sort filter
     const sortFilter = (a, b) =>{
       
-        sort === "des" ? b.codiceJod  -  a.codiceJod :a.codiceJod  - b.codiceJod   ;
-        
+        sort === "des" ?  dataOL.sort((a, b) => {  
+            return a.codiceJod - b.codiceJod  
+          })  :   dataOL.sort((a, b) => {  
+            return  b.codiceJod - a.codiceJod 
+          })   ;
+      
     }
   
     debugger
@@ -262,8 +270,8 @@ const FilterJobsBox = ({dataOL}) => {
                         onChange={sortHandler}
                     >
                         <option value="">Ordina per</option>
-                        <option value="asc">Newest</option>
-                        <option value="des">Oldest</option>
+                        <option value="asc">I più nuovi</option>
+                        <option value="des">I più vecchio</option>
                     </select>
                     {/* End select */}
 
