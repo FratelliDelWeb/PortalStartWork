@@ -107,12 +107,12 @@ const FilterJobsBox = ({dataOL}) => {
 
     // sort filter
     const sortFilter = (a, b) =>{
-        console.log("aaa" , a);
-        sort === "des" ? a.codiceJod > b.codiceJod && -1 : a.codiceJod < b.codiceJod && -1;
-        console.log(sort)
+      
+        sort === "des" ? b.codiceJod  -  a.codiceJod :a.codiceJod  - b.codiceJod   ;
+        
     }
   
-
+    debugger
     let content = dataOL?.filter(keywordFilter)
         ?.filter(locationFilter)
         ?.filter(destinationFilter)
@@ -125,7 +125,7 @@ const FilterJobsBox = ({dataOL}) => {
         ?.sort(sortFilter)
         .slice(perPage.start, perPage.end !== 0 ? perPage.end : 10)
         .map((item) => (
-            <div className="job-block" key={item._id}>
+            <div className="job-block" key={item.codiceJod}>
                 <div className="inner-box">
                     <div className="content">
                         <span className="company-logo">
@@ -181,6 +181,7 @@ const FilterJobsBox = ({dataOL}) => {
 
     // sort handler
     const sortHandler = (e) => {
+        console.log("ssssaswqeqewws",e.target.value);
         dispatch(addSort(e.target.value));
     };
 
