@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LoginWithSocial from "./LoginWithSocial";
 import { useState } from "react";
-
+import Loader from "../../../loader/Loader"
 const FormContent = () => {
 
   let initialState = {
@@ -12,7 +12,7 @@ const FormContent = () => {
   const [state, setState] = useState(initialState);
 
   const [passwordType, setPasswordType] = useState("password");
-
+  const [okLogin, setokLogin] =   useState();
   const [error, setError] = useState({
     username: ``,
     password: ``,
@@ -77,6 +77,7 @@ const validateInput = (e) => {
         console.log(data, "userRegister");
         if (data.message === "User successfully Logged in") {
           alert("login successful");
+          setokLogin("ok");
           window.localStorage.setItem("token", data.user);
           window.sessionStorage.setItem("token", data.user);
           if(data.role === "admin"){
@@ -118,7 +119,7 @@ const validateInput = (e) => {
 
         <div className="form-group">
           <label>Password</label>
-          <input  onBlur={(e) =>validateInput(e)} onChange={(e) => setState({ ...state,password: e.target.value })}       className={error.password  ?  "errorInput" :  "" }type="password" name="password" placeholder="Password" required/>
+          <input  onBlur={(e) =>validateInput(e)} onChange={(e) => setState({ ...state,password: e.target.value })}       className={error.password  ?  "errorInput" :  "" } type="password" name="password" placeholder="Password" required/>
           {error.password && <span className='err'>{error.password}</span>}
         </div>
         {/* password */}
@@ -140,15 +141,18 @@ const validateInput = (e) => {
 
         <div className="form-group">
           <button
-            className="theme-btn btn-style-one"
+           className={!okLogin  ?  "heme-btn btn-style-one " :  "d-none" } 
+            
             type="submit"
             name="log-in"
             onBlur={(e) =>validateInput(e)}
+
           >
             
             ACCEDI
           </button>
-
+          {okLogin && <Loader></Loader>}
+          
           {error.login && <span className='err'>{error.login}</span>}
         </div>
         {/* login */}

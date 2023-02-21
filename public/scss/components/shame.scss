@@ -25,6 +25,20 @@
 .errorInput{
   border:2px solid red !important;
 }
+.loader {
+  border: 16px solid rgba(111,113,176,1);
+  border-radius: 50%;
+  border-top: 16px solid white;
+  width: 10px;
+  height: 10px;
+  animation: spin 2s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /*** 
 
 ====================================================================
