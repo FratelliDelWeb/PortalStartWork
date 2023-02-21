@@ -10,18 +10,24 @@ export default async function handler(req, res, next) {
   const { name,
           surname,
           phone,
-          designation,
+          mansione,
           status,
           email,
-          tags,
+          skills,
           location,
           gender,
           experience,
-          qualification,
+          qualifica,
+          destination,
           category,
           avatar,
           age,
-          rangeWithin
+          rangeWithin,
+          languages,
+          educazione,
+          note,
+          premi,
+          interstedTo
         } = req.body;
 
 
@@ -31,23 +37,29 @@ export default async function handler(req, res, next) {
         name: name,
         surname: surname,
         phone: phone,
-        designation: designation,
+        mansione: mansione,
         status: status,
         email: email,
-        tags: tags,
+        skills: skills,
         location: location,
         gender: gender,
         experience: experience,
-        qualification: qualification,
+        qualifica: qualifica,
+        destination: destination,
         category: category,
         avatar: avatar,
         age: age,
-        rangeWithin: rangeWithin
+        rangeWithin: rangeWithin,
+        languages: languages,
+        educazione: educazione,
+        note: note,
+        premi: premi,
+        interstedTo: interstedTo,
     })
       .then((user) => {
         res.status(201).json({
           message: "Candidate successfully created",
-          user: user.publicName,
+          publicName: user.publicName,
         });
       })
       .catch((error) =>

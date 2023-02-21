@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "pages/api/candidati.ts",
      "lib/dbConnect.ts", 
-     "pages/middleware.js"  ],
+     "pages/middleware.js", "pages/api/jobOffers/modify.js"  ],
    
   "exclude": [
     "node_modugles"
