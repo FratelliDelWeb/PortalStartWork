@@ -10,6 +10,50 @@ const FormContent = () => {
     stato: false,
   }
   const [state, setState] = useState(initialState);
+
+  const [passwordType, setPasswordType] = useState("password");
+
+  const [error, setError] = useState({
+    username: ``,
+    password: ``,
+    login: ``
+  })
+const validateInput = (e) => {
+  console.log(e.target)
+
+  let { name, value } = e.target;
+  console.log(name)
+  console.log(value)
+  setError(prev => {
+    const stateObj = { ...prev, [name]: "" };
+ 
+    switch (name) {
+      case "username":
+        if (!value) {
+          stateObj["username"] = "Per favore inserire il nome.";
+        }
+        break;
+ 
+        case "password":
+          if (!value) {
+            stateObj["password"] = "Per favore  la password.";
+          } 
+          
+        case "log-in":
+          if (!value) {
+            stateObj["log-in"] = "Per favore  la password.";
+          } 
+        break;
+ 
+      default:
+        break;
+    }
+ 
+    return stateObj;
+  });
+}
+
+
   const handleSubmit = function (e) {
     e.preventDefault();
     const username = state.username;
@@ -40,9 +84,12 @@ const FormContent = () => {
           }else if (data.role === "Basic"){
             window.location.href = "/area-privata-candidates/dashboard";
           }
+         
       
 
         } else {
+          setError({...error,login: data.error +  " - " + data.error} )
+          console.log(error.login)
           alert("Nome o password errati");
         }
       });
@@ -64,13 +111,15 @@ const FormContent = () => {
       }} action="/api/auth/login" method="post">
         <div className="form-group">
           <label>Username</label>
-          <input onChange={(e) => setState({ ...state,username: e.target.value })} type="text" name="username" placeholder="Username" required />
+          <input  onBlur={(e) =>validateInput(e)}  onChange={(e) => setState({ ...state,username: e.target.value })}       className={error.username  ?  "errorInput" :  "" } type="text" name="username" placeholder="Username" required />
+          {error.username && <span className='err'>{error.username}</span>}
         </div>
         {/* name */}
 
         <div className="form-group">
           <label>Password</label>
-          <input onChange={(e) => setState({ ...state,password: e.target.value })} type="password" name="password" placeholder="Password" required/>
+          <input  onBlur={(e) =>validateInput(e)} onChange={(e) => setState({ ...state,password: e.target.value })}       className={error.password  ?  "errorInput" :  "" }type="password" name="password" placeholder="Password" required/>
+          {error.password && <span className='err'>{error.password}</span>}
         </div>
         {/* password */}
 
@@ -94,10 +143,13 @@ const FormContent = () => {
             className="theme-btn btn-style-one"
             type="submit"
             name="log-in"
-          
+            onBlur={(e) =>validateInput(e)}
           >
+            
             ACCEDI
           </button>
+
+          {error.login && <span className='err'>{error.login}</span>}
         </div>
         {/* login */}
       </form>
