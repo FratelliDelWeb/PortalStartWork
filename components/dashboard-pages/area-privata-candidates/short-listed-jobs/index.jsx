@@ -6,6 +6,7 @@ import CopyrightFooter from "../../CopyrightFooter";
 import JobFavouriteTable from "./components/JobFavouriteTable";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
+import JobListV9 from "../../../../components/job-listing-pages/job-list-v9";
 
 const index = () => {
   return (
@@ -38,7 +39,7 @@ const index = () => {
             <div className="col-lg-12">
               {/* <!-- Ls widget --> */}
               <div className="ls-widget">
-                <JobFavouriteTable />
+              <JobListV9></JobListV9>
               </div>
             </div>
           </div>

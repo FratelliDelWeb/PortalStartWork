@@ -106,11 +106,11 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                     data-bs-toggle="modal"
                     data-bs-target="#applyJobModal"
                   >
-                    Apply For Job
+                   Candidati all offerta
                   </a>
-                  <button className="bookmark-btn">
+                {/*   <button className="bookmark-btn">
                     <i className="flaticon-bookmark"></i>
-                  </button>
+                  </button> */}
                 </div>
                 {/* End apply for job btn */}
 

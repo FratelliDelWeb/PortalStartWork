@@ -12,18 +12,7 @@ const index = () => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <LoginPopup />
-      {/* End Login Popup Modal */}
-
-      <DefaulHeader2 />
-      {/* End Header with upload cv btn */}
-
-      <MobileMenu />
-      {/* End MobileMenu */}
-
-      <Breadcrumb title="Find Jobs" meta="Jobs" />
-      {/* <!--End Breadcrumb Start--> */}
-
+    
       <section className="ls-section">
         <div className="auto-container">
           <div className="row">
