@@ -43,6 +43,8 @@ const [newUser, setnewUser] = useState({
 console.log(newUser)
 
 
+const [passwordType, setPasswordType] = useState("password");
+
 
 const validateInput = (e) => {
   console.log(e.target)
@@ -85,7 +87,14 @@ const validateInput = (e) => {
     return stateObj;
   });
 }
-
+const togglePassword =()=>{
+  if(passwordType==="password")
+  {
+   setPasswordType("text")
+   return;
+  }
+  setPasswordType("password")
+}
 
 
 
@@ -126,7 +135,7 @@ const validateInput = (e) => {
                           value={newUser.surname}
                           placeholder="Cognome"
                           onBlur={(e) =>validateInput(e)} 
-                          onChange={(e) => setnewUser({ ...newUser,USRNAME: e.target.value })}
+                          onChange={(e) => setnewUser({ ...newUser,username: e.target.value })}
                           required
                         />
                       </div>  
@@ -173,6 +182,7 @@ const validateInput = (e) => {
                              value={newUser.age}
                              onChange={(e) => setnewUser({ ...newUser,age: e.target.value })}
                              required />
+                             
                           </div>
                 </div> 
 
@@ -243,8 +253,10 @@ const validateInput = (e) => {
           <div class ="col-6 mt-20">
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" name="password"      className={error.password  ?  "errorInput" :  "" }  placeholder="Password" required  onChange={(e) => setnewUser({ ...newUser,password: e.target.value })} onBlur={(e) =>validateInput(e)} />
-                            
+                            <input  type= {passwordType} name="password"      className={error.password  ?  "errorInput" :  "" }  placeholder="Password" required  onChange={(e) => setnewUser({ ...newUser,password: e.target.value })} onBlur={(e) =>validateInput(e)} />
+                            <span  class="p-viewer2" onClick={togglePassword} >
+                         { passwordType==="password"? <i className="fa fa-eye"></i> :<i className="fa fa-eye-slash"></i> }
+                          </span>
                           </div>
 
 
@@ -260,14 +272,18 @@ const validateInput = (e) => {
                         <label>Conferma passsword</label>
                         <input
                           id="sesso-field"
-                          type="password"
+                          type= {passwordType}
                           name="confirmPassword"
                           placeholder="Conferma passsword" 
                           onBlur={validateInput}
                           className={error.confirmPassword  ?  "errorInput" :  "" } 
                           onChange={(e) => setnewUser({ ...newUser,confirmPassword: e.target.value })}
-                          required
+                          required 
                         />
+                   {/*       <span  class="p-viewer2" onClick={togglePassword} >
+                         { passwordType==="password"? <i className="fa fa-eye"></i> :<i className="fa fa-eye-slassh"></i> }
+                          </span> */}
+                 
                       </div>  
                       {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
 

@@ -338,6 +338,12 @@ input:checked + .slider:before {
 .default-form .form-grou .errorInput{
   border: 2px solid red !important;
 } 
+.default-form .p-viewer2 {
+  position: absolute;
+  right: 20px;
+  margin-top: -43px;
+  display: block;
+}
 .default-form .form-group input[type="text"],
 .default-form .form-group input[type="password"],
 .default-form .form-group input[type="number"],
