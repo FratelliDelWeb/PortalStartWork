@@ -24,7 +24,6 @@ export const getServerSideProps = async (context) => {
     return{props:{dataOL : data}}
   }
 const JobSingleDynamicV1 = ({dataOL}) => {
- console.log(dataOL)
   const router = useRouter();
   const [company, setCompany] = useState({});
   const id = router.query.id;

@@ -15,8 +15,6 @@ import JobSkills from "../../components/candidates-single-pages/shared-component
 import AboutVideo from "../../components/candidates-single-pages/shared-components/AboutVideo";
 
 export const getServerSideProps = async (context) => {
-  console.log(context)
-  console.log(context.query.id)
   const  id  = context.query.id;
   const res = await fetch('http://localhost:3000/api/public/candidates/'+ id);
   const data = await res.json();
