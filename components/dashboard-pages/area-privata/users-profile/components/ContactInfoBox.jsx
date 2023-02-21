@@ -1,6 +1,6 @@
 import Map from "../../../Map";
 
-const ContactInfoBox = () => {
+const ContactInfoBox = ({user}) => {
   return (
     <form className="default-form">
       <div className="row">

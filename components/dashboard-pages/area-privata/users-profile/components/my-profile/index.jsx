@@ -1,13 +1,13 @@
 import FormInfoBox from "./FormInfoBox";
 import LogoUpload from "./LogoUpload";
 
-const index = () => {
+const index = ({user}) => {
   return (
     <div className="widget-content">
-      <LogoUpload />
+ {/*      <LogoUpload /> */}
       {/* End logo and cover photo components */}
 
-      <FormInfoBox />
+      <FormInfoBox user={user} />
       {/* compnay info box */}
     </div>
   );

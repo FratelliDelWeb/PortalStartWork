@@ -14,6 +14,7 @@ import React, { useState, useEffect } from "react";
 
 
 const index = ({user}) => {
+  console.log(user)
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -34,7 +35,7 @@ const index = ({user}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="My Profile!" />
+          <BreadCrumb title="Profilo" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -45,38 +46,40 @@ const index = ({user}) => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Il mio profilo </h4>
+                    <h4>Benvenuto  <br>
+                    </br>{user.username} </h4>
+                    <p>{user._id}</p>
                   </div>
                   <MyProfile user = {user} />
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
 
-              <div className="ls-widget">
+          {/*     <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
                     <h4>Social Network</h4>
                   </div>
-                  {/* End widget-title */}
+                  {/* End widget-title 
 
                   <div className="widget-content">
                     <SocialNetworkBox />
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* <!-- Ls widget --> */}
 
-              <div className="ls-widget">
+              {/* <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
                     <h4>Contact Information</h4>
                   </div>
-                  {/* End widget-title */}
+                  {/* End widget-title
                   <div className="widget-content">
-                    <ContactInfoBox />
+                    <ContactInfoBox  user ={user} />
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* <!-- Ls widget --> */}
             </div>
           </div>
