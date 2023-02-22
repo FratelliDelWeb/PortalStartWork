@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import jobOffer from "./JobOffer";
 
 const candidate_seq = mongoose.Schema({
   _id: { type: String, required: true },
@@ -28,20 +29,15 @@ const candidatoSchema = new mongoose.Schema({
   },
   created_at: {
     type: String,
+    default: new Date().toISOString(),
   },
   status: {
     type: String,
     required: true,
     default: "new",
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   skills: {
     type: [String],
-    required: true,
   },
   location: {
     type: {},
@@ -53,23 +49,18 @@ const candidatoSchema = new mongoose.Schema({
   },
   experience: {
     type: String,
-    required: true,
   },
   qualifica: {
     type: String,
-    required: true,
   },
   category: {
     type: String,
-    required: true,
   },
   avatar: {
     type: String,
-    required: false,
   },
   destination: {
     type: [String],
-    required: false,
   },
   age: {
     type: Number,
@@ -87,7 +78,6 @@ const candidatoSchema = new mongoose.Schema({
   },
   languages: {
     type: [String],
-    required: true,
   },
   educazione: {
     type: [{}],
@@ -98,8 +88,15 @@ const candidatoSchema = new mongoose.Schema({
   premi: {
     type: [{}],
   },
-  interstedTo: {
-    type: [{}],
+  interstedTo: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "JobOffer",
+    },
+  ],
+  credentials: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
 });
 

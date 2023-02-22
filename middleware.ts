@@ -42,7 +42,7 @@ export default async function middleware(req: NextRequest) {
           console.log("Middleware - JWT Error - Redirect to => " + req.nextUrl);
           return NextResponse.redirect(req.nextUrl);
         }
-      } else if (pathname.startsWith("/api") && !pathname.endsWith("/login") && !pathname.endsWith("/register")) {
+      } else if (pathname.startsWith("/api") && !pathname.endsWith("/login") && !pathname.endsWith("/register") && !pathname.endsWith("/create")) {
         console.log("Middleware - Entered in private route - List Access : User, Admin")
 
       if (jwt === undefined) {

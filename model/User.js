@@ -22,6 +22,10 @@ const UserSchema = new Mongoose.Schema(
       default: "-",
       required: true,
     },
+    created_at: {
+      type: String,
+      default: new Date().toISOString(),
+    },
   },
   {
     collection: "users",

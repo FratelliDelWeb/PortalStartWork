@@ -6,9 +6,6 @@ export async function sign(payload: JWTPayload, secret: string): Promise<string>
     const iat = Math.floor(Date.now() / 1000);
     const exp = iat + 60* 60; // one hour
 
-    console.log("JWT - Sign - Payload =>")
-    console.log(payload)
-
     const token = await new SignJWT({...payload})
         .setProtectedHeader({alg: 'HS256', typ: 'JWT'})
         .setExpirationTime(exp)

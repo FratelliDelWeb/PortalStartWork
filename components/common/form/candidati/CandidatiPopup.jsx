@@ -2,9 +2,6 @@ import Register from "../register/Register";
 import FormContent from "./FormContent";
 
 const CandidatiPopup = () => {
-
-
-    
   return (
     <>
       <div className="modal fade" id="candidatiPopupModal">

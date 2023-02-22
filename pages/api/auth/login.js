@@ -37,7 +37,6 @@ export default async function handler(req, res, next) {
           );
           setCookie(res, "jwt", token, {
             path: "/",
-            maxAge: 2592000,
             httpOnly: true,
           });
           res.status(201).json({

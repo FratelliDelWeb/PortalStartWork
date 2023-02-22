@@ -32,7 +32,7 @@ const jobOffersSchema = new Mongoose.Schema({
   },
   created_at: {
     type: String,
-    required: true,
+    default: new Date().toISOString(),
   },
   experience: {
     type: String,

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import InputRange from "react-input-range";
+import { createCandidate } from "../../../../services/public/createCandidate";
 const FormContent = () => {
+
+const handleSubmit = async () => {
+  const data = await createCandidate(newUser);
+  console.log(data);
+}
 
   const [getDestination, setDestination] = useState({
     min: 0,
@@ -23,12 +29,11 @@ const [newUser, setnewUser] = useState({
   password: ``,
   confirmPassword:``,
   location:``
-  
-  });
+});
 
 
   const [error, setError] = useState({
-    name: ``,
+  name: ``,
   surname: ``,
   phone: ``,
   password: ``,
@@ -103,7 +108,7 @@ const togglePassword =()=>{
 
 
   return (
-    <form method="post" class="p-3 " action="add-parcel.html">
+    <form method="post" class="p-3" onSubmit={() => handleSubmit()}>
       <div class="row">
           <div class="row mt-20">
 
@@ -135,7 +140,7 @@ const togglePassword =()=>{
                           value={newUser.surname}
                           placeholder="Cognome"
                           onBlur={(e) =>validateInput(e)} 
-                          onChange={(e) => setnewUser({ ...newUser,username: e.target.value })}
+                          onChange={(e) => setnewUser({ ...newUser,surname: e.target.value })}
                           required
                         />
                       </div>  

@@ -55,7 +55,7 @@ const companySchema = new mongoose.Schema({
   },
   created_at: {
     type: String,
-    required: true,
+    default: new Date().toISOString(),
   },
 });
 
