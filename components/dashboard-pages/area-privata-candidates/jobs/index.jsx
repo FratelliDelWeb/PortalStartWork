@@ -20,17 +20,18 @@ import BreadCrumb from "../../BreadCrumb";
 
 import JobOverView from "./components/job-overview/JobOverView";
 import jobs from "../../../../data/job-featured";
+import axios from "axios";
 
 export const getServerSideProps = async (context) => {
     const  id  = context.query.id;
     const res = await fetch('http://localhost:3000/api/public/jobOffers/'+ id);
     const data = await res.json();
-   
     return{props:{dataOL : data}}
   }
 const JobSingleDynamicV1 = ({dataOL , cookieSend}) => {
 
   const [idCliente, setIdCliente] = useState( window.localStorage.getItem("token"));
+  const [user,setUser] = useState();
 
 console.log({idCliente})
  
@@ -42,8 +43,11 @@ console.log({idCliente})
     if (!id) <h1>Loading...</h1>;
     else setCompany(jobs.find((item) => item.id == id));
 
-    return () => {};
-  }, [id]);
+   return () => {};
+   
+
+
+  }, [idCliente]);
   return (
     <>
     <div className="page-wrapper dashboard">

@@ -17,12 +17,31 @@ export async function getServerSideProps(context) {
   const data = await res.data;
   return { props: { dataOL: data,cookie: cookieSend  } };
 }
+
+
+function setIdUser(){
+  const [idUser,setIdUser] = useState();
+  const token = window.localStorage.getItem("token");
+  useEffect(() => {
+    setIdUser(token) 
+    console.log(idUser);
+    
+  },[token]);
+  return idUser;
+  }
+
+
+
+
 const SingleCandidate = ({dataOL ,cookie}) => {
-  
+  const id = setIdUser();
+  console.log(id)
+
+
   return (
     <>
       <Seo pageTitle="Lavoro" />
-      <Jobs dataOL = {dataOL} cookieSend= {cookie}/>
+      <Jobs dataOL = {dataOL} userId={id} cookieSend= {cookie}/>
     </>
   );
 };

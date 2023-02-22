@@ -8,6 +8,7 @@ import axios from 'axios';
 const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
   console.log(idCliente)
   const [idOfferta , setidOfferta] = useState(idOffer._id);
+  const [userinterstedTo , setinterstedTo] =useState()
   const router = useRouter();
   
   
@@ -21,37 +22,56 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
 
 
   const addOffers = async (eitData, cookieSend) => {
-
-
-const res = await axios({
-  method: 'post',
-  url: 'http://localhost:3000/api/candidates/modify' ,
-  headers: { Cookie: {cookieSend},}, 
-  data: 
-    eitData
-  
-});
-
-    const data = await res.data;
-
-console.log(data)
+      const res = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/api/candidates/modify' ,
+        headers: { Cookie: {cookieSend},}, 
+        data: 
+          eitData
+        
+      });
+      const data = await res.data;
+      console.log(data)
   }
 
 
-  const setOffer = (idOfferta ,idCliente ) => {
+  const addUserInterstedTo = async(idCliente) =>{
+    const res = await axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/candidates/' + idCliente,
+      headers: { Cookie: {cookieSend},}, 
+    });
+    const data = await res.data;
 
+    const interted = data.interstedTo
+    return (interted)
+  }
+
+
+
+  const setOffer = async (idOfferta ,idCliente ) => {
+    
+   const interseted = await addUserInterstedTo(idCliente);
+   setinterstedTo(interseted.interstedTo)
+ console.log(userinterstedTo)
+
+ setDataToSend(idOfferta,idCliente,userinterstedTo)
+
+  }
+
+  const setDataToSend = async (idOfferta,idCliente,userinterstedTo) =>{
     let  eitData= {
-       "id": idCliente,
-       "fields" : [
-        {
-          "name": "interstedTo",
-          "from": [],
-          "to": [idOfferta._id]
-      }
-    ]};
+      "id": idCliente,
+      "fields" : [
+       {
+         "name": "interstedTo",
+         "from":userinterstedTo,
+         "to": [idOfferta._id]
+     }
+   ]};
 
-    console.log(eitData);
-    addOffers(eitData);
+   console.log(eitData);
+   addOffers(eitData);
 
   }
 
