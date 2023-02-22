@@ -1,24 +1,29 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const ListingShowing = ({maxRecords, total}) => {
-  const calculateWidth = (max,tot) => {
-    let width = parseInt((max/tot) * 100)
-    return width.toString() + '%';
-  }
+const ListingShowing = ({ maxRecords, total }) => {
+  const calculateWidth = (max, tot) => {
+    let width = parseInt((max / tot) * 100);
+    return width.toString() + "%";
+  };
 
-  const [width, setWidth] = useState(calculateWidth(maxRecords,total));
+  const [width, setWidth] = useState(calculateWidth(maxRecords, total));
   useEffect(() => {
-    setWidth(calculateWidth(maxRecords,total))
-  }, [maxRecords,total]);
+    setWidth(calculateWidth(maxRecords, total));
+
+    if (maxRecords > total) {
+      maxRecords = total;
+    }
+  }, [maxRecords, total]);
 
   return (
     <div className="ls-show-more">
-      <p>Mostrati {maxRecords} su {total} candidati</p>
+      <p>
+        Mostrati {maxRecords} su {total} candidati
+      </p>
       <div className="bar">
         <span className="bar-inner" style={{ width: width }}></span>
       </div>
-        <button className="show-more"
-        onClick>Mostra altri</button>
+      <button className="show-more">Mostra altri</button>
     </div>
   );
 };

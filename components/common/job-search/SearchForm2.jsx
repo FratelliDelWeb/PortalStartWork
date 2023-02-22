@@ -30,7 +30,7 @@ const SearchForm2 = () => {
           <button
             type="submit"
             className="theme-btn btn-style-one"
-            onClick={() => Router.push("/job-list-v4")}
+            onClick={() => Router.push("/candidates")}
           >
             <span className="btn-title">Cerca Lavoro</span>
           </button>

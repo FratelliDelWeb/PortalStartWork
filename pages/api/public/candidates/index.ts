@@ -14,7 +14,7 @@ export default async function handler(
     const data = await Model.find().select({ 
         "designation" : 1,
         "location": 1,
-        "tags": 1,
+        "skills": 1,
         "experience": 1,
         "qualification" : 1,
         "category": 1,

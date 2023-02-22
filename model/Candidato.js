@@ -129,5 +129,4 @@ candidatoSchema.pre("save", function (next) {
 });
 
 module.exports =
-  mongoose.models.candidatesstartwork ||
-  mongoose.model("candidatesstartwork", candidatoSchema);
+  mongoose.models.candidates || mongoose.model("candidates", candidatoSchema);
