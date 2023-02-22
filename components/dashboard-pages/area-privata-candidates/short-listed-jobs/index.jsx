@@ -8,7 +8,7 @@ import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader
 import MenuToggler from "../../MenuToggler";
 import JobListV9 from "../../../../components/job-listing-pages/job-list-v9";
 
-const index = () => {
+const index = ({dataOL}) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -39,7 +39,7 @@ const index = () => {
             <div className="col-lg-12">
               {/* <!-- Ls widget --> */}
               <div className="ls-widget">
-              <JobListV9></JobListV9>
+              <JobListV9 dataOL={dataOL}></JobListV9>
               </div>
             </div>
           </div>

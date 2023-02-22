@@ -43,7 +43,7 @@ const WidgetContentBox = ({dataCL}) => {
                           </li>
                           <li>
                             <span className="icon flaticon-map-locator"></span>{" "}
-                            {candidate.location}
+                            {candidate.location.city}
                           </li>
                           <li>
                             <span className="icon flaticon-money"></span> $
@@ -53,7 +53,7 @@ const WidgetContentBox = ({dataCL}) => {
                         {/* End candidate-info */}
 
                         <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
+                          {candidate.skills.map((val, i) => (
                             <li key={i}>
                               <a href="#">{val}</a>
                             </li>
@@ -96,10 +96,10 @@ const WidgetContentBox = ({dataCL}) => {
 
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 19).map((candidate) => (
+                {dataCL.slice(17, 19).map((candidate) => (
                   <div
                     className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
+                    key={candidate._id}
                   >
                     <div className="inner-box">
                       <div className="content">
@@ -107,7 +107,7 @@ const WidgetContentBox = ({dataCL}) => {
                           <img src={candidate.avatar} alt="candidates" />
                         </figure>
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
+                          <Link href={`/candidates-single-v1/${candidate._id}`}>
                             {candidate.name}
                           </Link>
                         </h4>
@@ -118,7 +118,7 @@ const WidgetContentBox = ({dataCL}) => {
                           </li>
                           <li>
                             <span className="icon flaticon-map-locator"></span>{" "}
-                            {candidate.location}
+                            {candidate.location.city}
                           </li>
                           <li>
                             <span className="icon flaticon-money"></span> $
@@ -128,7 +128,7 @@ const WidgetContentBox = ({dataCL}) => {
                         {/* End candidate-info */}
 
                         <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
+                          {candidate.skills.map((val, i) => (
                             <li key={i}>
                               <a href="#">{val}</a>
                             </li>
@@ -171,10 +171,10 @@ const WidgetContentBox = ({dataCL}) => {
 
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 21).map((candidate) => (
+                {dataCL.slice(17, 21).map((candidate) => (
                   <div
                     className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
+                    key={candidate._id}
                   >
                     <div className="inner-box">
                       <div className="content">
@@ -193,7 +193,7 @@ const WidgetContentBox = ({dataCL}) => {
                           </li>
                           <li>
                             <span className="icon flaticon-map-locator"></span>{" "}
-                            {candidate.location}
+                            {candidate.location.city}
                           </li>
                           <li>
                             <span className="icon flaticon-money"></span> $
@@ -203,7 +203,7 @@ const WidgetContentBox = ({dataCL}) => {
                         {/* End candidate-info */}
 
                         <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
+                          {candidate.skills.map((val, i) => (
                             <li key={i}>
                               <a href="#">{val}</a>
                             </li>

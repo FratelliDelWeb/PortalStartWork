@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Pagination from "../components/Pagination";
 import jobs from "../../../data/job-featured";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,9 +19,13 @@ import {
     clearExperienceToggle,
     clearJobTypeToggle,
 } from "../../../features/job/jobSlice";
+import { useState } from "react";
 
-const FilterJobBox = () => {
+const FilterJobsBox = ({dataOL}) => {
+   console.log(dataOL)
+   
     const { jobList, jobSort } = useSelector((state) => state.filter);
+    console.log(jobSort)
     const {
         keyword,
         location,
@@ -33,6 +36,8 @@ const FilterJobBox = () => {
         experience,
         salary,
         tag,
+        codiceJod,
+
     } = jobList || {};
 
     const { sort, perPage } = jobSort;
@@ -105,16 +110,18 @@ const FilterJobBox = () => {
     const tagFilter = (item) => (tag !== "" ? item?.tag === tag : item);
 
     // sort filter
-    const sortFilter = (a, b) =>
-        sort === "des" ? a.id > b.id && -1 : a.id < b.id && -1;
-
-    let content = jobs
-        // ?.slice(20, perPage !== "" ? perPage : 29)
-        ?.slice(
-            perPage.start === 0 ? 20 : 0,
-            perPage.end !== 0 ? perPage.end : 29
-        )
-        ?.filter(keywordFilter)
+    const sortFilter = (a, b) =>{
+      
+        sort === "des" ?  dataOL.sort((a, b) => {  
+            return a.codiceJod - b.codiceJod 
+          })  :   dataOL.sort((a, b) => {  
+            return  b.codiceJod - a.codiceJod  
+          })   ;
+      
+    }
+  
+    debugger
+    let content = dataOL?.filter(keywordFilter)
         ?.filter(locationFilter)
         ?.filter(destinationFilter)
         ?.filter(categoryFilter)
@@ -124,40 +131,57 @@ const FilterJobBox = () => {
         ?.filter(salaryFilter)
         ?.filter(tagFilter)
         ?.sort(sortFilter)
-        ?.map((item) => (
-            <div
-                className="job-block-four col-lg-4 col-md-6 col-sm-12"
-                key={item.id}
-            >
+        .slice(perPage.start, perPage.end !== 0 ? perPage.end : 10)
+        .map((item) => (
+            <div className="job-block" key={item.codiceJod}>
                 <div className="inner-box">
-                    <ul className="job-other-info">
-                        {item?.jobType?.map((val, i) => (
-                            <li key={i} className={`${val.styleClass}`}>
-                                {val.type}
+                    <div className="content">
+                        <span className="company-logo">
+                            <img src={item.logo} alt="item brand" />
+                        </span>
+                        <h4>
+                            <Link href={`/jobs/${item._id}`}>
+                                {item.jobTitle}
+                            </Link>
+                        </h4>
+
+                        <ul className="job-info">
+                            <li>
+                                <span className="icon flaticon-briefcase"></span>
+                                {item.company}
                             </li>
-                        ))}
-                    </ul>
-                    <span className="company-logo">
-                        <img src={item.logo} alt="featured job" />
-                    </span>
-                    <span className="company-name">{item.company}</span>
-                    <h4>
-                        <Link href={`/job-single-v2/${item.id}`}>
-                            {item.jobTitle}
-                        </Link>
-                    </h4>
-                    <div className="location">
-                        <span className="icon flaticon-map-locator"></span>
-                        {item.location}
+                            {/* compnay info */}
+                            <li>
+                                <span className="icon flaticon-map-locator"></span>
+                                {item.location}
+                            </li>
+                            {/* location info */}
+                            <li>
+                                <span className="icon flaticon-clock-3"></span>{" "}
+                                {item.time}
+                            </li>
+                            {/* time info */}
+                            <li>
+                                <span className="icon flaticon-money"></span>{" "}
+                                {item.salary}
+                            </li>
+                            {/* salary info */}
+                        </ul>
+                        {/* End .job-info */}
+
+                      {/*   <ul className="job-other-info">
+                            {item?.jobType?.map((val, i) => (
+                                <li key={i} className={`${val.styleClass}`}>
+                                    {val.type}
+                                </li>
+                            ))}
+                        </ul> */}
+                        {/* End .job-other-info */}
+
+                        <button className="bookmark-btn">
+                            <span className="flaticon-bookmark"></span>
+                        </button>
                     </div>
-                    <ul className="post-tags">
-                        {item?.jobTag?.map((val, i) => (
-                            <li key={i}>
-                                <a href="#">{val}</a>
-                            </li>
-                        ))}
-                        <li className="colored">+2</li>
-                    </ul>
                 </div>
             </div>
             // End all jobs
@@ -165,11 +189,13 @@ const FilterJobBox = () => {
 
     // sort handler
     const sortHandler = (e) => {
+        console.log("ssssaswqeqewws",e.target.value);
         dispatch(addSort(e.target.value));
     };
 
     // per page handler
     const perPageHandler = (e) => {
+        console.log("sss",e.target.value);
         const pageData = JSON.parse(e.target.value);
         dispatch(addPerPage(pageData));
     };
@@ -191,25 +217,29 @@ const FilterJobBox = () => {
         dispatch(addSort(""));
         dispatch(addPerPage({ start: 0, end: 0 }));
     };
+
     return (
-        <div className="ls-outer">
+        <>
             <div className="ls-switcher">
-                <div className="showing-result show-filters">
-                    <button
-                        type="button"
-                        className="theme-btn toggle-filters d-block mr-30"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#filter-sidebar"
-                    >
-                        <span className="icon icon-filter"></span> Filter
-                    </button>
+                <div className="show-result">
+                    <div className="show-1023">
+                        <button
+                            type="button"
+                            className="theme-btn toggle-filters "
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#filter-sidebar"
+                        >
+                            <span className="icon icon-filter"></span> Filtra
+                        </button>
+                    </div>
                     {/* Collapsible sidebar button */}
 
                     <div className="text">
-                        Show <strong>{content?.length}</strong> jobs
+                        Mostra <strong>{content?.length}</strong> annunci
                     </div>
                 </div>
-                {/* End showing results */}
+                {/* End show-result */}
+
                 <div className="sort-by">
                     {keyword !== "" ||
                     location !== "" ||
@@ -230,7 +260,7 @@ const FilterJobBox = () => {
                             className="btn btn-danger text-nowrap me-2"
                             style={{ minHeight: "45px", marginBottom: "15px" }}
                         >
-                            Clear All
+                          Pulisci tutto
                         </button>
                     ) : undefined}
 
@@ -239,9 +269,9 @@ const FilterJobBox = () => {
                         className="chosen-single form-select"
                         onChange={sortHandler}
                     >
-                        <option value="">Sort by (default)</option>
-                        <option value="asc">Newest</option>
-                        <option value="des">Oldest</option>
+                        <option value="">Ordina per</option>
+                        <option value="asc">I più nuovi</option>
+                        <option value="des">I più vecchio</option>
                     </select>
                     {/* End select */}
 
@@ -256,51 +286,52 @@ const FilterJobBox = () => {
                                 end: 0,
                             })}
                         >
-                            All
+                            Tutti
                         </option>
                         <option
                             value={JSON.stringify({
-                                start: 20,
-                                end: 26,
+                                start: 0,
+                                end: 10,
                             })}
                         >
-                            25 per page
+                            10 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
-                                start: 25,
-                                end: 31,
+                                start: 0,
+                                end: 20,
                             })}
                         >
-                            30 per page
+                            20 per pagina
                         </option>
                         <option
                             value={JSON.stringify({
-                                start: 30,
-                                end: 36,
+                                start: 0,
+                                end: 30,
                             })}
                         >
-                            35 per page
+                            30 per pagina
                         </option>
                     </select>
                     {/* End select */}
                 </div>
             </div>
-            {/* <!-- ls Switcher --> */}
-
-            <div className="row">{content}</div>
-            {/* End .row */}
-
+            {/* End top filter bar box */}
+            {content}
+            {/* <!-- List Show More --> */}
             <div className="ls-show-more">
-                <p>Showing 36 of 497 Jobs</p>
+                <p>Vedi {content?.length} di  Jobs</p>
                 <div className="bar">
-                    <span className="bar-inner" style={{ width: "40%" }}></span>
+                    <span className="bar-inner" style={{ width:  `${content?.length * 2}%`}}></span>
                 </div>
-                <button className="show-more">Show More</button>
+                <button onClick={perPageHandler}
+                         value={JSON.stringify({
+                            start: 0,
+                            end: dataOL.length  ,
+                        })}  className="show-more">Mostra tutti</button>
             </div>
-            {/* <!-- Listing Show More --> */}
-        </div>
+        </>
     );
 };
 
-export default FilterJobBox;
+export default FilterJobsBox;

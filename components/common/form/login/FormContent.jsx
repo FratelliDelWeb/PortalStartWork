@@ -80,9 +80,9 @@ const validateInput = (e) => {
           setokLogin("ok");
           window.localStorage.setItem("token", data.user);
           window.sessionStorage.setItem("token", data.user);
-          if(data.role === "admin"){
+          if(data.role === "admin" || data.role === "Basic"){
             window.location.href = "/area-privata/dashboard";
-          }else if (data.role === "Basic"){
+          }else if (data.role === "candidate"){
             window.location.href = "/area-privata-candidates/dashboard";
           }
          

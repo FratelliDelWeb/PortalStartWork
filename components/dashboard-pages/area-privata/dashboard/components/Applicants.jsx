@@ -24,7 +24,7 @@ const Applicants = ({dataCL}) => {
                 <li className="designation">{candidate.designation}</li>
                 <li>
                   <span className="icon flaticon-map-locator"></span>{" "}
-                  {candidate.location}
+                  {candidate.location.city}
                 </li>
                 <li>
                   <span className="icon flaticon-money"></span> $
@@ -34,7 +34,7 @@ const Applicants = ({dataCL}) => {
               {/* End candidate-info */}
 
               <ul className="post-tags">
-                {candidate.tags.map((val, i) => (
+                {candidate.skills.map((val, i) => (
                   <li key={i}>
                     <a href="#">{val}</a>
                   </li>

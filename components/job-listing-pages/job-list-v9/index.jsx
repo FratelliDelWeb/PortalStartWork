@@ -6,7 +6,7 @@ import Breadcrumb from "../../common/Breadcrumb";
 import FilterSidebar from "./FilterSidebar";
 import FilterJobBox from "./FilterJobBox";
 
-const index = () => {
+const index = ({dataOL}) => {
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -29,7 +29,7 @@ const index = () => {
             {/* <!-- End Filters Column --> */}
 
             <div className="content-column col-lg-12">
-              <FilterJobBox />
+              <FilterJobBox dataOL={dataOL} />
             </div>
             {/* <!-- End Content Column --> */}
           </div>
