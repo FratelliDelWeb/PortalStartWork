@@ -49,7 +49,7 @@ const Candidates = ({dataCL}) => {
               <h4 className="name">{candidate.name}</h4>
               <span className="designation">{candidate.designation}</span>
               <div className="location">
-                <i className="flaticon-map-locator"></i> {candidate.location}
+                <i className="flaticon-map-locator"></i> {candidate.location.city}
               </div>
               <Link
                 href={`/candidates-single-v1/${candidate._id}`}

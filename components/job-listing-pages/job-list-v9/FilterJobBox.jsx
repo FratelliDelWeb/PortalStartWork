@@ -140,7 +140,7 @@ const FilterJobsBox = ({dataOL}) => {
                             <img src={item.logo} alt="item brand" />
                         </span>
                         <h4>
-                            <Link href={`/jobs/${item._id}`}>
+                            <Link href={`/area-privata-candidates/jobs/${item._id}`}>
                                 {item.jobTitle}
                             </Link>
                         </h4>
