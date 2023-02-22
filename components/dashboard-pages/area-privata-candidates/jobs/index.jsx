@@ -28,8 +28,12 @@ export const getServerSideProps = async (context) => {
    
     return{props:{dataOL : data}}
   }
-const JobSingleDynamicV1 = ({dataOL}) => {
+const JobSingleDynamicV1 = ({dataOL , cookieSend}) => {
 
+  const [idCliente, setIdCliente] = useState( window.localStorage.getItem("token"));
+
+console.log({idCliente})
+ 
   const router = useRouter();
   const [company, setCompany] = useState({});
   const id = router.query.id;
@@ -142,7 +146,7 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                   <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="apply-modal-content modal-content">
                       <div className="text-center">
-                        <h3 className="title">Apply for this job</h3>
+                        <h3 className="title">Candidati all offerta di lavoro</h3>
                         <button
                           type="button"
                           className="closed-modal"
@@ -152,7 +156,7 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                       </div>
                       {/* End modal-header */}
 
-                      <ApplyJobModalContent />
+                      <ApplyJobModalContent idOffer={dataOL} idCliente = {idCliente}  cookieSend = {cookieSend}/>
                       {/* End PrivateMessageBox */}
                     </div>
                     {/* End .send-private-message-wrapper */}
