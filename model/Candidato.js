@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import jobOffer from "./JobOffer";
 
 const candidate_seq = mongoose.Schema({
   _id: { type: String, required: true },
@@ -114,7 +113,6 @@ candidatoSchema.pre("save", function (next) {
     .then(function (count) {
       console.log("...count: " + JSON.stringify(count));
       console.log("I'm the doc ==>");
-      console.log(doc);
       doc.candidateID = count.seq;
       doc.publicName =
         Array.from(doc.name)[0] +
@@ -126,7 +124,7 @@ candidatoSchema.pre("save", function (next) {
     })
     .catch(function (error) {
       console.error("counter error-> : " + error);
-      throw error;
+      next(error);
     });
 });
 

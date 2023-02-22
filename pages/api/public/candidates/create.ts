@@ -38,11 +38,21 @@ export default async function handler(
           interstedTo,
           credentials
         } = req.body;
+        console.log(req.body)
+        console.log(credentials)
+  const { username, password, email } = credentials;
 
 
     console.log('**API** Public - Candidati - Create - Creating Candidate...');
 
-    await Candidato.create({
+    const user = await User.findOne({ username });
+    if (user) {
+      res.status(400).json({
+        message: "Creation not successful",
+        error: "Username already exists",
+      });
+    } else {
+      await Candidato.create({
         name: name,
         surname: surname,
         phone: phone,
@@ -63,48 +73,45 @@ export default async function handler(
         note: note,
         premi: premi,
         interstedTo: interstedTo,
-    })
-      .then((candidato) => {
-        const { username, password, email } = credentials;
-        if (password.length < 6) {
-          return res.status(400).json({ message: "Password less than 6 characters" });
-        }
-        bcrypt.hash(password, 10).then(async (hash) => {
-          await User.create({
-            _id: candidato._id,
-            username,
-            password: hash,
-            email,
-            role: "candidate",
-          })
-            .then((user) => {
-              const token = sign(
-                { id: user._id, username, role: user.role },
-                jwtSecret
-              );
-              setCookie(res,"jwt", token, {
-                httpOnly: true,
-              });
-              res.status(201).json({
-                message: "Candidate successfully created",
-                publicName: candidato.publicName,
-              });
-            })
-            .catch((error) =>{        
-              return res.status(400).json({
-                message: "Candidate not successful created",
-                error: error.message,
-              });
-            }
-            );
-        })
       })
-      .catch((error) => {        
-        res.status(400).json({
-          message: "Candidate not successful created",
-          error: error.message,
-        });
-      }
-      );
-
+        .then((candidato) => {
+          if (password.length < 6) {
+            return res.status(400).json({ message: "Password less than 6 characters" });
+          }
+          bcrypt.hash(password, 10).then(async (hash) => {
+            await User.create({
+              _id: candidato._id,
+              username,
+              password: hash,
+              email,
+              role: "candidate",
+            })
+              .then((user) => {
+                const token = sign(
+                  { id: user._id, username, role: user.role },
+                  jwtSecret
+                );
+                setCookie(res,"jwt", token, {
+                  httpOnly: true,
+                });
+                res.status(201).json({
+                  message: "Candidate successfully created",
+                  publicName: candidato.publicName,
+                });
+              })
+              .catch((error) =>    
+                res.status(400).json({
+                  message: "User not successful created",
+                  error: error.message,
+                })    
+              );
+          })
+        })
+        .catch((error) =>
+          res.status(400).json({
+            message: "Candidatea not successful created",
+            error: error.message,
+          })
+        );
+    }
 }
