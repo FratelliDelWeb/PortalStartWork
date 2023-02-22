@@ -14,11 +14,16 @@ export default async function handler(
         const data = await Model.findById(_id).select({ 
           "designation" : 1,
           "location": 1,
-          "tags": 1,
+          "skills": 1,
+          "created_at": 1,
           "experience": 1,
           "qualification" : 1,
           "category": 1,
           "destination": 1,
+          "age": 1,
+          "gender": 1,
+          "languages": 1,
+          "educazione": 1,
       });
         res.json(data);
       } catch (error) {

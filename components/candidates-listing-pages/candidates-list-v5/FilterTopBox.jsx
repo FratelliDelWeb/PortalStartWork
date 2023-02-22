@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import Link from "next/link";
-import ListingShowing from "../components/ListingShowing";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCandidateGender,
@@ -97,33 +95,7 @@ const FilterTopBox = ({ dataCL }) => {
     sort === "des" ? a._id > b._id && -1 : a._id < b._id && -1;
   };
 
-  const handlers = {
-    showMore: function () {
-      let listToAdd = perPage?.end;
-      let totListings = listToAdd + listToAdd;
-
-      if (totListings < dataCL.length) {
-        const pageData = JSON.parse(
-          JSON.stringify({
-            start: 0,
-            end: totListings,
-          })
-        );
-        dispatch(addPerPage(pageData));
-      } else {
-        const pageData = JSON.parse(
-          JSON.stringify({
-            start: 0,
-            end: dataCL.length,
-          })
-        );
-        dispatch(addPerPage(pageData));
-      }
-    },
-  };
-
   let content = dataCL
-    ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
     ?.filter(keywordFilter)
     ?.filter(locationFilter)
     ?.filter(categoryFilter)
@@ -132,6 +104,7 @@ const FilterTopBox = ({ dataCL }) => {
     ?.filter(experienceFilter)
     ?.filter(qualificationFilter)
     ?.sort(sortFilter)
+    ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
     ?.map((candidate) => (
       <div className="candidate-block-three" key={candidate._id}>
         <div className="inner-box">
@@ -140,7 +113,7 @@ const FilterTopBox = ({ dataCL }) => {
               <img src={candidate.avatar} alt="candidates" />
             </figure>
             <h4 className="name">
-              <Link href={`/candidates/${candidate._id}`}>
+              <Link href={`/candidates/${candidate.publicName}`}>
                 {candidate.name}
               </Link>
             </h4>
@@ -180,8 +153,7 @@ const FilterTopBox = ({ dataCL }) => {
           {/* End btn-box */}
         </div>
       </div>
-    ))
-    ?.slice(perPage.start, perPage.end);
+    ));
 
   // sort handler
   const sortHandler = (e) => {
@@ -195,22 +167,15 @@ const FilterTopBox = ({ dataCL }) => {
     dispatch(addPerPage(pageData));
   };
 
-  useEffect(() => {
-    const pageData = JSON.parse(
-      JSON.stringify({
-        start: 0,
-        end: 10,
-      })
-    );
-    dispatch(addPerPage(pageData));
-    dispatch(addSort("asc"));
-  }, []);
+  const calculateWidth = (max, tot) => {
+    let width = parseInt((max / tot) * 100).toString();
+    return width.toString() + "%";
+  };
 
   // clear handler
   const clearHandler = () => {
     dispatch(addKeyword(""));
     dispatch(addLocation(""));
-    dispatch(addDestination({ min: 0, max: 100 }));
     dispatch(addCategory(""));
     dispatch(addCandidateGender(""));
     dispatch(addDatePost(""));
@@ -220,7 +185,7 @@ const FilterTopBox = ({ dataCL }) => {
     dispatch(clearQualification());
     dispatch(clearQualificationF());
     dispatch(addSort(""));
-    dispatch(addPerPage({ start: 1, end: 10 }));
+    dispatch(addPerPage({ start: 0, end: 0 }));
   };
   return (
     <>
@@ -248,8 +213,8 @@ const FilterTopBox = ({ dataCL }) => {
           experiences?.length !== 0 ||
           qualifications?.length !== 0 ||
           sort !== "" ||
-          perPage?.start !== 1 ||
-          perPage?.end !== 10 ? (
+          perPage?.start !== 0 ||
+          perPage?.end !== 0 ? (
             <button
               className="btn btn-danger text-nowrap me-2"
               style={{ minHeight: "45px", marginBottom: "15px" }}
@@ -264,7 +229,7 @@ const FilterTopBox = ({ dataCL }) => {
             className="chosen-single form-select"
             value={sort}
           >
-            <option value="">Filtra per</option>
+            <option value="">Ordina per</option>
             <option value="asc">Nuovi</option>
             <option value="des">Vecchi</option>
           </select>
@@ -286,10 +251,10 @@ const FilterTopBox = ({ dataCL }) => {
             <option
               value={JSON.stringify({
                 start: 0,
-                end: 15,
+                end: 10,
               })}
             >
-              15 per pagina
+              10 per pagina
             </option>
             <option
               value={JSON.stringify({
@@ -302,10 +267,10 @@ const FilterTopBox = ({ dataCL }) => {
             <option
               value={JSON.stringify({
                 start: 0,
-                end: 25,
+                end: 30,
               })}
             >
-              25 per pagina
+              30 per pagina
             </option>
           </select>
           {/* End select */}
@@ -315,11 +280,28 @@ const FilterTopBox = ({ dataCL }) => {
 
       {content}
 
-      <ListingShowing
-        maxRecords={perPage.end}
-        total={dataCL.length}
-        handlers={handlers}
-      />
+      {/* <!-- List Show More --> */}
+      <div className="ls-show-more">
+        <p>
+          Vedi {content?.length} di {dataCL.length}
+        </p>
+        <div className="bar">
+          <span
+            className="bar-inner"
+            style={{ width: calculateWidth(dataCL.length, content?.length) }}
+          ></span>
+        </div>
+        <button
+          onClick={perPageHandler}
+          value={JSON.stringify({
+            start: 0,
+            end: dataCL.length,
+          })}
+          className="show-more"
+        >
+          Mostra tutti
+        </button>
+      </div>
       {/* <!-- Listing Show More --> */}
     </>
   );

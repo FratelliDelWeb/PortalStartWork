@@ -1,11 +1,11 @@
-import dbConnect from "../../../../lib/dbConnect";
-const Model = require("../../../../model/Candidato");
+import dbConnect from "../../../lib/dbConnect";
+const Model = require("../../../model/JobOffer");
 
 export default async function handler(req, res) {
   //DB Connection
   let { db } = await dbConnect();
 
-  console.log("**LOG** Candidates - Modify - Init");
+  console.log("**LOG** JobOffers - Modify - Init");
   const data = req.body;
   const id = data.id;
   const fields = data.fields;
@@ -13,14 +13,13 @@ export default async function handler(req, res) {
   if (id) {
     await Model.findById(id)
       .then((client) => {
-        for (field in fields) {
-          let fieldName = fields[field].name;
-          let fromValue = fields[field].from;
-          let toValue = fields[field].to;
+        for (var field of fields) {
+          let fieldName = field.name;
+          let fromValue = field.from;
+          let toValue = field.to;
 
-          if (client[fieldName] === fromValue) {
+          if (JSON.stringify(client[fieldName]) === JSON.stringify(fromValue)) {
             client[fieldName] = toValue;
-            console.log(client[fieldName]);
           } else {
             res
               .status(402)

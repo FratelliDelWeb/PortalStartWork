@@ -15,19 +15,26 @@ import JobSkills from "../../components/candidates-single-pages/shared-component
 import AboutVideo from "../../components/candidates-single-pages/shared-components/AboutVideo";
 import RichiestaPopup from "../../components/common/form/richiestaCandidato/RichiestaPopup";
 export const getServerSideProps = async (context) => {
-  const  id  = context.query.id;
-  const res = await fetch('http://localhost:3000/api/public/candidates/'+ id);
+  const id = context.query.id;
+  const res = await fetch("http://localhost:3000/api/public/candidates/" + id);
   const data = await res.json();
- 
-  return{props:{dataCL : data}}
-}
-const CandidateSingleDynamicV1 = ({dataCL}) => {
-  const [candidate, setCandidates] = useState({});
+
+  return { props: { dataCL: data } };
+};
+
+const CandidateSingleDynamicV1 = ({ dataCL }) => {
+  const [candidate, setCandidate] = useState({});
+
+  const getITDateTime = (now) => {
+    return new Date(now).toLocaleDateString("it-IT");
+  };
+
   useEffect(() => {
     if (!dataCL) <h1>Loading...</h1>;
-    else setCandidates(dataCL);
+    else setCandidate(dataCL);
     return () => {};
   }, [dataCL]);
+  console.log(candidate);
 
   return (
     <>
@@ -61,19 +68,21 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
                     <li className="designation">{candidate?.designation}</li>
                     <li>
                       <span className="icon flaticon-map-locator"></span>
-                      {candidate?.location}
+                      {candidate?.location?.city}
                     </li>
-                    <li>
+                    {/* <li>
                       <span className="icon flaticon-money"></span> $
                       {candidate?.hourlyRate} / hour
-                    </li>
+                    </li> */}
                     <li>
-                      <span className="icon flaticon-clock"></span> Candidato pubblicato il candidate?.approved_at
+                      <span className="icon flaticon-clock"></span> Candidato
+                      pubblicato il
+                      <strong> {getITDateTime(candidate?.created_at)} </strong>
                     </li>
                   </ul>
 
                   <ul className="post-tags">
-                    {candidate?.tags?.map((val, i) => (
+                    {candidate?.skills?.map((val, i) => (
                       <li key={i}>{val}</li>
                     ))}
                   </ul>
@@ -83,8 +92,8 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
                   <a
                     data-bs-target="#richiestaPopupModal"
                     data-bs-toggle="modal"
-                  className="theme-btn btn-style-one"
-                     /*  href="/images/sample.pdf"
+                    className="theme-btn btn-style-one"
+                    /*  href="/images/sample.pdf"
                     download */
                   >
                     Invia richiesta
@@ -110,25 +119,7 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
                     <AboutVideo />
                   </div>
                   {/* <!-- About Video Box --> */}
-                  <p>
-                    Hello my name is Nicole Wells and web developer from
-                    Portland. In pharetra orci dignissim, blandit mi semper,
-                    ultricies diam. Suspendisse malesuada suscipit nunc non
-                    volutpat. Sed porta nulla id orci laoreet tempor non
-                    consequat enim. Sed vitae aliquam velit. Aliquam ante erat,
-                    blandit at pretium et, accumsan ac est. Integer vehicula
-                    rhoncus molestie. Morbi ornare ipsum sed sem condimentum, et
-                    pulvinar tortor luctus. Suspendisse condimentum lorem ut
-                    elementum aliquam.
-                  </p>
-                  <p>
-                    Mauris nec erat ut libero vulputate pulvinar. Aliquam ante
-                    erat, blandit at pretium et, accumsan ac est. Integer
-                    vehicula rhoncus molestie. Morbi ornare ipsum sed sem
-                    condimentum, et pulvinar tortor luctus. Suspendisse
-                    condimentum lorem ut elementum aliquam. Mauris nec erat ut
-                    libero vulputate pulvinar.
-                  </p>
+                  <p>{candidate?.note}</p>
 
                   {/* <!-- Portfolio --> */}
                   <div className="portfolio-outer">
@@ -138,7 +129,7 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
                   </div>
 
                   {/* <!-- Candidate Resume Start --> */}
-                  {candidateResume.map((resume) => (
+                  {candidate?.educazione?.map((resume) => (
                     <div
                       className={`resume-outer ${resume.themeColor}`}
                       key={resume.id}
@@ -179,60 +170,60 @@ const CandidateSingleDynamicV1 = ({dataCL}) => {
                   <div className="sidebar-widget">
                     <div className="widget-content">
                       <ul className="job-overview">
-                        <li>
+                        {/*                         <li>
                           <i className="icon icon-calendar"></i>
                           <h5>Esperienza:</h5>
-                          <span>0-2 Anni</span>
-                        </li>
+                          <span>{candidate?.experience}</span>
+                        </li> */}
 
                         <li>
                           <i className="icon icon-expiry"></i>
                           <h5>Anni:</h5>
-                          <span>28-33</span>
+                          <span>{candidate?.age}</span>
                         </li>
 
-                        <li>
+                        {/* <li>
                           <i className="icon icon-rate"></i>
                           <h5>Salario corrente:</h5>
                           <span>11K - 15K</span>
-                        </li>
+                        </li> */}
 
-                        <li>
+                        {/* <li>
                           <i className="icon icon-salary"></i>
                           <h5>Salario aspettativa:</h5>
                           <span>26K - 30K</span>
-                        </li>
+                        </li> */}
 
                         <li>
                           <i className="icon icon-user-2"></i>
                           <h5>Sesso:</h5>
-                          <span>Female</span>
+                          <span>{candidate?.gender}</span>
                         </li>
 
                         <li>
                           <i className="icon icon-language"></i>
                           <h5>Lingue:</h5>
-                          <span>English, German, Spanish</span>
+                          <span>{candidate?.languages}</span>
                         </li>
 
-                        <li>
+                        {/*                         <li>
                           <i className="icon icon-degree"></i>
                           <h5>Livello di educazione:</h5>
                           <span>Master Degree</span>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
                   {/* End .sidebar-widget conadidate overview */}
 
-                  <div className="sidebar-widget social-media-widget">
+                  {/*                   <div className="sidebar-widget social-media-widget">
                     <h4 className="widget-title">Social media</h4>
                     <div className="widget-content">
                       <div className="social-links">
                         <Social />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* End .sidebar-widget social-media-widget */}
 
                   <div className="sidebar-widget">

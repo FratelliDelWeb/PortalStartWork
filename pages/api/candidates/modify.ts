@@ -1,11 +1,11 @@
 import dbConnect from "../../../lib/dbConnect";
-const Model = require("../../../model/JobOffers");
+const Model = require("../../../model/Candidato");
 
 export default async function handler(req, res) {
   //DB Connection
   let { db } = await dbConnect();
 
-  console.log("**LOG** JobOffers - Modify - Init");
+  console.log("**LOG** Candidates - Modify - Init");
   const data = req.body;
   const id = data.id;
   const fields = data.fields;
@@ -13,21 +13,20 @@ export default async function handler(req, res) {
   if (id) {
     await Model.findById(id)
       .then((client) => {
-        for (field in fields) {
-          let fieldName = fields[field].name;
-          let fromValue = fields[field].from;
-          let toValue = fields[field].to;
-
-          if (client[fieldName] === fromValue) {
+        console.log("Il Candidato =>");
+        console.log(client);
+        for (var field of fields) {
+          let fieldName = field.name;
+          let fromValue = field.from;
+          let toValue = field.to;
+          if (JSON.stringify(client[fieldName]) === JSON.stringify(fromValue)) {
             client[fieldName] = toValue;
-            console.log(client[fieldName]);
           } else {
             res
               .status(402)
               .json({ field: fieldName, message: "Not same value" });
           }
         }
-        console.log(client);
         client.save((err) => {
           //Monogodb error checker
           if (err) {

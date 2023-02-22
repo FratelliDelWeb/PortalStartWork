@@ -109,7 +109,7 @@ export default async function handler(
         })
         .catch((error) =>
           res.status(400).json({
-            message: "Candidatea not successful created",
+            message: "Candidate not successful created",
             error: error.message,
           })
         );
