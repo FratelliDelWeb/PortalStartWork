@@ -36,7 +36,7 @@ const JobOverView = ({dataOL}) => {
          <li>
           <i className="icon icon-expiry"></i>
           <h5>TIPO DI CONTRATTO</h5>
-          <span>{dataOL.jobType[0].type}</span>
+          <span>{dataOL.jobType[0]?.type}</span>
         </li> 
       </ul>
     </div>
