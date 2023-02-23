@@ -52,13 +52,7 @@ module.exports = [
     active: "",
   }, */
 
-  {
-    id: 4,
-    name: "Il tuo profilo",
-    icon: "la-user-tie",
-    routePath: "/area-privata-candidates//my-profile",
-    active: "",
-  },
+ 
   {
     id: 10,
     name: "Reimposta password",
