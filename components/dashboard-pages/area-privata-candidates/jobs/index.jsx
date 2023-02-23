@@ -10,7 +10,7 @@ import CompnayInfo from "../../../../components/job-single-pages/shared-componen
 import MapJobFinder from "../../../../components/job-listing-pages/components/MapJobFinder";
 import SocialTwo from "../../../../components/job-single-pages/social/SocialTwo";
 import JobDetailsDescriptions from "../../../../components/job-single-pages/shared-components/JobDetailsDescriptions";
-import ApplyJobModalContent from "../jobs/components/shared-components/ApplyJobModalContent";
+import ApplyJobModalContent from "./components/shared-components/ApplyJobModalContent";
 
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
 import DashboardCandidatesHeader from '../../../header/DashboardCandidatesHeader';

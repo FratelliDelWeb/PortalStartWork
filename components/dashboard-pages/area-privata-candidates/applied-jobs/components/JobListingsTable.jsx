@@ -1,11 +1,11 @@
 import Link from "next/link.js";
 import jobs from "../../../../../data/job-featured.js";
 
-const JobListingsTable = () => {
+const JobListingsTable = ({dataOL}) => {
   return (
     <div className="tabs-box">
       <div className="widget-title">
-        <h4>My Applied Jobs</h4>
+        <h4>Le offerte a cui ti sei candidato</h4>
 
         <div className="chosen-outer">
           {/* <!--Tabs Box--> */}
@@ -35,8 +35,8 @@ const JobListingsTable = () => {
               </thead>
 
               <tbody>
-                {jobs.slice(0, 4).map((item) => (
-                  <tr key={item.id}>
+                {dataOL?.map((item) => (
+                  <tr key={item._id}>
                     <td>
                       {/* <!-- Job Block --> */}
                       <div className="job-block">
@@ -46,7 +46,7 @@ const JobListingsTable = () => {
                               <img src={item.logo} alt="logo" />
                             </span>
                             <h4>
-                              <Link href={`/job-single-v3/${item.id}`}>
+                              <Link href={`/area-privata-candidates/jobs/${item._id}`}>
                                 {item.jobTitle}
                               </Link>
                             </h4>
