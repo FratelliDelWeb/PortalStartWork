@@ -19,22 +19,16 @@ console.log(userinterstedTo); */
    }, [userinterstedTo])
 
     const DataToSend = async (dataOL ,userinterstedTo ) =>{
-
-
-
       let leaderPhotos = [];
-
       for(let i = 0; i < dataOL.length; i++) {
         if(dataOL[i]._id === userinterstedTo[i]) {
           leaderPhotos.push(dataOL[i]);
         }
       }
-    
-     
       setUserOffer(leaderPhotos)
       setCechkOffer(dataOL.length)
 /*       console.log("lista da monstare ", userOffer)
- */    }
+ */ }
  
  
  
