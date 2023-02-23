@@ -11,7 +11,7 @@ import MenuToggler from "../../MenuToggler";
 import { useState } from "react";
 
 
-const index = ({user}) => {
+const index = ({user , cookie}) => {
 
   console.log(user)
 
@@ -50,7 +50,7 @@ const index = ({user}) => {
                   <div className="widget-title">
                     <h4>Il mio profilo  {user.name} {user.surname}</h4>
                   </div>
-                  <MyProfile user={user} />
+                  <MyProfile user={user} cookie= {cookie}/>
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
@@ -76,7 +76,7 @@ const index = ({user}) => {
                   </div>
                   {/* End widget-title */}
                   <div className="widget-content">
-                    <ContactInfoBox user = {user} />
+                    <ContactInfoBox user = {user} cookie= {cookie} />
                   </div>
                 </div>
               </div>

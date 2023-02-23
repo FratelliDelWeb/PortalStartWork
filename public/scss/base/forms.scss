@@ -349,6 +349,8 @@ input:checked + .slider:before {
 .default-form .form-group input[type="number"],
 .default-form .form-group input[type="email"],
 .default-form .form-group input[type="url"],
+.default-form .form-group input[type="tel"],
+.default-form .form-group input[type="date"],
 .default-form .form-group textarea,
 .default-form .form-group select {
   position: relative;
@@ -373,6 +375,8 @@ input:checked + .slider:before {
 .default-form .form-group input[type="email"]:focus,
 .default-form .form-group input[type="password"]:focus,
 .default-form .form-group input[type="url"]:focus,
+.default-form .form-group input[type="tel"]:focus,
+.default-form .form-group input[type="date"]:focus,
 .default-form .form-group select:focus,
 .default-form .form-group textarea:focus {
   border-color: var(--primary-color);

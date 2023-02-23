@@ -1,6 +1,6 @@
 import Map from "../../../Map";
 
-const ContactInfoBox = () => {
+const ContactInfoBox = ({cookie}) => {
   return (
     <form className="default-form">
       <div className="row">
