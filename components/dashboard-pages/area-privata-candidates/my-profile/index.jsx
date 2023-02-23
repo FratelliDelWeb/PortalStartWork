@@ -8,9 +8,76 @@ import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
+import { useState } from "react";
+
 
 const index = ({user}) => {
+
   console.log(user)
+
+  const [infoEdit, setinfoEdit] = useState({
+    id: `${user._id}`,
+    age: `${user.age}`,
+    candidateID: `${user.candidateID}`,
+    gender : `${user.gender}`,
+    mansione: `${user.mansione}`,
+    name: `${user.name}`,
+    surname: `${user.surname}`,
+    note: `${user.note}`,
+    status: `${user.status}` ,
+    skills: `${user.skills}` ,
+    rangeWithin: `${user.rangeWithin}` ,
+    languages:  `${user.languages}` ,
+    });
+
+    const setEditData = (user ,infoEdit ) => {
+
+      let  eitData= {
+         "id": user._id,
+         "fields" : [
+           {
+             "name" : "name",
+             "from" : user.name,
+             "to" : infoEdit.name,
+           },
+           {
+            "name" : "surname",
+            "from" : user.surname,
+            "to" : infoEdit.surname,
+          },
+         {
+           "name" : "email",
+           "from" : user.email,
+           "to" : infoEdit.email,
+         },
+         {
+         "name" : "phone",
+         "from" : user.phone,
+         "to" : infoEdit.phone,
+       },
+       {
+        "name" : "role",
+        "from" : user.role,
+        "to" : infoEdit.role,
+      },
+      {
+        "name" : "status",
+        "from" : user.status,
+        "to" : infoEdit.status,
+      }, 
+      {
+        "name" : "mansione",
+        "from" : user.mansione,
+        "to" : infoEdit.mansione,
+      },
+     
+      ]
+       };
+       console.log(eitData);
+       editCliente(eitData);
+       
+     }
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
