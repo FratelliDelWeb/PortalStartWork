@@ -69,7 +69,7 @@ const FilterJobBox = () => {
 
     // job-type filter
     const jobTypeFilter = (item) =>
-        jobType?.length !== 0 && item?.jobType !== undefined
+        Candidati a quest offerta?.length !== 0 && item?.jobType !== undefined
             ? jobType?.includes(
                   item?.jobType[0]?.type
                       .toLocaleLowerCase()
