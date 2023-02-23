@@ -20,7 +20,8 @@ export default async function handler(
           "age": 1,
           "gender": 1,
           "publicName": 1,
-          "note": 1,
+          "created_at": 1,
+          "mansione": 1,
       });
         res.json(data);
       } catch (error) {

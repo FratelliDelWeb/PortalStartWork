@@ -22,12 +22,16 @@ export default async function handler(req, res) {
 
           //Gestione offerte di lavoro
           if(fieldName === "interstedTo"){
+            console.log('Candidate - Check Offers...')
               if(Array.isArray(toValue)){
                 for (var offer of toValue){
                   if(client[fieldName].indexOf(offer) >= 0){
+                    console.log("Offer => ")
+                    console.log(offer)
                     res
                       .status(402)
                       .json({ field: fieldName, message: "Already candidated to this offer" });
+                    process.exit(1);
                   }
                 }
               }

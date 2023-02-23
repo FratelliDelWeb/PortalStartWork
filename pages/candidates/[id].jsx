@@ -62,8 +62,15 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   <figure className="image">
                     <img src={candidate?.avatar} alt="avatar" />
                   </figure>
-                  <h4 className="name">{candidate?.name}</h4>
 
+                  <ul className="candidate-info">
+                    <li>
+                      <h4 className="name">{candidate?.publicName}</h4>
+                    </li>
+                    <li>
+                      <h5 className="job">{candidate?.mansione}</h5>
+                    </li>
+                  </ul>
                   <ul className="candidate-info">
                     <li className="designation">{candidate?.designation}</li>
                     <li>
@@ -114,32 +121,32 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
             <div className="row">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 <div className="job-detail">
-                  <div className="video-outer">
+                  {/*                   <div className="video-outer">
                     <h4>Su di me</h4>
                     <AboutVideo />
-                  </div>
+                  </div> */}
                   {/* <!-- About Video Box --> */}
-                  <p>{candidate?.note}</p>
+                  {/*  <p>{candidate?.note}</p> */}
 
                   {/* <!-- Portfolio --> */}
-                  <div className="portfolio-outer">
+                  {/*                   <div className="portfolio-outer">
                     <div className="row">
                       <GalleryBox />
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* <!-- Candidate Resume Start --> */}
-                  {candidate?.educazione?.map((resume) => (
+                  {/*                   {candidate?.educazione?.map((resume) => (
                     <div
                       className={`resume-outer ${resume.themeColor}`}
                       key={resume.id}
                     >
                       <div className="upper-title">
                         <h4>{resume?.title}</h4>
-                      </div>
+                      </div> */}
 
-                      {/* <!-- Start Resume BLock --> */}
-                      {resume?.blockList?.map((item) => (
+                  {/* <!-- Start Resume BLock --> */}
+                  {/*                       {resume?.blockList?.map((item) => (
                         <div className="resume-block" key={item.id}>
                           <div className="inner">
                             <span className="name">{item.meta}</span>
@@ -155,11 +162,11 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                             <div className="text">{item.text}</div>
                           </div>
                         </div>
-                      ))}
+                      ))} */}
 
-                      {/* <!-- End Resume BLock --> */}
-                    </div>
-                  ))}
+                  {/* <!-- End Resume BLock --> */}
+                  {/*             </div> */}
+                  {/*    ))} */}
                   {/* <!-- Candidate Resume End --> */}
                 </div>
               </div>
@@ -200,11 +207,11 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                           <span>{candidate?.gender}</span>
                         </li>
 
-                        <li>
+                        {/*                         <li>
                           <i className="icon icon-language"></i>
                           <h5>Lingue:</h5>
                           <span>{candidate?.languages}</span>
-                        </li>
+                        </li> */}
 
                         {/*                         <li>
                           <i className="icon icon-degree"></i>
@@ -226,14 +233,14 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   </div> */}
                   {/* End .sidebar-widget social-media-widget */}
 
-                  <div className="sidebar-widget">
+                  {/* <div className="sidebar-widget">
                     <h4 className="widget-title">Skills Professionali</h4>
                     <div className="widget-content">
                       <ul className="job-skills">
-                        <JobSkills skills={candidate?.skills} />
+                        <JobSkills skills={candidate.skills} />
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
                   {/* End .sidebar-widget skill widget */}
 
                   <div className="sidebar-widget contact-widget">
