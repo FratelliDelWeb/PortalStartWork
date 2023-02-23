@@ -28,10 +28,12 @@ export const getServerSideProps = async (context) => {
     const data = await res.json();
     return{props:{dataOL : data}}
   }
-const JobSingleJob = ({dataOL , cookieSend}) => {
+const JobSingleJob = ({dataOL ,userinterstedTo , cookieSend}) => {
+  console.log(userinterstedTo);
 
   const [idCliente, setIdCliente] = useState( window.localStorage.getItem("token"));
   const [user,setUser] = useState();
+  const [statusOffer,setStatusOffers]= useState("non attivo");
 
 console.log({idCliente})
  
@@ -42,12 +44,31 @@ console.log({idCliente})
   useEffect(() => {
     if (!id) <h1>Loading...</h1>;
     else setCompany(jobs.find((item) => item.id == id));
-
+    setStatusOffer(dataOL, userinterstedTo);
    return () => {};
    
 
 
-  }, [idCliente]);
+  }, [idCliente,userinterstedTo]);
+
+
+  const setStatusOffer = async (dataOL ,userinterstedTo ) =>{
+    let status =[];
+
+
+    for(let i = 0; i < userinterstedTo.length; i++) {
+      if(userinterstedTo[i] === dataOL._id) {
+        status.push(userinterstedTo[i]);
+        setStatusOffers("attivo")
+      }
+    }
+    console.log("status push"+status)
+    
+ 
+/*       console.log("lista da monstare ", userOffer)
+*/ }
+
+
   return (
     <>
     <div className="page-wrapper dashboard">
@@ -87,6 +108,7 @@ console.log({idCliente})
                 <div className="content">
                   <span className="company-logo">
                     <img src={dataOL?.logo} alt="logo" />
+                    
                   </span>
                   <h4 class="m-0">{dataOL?.jobTitle}</h4>
                     <p>Codice Offerta: {dataOL?.codiceJod}</p>
@@ -124,20 +146,35 @@ console.log({idCliente})
                   {/* End .job-other-info */}
                 </div>
                 {/* End .content */}
-
-                <div className="btn-box">
-                  <a
-                   
-                    className="theme-btn btn-style-one"
-                    data-bs-toggle="modal"
-                    data-bs-target="#applyJobModal"
-                  >
-                   Candidati all offerta
-                  </a>
-                {/*   <button className="bookmark-btn">
-                    <i className="flaticon-bookmark"></i>
-                  </button> */}
-                </div>
+                {statusOffer === "attivo" ? (
+                      <div className="btn-box">
+                      <a
+                       
+                        className="theme-btn btn-style-one"
+                        
+                      >
+                      Sei già candidato a quest offeta
+                      </a>
+                    {/*   <button className="bookmark-btn">
+                        <i className="flaticon-bookmark"></i>
+                      </button> */}
+                    </div>
+                   ) : (
+                    <div className="btn-box">
+                    <a
+                     
+                      className="theme-btn btn-style-one"
+                      data-bs-toggle="modal"
+                      data-bs-target="#applyJobModal"
+                    >
+                     Candidati all offerta
+                    </a>
+                  {/*   <button className="bookmark-btn">
+                      <i className="flaticon-bookmark"></i>
+                    </button> */}
+                  </div>
+                   )}
+              
                 {/* End apply for job btn */}
 
                 {/* <!-- Modal --> */}
@@ -150,7 +187,11 @@ console.log({idCliente})
                   <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="apply-modal-content modal-content">
                       <div className="text-center">
-                        <h3 className="title">Candidati all offerta di lavoro</h3>
+                      {statusOffer === "attivo" ? (
+                   <h3 className="title">Sei già candidato per questa offerta</h3>
+                   ) : (
+                    <h3 className="title">Candidati all offerta di lavoro</h3>
+                   )}
                         <button
                           type="button"
                           className="closed-modal"
