@@ -10,7 +10,7 @@ import CompnayInfo from "../../../../components/job-single-pages/shared-componen
 import MapJobFinder from "../../../../components/job-listing-pages/components/MapJobFinder";
 import SocialTwo from "../../../../components/job-single-pages/social/SocialTwo";
 import JobDetailsDescriptions from "../../../../components/job-single-pages/shared-components/JobDetailsDescriptions";
-import ApplyJobModalContent from "../../../../components/job-single-pages/shared-components/ApplyJobModalContent";
+import ApplyJobModalContent from "../jobs/components/shared-components/ApplyJobModalContent";
 
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
 import DashboardCandidatesHeader from '../../../header/DashboardCandidatesHeader';
@@ -28,7 +28,7 @@ export const getServerSideProps = async (context) => {
     const data = await res.json();
     return{props:{dataOL : data}}
   }
-const JobSingleDynamicV1 = ({dataOL , cookieSend}) => {
+const JobSingleJob = ({dataOL , cookieSend}) => {
 
   const [idCliente, setIdCliente] = useState( window.localStorage.getItem("token"));
   const [user,setUser] = useState();
@@ -160,7 +160,7 @@ console.log({idCliente})
                       </div>
                       {/* End modal-header */}
 
-                      <ApplyJobModalContent idOffer={dataOL} idCliente = {idCliente}  cookieSend = {cookieSend}/>
+                       <ApplyJobModalContent idOffer={dataOL} idCliente = {idCliente}  cookieSend = {cookieSend}/> 
                       {/* End PrivateMessageBox */}
                     </div>
                     {/* End .send-private-message-wrapper */}
@@ -290,6 +290,6 @@ console.log({idCliente})
   );
 };
 
-export default dynamic(() => Promise.resolve(JobSingleDynamicV1), {
+export default dynamic(() => Promise.resolve(JobSingleJob), {
   ssr: false,
 });

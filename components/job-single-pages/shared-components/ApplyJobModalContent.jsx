@@ -1,85 +1,11 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import axios from 'axios';
 
-
-
-const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
-  console.log(idCliente)
-  const [idOfferta , setidOfferta] = useState(idOffer._id);
-  const [userinterstedTo , setinterstedTo] =useState()
-  const router = useRouter();
-  
-  
-  const handleSubmit = async (e,idOfferta) => {
-    e.preventDefault();
-    
-    setidOfferta(idOffer._id);
-    setOffer(idOfferta,idCliente)
-
-  };
-
-
-  const addOffers = async (eitData, cookieSend) => {
-      const res = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/api/candidates/modify' ,
-        headers: { Cookie: {cookieSend},}, 
-        data: 
-          eitData
-        
-      });
-      const data = await res.data;
-      console.log(data)
-  }
-
-
-  const addUserInterstedTo = async(idCliente) =>{
-    const res = await axios({
-      method: 'post',
-      url: 'http://localhost:3000/api/candidates/' + idCliente,
-      headers: { Cookie: {cookieSend},}, 
-    });
-    const data = await res.data;
-
-    const interted = data.interstedTo
-    return (interted)
-  }
-
-
-
-  const setOffer = async (idOfferta ,idCliente ) => {
-    
-   const interseted = await addUserInterstedTo(idCliente);
-   setinterstedTo(interseted.interstedTo)
- console.log(userinterstedTo)
-
- setDataToSend(idOfferta,idCliente,userinterstedTo)
-
-  }
-
-  const setDataToSend = async (idOfferta,idCliente,userinterstedTo) =>{
-    let  eitData= {
-      "id": idCliente,
-      "fields" : [
-       {
-         "name": "interstedTo",
-         "from":userinterstedTo,
-         "to": [idOfferta._id]
-     }
-   ]};
-
-   console.log(eitData);
-   addOffers(eitData);
-
-  }
-
+const ApplyJobModalContent = () => {
   return (
-    <form metod="post" className="default-form job-apply-form" onSubmit={(e) => handleSubmit(e,idOffer)}>
+    <form className="default-form job-apply-form">
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-         {/*  <div className="uploading-outer apply-cv-outer">
+          <div className="uploading-outer apply-cv-outer">
             <div className="uploadButton">
               <input
                 className="uploadButton-input"
@@ -97,10 +23,7 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
                 Upload CV (doc, docx, pdf)
               </label>
             </div>
-          </div> */}
-         <h6>{idOffer.jobTitle}</h6>
-          <h6>Invia la candidatura i nostri consulenti ti proporrano all'azienda </h6>
-
+          </div>
         </div>
         {/* End .col */}
 
@@ -108,7 +31,7 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
           <textarea
             className="darma"
             name="message"
-            placeholder="Messaggio"
+            placeholder="Message"
             required
           ></textarea>
         </div>
@@ -118,10 +41,10 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
           <div className="input-group checkboxes square">
             <input type="checkbox" name="remember-me" id="rememberMe" />
             <label htmlFor="rememberMe" className="remember">
-              <span className="custom-checkbox"></span> Accetta{" "}
+              <span className="custom-checkbox"></span> You accept our{" "}
               <span data-bs-dismiss="modal">
                 <Link href="/terms">
-                  temini e condizioni
+                  Terms and Conditions and Privacy Policy
                 </Link>
               </span>
             </label>
@@ -135,7 +58,7 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
             type="submit"
             name="submit-form"
           >
-           Invia candidatura
+            Apply Job
           </button>
         </div>
         {/* End .col */}
