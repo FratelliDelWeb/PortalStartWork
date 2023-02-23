@@ -9,7 +9,8 @@ import CopyrightFooter from "../../CopyrightFooter";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
 
-const index = () => {
+const index = ({user}) => {
+  console.log(user)
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -41,7 +42,7 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>My Profile</h4>
+                    <h4>Il mio profilo  {user.name} {user.surname}</h4>
                   </div>
                   <MyProfile />
                 </div>
