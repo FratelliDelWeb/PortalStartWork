@@ -230,7 +230,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                     <h4 className="widget-title">Skills Professionali</h4>
                     <div className="widget-content">
                       <ul className="job-skills">
-                        <JobSkills />
+                        <JobSkills skills={candidate?.skills} />
                       </ul>
                     </div>
                   </div>

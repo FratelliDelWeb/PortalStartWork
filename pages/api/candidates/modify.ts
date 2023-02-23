@@ -19,6 +19,20 @@ export default async function handler(req, res) {
           let fieldName = field.name;
           let fromValue = field.from;
           let toValue = field.to;
+
+          //Gestione offerte di lavoro
+          if(fieldName === "interstedTo"){
+              if(Array.isArray(toValue)){
+                for (var offer of toValue){
+                  if(client[fieldName].indexOf(offer) >= 0){
+                    res
+                      .status(402)
+                      .json({ field: fieldName, message: "Already candidated to this offer" });
+                  }
+                }
+              }
+          }
+
           if (JSON.stringify(client[fieldName]) === JSON.stringify(fromValue)) {
             client[fieldName] = toValue;
           } else {
