@@ -6,8 +6,33 @@ import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
 import JobListingsTable from "./components/JobListingsTable";
 import MenuToggler from "../../MenuToggler";
+import { useState, useEffect } from "react";
+const index = ({dataOL, userinterstedTo }) => {
+/* console.log(dataOL);
+console.log(userinterstedTo); */
+  const [userOffer, setUserOffer] = useState()
+  const [checkOffer,setCechkOffer] = useState()
 
-const index = () => {
+  useEffect(() => {
+    DataToSend(dataOL ,userinterstedTo );
+   
+   }, [userinterstedTo])
+
+    const DataToSend = async (dataOL ,userinterstedTo ) =>{
+      let leaderPhotos = [];
+      for(let i = 0; i < dataOL.length; i++) {
+        if(dataOL[i]._id === userinterstedTo[i]) {
+          leaderPhotos.push(dataOL[i]);
+        }
+      }
+      setUserOffer(leaderPhotos)
+      setCechkOffer(dataOL.length)
+/*       console.log("lista da monstare ", userOffer)
+ */ }
+ 
+ 
+ 
+  
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -28,7 +53,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Applied jobs!" />
+          <BreadCrumb title="Candidature Effettuate" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -38,7 +63,7 @@ const index = () => {
             <div className="col-lg-12">
               {/* <!-- Ls widget --> */}
               <div className="ls-widget">
-                <JobListingsTable />
+                <JobListingsTable  dataOL={userOffer} />
               </div>
             </div>
           </div>

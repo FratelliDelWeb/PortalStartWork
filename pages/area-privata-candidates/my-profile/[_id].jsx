@@ -5,18 +5,19 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 export async function getServerSideProps({req, resolvedUrl }) {
+    const cookie =  req.headers.cookie;
     const _id = resolvedUrl.substring(resolvedUrl.lastIndexOf('/') + 1);
     const res = await axios.get("http://localhost:3000/api/users/" + _id, {
         withCredentials: true,
         headers: {
-          Cookie: req.headers.cookie,
+          Cookie: cookie,
         },
       });
     const data = await res.data
-    return{props:{dataCL : data}}
+    return{props:{dataCL : data , cookie : cookie}}
 }
 
-const index = ({dataCL}) => {
+const index = ({dataCL , cookie}) => {
     const [user, setUser] = useState({});
     useEffect(() => {
         if (!dataCL) <h1>Loading...</h1>;
@@ -28,7 +29,7 @@ const index = ({dataCL}) => {
   return (
     <>
       <Seo pageTitle="Profilo" />
-      <UsersProfile user={user}/>
+      <UsersProfile user={user} cookie = {cookie}/>
     </>
   );
 };

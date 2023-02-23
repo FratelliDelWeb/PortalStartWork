@@ -24,7 +24,7 @@ function setIdUser(){
   const token = window.localStorage.getItem("token");
   useEffect(() => {
     setIdUser(token) 
-    console.log(idUser);
+   
     
   },[token]);
   return idUser;
@@ -34,14 +34,48 @@ function setIdUser(){
 
 
 const SingleCandidate = ({dataOL ,cookie}) => {
+  const [userinterstedTo , setinterstedTo] = useState([""]) 
   const id = setIdUser();
-  console.log(id)
+  
+
+  useEffect(() => {
+    if(id){
+      addArrayUser(id)
+    }
+   
+  
+    
+  },[id]);
+
+  const addUserInterstedTo = async(idCliente) =>{
+    const res = await axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/candidates/' + idCliente,
+      headers: { Cookie: {cookie}}, 
+    });
+    const data = await res.data;
+
+    const interted = data.interstedTo
+    return (interted)
+  }
+
+
+  const addArrayUser = async(idCliente) =>{
+  
+    setinterstedTo( await addUserInterstedTo(idCliente))
+   
+   
+  }
+
+
+
+
 
 
   return (
     <>
       <Seo pageTitle="Lavoro" />
-      <Jobs dataOL = {dataOL} userId={id} cookieSend= {cookie}/>
+      <Jobs dataOL = {dataOL} userinterstedTo={userinterstedTo} cookieSend= {cookie}/>
     </>
   );
 };

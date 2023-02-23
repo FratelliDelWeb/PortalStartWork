@@ -1,7 +1,9 @@
 import Map from "../../../Map";
 import Select from "react-select";
+import { useEffect, useState } from "react";
 
 const PostBoxForm = ({dataOL}) => {
+  console.log(dataOL)
   const specialisms = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -12,171 +14,73 @@ const PostBoxForm = ({dataOL}) => {
     { value: "Digital", label: "Digital" },
     { value: "Creative Art", label: "Creative Art" },
   ];
-
+  const [offertEdit, setOffertaEdit] = useState({
+    id: `${dataOL._id}`,
+    codiceJod: `${dataOL.codiceJod}`,
+    note: `${dataOL.note}`,
+    jobTitle: `${dataOL.jobTitle}`,
+    location : `${dataOL.location}`,
+    company: `${dataOL.company}`,
+    created_at:`${dataOL.created_at}`,
+    category : `${dataOL.category}`,
+    jobType:`${dataOL.jobType[0].type}`,
+    });
+    console.log(offertEdit)
+  
   return (
     <form className="default-form">
       <div className="row">
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Titolo annuncio di lavoror</label>
-          <input type="text" name="titoloAnnuncio" placeholder="Titolo annuncio" />
+        <div className="form-group col-lg-6 col-md-6">
+          <label>Titolo annuncio di lavoro</label>
+          <input type="text" name="titoloAnnuncio"  placeholder={dataOL.jobTitle}  value={dataOL.jobTitle} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, jobTitle: e.target.value })
+                     }/>
         </div>
-
+        <div className="form-group col-lg-6 col-md-6">
+          <label>Nome Azienda</label>
+          <input type="text" name="company"  placeholder={dataOL.company}  value={dataOL.company} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, company: e.target.value })
+                     }/>
+        </div>
         {/* <!-- About Company --> */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Descrizione annuncio</label>
-          <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
+          <textarea  placeholder="Descrizione.."   value={dataOL.note} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, note: e.target.value })
+                     }></textarea>
         </div>
 
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Email Address</label>
-          <input type="text" name="name" placeholder="" />
-        </div>
-
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Username</label>
-          <input type="text" name="name" placeholder="" />
-        </div>
-
-        {/* <!-- Search Select --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Specialisms </label>
-          <Select
-            defaultValue={[specialisms[2]]}
-            isMulti
-            name="colors"
-            options={specialisms}
-            className="basic-multi-select"
-            classNamePrefix="select"
-          />
-        </div>
+       
 
         <div className="form-group col-lg-6 col-md-12">
-          <label>Job Type</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Banking</option>
-            <option>Digital & Creative</option>
-            <option>Retail</option>
-            <option>Human Resources</option>
-            <option>Management</option>
+          <label>Categoria lavoro</label>
+          <select  className="chosen-single form-select"  value={offertEdit.category}  placeholder={dataOL.category} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, category: e.target.value })}>
+            <option>Infromatica</option>
+            <option>Legge</option>
+            <option>Contabilià</option>
+            <option>Marketing</option>
           </select>
         </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Offered Salary</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>$1500</option>
-            <option>$2000</option>
-            <option>$2500</option>
-            <option>$3500</option>
-            <option>$4500</option>
-            <option>$5000</option>
+          <label>Tipo di contratto</label>
+          <select  className="chosen-single form-select"  value={offertEdit.jobType}  placeholder={offertEdit.jobType} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, jobType: e.target.value })}>
+            <option>Full Time</option>
+            <option>Part-time</option>
+            <option>Prestazione</option>
           </select>
         </div>
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Career Level</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Banking</option>
-            <option>Digital & Creative</option>
-            <option>Retail</option>
-            <option>Human Resources</option>
-            <option>Management</option>
-          </select>
-        </div>
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Experience</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Banking</option>
-            <option>Digital & Creative</option>
-            <option>Retail</option>
-            <option>Human Resources</option>
-            <option>Management</option>
-          </select>
-        </div>
+      
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Gender</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Industry</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Banking</option>
-            <option>Digital & Creative</option>
-            <option>Retail</option>
-            <option>Human Resources</option>
-            <option>Management</option>
-          </select>
-        </div>
-
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Qualification</label>
-          <select className="chosen-single form-select">
-            <option>Select</option>
-            <option>Banking</option>
-            <option>Digital & Creative</option>
-            <option>Retail</option>
-            <option>Human Resources</option>
-            <option>Management</option>
-          </select>
-        </div>
-
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Application Deadline Date</label>
-          <input type="text" name="name" placeholder="06.04.2020" />
-        </div>
-
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Country</label>
-          <select className="chosen-single form-select">
-            <option>Australia</option>
-            <option>Pakistan</option>
-            <option>Chaina</option>
-            <option>Japan</option>
-            <option>India</option>
-          </select>
-        </div>
-
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>City</label>
-          <select className="chosen-single form-select">
-            <option>Melbourne</option>
-            <option>Pakistan</option>
-            <option>Chaina</option>
-            <option>Japan</option>
-            <option>India</option>
-          </select>
-        </div>
-
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Complete Address</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia."
-          />
-        </div>
-
+     
+      
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Find On Map</label>
@@ -212,6 +116,19 @@ const PostBoxForm = ({dataOL}) => {
           </div>
         </div>
 
+
+        <div className="form-group col-lg-6 col-md-6">
+          <label>Data aggiunta</label>
+          <input type="date" name="created_at"   placeholder={offertEdit.created_at}  value={offertEdit.created_at} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, created_at: e.target.value })
+                     }/>
+        </div>
+        <div className="form-group col-lg-6 col-md-6">
+          <label>Codice Offerta</label>
+          <input type="number" name="codiceJod"  placeholder={offertEdit.codiceJod}  value={offertEdit.codiceJod} onChange={(e) =>
+                       setOffertaEdit({ ...offertEdit, codiceJod: e.target.value })
+                     }/>
+        </div>
         {/* <!-- Input --> */}
         <div className="form-group col-lg-12 col-md-12 text-right">
           <button className="theme-btn btn-style-one">Next</button>

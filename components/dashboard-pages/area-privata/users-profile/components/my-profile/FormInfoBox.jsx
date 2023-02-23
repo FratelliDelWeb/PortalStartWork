@@ -1,9 +1,11 @@
 import Select from "react-select";
 import { useState } from "react";
+import axios from "axios"
+import { useRouter } from "next/router";
 
 const FormInfoBox = ({user}) => {
 
-
+  const router = useRouter();
   const [ClienteEdit, setClienteEdit] = useState({
     id: `${user._id}`,
     username: `${user.username}`,
@@ -12,7 +14,6 @@ const FormInfoBox = ({user}) => {
     });
 
     console.log(ClienteEdit)
-
     const setEditData = (user ,ClienteEdit ) => {
 
       let  eitData= {
@@ -42,14 +43,6 @@ const FormInfoBox = ({user}) => {
        
      }
 
-     const editCliente = async (eitData) => {
-      const res = await fetch('http://localhost:3000/api/candidatesModify'+ eitData);
-      const data = await res.json();
-
-       
-       
-     }
-
   const roleUser = [
     { value: "Admin", label: "AMMINISTRATORE" },
     { value: "Operator", label: "OPERATORE" },
@@ -57,26 +50,28 @@ const FormInfoBox = ({user}) => {
   ];
 
 
-
-  const handleSubmit = function (e,user,ClienteEdit) {
+  const handleSubmit = function (e,user) {
     e.preventDefault();
     setEditData(user,ClienteEdit)
- 
+    editCliente(ClienteEdit);
 
   }
+
+
+  
   return (
-    <form onSubmit={setEditData(user,ClienteEdit)} className="default-form">
+    <form  onSubmit={(e) => handleSubmit(e)} method="POST" className="default-form">
       <div className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Username</label>
-          <input  onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })}type="text" name="username" placeholder={user?.username}  defaultValue={user?.username} required />
+          <input  onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })} type="text" name="username" placeholder={user?.username}  value={ClienteEdit?.username} required />
         </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Email</label>
-          <input type="text" name="email" placeholder={user?.email} defaultValue={user?.email}  required/>
+          <input type="text" name="email"  placeholder={user?.email} defaultValue={user?.email}  required/>
         </div>
 
         {/* <!-- Input --> */}
@@ -87,84 +82,15 @@ const FormInfoBox = ({user}) => {
             name="name"
             placeholder={user._id}
             defaultValue={user?._id} 
+            onChange={(e) => setClienteEdit({ ...ClienteEdit,_id: e.target.value })}
           />
         </div>
-
-        {/* <!-- Input --> */}
-    {/*     <div className="form-group col-lg-6 col-md-12">
-          <label>Email address</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="creativelayers"
-            required
-          />
-        </div> */}
-
-        {/* <!-- Input -->
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Website</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="www.jerome.com"
-            required
-          />
-        </div>
-  
-        <div className="form-group col-lg-3 col-md-12">
-          <label>Current Salary($)</label>
-          <select className="chosen-single form-select" required>
-            <option>40-70 K</option>
-            <option>50-80 K</option>
-            <option>60-90 K</option>
-            <option>70-100 K</option>
-            <option>100-150 K</option>
-          </select>
-        </div>
-
-        {/* <!-- Input --> 
-        <div className="form-group col-lg-3 col-md-12">
-          <label>Expected Salary($)</label>
-          <select className="chosen-single form-select" required>
-            <option>120-350 K</option>
-            <option>40-70 K</option>
-            <option>50-80 K</option>
-            <option>60-90 K</option>
-            <option>70-100 K</option>
-            <option>100-150 K</option>
-          </select>
-        </div>
-
-         <!-- Input --> 
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Experience</label>
-          <input type="text" name="name" placeholder="5-10 Years" required />
-        </div>
-
-         <!-- Input --> */}
-       {/*  <div className="form-group col-lg-6 col-md-12">
-          <label>Ruolo</label>
-          <select className="chosen-single form-select" required>
-            <option>Admin</option>
-            <option>Operators</option>
-          
-          </select>
-        </div> */}
-
-        {/* <!-- Input --> */}
-    {/*     <div className="form-group col-lg-6 col-md-12">
-          <label>Education Levels</label>
-          <input type="text" name="name" placeholder="Certificate" required />
-        </div> */}
-
-
-        {/* <!-- Search Select --> */}
-       <div className="form-group col-lg-6 col-md-12">
+ {/* <!-- Search Select --> */}
+ <div className="form-group col-lg-6 col-md-12">
           <label>Ruolo </label>
           <Select
-            defaultValue={[roleUser[1]]}
-            isMulti
+            defaultValue={ClienteEdit.role}
+          
             name="colors"
             options={roleUser}
             className="basic-multi-select"
@@ -172,6 +98,7 @@ const FormInfoBox = ({user}) => {
             required
           />
         </div> 
+
 
         {/* <!-- Input --> */}
      {/*    <div className="form-group col-lg-6 col-md-12">

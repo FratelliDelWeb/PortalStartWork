@@ -10,7 +10,7 @@ const jobOffersSchema = new Mongoose.Schema({
     type: String,
     required: true,
   },
-  descrizione: {
+  note: {
     type: String,
     required: true,
   },
@@ -38,7 +38,7 @@ const jobOffersSchema = new Mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  note: {
     type: String,
     require: true,
   },

@@ -1,22 +1,33 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 
 
 
 const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
   console.log(idCliente)
-  const [idOfferta , setidOfferta] = useState(idOffer?._id);
-  const [userinterstedTo , setinterstedTo] =useState()
+  const [idOfferta , setidOfferta] = useState(idOffer._id);
+  const [userinterstedTo , setinterstedTo] = useState([""]) 
   const router = useRouter();
   
-  
+  useEffect(() => {
+   setOffer (idOfferta ,idCliente );
+
+
+
+
+   return () => {};
+   
+
+
+  }, [idCliente,idOfferta]);
+
+
   const handleSubmit = async (e,idOfferta) => {
     e.preventDefault();
     
-    setidOfferta(idOffer._id);
-    setOffer(idOfferta,idCliente)
+    setDataToSend(idOfferta,idCliente,userinterstedTo)
 
   };
 
@@ -52,21 +63,33 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
   const setOffer = async (idOfferta ,idCliente ) => {
     
    const interseted = await addUserInterstedTo(idCliente);
-   setinterstedTo(interseted.interstedTo)
+   console.log(interseted)
+   setinterstedTo(interseted)
+   
  console.log(userinterstedTo)
 
- setDataToSend(idOfferta,idCliente,userinterstedTo)
+
 
   }
 
-  const setDataToSend = async (idOfferta,idCliente,userinterstedTo) =>{
+  const setDataToSend = async (idOfferta,idCliente,interseted) =>{
+
+    console.log(interseted)
+    const to = [];
+    for(var offer of interseted ){
+      to.push(offer);
+      
+    }
+
+    to.push(idOfferta)
+  
     let  eitData= {
       "id": idCliente,
       "fields" : [
        {
          "name": "interstedTo",
-         "from":userinterstedTo,
-         "to": [idOfferta._id]
+         "from":interseted,
+         "to":to
      }
    ]};
 

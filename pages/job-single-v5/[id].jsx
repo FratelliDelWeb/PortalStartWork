@@ -112,7 +112,7 @@ const JobSingleDynamicV1 = () => {
                   <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="apply-modal-content modal-content">
                       <div className="text-center">
-                        <h3 className="title">Apply for this job</h3>
+                        <h3 className="title">Candidati a quest offerta</h3>
                         <button
                           type="button"
                           className="closed-modal"
