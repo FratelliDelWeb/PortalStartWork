@@ -50,7 +50,7 @@ const index = ({user}) => {
                   <div className="widget-title">
                     <h4>Il mio profilo  {user.name} {user.surname}</h4>
                   </div>
-                  <MyProfile />
+                  <MyProfile user={user} />
                 </div>
               </div>
               {/* <!-- Ls widget --> */}

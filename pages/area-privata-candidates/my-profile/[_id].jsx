@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 
 export async function getServerSideProps({req, resolvedUrl }) {
     const _id = resolvedUrl.substring(resolvedUrl.lastIndexOf('/') + 1);
-    const res = await axios.get("http://localhost:3000/api/candidates/" + _id, {
+    const res = await axios.get("http://localhost:3000/api/users/" + _id, {
         withCredentials: true,
         headers: {
           Cookie: req.headers.cookie,
