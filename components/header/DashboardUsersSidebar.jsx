@@ -55,7 +55,7 @@ const DashboardUsersSidebar = () => {
                     >   
                         <Link href={'/area-privata/users-profile/' + window.sessionStorage.getItem("token")}>
                             <i className={`la la-user-tie`}></i>{" "}
-                            {"Profilo"}
+                            {"Account"}
                         </Link>
                     </li>
                     }

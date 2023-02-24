@@ -9,7 +9,7 @@ import CopyrightFooter from "../../CopyrightFooter";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MenuToggler from "../../MenuToggler";
 import { useState } from "react";
-
+import Form from "./components/Form";
 
 const index = ({user , cookie}) => {
 
@@ -37,50 +37,53 @@ const index = ({user , cookie}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="My Profile!" />
+          <BreadCrumb title="Il mio Account" />
           {/* breadCrumb */}
 
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <div className="row">
+          <div className="row mt-30">
             <div className="col-lg-12">
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Il mio profilo  {user.name} {user.surname}</h4>
+                    <h4>Ciao, ecco le informazioni del tuo account :  {user.username}</h4>
                   </div>
                   <MyProfile user={user} cookie= {cookie}/>
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
-
-              <div className="ls-widget">
+              <div className="col-lg-12">
+               <div className="ls-widget">
                 <div className="tabs-box">
-                  <div className="widget-title">
-                    <h4>Social Network</h4>
+                  <div className="widget-title flex-shrink-0">
+                  <i class="las la-lock"></i>
+                    <h4>Reimposta la tua password</h4>
+                    
                   </div>
-                  {/* End widget-title */}
-
+             
                   <div className="widget-content">
-                    <SocialNetworkBox />
+                    <Form />
                   </div>
                 </div>
-              </div>
-              {/* <!-- Ls widget --> */}
 
-              <div className="ls-widget">
+
+              </div> 
+           
+ </div>
+            {/*   <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
                     <h4>Contact Information</h4>
                   </div>
-                  {/* End widget-title */}
+                  {/* End widget-title 
                   <div className="widget-content">
                     <ContactInfoBox user = {user} cookie= {cookie} />
                   </div>
                 </div>
-              </div>
-              {/* <!-- Ls widget --> */}
+              </div> 
+               <!-- Ls widget --> */}
             </div>
           </div>
           {/* End .row */}

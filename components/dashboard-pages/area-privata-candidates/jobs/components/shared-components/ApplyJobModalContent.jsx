@@ -10,7 +10,8 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
   const [idOfferta , setidOfferta] = useState(idOffer._id);
   const [userinterstedTo , setinterstedTo] = useState([""]) 
   const router = useRouter();
-  
+   const [stato,setStato]= useState("start");
+   const [ErrorMessage , setErrorMessage] = useState()
   useEffect(() => {
    setOffer (idOfferta ,idCliente );
 
@@ -26,23 +27,28 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
 
   const handleSubmit = async (e,idOfferta) => {
     e.preventDefault();
-    
+    setStato("send")
     setDataToSend(idOfferta,idCliente,userinterstedTo)
 
   };
 
 
   const addOffers = async (eitData, cookieSend) => {
-      const res = await axios({
+    console.log("SATIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",eitData)
+    await axios({
         method: 'post',
         url: 'http://localhost:3000/api/candidates/modify' ,
         headers: { Cookie: {cookieSend},}, 
         data: 
           eitData
         
-      });
-      const data = await res.data;
-      console.log(data)
+      }).then(response =>{
+        const data =  response.data;
+        console.log(data)
+      }).catch(e => {
+        setStato("error")
+        setErrorMessage(e.response.data.message),
+        console.log(e.response.data.message)})
   }
 
 
@@ -77,11 +83,12 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
     console.log(interseted)
     const to = [];
     for(var offer of interseted ){
+      
       to.push(offer);
       
     }
 
-    to.push(idOfferta)
+    to.push(idOfferta._id)
   
     let  eitData= {
       "id": idCliente,
@@ -101,43 +108,24 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
   return (
     <form metod="post" className="default-form job-apply-form" onSubmit={(e) => handleSubmit(e,idOffer)}>
       <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-         {/*  <div className="uploading-outer apply-cv-outer">
-            <div className="uploadButton">
-              <input
-                className="uploadButton-input"
-                type="file"
-                name="attachments[]"
-                accept="image/*, application/pdf"
-                id="upload"
-                multiple=""
+
+
+{(stato !== "send") && (stato !== "error") ? (
+        <><div className="col-lg-12 col-md-12 col-sm-12 form-group">
+
+            <h6>{idOffer.jobTitle}</h6>
+            <h6>Invia la candidatura i nostri consulenti ti proporrano all'azienda </h6>
+
+          </div><div className="col-lg-12 col-md-12 col-sm-12 form-group">
+              <textarea
+                className="darma"
+                name="message"
+                placeholder="Messaggio"
                 required
-              />
-              <label
-                className="uploadButton-button ripple-effect"
-                htmlFor="upload"
-              >
-                Upload CV (doc, docx, pdf)
-              </label>
+              ></textarea>
             </div>
-          </div> */}
-         <h6>{idOffer.jobTitle}</h6>
-          <h6>Invia la candidatura i nostri consulenti ti proporrano all'azienda </h6>
-
-        </div>
-        {/* End .col */}
-
-        <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-          <textarea
-            className="darma"
-            name="message"
-            placeholder="Messaggio"
-            required
-          ></textarea>
-        </div>
-        {/* End .col */}
-
-        <div className="col-lg-12 col-md-12 col-sm-12 form-group">
+            
+            <div className="col-lg-12 col-md-12 col-sm-12 form-group">
           <div className="input-group checkboxes square">
             <input type="checkbox" name="remember-me" id="rememberMe" />
             <label htmlFor="rememberMe" className="remember">
@@ -161,6 +149,14 @@ const ApplyJobModalContent = ({idOffer , idCliente , cookieSend}) => {
            Invia candidatura
           </button>
         </div>
+            
+            
+            </> ): (<div>{ErrorMessage}</div>)}
+
+
+      
+
+
         {/* End .col */}
       </div>
     </form>

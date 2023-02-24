@@ -11,7 +11,9 @@
   -ms-flex-align: center;
   align-items: center;
 }
-
+.bg-light.mb-50.p-1.pb-2.resumes-edit.row.shadow-sm {
+  border-radius: 10px;
+}
 .uploading-outer .uploadButton {
   position: relative;
   display: -webkit-box;
@@ -375,7 +377,7 @@
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .resume-block .info-box {

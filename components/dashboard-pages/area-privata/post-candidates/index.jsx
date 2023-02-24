@@ -4,8 +4,7 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardUsersSidebar from "../../../header/DashboardUsersSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import PostJobSteps from "./components/PostJobSteps";
-import PostBoxForm from "./components/PostBoxForm";
+
 import MenuToggler from "../../MenuToggler";
 import MyProfile from "./components/my-profile";
 import MyResume from "./components/my-resume";
@@ -42,13 +41,13 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Post Job</h4>
+                    <h4>Inserisci i dati del nuovo candidato e scegli se renderlo già visibile in piattaforma *setta lo stato</h4>
                   </div>
 
                   <div className="widget-content">
                   <MyProfile />
                     {/* End job steps form */}
-                    <MyResume  />
+             {/*        <MyResume  /> */}
                     {/* End post box form */}
                   </div>
                 </div>

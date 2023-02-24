@@ -58,14 +58,14 @@ const DashboardCandidatesSidebar = () => {
                     >   
                         <Link href={'/area-privata-candidates/my-profile/' + window.sessionStorage.getItem("token")}>
                             <i className={`la la-user-tie`}></i>{" "}
-                            {"Profilo"}
+                            {"Account"}
                         </Link>
                     </li>
                     }
                 </ul>
                 {/* End navigation */}
 
-                <div className="skills-percentage">
+              {/*   <div className="skills-percentage">
                     <h4>Skills Percentage</h4>
                     <p>
                         `Put value for <strong>Cover Image</strong> field to
@@ -85,8 +85,8 @@ const DashboardCandidatesSidebar = () => {
                             text={`${percentage}%`}
                         />
                     </div>{" "}
-                    {/* <!-- Pie Graph --> */}
-                </div>
+                     <!-- Pie Graph --> 
+                </div> */}
             </div>
         </div>
     );

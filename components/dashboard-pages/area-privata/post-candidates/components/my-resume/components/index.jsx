@@ -1,6 +1,6 @@
 import AddPortfolio from "./AddPortfolio";
 import Awards from "./Awards";
-import Education from "./Education";
+
 import Experiences from "./Experiences";
 import SkillsMultiple from "./SkillsMultiple";
 
@@ -12,12 +12,7 @@ const index = () => {
   return (
     <form className="default-form" onClick={handleSubmit}>
       <div className="row">
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Select Your CV</label>
-          <select className="chosen-single form-select">
-            <option>My CV</option>
-          </select>
-        </div>
+        
         {/* <!-- Input --> */}
 
         <div className="form-group col-lg-12 col-md-12">
@@ -27,7 +22,7 @@ const index = () => {
         {/* <!-- About Company --> */}
 
         <div className="form-group col-lg-12 col-md-12">
-          <Education />
+     
           {/* <!-- Resume / Education --> */}
 
           <Experiences />

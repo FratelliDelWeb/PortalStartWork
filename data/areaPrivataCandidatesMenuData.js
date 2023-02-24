@@ -53,13 +53,13 @@ module.exports = [
   }, */
 
  
-  {
+ /*  {
     id: 10,
     name: "Reimposta password",
     icon: "la-lock",
     routePath: "/area-privata-candidates/change-password",
     active: "",
-  },
+  }, */
   {
     id: 11,
     name: "Logout",
