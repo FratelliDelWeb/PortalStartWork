@@ -1,12 +1,11 @@
 import Router from "next/router";
 
 const SearchForm3 = () => {
-  const  = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
-
   return (
-    <form onClick={}>
+    <form >
       <div className="row">
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-4 col-md-12 col-sm-12">

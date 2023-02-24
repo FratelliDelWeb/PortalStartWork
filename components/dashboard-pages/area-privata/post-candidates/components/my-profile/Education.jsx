@@ -93,7 +93,7 @@ const [editModeX , setEditMode] = useState("off");
 
 <div class="box-resumes-edit"> {inputList.map((x, i) => {
     return (
-          <div className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
+          <div key={i} className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
            <div className="col-6 mt-20">
               <div className="form-group">
                 <label>Titolo studio</label>

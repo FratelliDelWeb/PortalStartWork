@@ -12,7 +12,7 @@ const FormInfoBox = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setnewUserSend("send");
-    router.push(`/#`);
+
     axios
       .post(api + "/public/candidates/create", newUser)
       .then((res) => {
@@ -109,6 +109,15 @@ const FormInfoBox = (props) => {
 
   const setEducazioneToSend = (educazione) => {
     setnewUser({ ...newUser, educazione: educazione });
+    console.log(newUser);
+  };
+  const setPremiCertificatiToSend = (premi) => {
+    setnewUser({ ...newUser, premi: premi });
+    console.log(newUser);
+  };
+
+  const setEducazioneToSend = (educazione) => {
+    setnewUser({ ...newUser, educazione: educazione });
     console.log(newUser.educazione);
   };
   const setPremiCertificatiToSend = (premi) => {
@@ -156,7 +165,11 @@ const FormInfoBox = (props) => {
   ];
 
   return (
-    <form action="#" className="default-form">
+    <form
+      method="POST"
+      onSubmit={(e) => handleSubmit(e, newUser)}
+      className="default-form"
+    >
       <div className="row">
         <div className="col-6 mt-20">
           <div className="form-group">
