@@ -68,16 +68,16 @@ const FilterJobBox = () => {
             : item;
 
     // job-type filter
-    const jobTypeFilter = (item) =>
-        Candidati a quest offerta?.length !== 0 && item?.jobType !== undefined
-            ? jobType?.includes(
-                  item?.jobType[0]?.type
+  
+            
+            const jobTypeFilter = (item) =>
+            item.jobType !== undefined && jobTypeSelect !== ""
+                ? item?.jobType[0]?.type
                       .toLocaleLowerCase()
                       .split(" ")
-                      .join("-")
-              )
-            : item;
-
+                      .join("-") === jobTypeSelect && item
+                : item;
+                
     // date-posted filter
     const datePostedFilter = (item) =>
         datePosted !== "all" && datePosted !== ""
