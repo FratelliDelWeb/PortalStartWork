@@ -1,71 +1,60 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import AppliedJobs from "../../../components/dashboard-pages/area-privata-candidates/applied-jobs"
+import AppliedJobs from "../../../components/dashboard-pages/area-privata-candidates/applied-jobs";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {getjobOffersPrivate} from "../../../services/private/getjobOffersPrivate"
+const api = process.env.API_ENDPOINT;
+import { getjobOffersPrivate } from "../../../services/private/getjobOffersPrivate";
 
 export async function getServerSideProps({ req }) {
-
-  const data = await getjobOffersPrivate(req)
+  const data = await getjobOffersPrivate(req);
   const cookie = await req.headers.cookie;
-  return { props: { dataOL: data , cookieSend : cookie} };
+  return { props: { dataOL: data, cookieSend: cookie } };
 }
 
-function setIdUser(){
-  const [idUser,setIdUser] = useState();
+function setIdUser() {
+  const [idUser, setIdUser] = useState();
   const token = window.localStorage.getItem("token");
   useEffect(() => {
-    setIdUser(token) 
+    setIdUser(token);
     console.log(idUser);
-    
-  },[token]);
+  }, [token]);
   return idUser;
-  }
+}
 
-
-
-const index = ({dataOL , cookieSend}) => {
-  const [userinterstedTo , setinterstedTo] = useState([""]) 
+const index = ({ dataOL, cookieSend }) => {
+  const [userinterstedTo, setinterstedTo] = useState([""]);
   const id = setIdUser();
   console.log(id);
 
   useEffect(() => {
-    if(id){
-      addArrayUser(id)
+    if (id) {
+      addArrayUser(id);
     }
-   
-  
-    
-  },[id]);
+  }, [id]);
 
-  const addUserInterstedTo = async(idCliente) =>{
+  const addUserInterstedTo = async (idCliente) => {
     const res = await axios({
-      method: 'post',
-      url: 'http://localhost:3000/api/candidates/' + idCliente,
-      headers: { Cookie: {cookieSend},}, 
+      method: "post",
+      url: api + "/candidates/" + idCliente,
+      headers: { Cookie: { cookieSend } },
     });
     const data = await res.data;
 
-    const interted = data.interstedTo
-    return (interted)
-  }
+    const interted = data.interstedTo;
+    return interted;
+  };
 
+  const addArrayUser = async (idCliente) => {
+    setinterstedTo(await addUserInterstedTo(idCliente));
 
-  const addArrayUser = async(idCliente) =>{
-  
-    setinterstedTo( await addUserInterstedTo(idCliente))
-   
-    console.log(userinterstedTo)
-  }
-
-
-
+    console.log(userinterstedTo);
+  };
 
   return (
     <>
       <Seo pageTitle="CANDIDATURE EFFETTUATE" />
-      <AppliedJobs  dataOL={dataOL} userinterstedTo={userinterstedTo} />
+      <AppliedJobs dataOL={dataOL} userinterstedTo={userinterstedTo} />
     </>
   );
 };

@@ -4,6 +4,7 @@ import { createCandidate } from "../../../../services/public/createCandidate";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Loader from "../../../loader/Loader";
+const api = process.env.API_ENDPOINT;
 const FormContent = () => {
   const router = useRouter();
 
@@ -12,7 +13,7 @@ const FormContent = () => {
     setnewUserSend("send");
     router.push(`/#`);
     axios
-      .post("/api/public/candidates/create", newUser)
+      .post(api + "/public/candidates/create", newUser)
       .then((res) => {
         console.log("res", res.data);
         setnewUserSend("ok");

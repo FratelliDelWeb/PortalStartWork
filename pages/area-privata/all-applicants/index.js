@@ -2,9 +2,10 @@ import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import AllApplicants from "../../../components/dashboard-pages/area-privata/all-applicants";
 import axios from "axios";
+const api = process.env.API_ENDPOINT;
 
 export async function getServerSideProps({ req }) {
-  const res = await axios.get("http://localhost:3000/api/candidates", {
+  const res = await axios.get(api + "/candidates", {
     withCredentials: true,
     headers: {
       Cookie: req.headers.cookie,
@@ -15,7 +16,7 @@ export async function getServerSideProps({ req }) {
 }
 
 export async function loadData() {
-  const res = await fetch("http://localhost:3000/api/candidates");
+  const res = await fetch(api + "/candidates");
   console.log("RES => ", res);
   const data = await res.json();
 

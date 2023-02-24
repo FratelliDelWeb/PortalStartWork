@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import Seo from "../../../components/common/Seo";
 import Candidato from "../../../components/dashboard-pages/area-privata/candidate";
 import axios from "axios";
+const api = process.env.API_ENDPOINT;
 
 export async function getServerSideProps(context) {
-  const  id  = context.query.id;
-  const res = await axios.get("http://localhost:3000/api/candidates/" + id, {
+  const id = context.query.id;
+  const res = await axios.get(api + "/candidates/" + id, {
     withCredentials: true,
     headers: {
       Cookie: context.req.headers.cookie,
@@ -16,12 +17,11 @@ export async function getServerSideProps(context) {
   return { props: { dataCL: data } };
 }
 
-const SingleCandidate = ({dataCL}) => {
-  
+const SingleCandidate = ({ dataCL }) => {
   return (
     <>
       <Seo pageTitle="Candidato" />
-      <Candidato dataCL = {dataCL}/>
+      <Candidato dataCL={dataCL} />
     </>
   );
 };

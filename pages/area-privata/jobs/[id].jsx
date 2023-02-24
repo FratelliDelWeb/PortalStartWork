@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import Seo from "../../../components/common/Seo";
 import Jobs from "../../../components/dashboard-pages/area-privata/jobs";
 import axios from "axios";
+const api = process.env.API_ENDPOINT;
 
 export async function getServerSideProps(context) {
-  const  id  = context.query.id;
-  const res = await axios.get("http://localhost:3000/api/jobOffers/" + id, {
+  const id = context.query.id;
+  const res = await axios.get(api + "/jobOffers/" + id, {
     withCredentials: true,
     headers: {
       Cookie: context.req.headers.cookie,
@@ -15,12 +16,11 @@ export async function getServerSideProps(context) {
   const data = await res.data;
   return { props: { dataOL: data } };
 }
-const SingleCandidate = ({dataOL}) => {
-  
+const SingleCandidate = ({ dataOL }) => {
   return (
     <>
       <Seo pageTitle="Lavoro" />
-      <Jobs dataOL = {dataOL}/>
+      <Jobs dataOL={dataOL} />
     </>
   );
 };

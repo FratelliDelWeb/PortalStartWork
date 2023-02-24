@@ -1,9 +1,7 @@
-
 import axios from "axios";
-
+const api = process.env.API_ENDPOINT;
 export async function getCandidatesPrivate(req) {
-
-  const res = await axios.get("http://localhost:3000/api/candidates", {
+  const res = await axios.get(api + "/candidates", {
     withCredentials: true,
     headers: {
       Cookie: req.headers.cookie,
@@ -11,5 +9,5 @@ export async function getCandidatesPrivate(req) {
   });
   const data = await res.data;
 
-    return data
-  }
+  return data;
+}

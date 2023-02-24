@@ -1,14 +1,12 @@
-
 import axios from "axios";
-
+const api = process.env.API_ENDPOINT;
 export async function getjobOffersPrivate(req) {
-
-  const res = await axios.get("http://localhost:3000/api/jobOffers", {
+  const res = await axios.get(api + "/jobOffers", {
     withCredentials: true,
     headers: {
       Cookie: req.headers.cookie,
     },
   });
   const data = await res.data;
-    return data
-  }
+  return data;
+}
