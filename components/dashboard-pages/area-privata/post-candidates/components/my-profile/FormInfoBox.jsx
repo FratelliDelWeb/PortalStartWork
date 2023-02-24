@@ -16,7 +16,7 @@ const FormInfoBox = (props) => {
     setnewUserSend("send");
   
     axios
-      .post("/api/public/candidates/create", newUser)
+      .post(`${process.env.NEXT_PUBLIC_ENDPOINT}/api/public/candidates/create`, newUser)
       .then((res) => {
         console.log("res", res.data);
         setnewUserSend("ok");
