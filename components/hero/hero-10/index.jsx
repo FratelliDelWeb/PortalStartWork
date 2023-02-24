@@ -19,7 +19,7 @@ const index = () => {
             data-aos-delay="700"
             data-aos="fade-up"
           >
-            <SearchForm3 />
+            <SearchForm3  btnStyle="btn-style-two" />
           </div>
           {/* <!-- Job Search Form --> */}
 
