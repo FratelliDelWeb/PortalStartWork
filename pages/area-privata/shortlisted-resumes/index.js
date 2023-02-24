@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import ShortlistedResumes from "../../../components/dashboard-pages/area-privata/shortlisted-resumes";
 import axios from "axios";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 export async function getServerSideProps({ req }) {
   const res = await axios.get(api + "/candidates", {
     withCredentials: true,

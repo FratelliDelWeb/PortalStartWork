@@ -15,15 +15,15 @@ import MapJobFinder from "../../components/job-listing-pages/components/MapJobFi
 import SocialTwo from "../../components/job-single-pages/social/SocialTwo";
 import JobDetailsDescriptions from "../../components/job-single-pages/shared-components/JobDetailsDescriptions";
 import ApplyJobModalContent from "../../components/job-single-pages/shared-components/ApplyJobModalContent";
-
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 export const getServerSideProps = async (context) => {
-    const  id  = context.query.id;
-    const res = await fetch('http://localhost:3000/api/public/jobOffers/'+ id);
-    const data = await res.json();
-   
-    return{props:{dataOL : data}}
-  }
-const JobSingleDynamicV1 = ({dataOL}) => {
+  const id = context.query.id;
+  const res = await fetch(api + "/public/jobOffers/" + id);
+  const data = await res.json();
+
+  return { props: { dataOL: data } };
+};
+const JobSingleDynamicV1 = ({ dataOL }) => {
   const router = useRouter();
   const [company, setCompany] = useState({});
   const id = router.query.id;
@@ -62,7 +62,7 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                     <img src={dataOL?.logo} alt="logo" />
                   </span>
                   <h4 class="m-0">{dataOL?.jobTitle}</h4>
-                    <p>Codice Offerta: {dataOL?.codiceJod}</p>
+                  <p>Codice Offerta: {dataOL?.codiceJod}</p>
                   <ul className="job-info">
                     <li>
                       <span className="icon flaticon-briefcase"></span>
@@ -79,7 +79,7 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                       {dataOL?.time}
                     </li>
                     {/* time info */}
-               {/*      <li>
+                    {/*      <li>
                       <span className="icon flaticon-money"></span>{" "}
                       {dataOL?.salary}
                     </li> */}
@@ -100,14 +100,13 @@ const JobSingleDynamicV1 = ({dataOL}) => {
 
                 <div className="btn-box">
                   <a
-                   
                     className="theme-btn btn-style-one"
                     data-bs-toggle="modal"
                     data-bs-target="#applyJobModal"
                   >
-                   Candidati all offerta
+                    Candidati all offerta
                   </a>
-                {/*   <button className="bookmark-btn">
+                  {/*   <button className="bookmark-btn">
                     <i className="flaticon-bookmark"></i>
                   </button> */}
                 </div>
@@ -181,8 +180,10 @@ const JobSingleDynamicV1 = ({dataOL}) => {
                 <aside className="sidebar">
                   <div className="sidebar-widget">
                     {/* <!-- Job Overview --> */}
-                    <h4 className="widget-title">Dettagli annuncio di lavoro</h4>
-                    <JobOverView  dataOL={dataOL}/>
+                    <h4 className="widget-title">
+                      Dettagli annuncio di lavoro
+                    </h4>
+                    <JobOverView dataOL={dataOL} />
 
                     {/* <!-- Map Widget --> */}
                     <h4 className="widget-title">Job Location</h4>

@@ -4,7 +4,7 @@ import { createCandidate } from "../../../../services/public/createCandidate";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Loader from "../../../loader/Loader";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormContent = () => {
   const router = useRouter();
 

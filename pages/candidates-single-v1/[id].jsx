@@ -13,15 +13,16 @@ import GalleryBox from "../../components/candidates-single-pages/shared-componen
 import Social from "../../components/candidates-single-pages/social/Social";
 import JobSkills from "../../components/candidates-single-pages/shared-components/JobSkills";
 import AboutVideo from "../../components/candidates-single-pages/shared-components/AboutVideo";
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export const getServerSideProps = async (context) => {
-  const  id  = context.query.id;
-  const res = await fetch('http://localhost:3000/api/public/candidates/'+ id);
+  const id = context.query.id;
+  const res = await fetch(api + "/public/candidates/" + id);
   const data = await res.json();
- 
-  return{props:{dataCL : data}}
-}
-const CandidateSingleDynamicV1 = ({dataCL}) => {
+
+  return { props: { dataCL: data } };
+};
+const CandidateSingleDynamicV1 = ({ dataCL }) => {
   const [candidate, setCandidates] = useState({});
   useEffect(() => {
     if (!dataCL) <h1>Loading...</h1>;

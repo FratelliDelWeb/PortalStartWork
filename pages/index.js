@@ -5,9 +5,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { getCandidates } from "../services/public/getCandidates";
 import { getjobOffers } from "../services/public/getjobOffers";
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getCandidates();
   const dataOffer = await getjobOffers();
+  console.log(data);
+  console.log(dataOffer);
   // Props returned will be passed to the page component
   return { props: { dataCL: data, dataOL: dataOffer } };
 }

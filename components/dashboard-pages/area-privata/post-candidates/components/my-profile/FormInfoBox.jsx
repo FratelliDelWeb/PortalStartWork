@@ -5,7 +5,7 @@ import { useState } from "react";
 import InputRange from "react-input-range";
 import Education from "./Education";
 import AwardsCertificates from "./AwardsCertificates";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormInfoBox = (props) => {
   const router = useRouter();
 
@@ -106,7 +106,7 @@ const FormInfoBox = (props) => {
   });
   const [errorSend, setErrorSend] = useState("errore");
   const [passwordType, setPasswordType] = useState("password");
-
+  /* 
   const setEducazioneToSend = (educazione) => {
     setnewUser({ ...newUser, educazione: educazione });
     console.log(newUser);
@@ -123,7 +123,7 @@ const FormInfoBox = (props) => {
   const setPremiCertificatiToSend = (premi) => {
     setnewUser({ ...newUser, premi: premi });
     console.log(newUser.premi);
-  };
+  }; */
 
   const togglePassword = () => {
     if (passwordType === "password") {

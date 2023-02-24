@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const ApplyJobModalContent = ({ idOffer, idCliente, cookieSend }) => {
   console.log(idCliente);

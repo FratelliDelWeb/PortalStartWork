@@ -3,7 +3,7 @@ import Seo from "../../../components/common/Seo";
 import AppliedJobs from "../../../components/dashboard-pages/area-privata-candidates/applied-jobs";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 import { getjobOffersPrivate } from "../../../services/private/getjobOffersPrivate";
 
 export async function getServerSideProps({ req }) {

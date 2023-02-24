@@ -20,9 +20,8 @@ import BreadCrumb from "../../BreadCrumb";
 
 import JobOverView from "./components/job-overview/JobOverView";
 import jobs from "../../../../data/job-featured";
-const api = process.env.API_ENDPOINT;
 import axios from "axios";
-
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const res = await fetch(api + "/public/jobOffers/" + id);

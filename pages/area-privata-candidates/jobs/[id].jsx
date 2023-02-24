@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Seo from "../../../components/common/Seo";
 import Jobs from "../../../components/dashboard-pages/area-privata-candidates/jobs/index";
 import axios from "axios";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps(context) {
   const id = context.query.id;

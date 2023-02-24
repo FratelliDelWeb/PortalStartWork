@@ -3,7 +3,7 @@ import Seo from "../../../components/common/Seo";
 import UsersProfile from "../../../components/dashboard-pages/area-privata-candidates/my-profile";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps({ req, resolvedUrl }) {
   const cookie = req.headers.cookie;

@@ -1,5 +1,5 @@
 import axios from "axios";
-const api = process.env.API_ENDPOINT;
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 export async function modifyJob(dataEdit, cookie) {
   const res = await axios.post(api + "/uses/modify", dataEdit, {
     withCredentials: true,
