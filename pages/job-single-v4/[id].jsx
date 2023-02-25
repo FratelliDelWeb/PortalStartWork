@@ -17,6 +17,9 @@ import Contact from "../../components/job-single-pages/shared-components/Contact
 import JobDetailsDescriptions from "../../components/job-single-pages/shared-components/JobDetailsDescriptions";
 import ApplyJobModalContent from "../../components/job-single-pages/shared-components/ApplyJobModalContent";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+
+
+
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const res = await fetch(api + "/public/jobOffers/" + id);
@@ -170,7 +173,7 @@ const JobSingleDynamicV1 = ({ dataOL }) => {
                   <div className="sidebar-widget">
                     {/* <!-- Job Overview --> */}
                     <h4 className="widget-title">Job Overview</h4>
-                    <JobOverView />
+                    <JobOverView dataOL={dataOL} />
 
                     {/* <!-- Map Widget --> */}
                     <h4 className="widget-title">Job Location</h4>
