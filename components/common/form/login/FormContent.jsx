@@ -104,7 +104,7 @@ const FormContent = () => {
         onSubmit={(e) => {
           handleSubmit(e);
         }}
-        action="/api/auth/login"
+      
         method="post"
       >
         <div className="form-group">
