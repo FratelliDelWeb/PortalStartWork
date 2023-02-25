@@ -44,8 +44,8 @@ const FormContent = ({ dataCL }) => {
           {stateRequest.message === "send" && !stateRequest.success ? (
             <Loader></Loader>
           ) : (
-            <div class="row">
-              <div class="error">
+            <div className="row">
+              <div className="error">
                 {stateRequest.error ? (
                   <div>
                     <h6>{stateRequest.message}</h6>
@@ -189,7 +189,7 @@ const FormContent = ({ dataCL }) => {
           {stateRequest.message === "send" && !stateRequest.success ? (
             <h3> Stiamo inoltrando la tua richiesta...</h3>
           ) : (
-            <div class="row mt-50">
+            <div className="row mt-50">
               <div className="form-group">
                 <button className="theme-btn btn-style-one" type="submit">
                   INVIA CANDIDATURA

@@ -16,7 +16,7 @@ const JobFeatured3 = ({dataOL}) => {
                 <img src={item.logo} alt="item brand" />
               </span>
               <h4>
-                <Link href={`/job-single-v4/${item._id}`}>{item.jobTitle}</Link>
+                <Link href={`/jobs/${item._id}`}>{item.jobTitle}</Link>
               </h4>
 
               <ul className="job-info">

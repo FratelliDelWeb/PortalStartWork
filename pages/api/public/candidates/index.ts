@@ -12,13 +12,16 @@ export default async function handler(
     console.log('**LOG** Candidates - Public - getAll - Init');
     /* {status: { $eq: 'Approved' }} */ // Da aggiungere in seguito al find
     const data = await Model.find().select({ 
-        "designation" : 1,
-        "location": 1,
-        "skills": 1,
-        "experience": 1,
-        "qualification" : 1,
-        "category": 1,
-        "destination": 1,
+      "designation" : 1,
+      "location": 1,
+      "skills": 1,
+      "category": 1,
+      "destination": 1,
+      "age": 1,
+      "gender": 1,
+      "publicName": 1,
+      "created_at": 1,
+      "mansione": 1,
     });
     res.status(200).json(data);
   } catch (error) {

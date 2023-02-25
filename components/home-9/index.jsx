@@ -33,14 +33,14 @@ console.log(dataOL )
       <LoginPopup />
       <CandidatiPopup></CandidatiPopup>
       {/* End Login Popup Modal */}
-      <div class="mb-30">
+      <div className="mb-30">
       <DefaulHeader2 />
       </div>
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
       {/* End MobileMenu */}
-      <div class="mt-56">
+      <div className="mt-56">
       <Hero12  />
         </div>
     
@@ -106,22 +106,23 @@ console.log(dataOL )
           </div>
         </div>
         <About9 />
-      <section className="candidates-section">
+        <section className="candidates-section">
         <div className="auto-container">
           <div className="sec-title">
-            <h2>Ultimi candidati inseriti</h2>
+            <h2>Featured Candidates</h2>
             <div className="text">
-            Scopri i nuovi candidati , visualizza la scheda e contattaci 
+              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
             </div>
           </div>
-          <Candidates dataCL = {dataCL} />
+
           <div className="carousel-outer" data-aos="fade-up">
             <div className="candidates-carousel default-dots">
-            
+              <Candidates dataCL={dataCL} />
             </div>
           </div>
         </div>
       </section>
+      
 
 
 

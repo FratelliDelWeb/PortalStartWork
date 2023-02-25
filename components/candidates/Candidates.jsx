@@ -46,13 +46,14 @@ const Candidates = ({dataCL}) => {
               <figure className="image">
                 <img src={candidate.avatar} alt="avatar" />
               </figure>
-              <h4 className="name">{candidate.name}</h4>
-              <span className="designation">{candidate.designation}</span>
+              <h4 className="name">{candidate.publicName}</h4>
+              <span className="designation">{candidate.mansione}</span>
+              
               <div className="location">
                 <i className="flaticon-map-locator"></i> {candidate.location.city}
               </div>
               <Link
-                href={`/candidates-single-v1/${candidate._id}`}
+                href={`/candidates/${candidate._id}`}
                 className="theme-btn btn-style-three"
               >
                 <span className="btn-title">View Profile</span>

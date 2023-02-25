@@ -10,7 +10,7 @@ const FormContent = () => {
       <div className="form-group">
         <label>Password</label>
         <input
-          id="password-field"
+          
           type="password"
           name="password"
           placeholder="Password"

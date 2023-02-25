@@ -58,7 +58,7 @@ const index = ({user , cookie}) => {
                <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title flex-shrink-0">
-                  <i class="las la-lock"></i>
+                  <i className="las la-lock"></i>
                     <h4>Reimposta la tua password</h4>
                     
                   </div>

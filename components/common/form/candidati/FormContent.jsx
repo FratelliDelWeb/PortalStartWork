@@ -105,14 +105,14 @@ const FormContent = () => {
   };
 
   return (
-    <form method="POST" class="p-3" onSubmit={(e) => handleSubmit(e, newUser)}>
+    <form method="POST" className="p-3" onSubmit={(e) => handleSubmit(e, newUser)}>
       {newUserSend !== "ok" ? (
         <div>
           {newUserSend === "send" && newUserSend !== "ok" ? (
             <Loader></Loader>
           ) : (
-            <div class="row">
-              <div class="error">
+            <div className="row">
+              <div className="error">
                 {errorSend ? (
                   <div>
                     <h6>{errorSend}</h6>
@@ -121,8 +121,8 @@ const FormContent = () => {
                   <div></div>
                 )}
               </div>
-              <div class="row mt-20">
-                <div class="col-6 mt-20">
+              <div className="row mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Nome</label>
                     <input
@@ -143,7 +143,7 @@ const FormContent = () => {
                   {error.name && <span className="err">{error.name}</span>}
                 </div>
 
-                <div class="col-6 mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Cognome</label>
                     <input
@@ -161,7 +161,7 @@ const FormContent = () => {
                     />
                   </div>
                 </div>
-                <div class="col-6 mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Telefono</label>
                     <input
@@ -179,7 +179,7 @@ const FormContent = () => {
                     />
                   </div>
                 </div>
-                <div class="col-6 mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Email</label>
                     <input
@@ -203,7 +203,7 @@ const FormContent = () => {
                   </div>
                 </div>
 
-                <div class="col-6 mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Età</label>
                     <input
@@ -222,7 +222,7 @@ const FormContent = () => {
                   </div>
                 </div>
 
-                <div class="col-6 mt-20">
+                <div className="col-6 mt-20">
                   <div className="form-group">
                     <label>Sesso</label>
                     <select
@@ -245,7 +245,7 @@ const FormContent = () => {
                   </div>
                 </div>
 
-                <div class="col-12 mt-20">
+                <div className="col-12 mt-20">
                   <div className="form-group">
                     <label>Mansione</label>
                     <input
@@ -264,8 +264,8 @@ const FormContent = () => {
                 </div>
               </div>
 
-              <div class="row mt-20">
-                <div class="col-6">
+              <div className="row mt-20">
+                <div className="col-6">
                   <div className="form-group">
                     <label>Città</label>
                     <input
@@ -288,7 +288,7 @@ const FormContent = () => {
                     />
                   </div>
                 </div>
-                <div class="col-6">
+                <div className="col-6">
                   <div className="form-group">
                     <label>Disponibile a soistarsi entro</label>
                     <InputRange
@@ -309,7 +309,7 @@ const FormContent = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-12 mt-20">
+              <div className="col-12 mt-20">
                 <div className="form-group">
                   <label>Username</label>
                   <input
@@ -333,7 +333,7 @@ const FormContent = () => {
                   />
                 </div>
               </div>
-              <div class="col-6 mt-20">
+              <div className="col-6 mt-20">
                 <div className="form-group">
                   <label>Password</label>
                   <input
@@ -353,7 +353,7 @@ const FormContent = () => {
                     }
                     onBlur={(e) => validateInput(e)}
                   />
-                  <span class="p-viewer2" onClick={togglePassword}>
+                  <span className="p-viewer2" onClick={togglePassword}>
                     {passwordType === "password" ? (
                       <i className="fa fa-eye"></i>
                     ) : (
@@ -367,7 +367,7 @@ const FormContent = () => {
                 )}
               </div>
 
-              <div class="col-6 mt-20">
+              <div className="col-6 mt-20">
                 <div className="form-group">
                   <label>Conferma passsword</label>
                   <input
@@ -396,7 +396,7 @@ const FormContent = () => {
           {newUserSend === "send" && newUserSend !== "ok" ? (
             <h3> Stiamo inoltrando la tua candidatura</h3>
           ) : (
-            <div class="row mt-50">
+            <div className="row mt-50">
               <div className="form-group">
                 <button className="theme-btn btn-style-one" type="submit">
                   INVIA CANDIDATURA

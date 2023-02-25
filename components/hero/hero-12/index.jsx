@@ -33,7 +33,7 @@ const index = () => {
         <div className="row">
           <div className="content-column col-lg-12 col-md-12 col-sm-12">
             <div className="inner-column">
-              <div class="row">
+              <div className="row">
                   <div className="content-column col-lg-6 col-md-12 col-sm-12">
                           <div className="title-box" data-aos="fade-up">
                               <h3>
@@ -58,12 +58,12 @@ const index = () => {
                                Cosa stai cercando ?
                               </div>
                               {category === "Lavoro" ?
-                              (<button class="theme-btn -active mr-30" onClick={() => setCategory("Lavoro")} type="button"><b>LAVORO </b></button>): 
-                              ( <button class="theme-btn -white mr-30" onClick={() => setCategory("Lavoro")} type="button"> <b>LAVORO </b> </button>)
+                              (<button className="theme-btn -active mr-30" onClick={() => setCategory("Lavoro")} type="button"><b>LAVORO </b></button>): 
+                              ( <button className="theme-btn -white mr-30" onClick={() => setCategory("Lavoro")} type="button"> <b>LAVORO </b> </button>)
                               };
                               {category === "Candidato" ?
-                              (<button class="theme-btn -active mr-30" onClick={() => setCategory("Candidato")} type="button"><b>CANDIDATO </b></button>): 
-                              ( <button class="theme-btn -white mr-30" onClick={() => setCategory("Candidato")} type="button"> <b>CANDIDATO </b> </button>)
+                              (<button className="theme-btn -active mr-30" onClick={() => setCategory("Candidato")} type="button"><b>CANDIDATO </b></button>): 
+                              ( <button className="theme-btn -white mr-30" onClick={() => setCategory("Candidato")} type="button"> <b>CANDIDATO </b> </button>)
                               };
                              
                           </div>

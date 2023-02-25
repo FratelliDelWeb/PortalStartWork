@@ -101,7 +101,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, cookieSend }) => {
                               <span className="company-logo">
                                 <img src={dataOL?.logo} alt="logo" />
                               </span>
-                              <h4 class="m-0">{dataOL?.jobTitle}</h4>
+                              <h4 className="m-0">{dataOL?.jobTitle}</h4>
                               <p>Codice Offerta: {dataOL?.codiceJod}</p>
                               <ul className="job-info">
                                 <li>

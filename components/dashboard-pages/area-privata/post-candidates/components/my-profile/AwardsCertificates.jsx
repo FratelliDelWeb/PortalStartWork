@@ -56,7 +56,7 @@ const [editModeX , setEditMode] = useState("off");
         {editModeX === ("off") ? (  <button onClick={setModeOn} href="/#education">
               <span className="la la-pencil"></span>
             </button>) : (  <button onClick={setModeOff} href="/#education">
-            <i class="las la-trash-restore-alt"></i> 
+            <i className="las la-trash-restore-alt"></i> 
             </button>)}
           
            
@@ -91,7 +91,7 @@ const [editModeX , setEditMode] = useState("off");
   </div>
 ))}</div>) : (
 
-<div class="box-resumes-edit"> {inputList.map((x, i) => {
+<div className="box-resumes-edit"> {inputList.map((x, i) => {
     return (
           <div key={i} className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
            <div className="col-6 mt-20">
