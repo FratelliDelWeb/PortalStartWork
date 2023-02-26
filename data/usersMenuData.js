@@ -37,18 +37,18 @@ module.exports = [
   }, */
   {
     id: 5,
-    name: "Ultimi Candidati",
+    name: "Candidati",
     icon: "la-id-card",
     routePath: "/area-privata/all-applicants",
     active: "",
   },
-  {
+/*   {
     id: 6,
     name: "Cerca Candidato",
     icon: "la-search",
     routePath: "/area-privata/shortlisted-resumes",
     active: "",
-  },
+  }, */
   /*   {
     id: 7,
     name: "Packages",

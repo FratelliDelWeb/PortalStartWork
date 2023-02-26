@@ -23,18 +23,12 @@ module.exports = [
 
   {
     id: 5,
-    name: "Ultimi Candidati",
+    name: "Candidati",
     icon: "la-file-invoice",
     routePath: "/employers-dashboard/all-applicants",
     active: "",
   },
-  {
-    id: 6,
-    name: "Cerca Candidato",
-    icon: "la-bookmark-o",
-    routePath: "/employers-dashboard/shortlisted-resumes",
-    active: "",
-  },
+
   {
     id: 10,
     name: "Cambia password",
