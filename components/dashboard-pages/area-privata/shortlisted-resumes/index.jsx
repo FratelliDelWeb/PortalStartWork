@@ -53,7 +53,7 @@ const index = ({props , dataCL}) => {
                   <WidgetToFilterBox setDataCLfilter= {setDataCLfilter} dataCL={dataCL} />
                 </div>
                 {/* End widget top filter box */}
-                <WidgetContentBox dataCL={dataCL} />
+                <WidgetContentBox dataCL={dataCLFiltered} />
               </div>
               {/* <!-- applicants Widget --> */}
             </div>

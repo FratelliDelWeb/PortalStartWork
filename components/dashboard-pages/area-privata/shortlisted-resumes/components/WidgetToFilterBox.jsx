@@ -9,9 +9,10 @@ const [dataCLfiltered, setdataCLfiltered] = useState(dataCL);
 
 
 const setSearch = (e) => {
-console.log(e)
-let filtered = dataCL.filter(t=>t.name == e);
-console.log(filtered)
+let filtered = dataCL.filter(t=> t.name.includes(e));
+console.log(filtered);
+
+setDataCLfilter(filtered)
 
 };
 
