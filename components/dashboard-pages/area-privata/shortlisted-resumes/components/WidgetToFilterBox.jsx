@@ -1,4 +1,20 @@
-const WidgetToFilterBox = () => {
+import { useState } from "react";
+
+
+const WidgetToFilterBox = ({dataCL,setDataCLfilter}) => {
+  
+console.log(dataCL)
+const [dataCLfiltered, setdataCLfiltered] = useState(dataCL);
+
+
+
+const setSearch = (e) => {
+console.log(e)
+let filtered = dataCL.filter(t=>t.name == e);
+console.log(filtered)
+
+};
+
   return (
     <div className="chosen-outer">
       {/* <!--search box--> */}
@@ -11,7 +27,7 @@ const WidgetToFilterBox = () => {
               name="search-field"
               placeholder="Search"
               required
-            />
+              onChange={(e) =>setSearch(e.target.value)}  />
           </div>
         </form>
       </div>

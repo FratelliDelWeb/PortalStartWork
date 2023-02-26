@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import InputRange from "react-input-range";
 import Education from "./Education";
+import Map from "../../../../Map";
 import AwardsCertificates from "./AwardsCertificates";
+import Loader from "../../../../../loader/Loader";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormInfoBox = (props) => {
   const router = useRouter();
@@ -18,6 +20,7 @@ const FormInfoBox = (props) => {
       .then((res) => {
         console.log("res", res.data);
         setnewUserSend("ok");
+        console.log(newUserSend)
       })
       .catch((err) => {
         console.log(err);
@@ -49,6 +52,8 @@ const FormInfoBox = (props) => {
     phone: `+393923784332`,
     age: `19`,
     rangeWithin: 50,
+    languages: ['Inglese', 'Italiano', 'Tedesco'],
+    skills:['App', 'Web', 'Pulizie'],
     gender: `Male`,
     location: {
       city: "",
@@ -61,6 +66,7 @@ const FormInfoBox = (props) => {
       email: "consfedes_justtotry@gmail.com",
     },
     mansione: "Tuttoqualsiasi",
+    category: "Industrial",
     educazione: [
       {
         titoloStudio: "Elemntarea",
@@ -106,7 +112,7 @@ const FormInfoBox = (props) => {
   });
   const [errorSend, setErrorSend] = useState("errore");
   const [passwordType, setPasswordType] = useState("password");
- 
+  console.log(newUser)
 
   const setEducazioneToSend = (educazione) => {
     setnewUser({ ...newUser, educazione: educazione });
@@ -117,6 +123,26 @@ const FormInfoBox = (props) => {
     console.log(newUser.premi);
   }; 
 
+const setArrayLinguagesToPush = (e) =>{
+  let newArry = []
+  for(var lingue  of e  ){
+    newArry.push(lingue.value);
+  }
+  console.log(newArry);
+  setnewUser({ ...newUser, languages: newArry });
+  console.log(newUser)
+}
+
+
+const setArraySkillsToPush = (e) =>{
+  let newArry = []
+  for(var skill  of e  ){
+    newArry.push(skill.value);
+  }
+  console.log(newArry);
+  setnewUser({ ...newUser, skills: newArry });
+  console.log(newUser)
+}
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -156,13 +182,39 @@ const FormInfoBox = (props) => {
     { value: "Creative Art", label: "Creative Art" },
   ];
 
+  const lingue = [
+    { value: "Italiano", label: "Italiano" },
+    { value: "Inglese", label: "Inglese" },
+    { value: "Spagnolo", label: "Spagnolo" },
+    { value: "Tedesco", label: "Tedesco" },
+    { value: "Cinese", label: "Cinese" },
+  
+  ];
+  const skills = [
+    { value: "Programmazione", label: "Programmazione" },
+    { value: "Web", label: "Web" },
+    { value: "Medicina", label: "Medicina" },
+    { value: "Soport", label: "Sport" },
+    { value: "Musica", label: "Musica" },
+    { value: "Scrittura", label: "Scrittura" },
+    { value: "Probelm Solving", label: "Probelm Solving" },
+  
+  ];
+
   return (
     <form
       method="POST"
       onSubmit={(e) => handleSubmit(e, newUser)}
       className="default-form"
     >
+   {newUserSend === "ok" ? (<div>
+<h1>Candidato inserito correttamtne</h1>
+ </div>) : (<div>
+
+
+  {newUserSend !== "send" ? (
       <div className="row">
+     
         <div className="col-6 mt-20">
           <div className="form-group">
             <label>Nome</label>
@@ -282,7 +334,7 @@ const FormInfoBox = (props) => {
           </div>
         </div>
 
-        <div className="col-12 mt-20">
+        <div className="col-6 mt-20">
           <div className="form-group">
             <label>Mansione</label>
             <input
@@ -299,9 +351,96 @@ const FormInfoBox = (props) => {
             />
           </div>
         </div>
-        <div className="col-6">
-          <div className="form-group">
-            <label>Città</label>
+
+        <div className="col-6
+         mt-20">
+
+
+        <div className="form-group">
+            <label>Categoria</label>
+           
+<select
+              onBlur={(e) => validateInput(e)}
+              value={newUser.category}
+              className={
+                error.gender
+                  ? "errorInput chosen-single form-select"
+                  : "chosen-single form-select"
+              }
+              onChange={(e) =>
+                setnewUser({ ...newUser, category: e.target.value })
+              }
+              name="category"
+              placeholder="category"
+              required
+            >
+              <option>Industriale</option>
+              <option>Informatica</option>
+              <option>Medico Sanitario</option>
+              <option>Commerciale</option>
+            </select>
+          </div>
+
+          </div>
+
+
+
+  {/* <!-- Search Select --> */}
+  <div className="col-lg-6 col-md-12">
+
+
+
+  <div className="form-group ">
+          <label>Lingue parlate </label>
+          <Select
+            defaultValue={[lingue[2]]}
+            isMulti
+            name="colors"
+            options={lingue}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(e) => setArrayLinguagesToPush(e)}
+          />
+          
+        </div>
+
+
+
+
+  </div>
+
+  {/* <!-- Search Select --> */}
+  <div className="col-lg-6 col-md-12">
+
+
+
+  <div className="form-group ">
+          <label>Skills </label>
+          <Select
+            defaultValue={[skills[2]]}
+            isMulti
+            name="colors"
+            options={skills}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(e) => setArraySkillsToPush(e)}
+          />
+          
+        </div>
+
+
+
+
+  </div>
+
+
+        <div className="row">
+          
+        <div className="col-lg-6 col-md-12">
+       
+        <div className="row">
+        <div className="form-group col-lg-12 col-md-12">
+       <label>Città</label>
             <input
               value={newUser.location.city}
               onBlur={(e) => validateInput(e)}
@@ -320,11 +459,31 @@ const FormInfoBox = (props) => {
               name="cittaà"
               placeholder="Città"
             />
-          </div>
         </div>
-        <div className="col-6">
-          <div className="form-group">
-            <label>Disponibile a soistarsi entro</label>
+
+
+        <div className=" col-lg-6 col-md-6">
+        <div className="form-group">
+       
+          <label>Latitude</label>
+          <input type="text" name="name" placeholder="Melbourne" />
+
+          </div>
+        
+        </div>
+
+        {/* <!-- Input --> */}
+        <div className="col-lg-6 col-md-6">
+        <div className="form-group ">
+         
+          <label>Longitude</label>
+          <input type="text" name="name" placeholder="Melbourne" />
+          </div>
+        
+        </div>
+        <div className="col-lg-12 col-md-12">
+          <div className="form-group ">
+          <label>Disponibile a soistarsi entro</label>
             <InputRange
               formatLabel={(value) => ``}
               minValue={0}
@@ -334,14 +493,28 @@ const FormInfoBox = (props) => {
               onBlur={(e) => validateInput(e)}
               onChange={(value) => handleOnChange(value)}
             />
+            </div>
           </div>
-          <div className="input-outer">
-            <div className="amount-outer">
-              <span className="area-amount">{getDestination.max}</span>
-              km
+
+
+        <div className="col-lg-6 col-md-12">
+          <button className="theme-btn btn-style-three">Cerca città</button>
+          </div>
+      
+        </div>
+        </div>
+
+
+        <div className="col-lg-6 col-md-12">
+        <div className="form-group ">
+          <div className="map-outer">
+            <div style={{ height: "420px", width: "100%" }}>
+              <Map />
             </div>
           </div>
         </div>
+          </div>
+          </div>      
 
         <div className="col-12 mt-20">
           <div className="form-group">
@@ -440,7 +613,15 @@ const FormInfoBox = (props) => {
             Save
           </button>
         </div>
-      </div>
+      </div>) : (<div>
+        <Loader></Loader>
+<h1>Stiamo inserendo il nuovo candidato</h1>
+
+
+      </div>)}
+
+</div>) }
+
     </form>
   );
 };

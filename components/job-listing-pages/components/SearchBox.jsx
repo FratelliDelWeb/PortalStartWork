@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addKeyword } from "../../../features/filter/filterSlice";
 
-const SearchBox = () => {
+const  
+SearchBox = () => {
     const { jobList } = useSelector((state) => state.filter);
     const [getKeyWord, setkeyWord] = useState(jobList.keyword);
     const dispath = useDispatch();

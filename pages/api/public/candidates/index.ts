@@ -22,6 +22,7 @@ export default async function handler(
       "publicName": 1,
       "created_at": 1,
       "mansione": 1,
+      "category": 1
     });
     res.status(200).json(data);
   } catch (error) {

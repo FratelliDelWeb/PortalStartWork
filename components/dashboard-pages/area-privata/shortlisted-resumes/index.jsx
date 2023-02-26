@@ -7,8 +7,18 @@ import CopyrightFooter from "../../CopyrightFooter";
 import WidgetToFilterBox from "./components/WidgetToFilterBox";
 import WidgetContentBox from "./components/WidgetContentBox";
 import MenuToggler from "../../MenuToggler";
+import { useState } from "react";
 
-const index = ({dataCL}) => {
+const index = ({props , dataCL}) => {
+
+  const [dataCLFiltered , setDataCLFiltered] = useState(dataCL);
+
+
+  const setDataCLfilter = (dataFilter) => {
+    setDataCLFiltered(dataFilter);
+    console.log(dataCL);
+  };
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -40,7 +50,7 @@ const index = ({dataCL}) => {
               <div className="applicants-widget ls-widget">
                 <div className="widget-title">
                   <h4>Shorlist Resumes</h4>
-                  <WidgetToFilterBox />
+                  <WidgetToFilterBox setDataCLfilter= {setDataCLfilter} dataCL={dataCL} />
                 </div>
                 {/* End widget top filter box */}
                 <WidgetContentBox dataCL={dataCL} />
