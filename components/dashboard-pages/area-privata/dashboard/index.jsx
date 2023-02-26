@@ -38,14 +38,14 @@ const Index = ({dataCL}) => {
           {/* Collapsible sidebar button */}
 
           <div className="row">
-            <TopCardBlock />
+            <TopCardBlock dataCL= {dataCL} />
           </div>
           
           <div className="col-lg-12">
               {/* <!-- applicants Widget --> */}
               <div className="applicants-widget ls-widget">
                 <div className="widget-title">
-                  <h4>Ultimi Candidati users</h4>
+                  <h4>Ultime Candidature ricevute </h4>
                 </div>
                 <div className="widget-content">
                   <div className="row">

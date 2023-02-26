@@ -1,39 +1,47 @@
-const TopCardBlock = () => {
+import { useState } from "react";
+
+
+const TopCardBlock = ({dataCL}) => {
+
+
+const [allCandidates,setallCandidates] =useState(dataCL); 
+const [approved,setApproved] =useState(dataCL.filter(function (el) { return el.status === "approved" }));
+const [delated,setDelated] =useState(dataCL.filter(function (el) { return el.status === "delate" }));
+const [waiting,setWaitng] =useState(dataCL.filter(function (el) { return el.status === "waiting" }));
+const [added,setAdded] =useState(dataCL.filter(function (el) { return el.status === "new" }));
+
+
+
+
+
   const cardContent = [
     {
       id: 1,
       icon: "la-user-check",
-      countNumber: "22",
+      countNumber: approved.length,
       metaName: "Candidati approvati",
       uiClass: "ui-green",
     },
     {
-      id: 2,
-      icon: "la-user-plus",
-      countNumber: "9382",
-      metaName: "Candidati impegnato",
-      uiClass: "ui-blu",
-    },
-    {
       id: 3,
       icon: "la-user-clock",
-      countNumber: "7",
+      countNumber: waiting.length,
       metaName: "Candidati in attesa ",
       uiClass: "ui-yellow",
     },
     {
       id: 4,
       icon: "la-user-slash",
-      countNumber: "32",
+      countNumber: delated.length,
       metaName: "Candidati Scartati",
       uiClass: "ui-red",
     },
     {
       id: 5,
       icon: "la-user-clock",
-      countNumber: "32",
-      metaName: "Candidati in revisione",
-      uiClass: "ui-yellow",
+      countNumber: allCandidates.length,
+      metaName: "Candidati totali",
+      uiClass: "ui-blue",
     },
   ];
 
@@ -41,7 +49,7 @@ const TopCardBlock = () => {
     <>
       {cardContent.map((item) => (
         <div
-          className="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-6"
+          className="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-6"
           key={item.id}
         >
           <div className={`ui-item ${item.uiClass}`}>

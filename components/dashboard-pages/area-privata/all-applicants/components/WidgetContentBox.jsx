@@ -20,8 +20,7 @@ console.log(approved.length)
       <div className="tabs-box">
         <Tabs>
           <div className="aplicants-upper-bar">
-            <h6>Filtra i candidati per stato</h6>
-
+         
             <TabList className="aplicantion-status tab-buttons clearfix">
               <Tab className="tab-btn totals"> Tutti: {allCandidates.length}</Tab>
               <Tab className="tab-btn approved"> Pubblicati: {approved.length}</Tab>
@@ -45,7 +44,7 @@ console.log(approved.length)
                           <img src={candidate.avatar} alt="candidates" />
                         </figure>
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
+                          <Link href={`/area-privata/candidates/${candidate._id}`}>
                             {candidate.name}
                           </Link>
                         </h4>
@@ -195,7 +194,7 @@ console.log(approved.length)
                           <img src={candidate.avatar} alt="candidates" />
                         </figure>
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
+                          <Link href={`/area-privata/candidates/${candidate._id}`}>
                             {candidate.name}
                           </Link>
                         </h4>
@@ -270,7 +269,7 @@ console.log(approved.length)
                           <img src={candidate.avatar} alt="candidates" />
                         </figure>
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
+                          <Link href={`/area-privata/candidates/${candidate._id}`}>
                             {candidate.name}
                           </Link>
                         </h4>
@@ -345,7 +344,7 @@ console.log(approved.length)
                           <img src={candidate.avatar} alt="candidates" />
                         </figure>
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
+                          <Link href={`/area-privata/candidates/${candidate._id}`}>
                             {candidate.name}
                           </Link>
                         </h4>
