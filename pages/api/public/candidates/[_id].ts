@@ -21,7 +21,6 @@ export default async function handler(
           "gender": 1,
           "publicName": 1,
           "created_at": 1,
-          "category":1,
           "mansione": 1,
         
       });
