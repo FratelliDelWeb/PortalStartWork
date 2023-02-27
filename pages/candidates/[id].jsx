@@ -172,8 +172,10 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   <div className="btn-box">
                     <a
                       className="theme-btn btn-style-one"
-                      href="/images/sample.pdf"
-                      download
+                     /*  href="/images/sample.pdf"
+                      download */
+                      data-bs-toggle="modal"
+                      data-bs-target="#richiestaPopupModal"
                     >
                       Richiedi informazioni
                     </a>
