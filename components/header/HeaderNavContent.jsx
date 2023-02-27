@@ -41,18 +41,25 @@ const HeaderNavContent = () => {
                      
                     </li>
                     <li>
-                    <Link href="/contatti">
-                    Contatti</Link>
-                     
-                    </li>
-                    <li>
                     <Link href="/chi-siamo">
                     Chi Siamo</Link>
                      
                     </li>
+                    <li>
+                    <Link href="/servizi">
+                    Servizi</Link>
+                     
+                    </li>
+                    
+                    <li>
+                    <Link href="/contatti">
+                    Contatti</Link>
+                     
+                    </li>
+                   
                   
 
-                    <li
+                   {/*  <li
                         className={`${
                             isActiveParentChaild(pageItems, router.asPath) ||
                             isActiveParentChaild(
@@ -118,7 +125,7 @@ const HeaderNavContent = () => {
                                 </li>
                             ))}
                         </ul>
-                    </li>
+                    </li> */}
                     {/* End Pages menu items */}
                 </ul>
             </nav>
