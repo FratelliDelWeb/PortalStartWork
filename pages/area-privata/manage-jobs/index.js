@@ -7,6 +7,7 @@ export async function getServerSideProps({ req }) {
   return { props: { dataOL: data } };
 }
 const index = ({ dataOL }) => {
+  console.log(dataOL)
   return (
     <>
       <Seo pageTitle="Manage Jobs" />

@@ -10,7 +10,7 @@ import MenuToggler from "../../MenuToggler";
 
 const index = ({dataOL}) => {
 
-  
+  console.log(dataOL)
 
 
 

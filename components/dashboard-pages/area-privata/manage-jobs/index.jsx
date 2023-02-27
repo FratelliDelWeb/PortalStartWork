@@ -8,6 +8,7 @@ import JobListingsTable from "./components/JobListingsTable";
 import MenuToggler from "../../MenuToggler";
 
 const index = ({dataOL}) => {
+  console.log(dataOL)
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
