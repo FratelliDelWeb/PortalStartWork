@@ -4,7 +4,7 @@ import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
-
+import Footer from "../../home-9/Footer"
 const Index = ({dataCL}) => {
   return (
     <>
@@ -53,6 +53,7 @@ const Index = ({dataCL}) => {
         {/* End container */}
       </section>
       {/* <!--End Listing Page Section --> */}
+      <Footer />
     </>
   );
 };

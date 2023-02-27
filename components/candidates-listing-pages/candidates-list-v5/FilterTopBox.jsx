@@ -113,13 +113,13 @@ const FilterTopBox = ({ dataCL }) => {
               <img src={candidate.avatar} alt="candidates" />
             </figure>
             <h4 className="name">
-              <Link href={`/candidates/${candidate.publicName}`}>
-                {candidate.name}
+              <Link href={`/candidates/${candidate._id}`}>
+                {candidate.publicName}
               </Link>
             </h4>
 
             <ul className="candidate-info">
-              <li className="designation">{candidate.designation}</li>
+              <li className="designation">{candidate.mansione}</li>
               <li>
                 <span className="icon flaticon-map-locator"></span>{" "}
                 {candidate.location.city}
@@ -138,9 +138,9 @@ const FilterTopBox = ({ dataCL }) => {
           {/* End content */}
 
           <div className="btn-box">
-            <button className="bookmark-btn me-2">
+         {/*    <button className="bookmark-btn me-2">
               <span className="flaticon-bookmark"></span>
-            </button>
+            </button> */}
             {/* End bookmark-btn */}
 
             <Link
