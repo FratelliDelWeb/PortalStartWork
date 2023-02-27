@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AboutBlock from "../block/AboutBlock";
 
 const About10 = () => {
@@ -26,9 +27,9 @@ const About10 = () => {
 Ci proponiamo come partner e non come fornitori, per poter collaborare con le aziende mettendo a disposizione le nostre esperienze per soddisfare le necessità aziendali legate al mondo del lavoro con soluzioni idone
                   </div>
                 </div>
-                <a href="/invia-candidatura"  className="theme-btn -blue-outline mt-56 md:mt-16">
+                <Link href="/invia-candidatura"  className="theme-btn -blue-outline mt-56 md:mt-16">
                 Invia candidatura
-                </a>
+                </Link>
               </div>
             </div>
             {/* <!-- Content Column --> */}
