@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Education = ({setEducazioneToSend , educazioneList}) => {
+const Experience = ({setEsperienzeToSend , esperienzeList}) => {
 /* INPUT DINAMICI
  */
 
-console.log(educazioneList)
-const [inputList, setInputList] = useState(educazioneList);
-const [editModeX , setEditMode] = useState("off");
+
+console.log(esperienzeList)
+const [inputList, setInputList] = useState(esperienzeList);
+const [editModeX , setEditMode] = useState("on");
 
 
 
@@ -30,7 +31,7 @@ const [editModeX , setEditMode] = useState("off");
     console.log(list)
   };
   const handleAddClick = () => {
-    setInputList([...inputList, {titoloStudio: "", anno: "" , luogo: "" , desc:"" }]);
+    setInputList([...inputList, {titolo: "", startTo: "" , finishTo: "" ,  luogo: "" , desc:"" }]);
   };
   const setModeOn = () => {
     setEditMode("on")
@@ -38,17 +39,17 @@ const [editModeX , setEditMode] = useState("off");
   const setModeOff = () => {
     setEditMode("off")
 
-    setEducazioneToSend(inputList);
+    setEsperienzeToSend(inputList);
   };
   
 
 
   return (
     <div className="form-group col-lg-12 col-md-12">
-    <div className="resume-outer  theme-blue">
+    <div className="resume-outer  theme-yellow">
     <div className="align-items-start justify-content-start upper-title">
    
-      <h4 id ="education"><i class="las la-university"></i>Educazione</h4>
+      <h4 id ="education"><i class="las la-toolbox"></i>Esperienze lavorative</h4>
       <div  className="resume-block ">
       <div className="inner">
       <div className="edit-box">
@@ -71,11 +72,11 @@ const [editModeX , setEditMode] = useState("off");
 {inputList.map((ed, i) => (
   <div key={i} className="resume-block ">
     <div className="inner">
-    <span className="name">    <i class="las la-graduation-cap"></i></span>
+    <span className="name">   <i class="las la-file-invoice"></i></span>
 
       <div className="title-box">
         <div className="info-box">
-          <h3>{ed.titoloStudio}</h3>
+          <h3>{ed.titolo}</h3>
           <span>{ed.luogo}</span>
         </div>
         <div className="edit-box">
@@ -96,12 +97,12 @@ const [editModeX , setEditMode] = useState("off");
           <div key={i} className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
            <div className="col-6 mt-20">
               <div className="form-group">
-                <label>Titolo studio</label>
+                <label>Titolo lavoro</label>
                 <input
                 
                   type="text"
-                  name="titoloStudio"
-                  placeholder={x.titoloStudio}
+                  name="titolo"
+                  placeholder={x.titolo}
                   onChange={e => handleInputChange(e, i)}
                   required
                 />
@@ -109,7 +110,7 @@ const [editModeX , setEditMode] = useState("off");
             </div>
             <div className="col-6 mt-20">
               <div className="form-group">
-                <label>Nome Istituto</label>
+                <label>Luogo</label>
                 <input
                 
                   type="text"
@@ -208,4 +209,4 @@ const [editModeX , setEditMode] = useState("off");
   );
 };
 
-export default Education;
+export default Experience;

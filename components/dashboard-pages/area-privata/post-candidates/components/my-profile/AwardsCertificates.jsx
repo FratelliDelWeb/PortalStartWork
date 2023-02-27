@@ -44,7 +44,7 @@ const [editModeX , setEditMode] = useState("off");
 
 
   return (
-    <div className="form-group col-lg-6 col-md-12">
+    <div className="form-group col-lg-12 col-md-12">
     <div className="resume-outer">
     <div className="align-items-start justify-content-start upper-title">
    

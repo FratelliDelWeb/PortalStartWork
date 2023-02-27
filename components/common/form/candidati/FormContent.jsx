@@ -4,6 +4,8 @@ import { createCandidate } from "../../../../services/public/createCandidate";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Loader from "../../../loader/Loader";
+import Experience from "./Experience";
+
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormContent = () => {
   const router = useRouter();
@@ -59,6 +61,15 @@ const FormContent = () => {
       password: "JustToTry",
       email: "consfedes_justtotry@gmail.com",
     },
+    esperienze: [
+      {
+        titolo: "",
+        startTo: "",
+        finishTo: "",
+        luogo: "",
+        desc: "",
+      },
+    ],
     mansione: "Tuttoqualsiasi",
   });
 
@@ -76,6 +87,10 @@ const FormContent = () => {
   const [errorSend, setErrorSend] = useState("errore");
   const [passwordType, setPasswordType] = useState("password");
 
+  const setEsperienzeToSend = (esperienze) => {
+    setnewUser({ ...newUser, esperienze: esperienze });
+    console.log(newUser.esperienze);
+  }; 
   const validateInput = (e) => {
     console.log(newUser);
     let { name, value } = e.target;
@@ -263,7 +278,12 @@ const FormContent = () => {
                   </div>
                 </div>
               </div>
-
+                      <div class="row mt-20">
+                      <Experience
+          setEsperienzeToSend={setEsperienzeToSend}
+          esperienzeList={newUser.esperienze}
+        ></Experience>
+                      </div>
               <div className="row mt-20">
                 <div className="col-6">
                   <div className="form-group">

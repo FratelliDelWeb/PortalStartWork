@@ -6,6 +6,7 @@ import InputRange from "react-input-range";
 import Education from "./Education";
 import Map from "../../../../Map";
 import AwardsCertificates from "./AwardsCertificates";
+import Experience from "./Experience";
 import Loader from "../../../../../loader/Loader";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormInfoBox = (props) => {
@@ -83,6 +84,22 @@ const FormInfoBox = (props) => {
         desc: "Scuola di terzo grado obbligatoria",
       },
     ],
+    esperienze: [
+      {
+        titolo: "Lavapiatti",
+        startTo: "2002",
+        finishTo: "208",
+        luogo: "Pizzeria pomodoro",
+        desc: "Riordino sala - lavapiatti - aiuto chef",
+      },
+      {
+        titolo: "Contabile ",
+        startTo: "2009",
+        finishTo: "2012",
+        luogo: "Studio Bellini",
+        desc: "contabile commerciale -studio legale",
+      },
+    ],
     premi: [
       {
         titolo: "Elemntarea",
@@ -122,7 +139,10 @@ const FormInfoBox = (props) => {
     setnewUser({ ...newUser, premi: premi });
     console.log(newUser.premi);
   }; 
-
+  const setEsperienzeToSend = (esperienze) => {
+    setnewUser({ ...newUser, esperienze: esperienze });
+    console.log(newUser.esperienze);
+  }; 
 const setArrayLinguagesToPush = (e) =>{
   let newArry = []
   for(var lingue  of e  ){
@@ -603,6 +623,13 @@ const setArraySkillsToPush = (e) =>{
           setEducazioneToSend={setEducazioneToSend}
           educazioneList={newUser.educazione}
         ></Education>
+
+         <Experience
+          setEsperienzeToSend={setEsperienzeToSend}
+          esperienzeList={newUser.esperienze}
+        ></Experience>
+
+
         <AwardsCertificates
           setPremiCertificatiToSend={setPremiCertificatiToSend}
           educazioneList={newUser.premi}

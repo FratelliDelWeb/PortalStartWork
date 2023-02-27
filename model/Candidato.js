@@ -87,6 +87,9 @@ const candidatoSchema = new mongoose.Schema({
   premi: {
     type: [{}],
   },
+  esperienze: {
+    type: [{}],
+  },
   interstedTo: [
     {
       type: mongoose.Types.ObjectId,
