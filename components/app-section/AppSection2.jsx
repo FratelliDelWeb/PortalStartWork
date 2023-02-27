@@ -3,20 +3,20 @@ const AppSection2 = () => {
     {
       id: 1,
       icon: "icon-case",
-      title: "Job Search",
+      title: "Ricerca di lavoro",
       text: `Search through millions of jobs and find the right fit. Simply swipe right to apply.`,
     },
     {
       id: 2,
       icon: "icon-contact",
-      title: "Search on the go",
+      title: "Ricerca candidato",
       text: `Search through millions of jobs and find the right fit. Simply swipe right to apply.`,
     },
     {
       id: 3,
       icon: "icon-doc",
-      title: "Instant Notifications",
-      text: `Search through millions of jobs and find the right fit. Simply swipe right to apply.`,
+      title: "Costruzione CV professione",
+      text: `Raccogli le tue informazioni profesisonali con l'auito dei nostri consulenti`,
     },
   ];
 
@@ -43,8 +43,8 @@ const AppSection2 = () => {
               data-aos="fade-left"
             >
               <div className="sec-title">
-                <span className="sub-title">DOWNLOAD & ENJOY</span>
-                <h2>Get the Superio Job Search App</h2>
+                <span className="sub-title">ISCRIVITI E INZIA</span>
+                <h2>Start Work è il punto di incontro concreto tra aziende e lavoratori, offrendo i seguenti servizi:</h2>
               </div>
 
               <div className="content-icons">
@@ -61,14 +61,14 @@ const AppSection2 = () => {
                 ))}
               </div>
 
-              <div className="download-btn content-icons-btn">
+            {/*   <div className="download-btn content-icons-btn">
                 <a href="#">
                   <img src="images/icons/apple.png" alt="icons" />
                 </a>
                 <a href="#">
                   <img src="images/icons/google.png" alt="icons" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

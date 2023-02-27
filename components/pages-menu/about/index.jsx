@@ -1,6 +1,6 @@
 import LoginPopup from "../../common/form/login/LoginPopup";
 import Partner from "../../common/partner/Partner";
-import FooterDefault from "../../footer/common-footer";
+import Footer from "../../home-9/Footer";
 import DefaulHeader from "../../header/DefaulHeader";
 import MobileMenu from "../../header/MobileMenu";
 import Funfact from "../../fun-fact-counter/Funfact";
@@ -10,7 +10,8 @@ import CallToAction2 from "../../call-to-action/CallToAction2";
 import Testimonial2 from "../../testimonial/Testimonial2";
 import Block1 from "../../block/Block1";
 import Breadcrumb from "../../common/Breadcrumb";
-
+import StepsBlock from "../../block/StepsBlock";
+import AppSection2 from "../../app-section/AppSection2";
 const index = () => {
   return (
     <>
@@ -26,22 +27,23 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="About Us" meta="About Us" />
+      <Breadcrumb title="Chi siamo" meta="Chi siamo" />
       {/* <!--End Page Title--> */}
 
       <section className="about-section-three">
         <div className="auto-container">
-          <ImgBox />
-
+      {/*     <ImgBox /> */}
+      <AppSection2></AppSection2>
+     
           {/* <!-- Fun Fact Section --> */}
-          <div className="fun-fact-section">
+         {/*  <div className="fun-fact-section">
             <div className="row">
               <Funfact />
             </div>
-          </div>
+          </div> */}
           {/* <!-- Fun Fact Section --> */}
 
-          <IntroDescriptions />
+         {/*  <IntroDescriptions /> */}
         </div>
       </section>
       {/* <!-- End About Section Three --> */}
@@ -49,52 +51,9 @@ const index = () => {
       <CallToAction2 />
       {/* <!-- End CallToAction2 --> */}
 
-      <section className="testimonial-section-two">
-        <div className="container-fluid">
-          <div className="testimonial-left">
-            <img src="images/resource/testimonial-left.png" alt="testimonial" />
-          </div>
-          {/* End left img group */}
-
-          <div className="testimonial-right">
-            <img
-              src="images/resource/testimonial-right.png"
-              alt="testimonial"
-            />
-          </div>
-          {/* End right img group */}
-
-          <div className="sec-title text-center">
-            <h2>Testimonials From Our Customers</h2>
-            <div className="text">
-              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
-            </div>
-          </div>
-          {/* <!-- Sec Title --> */}
-
-          <div className="carousel-outer" data-aos="fade-up">
-            <div className="testimonial-carousel">
-              <Testimonial2 />
-            </div>
-            {/* <!-- Testimonial Carousel --> */}
-          </div>
-        </div>
-      </section>
       {/* <!-- End Testimonial Section --> */}
 
-      <section className="work-section style-two">
-        <div className="auto-container">
-          <div className="sec-title text-center">
-            <h2>How It Works?</h2>
-            <div className="text">Job for anyone, anywhere</div>
-          </div>
-          {/* End sec-title */}
-
-          <div className="row" data-aos="fade-up">
-            <Block1 />
-          </div>
-        </div>
-      </section>
+      <StepsBlock />
       {/* <!-- End Work Section --> */}
 
       <section className="clients-section">
@@ -107,7 +66,7 @@ const index = () => {
       </section>
       {/* <!-- End Clients Section--> */}
 
-      <FooterDefault />
+      <Footer />
       {/* <!-- End Main Footer --> */}
     </>
   );

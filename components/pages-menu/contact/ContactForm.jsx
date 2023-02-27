@@ -8,7 +8,7 @@ const ContactForm = () => {
         {/* End .col */}
 
         <div className="col-lg-6 col-md-12 col-sm-12 form-group">
-          <label>Your Name</label>
+          <label>Nome</label>
           <input
             type="text"
             name="username"
@@ -20,7 +20,7 @@ const ContactForm = () => {
         {/* End .col */}
 
         <div className="col-lg-6 col-md-12 col-sm-12 form-group">
-          <label>Your Email</label>
+          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -32,7 +32,7 @@ const ContactForm = () => {
         {/* End .col */}
 
         <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-          <label>Subject</label>
+          <label>Oggetto</label>
           <input
             type="text"
             name="subject"
@@ -44,7 +44,7 @@ const ContactForm = () => {
         {/* End .col */}
 
         <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-          <label>Your Message</label>
+          <label>Messaggio</label>
           <textarea
             name="message"
             placeholder="Write your message..."
@@ -60,7 +60,7 @@ const ContactForm = () => {
             id="submit"
             name="submit-form"
           >
-            Send Massage
+           Invia
           </button>
         </div>
         {/* End .col */}

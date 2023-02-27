@@ -15,27 +15,25 @@ const StepsBlock = () => {
           <div className="content-column col-lg-6 col-md-12 col-sm-12">
             <div className="inner-column" data-aos="fade-up">
               <div className="sec-title -type-2">
-                <h2>
-                  Find Jobs with 3 easy
+                <h3>
+                Start Work è il punto di incontro concreto tra aziende e lavoratori.
                   <br /> steps
-                </h2>
+                </h3>
                 <div className="text">
-                  Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt. Labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation.
+                Start Work è un contenitore di esperienze imprenditoriali e professionali in aziende di produzione e in Agenzie per il Lavoro, esperienze necessarie alla comprensione dei fabbisogni e delle dinamiche delle aziende e dei lavoratori che vengono accompagnati in un percorso di conoscenza e valutazione.
                 </div>
                 <ul className="steps-list">
+                <div className="text mb-1">
+                Start Work è il punto di incontro concreto tra aziende e lavoratori, offrendo i seguenti servizi:                </div>
                   <li>
-                    <span className="count">01</span> Register an account to
-                    start
+                    <span className="count">01</span>Somministrazione di lavoro
                   </li>
                   <li>
-                    <span className="count">02</span> Explore over thousands of
-                    resumes
+                    <span className="count">02</span> 
+Ricerca e selezione
                   </li>
                   <li>
-                    <span className="count">03</span> Find the most suitable
-                    candidate
+                    <span className="count">03</span> Politiche attive
                   </li>
                 </ul>
               </div>

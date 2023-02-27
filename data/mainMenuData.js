@@ -323,8 +323,8 @@ export const pageItems = [
         routePath: "/invoice",
     },
     {
-        name: "Contact",
-        routePath: "/contact",
+        name: "Contatti",
+        routePath: "/contatti",
     },
     {
         name: "404",

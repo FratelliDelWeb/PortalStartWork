@@ -51,13 +51,13 @@ const DefaulHeader = () => {
               data-bs-toggle="modal"
               data-bs-target="#loginPopupModal"
             >
-              Login / Register
+            Accedi
             </a>
             <Link
-              href="/employers-dashboard/post-jobs"
+              href="/invia-candidatura"
               className="theme-btn btn-style-one"
             >
-              Job Post
+           Candidati
             </Link>
           </div>
         </div>

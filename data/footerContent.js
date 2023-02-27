@@ -31,7 +31,7 @@ module.exports = [
       { name: "Job Page Invoice", route: "/invoice" },
       { name: "Terms Page", route: "/terms" },
       { name: "Blog", route: "/blog-list-v1" },
-      { name: "Contact", route: "/contact" },
+      { name: "Contatti", route: "/contatti" },
     ],
   },
   {

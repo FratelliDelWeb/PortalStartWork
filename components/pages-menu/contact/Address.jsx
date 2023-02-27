@@ -3,22 +3,22 @@ const Address = () => {
     {
       id: 1,
       iconName: "placeholder",
-      title: "Address",
+      title: "Indirizzo",
       text: (
         <>
-          329 Queensberry Street, North
-          <br /> Melbourne VIC 3051, Australia.
+         Via Napoli 159, 80013 
+          <br /> – Casalnuovo di Napoli
         </>
       ),
     },
     {
       id: 2,
       iconName: "smartphone",
-      title: "Call Us",
+      title: "Telefono",
       text: (
         <>
-          <a href="tel:+4733378901" className="phone">
-            123 456 7890
+          <a href="tel:0812779565" className="phone">
+          081 277 9565
           </a>
         </>
       ),
@@ -30,7 +30,7 @@ const Address = () => {
       text: (
         <>
           {" "}
-          <a href="#">contact.london@example.com</a>
+          <a href="mailto:info@start-work.it">info@start-work.it</a>
         </>
       ),
     },
