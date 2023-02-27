@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import Seo from "../../components/common/seo";
+import Seo from "../../components/common/Seo";
 import InviaCandiatura from "../../components/pages-menu/invia-candidatura";
 
 const index = () => {
