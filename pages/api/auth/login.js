@@ -1,9 +1,6 @@
 const User = require("../../../model/User");
 const bcrypt = require("bcryptjs");
 import dbConnect from "../../../lib/dbConnect";
-const jwtSecret = process.env.JWT_KEY || env.local.JWT_KEY;
-import { setCookie } from "../../../utils/cookie";
-import { sign } from "../../../lib/jwt";
 
 export default async function handler(req, res, next) {
   //DB Connection
@@ -31,14 +28,6 @@ export default async function handler(req, res, next) {
         console.log(user.password);
         console.log(result);
         if (result) {
-          const token = await sign(
-            { id: user._id, username, role: user.role },
-            jwtSecret
-          );
-          setCookie(res, "jwt", token, {
-            path: "/",
-            httpOnly: true,
-          });
           res.status(201).json({
             message: "User successfully Logged in",
             user: user._id,

@@ -1,33 +1,33 @@
 import dbConnect from "../../../lib/dbConnect";
 const Model = require("../../../model/User");
-import { verify } from "../../../lib/jwt";
-const secret = process.env.JWT_KEY;
+import { getToken } from "next-auth/jwt"
 
-export default async function handler(req, res) {
+const basicAuth = async (req) => {
+  const token = await getToken({ req });
+  if (token) {
+    // Signed in
+    return true;
+  } else {
+    // Not Signed in
+    return false;
+  }
+};
+
+export default async function handler(req, res, next) {
+  const restriction = await basicAuth(req);
+  if (!restriction) {
+    return res.status(401).end();
+  }
   //DB Connection
   let { db } = await dbConnect();
+  
 
   console.log("**LOG** Users - Modify - Init");
   const data = req.body;
   const id = data.id;
   const fields = data.fields;
-  const jwt = req.cookies.get("jwt");
-  const token = await verify(jwt.value, secret);
 
-  if(token.role === "admin" || id === token.id){
-
-    if(token.role === "admin"){
-            // Finds the user with the id
-            await Model.findById(token.id)
-            .then((user) => {
-              // Third - Verifies the user is not an admin
-              if (user.role !== "admin") {
-                res.status(400).json({ message: "User is already an Admin" });
-              }
-    })
-  }
-
-    if (id && token.id) {
+    if (id) {
       await Model.findById(id)
         .then((client) => {
           for (var field of fields) {
@@ -43,7 +43,6 @@ export default async function handler(req, res) {
                 .json({ field: fieldName, message: "Not same value" });
             }
           }
-          console.log(client);
           client.save((err) => {
             //Monogodb error checker
             if (err) {
@@ -64,7 +63,5 @@ export default async function handler(req, res) {
       res
       .status(400)
       .json({ message: "An error occurred"});
-    }
   }
-
 }

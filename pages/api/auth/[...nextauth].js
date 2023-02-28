@@ -8,9 +8,6 @@ export default NextAuth({
       id: "login",
       name: "Login",
       authorize: async function (credentials, req) {
-        console.log("Sono dentro authorize");
-        console.log(credentials);
-        console.log(req);
         return (
           axios
             .post(
@@ -30,15 +27,22 @@ export default NextAuth({
   ],
   callbacks: {
     jwt: async ({ token, user }) => {
-      user && (token.user = user);
+      user && (token.user = user.user);
+      user && (token.role = user.role);
+      console.log("JWT - Token => ", token);
       return token;
     },
     session: async ({ session, token }) => {
-      session.user = token.user;
+      session.user = {
+        user: token.user,
+        role: token.role,
+      };
+      console.log("Session => ", session);
       return session;
     },
   },
   pages: {
     signIn: "/login",
   },
+  secret: process.env.JWT_KEY,
 });

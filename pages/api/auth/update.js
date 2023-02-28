@@ -1,7 +1,23 @@
 const User = require("../../../model/User");
 import dbConnect from "../../../lib/dbConnect";
+import { getToken } from "next-auth/jwt";
+
+const basicAuth = async (req) => {
+  const token = await getToken({ req });
+  if (token) {
+    // Signed in
+    return true;
+  } else {
+    // Not Signed in
+    return false;
+  }
+};
 
 export default async function handler(req, res, next) {
+  const restriction = await basicAuth(req);
+  if (!restriction) {
+    return res.status(401).end();
+  }
   //DB Connection
   let { db } = await dbConnect();
   console.log("**LOG** Users - Update - Init");

@@ -1,9 +1,6 @@
 const User = require("../../../model/User");
 const bcrypt = require("bcryptjs");
 import dbConnect from "../../../lib/dbConnect";
-import { sign } from "../../../lib/jwt";
-import { setCookie } from "../../../utils/cookie";
-const jwtSecret = process.env.JWT_KEY;
 
 export default async function handler(req, res, next) {
   //DB Connection
@@ -22,14 +19,6 @@ export default async function handler(req, res, next) {
     })
       .then((user) => {
         try {
-          const token = sign(
-            { id: user._id, username, role: user.role },
-            jwtSecret
-          );
-          setCookie(res, "jwt", token, {
-            path: "/",
-            httpOnly: true,
-          });
           res.status(201).json({
             message: "User successfully created",
             user: user._id,
