@@ -1,16 +1,35 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
+import Marker from "./Marker";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-export default function SimpleMap({dataCL}) {
+export default function SimpleMap({ dataCL }) {
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
+      lat: 41.902783,
+      lng: 12.496366,
     },
-    zoom: 11,
+    zoom: 6,
   };
+
+  const [places, setPlaces] = useState([]);
+
+  const getAvailableLocations = (dataCL) => {
+    const locations = dataCL.map((data) => {
+      return {
+        publicName: data.publicName,
+        text: data.mansione,
+        lat: data.location.lat,
+        lng: data.location.lng,
+      };
+    });
+    return locations;
+  };
+
+  useEffect(() => {
+    const locations = getAvailableLocations(dataCL);
+    setPlaces(locations);
+  }, [dataCL]);
 
   return (
     // Important! Alwys set the container height explicitlya
@@ -20,7 +39,14 @@ export default function SimpleMap({dataCL}) {
       defaultCenter={defaultProps.center}
       defaultZoom={defaultProps.zoom}
     >
-      <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+      {places.map((place) => (
+        <Marker
+          key={place.publicName}
+          text={place.text}
+          lat={place.lat}
+          lng={place.lng}
+        />
+      ))}
     </GoogleMapReact>
   );
 }

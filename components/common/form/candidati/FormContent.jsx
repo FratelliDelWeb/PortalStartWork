@@ -54,7 +54,7 @@ const FormContent = () => {
     location: {
       city: "",
       lng: "",
-      lag: "",
+      lat: "",
     },
     credentials: {
       username: "JustToTry_02",
@@ -90,7 +90,7 @@ const FormContent = () => {
   const setEsperienzeToSend = (esperienze) => {
     setnewUser({ ...newUser, esperienze: esperienze });
     console.log(newUser.esperienze);
-  }; 
+  };
   const validateInput = (e) => {
     console.log(newUser);
     let { name, value } = e.target;
@@ -120,7 +120,11 @@ const FormContent = () => {
   };
 
   return (
-    <form method="POST" className="p-3" onSubmit={(e) => handleSubmit(e, newUser)}>
+    <form
+      method="POST"
+      className="p-3"
+      onSubmit={(e) => handleSubmit(e, newUser)}
+    >
       {newUserSend !== "ok" ? (
         <div>
           {newUserSend === "send" && newUserSend !== "ok" ? (
@@ -278,12 +282,12 @@ const FormContent = () => {
                   </div>
                 </div>
               </div>
-                      <div class="row mt-20">
-                      <Experience
-          setEsperienzeToSend={setEsperienzeToSend}
-          esperienzeList={newUser.esperienze}
-        ></Experience>
-                      </div>
+              <div class="row mt-20">
+                <Experience
+                  setEsperienzeToSend={setEsperienzeToSend}
+                  esperienzeList={newUser.esperienze}
+                ></Experience>
+              </div>
               <div className="row mt-20">
                 <div className="col-6">
                   <div className="form-group">

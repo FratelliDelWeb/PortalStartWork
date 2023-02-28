@@ -4,8 +4,8 @@ import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
-import Footer from "../../home-9/Footer"
-const Index = ({dataCL}) => {
+import Footer from "../../home-9/Footer";
+const Index = ({ dataCL }) => {
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -36,7 +36,7 @@ const Index = ({dataCL}) => {
 
           <div className="map-column width-50">
             <div style={{ height: "100vh", width: "100%" }}>
-              <MapJobFinder />
+              <MapJobFinder dataCL={dataCL} />
             </div>
             {/* <!-- Map --> */}
           </div>
@@ -44,7 +44,7 @@ const Index = ({dataCL}) => {
 
           <div className="content-column width-50">
             <div className="ls-outer">
-              <FilterTopBox dataCL = {dataCL}/>
+              <FilterTopBox dataCL={dataCL} />
               {/* <!-- ls Switcher --> */}
             </div>
           </div>
