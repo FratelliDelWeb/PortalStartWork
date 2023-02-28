@@ -16,7 +16,7 @@ export default async function middleware(req: NextRequest) {
       req.nextUrl.pathname = "/login";
       return NextResponse.redirect(req.nextUrl);
     }
-    if(pathname.startsWith("/area-privata/dashboard")){
+    if(pathname.startsWith("/area-privata/")){
       console.log('Middleware - Enter in Private Route - Dashboard')
       switch(token?.role){
         case "admin":
@@ -28,7 +28,7 @@ export default async function middleware(req: NextRequest) {
           return NextResponse.redirect(req.nextUrl);
       }
     }
-    if(pathname.startsWith("/area-privata/candidates")){
+    if(pathname.startsWith("/area-privata-candidates/")){
       console.log('Middleware - Enter in Private Route - Candidates')
       if (token?.role !== "candidate") {
           req.nextUrl.pathname = "/login";
