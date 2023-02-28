@@ -6,8 +6,7 @@ import { useSession, signIn } from "next-auth/react";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const FormContent = () => {
-  const { data: session } = useSession();
-
+  const { data: session, status } = useSession()
   let initialState = {
     username: "",
     password: "",
@@ -74,36 +73,36 @@ const FormContent = () => {
     });
   };
 
+  
+  const checkRole = (session) => {
+ if(session){
+  const userRole =   session.user.role;
+  if(userRole=== "admin" || userRole=== "basic"){
+    window.location.replace("/area-privata/dashboard");
+  }else  window.location.replace("/area-privata/dashboard");
+ }
+   
+
+  };
+
   const handleSubmit = async function (e) {
     e.preventDefault();
     const username = state.username;
     const password = state.password;
     console.log(username, password);
-    /* fetch(api + "/auth/login", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    }) */
     await signIn("login", {
       username,
       password,
       redirect: false,
     }).then(({ ok, error }) => {
-      debugger;
       if (ok) {
-        window.location.replace("/area-privata/dashboard");
+       
       } else {
         console.log(error);
       }
     });
+    console.log(session)
+    checkRole(session);
   };
 
   return (
