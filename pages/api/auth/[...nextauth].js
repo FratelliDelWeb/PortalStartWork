@@ -29,35 +29,12 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
-      console.log("Sono in jwt");
-      console.log(token);
-      console.log(user);
-      console.log(account);
-
-      // Initial sign in
-      if (account && user) {
-        return {
-          accessToken: account.access_token,
-          accessTokenExpires: Date.now() + account.expires_at * 1000,
-          refreshToken: account.refresh_token,
-          user,
-        };
-      }
-
-      // Return previous token if the access token has not expired yet
-      if (Date.now() < token.accessTokenExpires) {
-        return token;
-      }
-
-      // Access token has expired, try to update it
-      return refreshAccessToken(token);
+    jwt: async ({ token, user }) => {
+      user && (token.user = user);
+      return token;
     },
-    async session({ session, token }) {
+    session: async ({ session, token }) => {
       session.user = token.user;
-      session.accessToken = token.accessToken;
-      session.error = token.error;
-
       return session;
     },
   },
