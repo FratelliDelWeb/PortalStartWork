@@ -1,14 +1,19 @@
 import Link from "next/link";
-import LoginWithSocial from "./LoginWithSocial";
 import { useState } from "react";
 import Loader from "../../../loader/Loader";
+import { useSession, signIn } from "next-auth/react";
+
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+
 const FormContent = () => {
+  const { data: session } = useSession();
+
   let initialState = {
     username: "",
     password: "",
     stato: false,
   };
+
   const [state, setState] = useState(initialState);
 
   const [passwordType, setPasswordType] = useState("password");
@@ -53,12 +58,28 @@ const FormContent = () => {
     });
   };
 
-  const handleSubmit = function (e) {
+  const handleLogin = (e) => {
+    console.log("handleLogin");
+    console.log(e);
+    console.log(session);
+    debugger;
+    const password = state.password;
+    const username = state.username;
+    signIn("credentials", {
+      username,
+      password,
+      // The page where you want to redirect to after a
+      // successful login
+      callbackUrl: `${window.location.origin}/jobs`,
+    });
+  };
+
+  const handleSubmit = async function (e) {
     e.preventDefault();
     const username = state.username;
     const password = state.password;
     console.log(username, password);
-    fetch(api + "/auth/login", {
+    /* fetch(api + "/auth/login", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -70,25 +91,19 @@ const FormContent = () => {
         username,
         password,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.message === "User successfully Logged in") {
-          setokLogin("ok");
-          window.localStorage.setItem("token", data.user);
-          window.sessionStorage.setItem("token", data.user);
-          if (data.role === "admin" || data.role === "Basic") {
-            window.location.href = "/area-privata/dashboard";
-          } else if (data.role === "candidate") {
-            window.location.href = "/area-privata-candidates/dashboard";
-          }
-        } else {
-          setError({ ...error, login: data.message + " - " + data.error });
-          console.log(error.login);
-          setokLogin("");
-        }
-      });
+    }) */
+    await signIn("login", {
+      username,
+      password,
+      redirect: false,
+    }).then(({ ok, error }) => {
+      debugger;
+      if (ok) {
+        window.location.replace("/area-privata/dashboard");
+      } else {
+        console.log(error);
+      }
+    });
   };
 
   return (
@@ -104,8 +119,6 @@ const FormContent = () => {
         onSubmit={(e) => {
           handleSubmit(e);
         }}
-      
-        method="post"
       >
         <div className="form-group">
           <label>Username</label>

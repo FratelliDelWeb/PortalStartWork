@@ -34,13 +34,13 @@ export default async function handler(req, res, next) {
     })
       .then((user) => {
         res.status(201).json({
-          message: "Candidate successfully created",
+          message: "JobOffer successfully created",
           publicName: user.publicName,
         });
       })
       .catch((error) =>
         res.status(400).json({
-          message: "Candidate not successful created",
+          message: "JobOffer not successful created",
           error: error.message,
         })
       );
