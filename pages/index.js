@@ -5,14 +5,24 @@ import axios from "axios";
 import React, { useState } from "react";
 import { getCandidates } from "../services/public/getCandidates";
 import { getjobOffers } from "../services/public/getjobOffers";
-export async function getServerSideProps() {
-  const data = await getCandidates();
-  const dataOffer = await getjobOffers();
-  // Props returned will be passed to the page component
-  return { props: { dataCL: data, dataOL: dataOffer } };
-}
+import { signIn, signOut, getSession } from 'next-auth/react'
 
+import { getServerSession } from "next-auth/next"
+import { NextAuth } from './api/auth/[...nextauth]'
+
+export async function getServerSideProps({ req, res }) {
+   const data = await getCandidates();
+  const dataOffer = await getjobOffers();
+  console.log(req,res)
+  return {
+    props: {
+      session: await getServerSession(req, res, NextAuth) ,dataCL: data, dataOL: dataOffer 
+    }
+  }
+}
 const index = ({ dataCL, dataOL }) => {
+  const session =  getSession()
+  console.log(session)
   return (
     <>
       <Seo pageTitle="STARTWORK" />
