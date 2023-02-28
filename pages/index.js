@@ -8,7 +8,7 @@ import { getjobOffers } from "../services/public/getjobOffers";
 import { signIn, signOut, getSession } from 'next-auth/react'
 
 import { getServerSession } from "next-auth/next"
-import { NextAuth } from './api/auth/[...nextauth]'
+
 
 export async function getServerSideProps({ req, res }) {
    const data = await getCandidates();
@@ -16,7 +16,7 @@ export async function getServerSideProps({ req, res }) {
   console.log(req,res)
   return {
     props: {
-      session: await getServerSession(req, res, NextAuth) ,dataCL: data, dataOL: dataOffer 
+    dataCL: data, dataOL: dataOffer 
     }
   }
 }

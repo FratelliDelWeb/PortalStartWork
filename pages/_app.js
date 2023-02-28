@@ -17,7 +17,7 @@ if (typeof window !== "undefined") {
 
 function MyApp({ Component, pageProps  }) {
   // aos animation activation
-  console.log(pageProps.session , "APPPPPP")
+/*   console.log(pageProps.session , "APPPPPP") */
   useEffect(() => {
     Aos.init({
       duration: 1400,
