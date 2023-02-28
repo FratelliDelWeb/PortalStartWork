@@ -57,7 +57,7 @@ const index = ({user , cookie}) => {
               <div className="col-lg-12">
                <div className="ls-widget">
                 <div className="tabs-box">
-                  <div className="widget-title flex-shrink-0">
+                  <div className="widget-title flex-shrink-0 justify-content-start">
                   <i className="las la-lock"></i>
                     <h4>Reimposta la tua password</h4>
                     
@@ -71,7 +71,7 @@ const index = ({user , cookie}) => {
 
               </div> 
            
- </div>
+             </div>
             {/*   <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">

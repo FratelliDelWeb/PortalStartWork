@@ -70,13 +70,13 @@ module.exports = [
     routePath: "/employers-dashboard/resume-alerts",
     active: "",
   }, */
-  {
+ /*  {
     id: 7,
     name: "Cambia password",
     icon: "la-lock",
     routePath: "/area-privata/change-password",
     active: "",
-  },
+  }, */
   {
     id:8,
     name: "Logout",

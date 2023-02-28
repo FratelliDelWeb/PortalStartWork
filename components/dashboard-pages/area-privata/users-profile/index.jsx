@@ -11,6 +11,7 @@ import MenuToggler from "../../MenuToggler";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
+import Form from "./components/Form";
 
 
 const index = ({user}) => {
@@ -53,7 +54,24 @@ const index = ({user}) => {
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
+              <div className="col-lg-12">
+               <div className="ls-widget">
+                <div className="tabs-box">
+                  <div className="widget-title flex-shrink-0 justify-content-start">
+                  <i className="las la-lock"></i>
+                    <h4>Reimposta la tua password</h4>
+                    
+                  </div>
+             
+                  <div className="widget-content">
+                    <Form />
+                  </div>
+                </div>
 
+
+              </div> 
+           
+             </div>
           {/*     <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">

@@ -6,10 +6,14 @@ import MobileMenu from "../../header/MobileMenu";
 import Funfact from "../../fun-fact-counter/Funfact";
 import ImgBox from "./ImgBox";
 import IntroDescriptions from "./IntroDescriptions";
-import CallToAction2 from "../../call-to-action/CallToAction2";
+
+import CallToAction7 from "../../call-to-action/CallToAction7";
+
+
 import Testimonial2 from "../../testimonial/Testimonial2";
 import Block1 from "../../block/Block1";
 import Breadcrumb from "../../common/Breadcrumb";
+
 import StepsBlock from "../../block/StepsBlock";
 import AppSection4 from "../../app-section/AppSection4";
 const index = () => {
@@ -34,7 +38,8 @@ const index = () => {
         <div className="auto-container">
       {/*     <ImgBox /> */}
       <AppSection4></AppSection4>
-     
+   
+ 
           {/* <!-- Fun Fact Section --> */}
          {/*  <div className="fun-fact-section">
             <div className="row">
@@ -48,7 +53,9 @@ const index = () => {
       </section>
       {/* <!-- End About Section Three --> */}
 
-      <CallToAction2 />
+
+      <CallToAction7 />
+    
       {/* <!-- End CallToAction2 --> */}
 
       {/* <!-- End Testimonial Section --> */}
