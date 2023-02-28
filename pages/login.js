@@ -11,7 +11,10 @@ const index = () => {
 
   const checkRole = (session) => {
     if(session){
+      console.log(session)
      const userRole =   session.user.role;
+     const id = session.user.user;
+     const idSet = localStorage.setItem('token',id);
      if(userRole=== "admin" || userRole=== "basic"){
        window.location.replace("/area-privata/dashboard");
      }else  window.location.replace("/area-privata/dashboard");

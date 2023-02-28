@@ -14,7 +14,7 @@ import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
 
 
-const index = ({user}) => {
+const index = ({user,cookie}) => {
 
   return (
     <div className="page-wrapper dashboard">
@@ -50,7 +50,7 @@ const index = ({user}) => {
                   <h5>{user.username} </h5>
                     <p>{user._id}</p>
                   </div>
-                  <MyProfile user = {user} />
+                  <MyProfile user = {user} cookie={cookie}/>
                 </div>
               </div>
               {/* <!-- Ls widget --> */}

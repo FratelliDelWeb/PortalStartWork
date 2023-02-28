@@ -2,8 +2,8 @@ import Select from "react-select";
 import { useState } from "react";
 import axios from "axios"
 import { useRouter } from "next/router";
-
-const FormInfoBox = ({user}) => {
+import {modifyUser} from "../../../../../../services/private/modifyUser";
+const FormInfoBox = ({user ,cookie}) => {
 
   const router = useRouter();
   const [ClienteEdit, setClienteEdit] = useState({
@@ -13,11 +13,11 @@ const FormInfoBox = ({user}) => {
     role : `${user.role}`
     });
 
-    console.log(ClienteEdit)
+    console.log("start" ,ClienteEdit)
     const setEditData = (user ,ClienteEdit ) => {
 
-      let  eitData= {
-         "id": user._id,
+      let  editData= {
+         "id": ClienteEdit.id,
          "fields" : [
            {
              "name" : "username",
@@ -38,15 +38,25 @@ const FormInfoBox = ({user}) => {
      
       ]
        };
-       console.log(eitData);
-       editCliente(eitData);
+       console.log("dati editati" ,editData);
+
+       
+       editCliente(editData,cookie);
        
      }
 
+    
+     const editCliente = async (editData,cookie) => {
+      console.log(cookie)
+      console.log("dati editatiToModify" ,editData);
+     const res =  modifyUser(editData,cookie)
+       
+       
+     }
   const roleUser = [
-    { value: "Admin", label: "AMMINISTRATORE" },
-    { value: "Operator", label: "OPERATORE" },
-    { value: "Candidate", label: "CANDIDATO" },
+    { value: "admin", label: "AMMINISTRATORE" },
+    { value: "Basic", label: "OPERATORE" },
+    { value: "candidate", label: "CANDIDATO" },
   ];
 
 
@@ -60,7 +70,7 @@ const FormInfoBox = ({user}) => {
 
   
   return (
-    <form  onSubmit={(e) => handleSubmit(e)} method="POST" className="default-form">
+    <form  onSubmit={(e) => handleSubmit(e,user)} method="POST" className="default-form">
       <div className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
@@ -71,7 +81,7 @@ const FormInfoBox = ({user}) => {
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Email</label>
-          <input type="text" name="email"  placeholder={user?.email} defaultValue={user?.email}  required/>
+          <input type="email" name="email"  onChange={(e) => setClienteEdit({ ...ClienteEdit,email: e.target.value })} placeholder={user?.email} defaultValue={user?.email}  required/>
         </div>
 
         {/* <!-- Input --> */}
@@ -90,7 +100,7 @@ const FormInfoBox = ({user}) => {
           <label>Ruolo </label>
           <Select
             defaultValue={ClienteEdit.role}
-          
+            onChange={(e) => {console.log(e) ;setClienteEdit({ ...ClienteEdit,role: e.value })}}
             name="colors"
             options={roleUser}
             className="basic-multi-select"

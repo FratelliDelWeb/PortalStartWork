@@ -57,29 +57,17 @@ const FormContent = () => {
     });
   };
 
-  const handleLogin = (e) => {
-    console.log("handleLogin");
-    console.log(e);
-    console.log(session);
-    debugger;
-    const password = state.password;
-    const username = state.username;
-    signIn("credentials", {
-      username,
-      password,
-      // The page where you want to redirect to after a
-      // successful login
-      callbackUrl: `${window.location.origin}/jobs`,
-    });
-  };
 
   
   const checkRole = (session) => {
  if(session){
   const userRole =   session.user.role;
-  if(userRole=== "admin" || userRole=== "basic"){
+  const id = session.user.user;
+  /* const idSet = localStorage.setItem('token'. id); */
+  console.log("IDUSERRRRRRRRRRRRRRRRRRRRRRRR" , id);
+  if(userRole=== "admin" || userRole=== "Basic"){
     window.location.replace("/area-privata/dashboard");
-  }else  window.location.replace("/area-privata/dashboard");
+  }  window.location.replace("/area-privata-candidates/dashboard");
  }
    
 

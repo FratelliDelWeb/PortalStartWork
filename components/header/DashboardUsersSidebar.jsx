@@ -46,14 +46,14 @@ const DashboardUsersSidebar = () => {
                     {
                         <li
                         className={`${
-                            isActiveLink('/area-privata/users-profile/' + window.sessionStorage.getItem("token"), router.asPath)
+                            isActiveLink('/area-privata/users-profile/' + window.localStorage.getItem("token"), router.asPath)
                                 ? "active"
                                 : ""
                         } mb-1`}
                         key={5}
                         onClick={menuToggleHandler}
                     >   
-                        <Link href={'/area-privata/users-profile/' + window.sessionStorage.getItem("token")}>
+                        <Link href={'/area-privata/users-profile/' + window.localStorage.getItem("token")}>
                             <i className={`la la-user-tie`}></i>{" "}
                             {"Account"}
                         </Link>
