@@ -6,11 +6,7 @@ export default async function middleware(req: NextRequest) {
   console.log('Middleware - Enter to path : ' + pathname)
   if(pathname.startsWith("/area-privata")){
     console.log('Middleware - Enter in Private Route')
-    const token = await getToken({
-      req: req,
-      secret: process?.env?.JWT_KEY,
-      cookieName: '__Secure-next-auth.session-token'
-    });
+    const token = await getToken({req});
     
 
     console.log("Token Middleware => ", token)
