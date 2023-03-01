@@ -7,34 +7,22 @@ import { signIn, useSession,getSession } from "next-auth/react";
 
 
 
-const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+ const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-export async function getServerSideProps({ req, resolvedUrl }) {
+export async function getServerSideProps({ req }) {
   const cookie = req.headers.cookie;
-  const _id = resolvedUrl.substring(resolvedUrl.lastIndexOf("/") + 1);
-  const res = await axios.get(api + "/users/" + _id, {
-    withCredentials: true,
-    headers: {
-      Cookie: cookie,
-    },
-  });
-  const data = await res.data;
-  return { props: { dataCL: data , cookie: cookie} };
-} 
+  const session = await getSession({ req })
+  return { props: { cookie: cookie ,idUser: session.user.user }}
+}  
 
-const index = ({dataCL,cookie}) => {
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    if (!dataCL) <h1>Loading...</h1>;
-    else setUser(dataCL);
-    console.log(user);
-    return () => {};
-  }, [dataCL]);
+const index =  ({props,cookie ,idUser}) => {
+console.log("ID USER index=>" , idUser);
+console.log("Cookie  index=>", cookie);
   return (
     <>
       <Seo pageTitle="Profilo" />
-      <UsersProfile user = {dataCL}  cookie= {cookie}/>
-    </>
+   <UsersProfile idUser= {idUser} cookie={cookie}></UsersProfile> 
+   </>
   );
 };
 

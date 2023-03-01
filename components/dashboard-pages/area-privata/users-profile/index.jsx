@@ -13,9 +13,34 @@ import React, { useState, useEffect } from "react";
 
 import Form from "./components/Form";
 
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-const index = ({user,cookie}) => {
+const index = ({props,idUser ,cookie}) => {
+  console.log("ID USER compoentnIndex=>" , idUser);
+  console.log("Cookie compoentnIndex=>", cookie);
+  const [user, setUser] = useState()
 
+useEffect(() => {
+  callProfile(idUser)
+ 
+},[idUser])
+
+const callProfile = async (id , cookie) =>{
+   await axios.get(api + "/users/" + id, {
+  withCredentials: true,
+  headers: {
+    Cookie: cookie,
+  },}).then((res)=> {
+    const data = res.data;
+     setUser(data)
+    console.log("data",data)
+  })
+
+}
+
+const  setUserIndex =( user) =>{
+  setUser(user)
+ }
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -47,10 +72,10 @@ const index = ({user,cookie}) => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                  <h5>{user.username} </h5>
-                    <p>{user._id}</p>
+                  <h5>{user?.username} </h5>
+                    <p>{user?._id}</p>
                   </div>
-                  <MyProfile user = {user} cookie={cookie}/>
+                   <MyProfile user = {user} cookie={cookie} setUserIndex ={setUserIndex} /> 
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
