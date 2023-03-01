@@ -9,27 +9,32 @@ export default function SimpleMap({ dataCL }) {
       lat: 41.902783,
       lng: 12.496366,
     },
-    zoom: 6,
+    zoom: 7,
   };
 
   const [places, setPlaces] = useState([]);
 
   const getAvailableLocations = (dataCL) => {
+    console.log(dataCL);
     const locations = dataCL.map((data) => {
       return {
+        id: data._id,
         publicName: data.publicName,
-        text: data.mansione,
+        skills: data.skills,
+        mansione: data.mansione,
         lat: data.location.lat,
         lng: data.location.lng,
+        active: false,
       };
     });
+    console.log(locations);
     return locations;
   };
 
   useEffect(() => {
     const locations = getAvailableLocations(dataCL);
     setPlaces(locations);
-  }, [dataCL]);
+  }, []);
 
   return (
     // Important! Alwys set the container height explicitlya
@@ -42,9 +47,11 @@ export default function SimpleMap({ dataCL }) {
       {places.map((place) => (
         <Marker
           key={place.publicName}
-          text={place.text}
           lat={place.lat}
           lng={place.lng}
+          data={place}
+          text={place.mansione}
+          onClick={true}
         />
       ))}
     </GoogleMapReact>
