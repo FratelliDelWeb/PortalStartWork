@@ -5,7 +5,19 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 import Footer from "../../home-9/Footer";
+import { useState, useEffect } from "react";
+
 const Index = ({ dataCL }) => {
+  const initialState = {
+    element: "",
+  };
+
+  const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -36,7 +48,7 @@ const Index = ({ dataCL }) => {
 
           <div className="map-column width-50">
             <div style={{ height: "100vh", width: "100%" }}>
-              <MapJobFinder dataCL={dataCL} />
+              <MapJobFinder dataCL={dataCL} elementOnHover={state.element} />
             </div>
             {/* <!-- Map --> */}
           </div>
@@ -44,7 +56,7 @@ const Index = ({ dataCL }) => {
 
           <div className="content-column width-50">
             <div className="ls-outer">
-              <FilterTopBox dataCL={dataCL} />
+              <FilterTopBox dataCL={dataCL} onActiveElement={setState} />
               {/* <!-- ls Switcher --> */}
             </div>
           </div>

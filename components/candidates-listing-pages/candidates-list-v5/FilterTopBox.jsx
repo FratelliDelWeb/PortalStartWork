@@ -18,7 +18,7 @@ import {
   clearQualification,
 } from "../../../features/candidate/candidateSlice";
 
-const FilterTopBox = ({ dataCL }) => {
+const FilterTopBox = ({ dataCL, onActiveElement }) => {
   const {
     keyword,
     location,
@@ -95,6 +95,12 @@ const FilterTopBox = ({ dataCL }) => {
     sort === "des" ? a._id > b._id && -1 : a._id < b._id && -1;
   };
 
+  const handleOnHover = (element) => {
+    onActiveElement({
+      element: element,
+    });
+  };
+
   let content = dataCL
     ?.filter(keywordFilter)
     ?.filter(locationFilter)
@@ -106,14 +112,20 @@ const FilterTopBox = ({ dataCL }) => {
     ?.sort(sortFilter)
     ?.slice(perPage.start, perPage.end === 0 ? 10 : perPage.end)
     ?.map((candidate) => (
-      <div className="candidate-block-three" key={candidate._id}>
+      <div
+        className="candidate-block-three"
+        onMouseEnter={() => {
+          handleOnHover(candidate);
+        }}
+        key={candidate.publicName}
+      >
         <div className="inner-box">
           <div className="content">
             <figure className="image">
               <img src={candidate.avatar} alt="candidates" />
             </figure>
             <h4 className="name">
-              <Link href={`/candidates/${candidate._id}`}>
+              <Link href={`/candidates/${candidate.publicName}`}>
                 {candidate.publicName}
               </Link>
             </h4>
@@ -138,13 +150,13 @@ const FilterTopBox = ({ dataCL }) => {
           {/* End content */}
 
           <div className="btn-box">
-         {/*    <button className="bookmark-btn me-2">
+            {/*    <button className="bookmark-btn me-2">
               <span className="flaticon-bookmark"></span>
             </button> */}
             {/* End bookmark-btn */}
 
             <Link
-              href={`/candidates/${candidate._id}`}
+              href={`/candidates/${candidate.publicName}`}
               className="theme-btn btn-style-three"
             >
               <span className="btn-title">Dettagli</span>

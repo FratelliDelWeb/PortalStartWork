@@ -33,9 +33,17 @@ export default function Marker({ text, onClick, data }) {
     setstate({
       text: text,
       onClick: onClick,
-      active: false,
+      active: data.active,
     });
-  }, [text, onClick]);
+  }, []);
+
+  useEffect(() => {
+    setstate({
+      text: text,
+      onClick: onClick,
+      active: data.active,
+    });
+  }, [data]);
 
   const handleOnClick = () => {
     if (!state.active) {

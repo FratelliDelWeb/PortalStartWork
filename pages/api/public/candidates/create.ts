@@ -3,9 +3,6 @@ const User = require("../../../../model/User");
 import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../lib/dbConnect";
 const bcrypt = require("bcryptjs");
-const jwtSecret = process.env.JWT_KEY 
-import { sign } from "../../../../lib/jwt";
-import { setCookie } from "../../../../utils/cookie";
 
 export default async function handler(  
   req : NextApiRequest,
@@ -87,13 +84,6 @@ export default async function handler(
               role: "candidate",
             })
               .then((user) => {
-                const token = sign(
-                  { id: user._id, username, role: user.role },
-                  jwtSecret
-                );
-                setCookie(res,"jwt", token, {
-                  httpOnly: true,
-                });
                 res.status(201).json({
                   message: "Candidate successfully created",
                   publicName: candidato.publicName,

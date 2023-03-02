@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function InfoWindow({ dataCL, visible }) {
   const initialState = {
@@ -17,16 +18,24 @@ export default function InfoWindow({ dataCL, visible }) {
       publicName: dataCL.publicName,
       mansione: dataCL.mansione,
       skills: dataCL.skills,
-      linkProfile: "/" + dataCL.id,
+      linkProfile: "/candidates/" + dataCL.publicName,
+      visible: false,
     });
   }, [dataCL]);
+
+  useEffect(() => {
+    setstate({
+      ...state,
+      visible: visible,
+    });
+  }, [visible]);
 
   const innerBoxStyle = {
     position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "30px 30px",
+    padding: "15px",
     background: "#ffffff",
     border: "1px solid #ecedf2",
     borderRadius: "8px",
@@ -34,8 +43,7 @@ export default function InfoWindow({ dataCL, visible }) {
   };
 
   const containerStyle = {
-    width: "250px",
-    height: "250px",
+    width: "150px",
   };
 
   const contentStyle = {
@@ -50,6 +58,7 @@ export default function InfoWindow({ dataCL, visible }) {
     position: "relative",
     display: "flex",
     flexWrap: "wrap",
+    flexDirection: "column",
   };
 
   const postTagStyle = {
@@ -61,7 +70,8 @@ export default function InfoWindow({ dataCL, visible }) {
     color: "#696969",
     padding: "5px 20px",
     borderRadius: "20px",
-    marginRight: "10px",
+    marginRight: "50px",
+    marginBottom: "5px",
   };
 
   const designationStyle = {
@@ -80,25 +90,54 @@ export default function InfoWindow({ dataCL, visible }) {
     marginBottom: "5px",
   };
 
+  const linkPostStyle = {
+    color: "#696969",
+  };
+
+  const nameStyle = {
+    position: "relative",
+    display: "block",
+    fontSize: "18px",
+    lineHeight: "24px",
+    fontWeight: "500",
+    color: "#202124",
+    marginBottom: "5px",
+  };
+
   return (
     <>
-      {visible && (
+      {state.visible && (
         <div className="map-container-info-marker" style={containerStyle}>
           <div className="map-inner-box" style={innerBoxStyle}>
             <div className="map-content" style={contentStyle}>
-              <h4 className="map-name">{state.publicName}</h4>
+              <h4 className="map-name" style={nameStyle}>
+                {state.publicName}
+              </h4>
+
               <ul className="map-candidate-info" style={infoStyle}>
                 <li className="map-designation" style={designationStyle}>
                   {state.mansione}
                 </li>
-                <ul className="map-post-tags" style={postTagsStyle}>
-                  {state.skills.map((val, i) => (
-                    <li key={i} style={postTagStyle}>
-                      <a href="#">{val}</a>
-                    </li>
-                  ))}
-                </ul>
               </ul>
+
+              <ul className="map-post-tags" style={postTagsStyle}>
+                {state.skills.map((val, i) => (
+                  <li key={i} style={postTagStyle}>
+                    <a href="#" style={linkPostStyle}>
+                      {val}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="btn-box">
+                <Link
+                  href={`/candidates/${state.publicName}`}
+                  className="theme-btn btn-style-three"
+                >
+                  <span className="btn-title">Dettagli</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
