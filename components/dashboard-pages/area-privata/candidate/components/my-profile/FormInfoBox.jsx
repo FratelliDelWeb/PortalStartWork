@@ -3,7 +3,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import InputRange from "react-input-range";
-import Education from "./Education";
 import Map from "../../../../Map";
 import AwardsCertificates from "./AwardsCertificates";
 /* import Experience from "./Experience";
@@ -44,11 +43,8 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   useEffect(() => {
   setCandidateToUse({ id: `${cand?._id}`,
   surname: `${cand?.surname}`,
-  /* email: `${cand?.email}`, */
-/*   role : `${cand?.role}`,
- */  status:`${cand?.status}`,
+  status:`${cand?.status}`,
   name:`${cand?.name}`,
-
   mansione:`${cand?.mansione}`,
   phone:`${cand?.phone}`,
   note:`${cand?.note}`,
@@ -60,13 +56,10 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   rangeWithin:cand?.rangeWithin,
   languages:`${cand?.languages}`,
   esperienze: cand?.esperienze,
-  educazione: cand?.educazione,
   location: cand?.location
 });
   setCandidateEdit({ id: `${cand?._id}`,
   surname: `${cand?.surname}`,
-/*   email: `${cand?.email}`, */
- /*  role : `${cand?.role}`, */
   status:`${cand?.status}`,
   name:`${cand?.name}`,
   mansione:`${cand?.mansione}`,
@@ -80,7 +73,6 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   rangeWithin: cand?.rangeWithin,
   languages:`${cand?.languages}`,
   esperienze: cand?.esperienze,
-  educazione: cand?.educazione,
   location: cand?.location
 });
   },[cand])
@@ -90,7 +82,9 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
 
   console.log("USER DA edit " , candidateEdit)
   const setEditData = (candidateToUse ,candidateEdit ) => {
+    console.log("USER DA USARE " , candidateToUse)
 
+    console.log("USER DA edit " , candidateEdit)
     let  editData= {
        "id": candidateToUse?._id,
        "fields" : [
@@ -174,7 +168,7 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
      
    } 
 
-
+  
 
   const [error, setError] = useState({
     name: ``,
@@ -191,10 +185,7 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   const [passwordType, setPasswordType] = useState("password");
 
 
- const setEducazioneToSend = (educazione) => {
-    setCandidateEdit({ ...candidateEdit, educazione: educazione });
-    console.log(candidateToUse?.educazione);
-  };
+
 /*   const setPremiCertificatiToSend = (premi) => {
     setCandidateToUse({ ...candidateToUse, premi: premi });
     console.log(candidateToUse?.premi);
@@ -215,6 +206,7 @@ const setArrayLinguagesToPush = (e) =>{
 }
 const editCandidate = async (candidateEdit,cookieToSend) => {
   console.log(cookieToSend)
+  debugger
   console.log("dati editatiToModify" ,candidateEdit);
  const res = await modifyCandidates(candidateEdit,cookieToSend).then( (res) =>
 {   console.log(res)
@@ -646,10 +638,7 @@ const setArraySkillsToPush = (e) =>{
                 setCandidateEdit({ ...candidateEdit, note: e.target.value })
               } placeholder={candidateEdit?.note}></textarea>
         </div>
-       <Education
-          setEducazioneToSend={setEducazioneToSend}
-          educazioneList={candidateEdit?.educazione}
-        ></Education> 
+     
 {/* 
          <Experience
           setEsperienzeToSend={setEsperienzeToSend}
