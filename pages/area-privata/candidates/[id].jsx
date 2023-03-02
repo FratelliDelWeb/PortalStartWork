@@ -6,22 +6,25 @@ import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps(context) {
-  const id = context.query.id;
-  const res = await axios.get(api + "/candidates/" + id, {
+  const idCandidato = context.query.id;
+  const cookie = context.req.headers.cookie
+  /* const res = await axios.get(api + "/candidates/" + id, {
     withCredentials: true,
     headers: {
       Cookie: context.req.headers.cookie,
     },
-  });
-  const data = await res.data;
-  return { props: { dataCL: data } };
+  }); */
+  /* const data = await res.data; */
+  return { props: { cookie: cookie ,idCandidato : idCandidato} };
 }
 
-const SingleCandidate = ({ dataCL }) => {
+const SingleCandidate = ({ cookie ,idCandidato}) => {
+  console.log("id candidato page  ",idCandidato);
+  console.log("cookie candidato page  ",cookie)
   return (
     <>
       <Seo pageTitle="Candidato" />
-      <Candidato dataCL={dataCL} />
+      <Candidato  cookie = {cookie} idCandidato={idCandidato}  />
     </>
   );
 };
