@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import candidates from "../../data/candidates";
 import candidateResume from "../../data/candidateResume";
 import LoginPopup from "../../components/common/form/login/LoginPopup";
-import Footer from "../../components/home-9/Footer"
+import Footer from "../../components/home-9/Footer";
 import DefaulHeader from "../../components/header/DefaulHeader";
 import MobileMenu from "../../components/header/MobileMenu";
 import { useRouter } from "next/router";
@@ -17,8 +17,8 @@ import RichiestaPopup from "../../components/common/form/richiestaCandidato/Rich
 
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 export const getServerSideProps = async (context) => {
-  const id = context.query.id;
-  const res = await fetch(api + "/public/candidates/" + id);
+  const publicName = context.query.id;
+  const res = await fetch(api + "/public/candidates/" + publicName);
   const data = await res.json();
 
   return { props: { dataCL: data } };
@@ -69,19 +69,18 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                       <h4 className="name">{dataCL?.publicName}</h4>
 
                       <ul className="candidate-info">
-                        <li className="designation">
-                          {dataCL?.mansione}
-                        </li>
+                        <li className="designation">{dataCL?.mansione}</li>
                         <li>
                           <span className="icon flaticon-map-locator"></span>
                           {dataCL?.location.city}
                         </li>
-                       {/*  <li>
+                        {/*  <li>
                           <span className="icon flaticon-money"></span> $
                           {dataCL?.hourlyRate} / hour
                         </li> */}
                         <li>
-                          <span className="icon flaticon-clock"></span> Aggiuto il: {dataCL?.created_at}
+                          <span className="icon flaticon-clock"></span> Aggiuto
+                          il: {dataCL?.created_at}
                         </li>
                       </ul>
 
@@ -116,7 +115,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                     libero vulputate pulvinar.
                   </p>
 
-                 {/*  <div className="video-outer">
+                  {/*  <div className="video-outer">
                     <h4>Candidates About</h4>
                     <AboutVideo />
                   </div> */}
@@ -128,14 +127,14 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                       className={`resume-outer ${resume.themeColor}`}
                       key={resume.id}
                     >
-                     {/*  <div className="upper-title">
+                      {/*  <div className="upper-title">
                         <h4>{resume?.title}</h4>
                       </div> */}
 
                       {/* <!-- Start Resume BLock --> */}
                       {resume?.blockList?.map((item) => (
                         <div className="resume-block" key={item.id}>
-                      {/*     <div className="inner">
+                          {/*     <div className="inner">
                             <span className="name">{item.meta}</span>
                             <div className="title-box">
                               <div className="info-box">
@@ -156,7 +155,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   ))}
                   {/* <!-- Candidate Resume End --> */}
 
-                {/*   <div className="portfolio-outer">
+                  {/*   <div className="portfolio-outer">
                     <div className="row">
                       <GalleryBox />
                     </div>
@@ -172,14 +171,14 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   <div className="btn-box">
                     <a
                       className="theme-btn btn-style-one"
-                     /*  href="/images/sample.pdf"
+                      /*  href="/images/sample.pdf"
                       download */
                       data-bs-toggle="modal"
                       data-bs-target="#richiestaPopupModal"
                     >
                       Richiedi informazioni
                     </a>
-                 {/*    <button className="bookmark-btn">
+                    {/*    <button className="bookmark-btn">
                       <i className="flaticon-bookmark"></i>
                     </button> */}
                   </div>
@@ -205,7 +204,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                           <span>{dataCL.rangeWithin}/Km</span>
                         </li>
 
-                 {/*        <li>
+                        {/*        <li>
                           <i className="icon icon-salary"></i>
                           <h5>Expected Salary:</h5>
                           <span>26K - 30K</span>
@@ -222,7 +221,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                           <h5>Lingue:</h5>
                           <span>English, German, Spanish</span>
                         </li>
-{/* 
+                        {/* 
                         <li>
                           <i className="icon icon-degree"></i>
                           <h5>Education Level:</h5>
@@ -232,7 +231,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                     </div>
                   </div>
                   {/* End .sidebar-widget conadidate overview */}
-{/* 
+                  {/* 
                   <div className="sidebar-widget social-media-widget">
                     <h4 className="widget-title">Social media</h4>
                     <div className="widget-content">
@@ -243,7 +242,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   </div> */}
                   {/* End .sidebar-widget social-media-widget */}
 
-              {/*     <div className="sidebar-widget">
+                  {/*     <div className="sidebar-widget">
                     <h4 className="widget-title">Professional Skills</h4>
                     <div className="widget-content">
                       <ul className="job-skills">
@@ -253,7 +252,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
                   </div> */}
                   {/* End .sidebar-widget skill widget */}
 
-                 {/*  <div className="sidebar-widget contact-widget">
+                  {/*  <div className="sidebar-widget contact-widget">
                     <h4 className="widget-title">Contact Us</h4>
                     <div className="widget-content">
                       <div className="default-form">

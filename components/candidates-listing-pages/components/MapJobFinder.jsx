@@ -9,10 +9,11 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
       lat: 41.902783,
       lng: 12.496366,
     },
-    zoom: 7,
+    zoom: 6,
   };
 
   const [places, setPlaces] = useState([]);
+  const [propsMap, setPropsMap] = useState(defaultProps);
 
   const getAvailableLocations = (dataCL) => {
     const locations = dataCL.map((data) => {
@@ -26,7 +27,6 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
         active: false,
       };
     });
-    console.log(locations);
     return locations;
   };
 
@@ -34,8 +34,17 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
     if (element) {
       const locations = getAvailableLocations(dataCL);
       locations.find((location) => {
-        if (element._id === location.id) {
-          location.active = true;
+        var id = element._id || element.id;
+        if (id === location.id) {
+          if (!element.active) {
+            location.active = true;
+            setPropsMap({
+              center: [parseFloat(location.lat), parseFloat(location.lng)],
+              zoom: 8,
+            });
+          } else {
+            location.active = false;
+          }
         }
       });
       setPlaces(locations);
@@ -56,8 +65,8 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
 
     <GoogleMapReact
       bootstrapURLKeys={{ key: "" }}
-      defaultCenter={defaultProps.center}
-      defaultZoom={defaultProps.zoom}
+      center={propsMap.center}
+      zoom={propsMap.zoom}
     >
       {places.map((place) => (
         <Marker
@@ -66,7 +75,8 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
           lng={place.lng}
           data={place}
           text={place.mansione}
-          onClick={true}
+          onClick={setActiveElement}
+          modifyMap={setPropsMap}
         />
       ))}
     </GoogleMapReact>

@@ -19,16 +19,9 @@ export default function InfoWindow({ dataCL, visible }) {
       mansione: dataCL.mansione,
       skills: dataCL.skills,
       linkProfile: "/candidates/" + dataCL.publicName,
-      visible: false,
-    });
-  }, [dataCL]);
-
-  useEffect(() => {
-    setstate({
-      ...state,
       visible: visible,
     });
-  }, [visible]);
+  }, [dataCL, visible]);
 
   const innerBoxStyle = {
     position: "relative",
@@ -40,6 +33,8 @@ export default function InfoWindow({ dataCL, visible }) {
     border: "1px solid #ecedf2",
     borderRadius: "8px",
     transition: "all 300ms ease",
+    flexDirection: "column",
+    flexWrap: "wrap",
   };
 
   const containerStyle = {

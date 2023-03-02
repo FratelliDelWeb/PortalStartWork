@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Marker({ text, onClick, data }) {
+export default function Marker({ text, onClick, data, modifyMap }) {
   const initialState = {
     text: "",
     onClick: null,
@@ -29,13 +29,9 @@ export default function Marker({ text, onClick, data }) {
 
   const [state, setstate] = useState(initialState);
 
-  useEffect(() => {
-    setstate({
-      text: text,
-      onClick: onClick,
-      active: data.active,
-    });
-  }, []);
+  const handleOnClick = (status, data) => {
+    onClick(data);
+  };
 
   useEffect(() => {
     setstate({
@@ -45,23 +41,12 @@ export default function Marker({ text, onClick, data }) {
     });
   }, [data]);
 
-  const handleOnClick = () => {
-    if (!state.active) {
-      setstate({
-        ...state,
-        active: true,
-      });
-    } else {
-      setstate({
-        ...state,
-        active: false,
-      });
-    }
-  };
-
   return (
     <>
-      <Wrapper alt={state.text} onClick={() => handleOnClick()}></Wrapper>
+      <Wrapper
+        alt={state.text}
+        onClick={() => handleOnClick(state.active, data)}
+      ></Wrapper>
       <InfoWindow dataCL={data} visible={state.active}></InfoWindow>
     </>
   );

@@ -10,8 +10,8 @@ export default async function handler(
         //DB Connection
         let { db } = await dbConnect();
         console.log('**LOG** Candidates - Public - getOne - Init');
-        const { _id }= req.query;
-        const data = await Model.findById(_id).select({ 
+        const publicName= req.query._id
+        const data = await Model.findOne({'publicName' : publicName}).select({ 
           "designation" : 1,
           "location": 1,
           "skills": 1,
@@ -24,8 +24,6 @@ export default async function handler(
           "mansione": 1,
           "avatar":1,
           "rangeWithin":1,
-
-        
       });
         res.json(data);
       } catch (error) {
