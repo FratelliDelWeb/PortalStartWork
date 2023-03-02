@@ -1,16 +1,19 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Education = ({setEducazioneToSend , educazioneList}) => {
 /* INPUT DINAMICI
  */
 
 console.log(educazioneList)
-const [inputList, setInputList] = useState(educazioneList);
+const [inputList, setInputList] = useState();
 const [editModeX , setEditMode] = useState("off");
 
 
-
+useEffect(() => {
+  setInputList(educazioneList)
+},[educazioneList])
   const handleInputChange = (e, index) => {
     debugger
     const { name, value } = e.target;
@@ -68,7 +71,7 @@ const [editModeX , setEditMode] = useState("off");
     <div>
     {editModeX === "off" ? (<div>
      
-{inputList.map((ed, i) => (
+{inputList?.map((ed, i) => (
   <div key={i} className="resume-block ">
     <div className="inner">
     <span className="name">    <i class="las la-graduation-cap"></i></span>
@@ -91,7 +94,7 @@ const [editModeX , setEditMode] = useState("off");
   </div>
 ))}</div>) : (
 
-<div class="box-resumes-edit"> {inputList.map((x, i) => {
+<div class="box-resumes-edit"> {inputList?.map((x, i) => {
     return (
           <div key={i} className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
            <div className="col-6 mt-20">

@@ -12,7 +12,7 @@ fetch("http://localhost:3000/api/canidati")
 module.exports = [
   {
       id: 1,
-      avatar: "/images/resource/candidate-1.png",
+      avatar: "/images/resource/candidate-8.png",
       name: "Darlene Robertson",
       designation: "UI Designer",
       location: "London, UK",

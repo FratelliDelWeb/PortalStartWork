@@ -8,7 +8,7 @@ const Experience = ({setEsperienzeToSend , esperienzeList}) => {
 
 console.log(esperienzeList)
 const [inputList, setInputList] = useState(esperienzeList);
-const [editModeX , setEditMode] = useState("off");
+const [editModeX , setEditMode] = useState("on");
 
 
 
@@ -69,7 +69,7 @@ const [editModeX , setEditMode] = useState("off");
     <div>
     {editModeX === "off" ? (<div>
      
-{inputList.map((ed, i) => (
+{inputList?.map((ed, i) => (
   <div key={i} className="resume-block ">
     <div className="inner">
     <span className="name">   <i class="las la-file-invoice"></i></span>
@@ -92,7 +92,7 @@ const [editModeX , setEditMode] = useState("off");
   </div>
 ))}</div>) : (
 
-<div class="box-resumes-edit"> {inputList.map((x, i) => {
+<div class="box-resumes-edit"> {inputList?.map((x, i) => {
     return (
           <div key={i} className="row resumes-edit bg-light shadow-sm p-1 pb-2 mb-50">
            <div className="col-6 mt-20">
