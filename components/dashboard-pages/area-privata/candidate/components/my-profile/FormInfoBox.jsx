@@ -61,6 +61,7 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   languages:`${cand?.languages}`,
   esperienze: cand?.esperienze,
   educazione: cand?.educazione,
+  location: cand?.location
 });
   setCandidateEdit({ id: `${cand?._id}`,
   surname: `${cand?.surname}`,
@@ -80,6 +81,7 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   languages:`${cand?.languages}`,
   esperienze: cand?.esperienze,
   educazione: cand?.educazione,
+  location: cand?.location
 });
   },[cand])
 
@@ -155,8 +157,12 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
       "name" : "esperienze",
       "from" : candidateToUse?.esperienze,
       "to" : candidateEdit?.esperienze,
+    },
+    {
+      "name" : "location",
+      "from" : candidateToUse?.location,
+      "to" : candidateEdit?.location,
     }
-
 
     
     ]
@@ -553,14 +559,14 @@ const setArraySkillsToPush = (e) =>{
         <div className="form-group col-lg-12 col-md-12">
        <label>Città</label>
             <input
-              value={candidateToUse?.location?.city}
+              value={candidateEdit?.location?.city}
               onBlur={(e) => validateInput(e)}
               className={error.location ? "errorInput" : ""}
               onChange={(e) =>
-                setCandidateToUse((candidateToUse) => ({
-                  ...candidateToUse,
+                setCandidateEdit((candidateEdit) => ({
+                  ...candidateEdit,
                   location: {
-                    ...candidateToUse?.location,
+                    ...candidateEdit?.location,
                     city: e.target.value,
                   },
                 }))
@@ -572,7 +578,7 @@ const setArraySkillsToPush = (e) =>{
             />
         </div>
 
-
+{/* 
         <div className=" col-lg-6 col-md-6">
         <div className="form-group">
        
@@ -581,19 +587,19 @@ const setArraySkillsToPush = (e) =>{
 
           </div>
         
-        </div>
+        </div> */}
 
         {/* <!-- Input --> */}
-        <div className="col-lg-6 col-md-6">
+      {/*   <div className="col-lg-6 col-md-6">
         <div className="form-group ">
          
           <label>Longitude</label>
           <input type="text" name="name" placeholder="Melbourne" />
           </div>
         
-        </div>
+        </div> */}
         <div className="col-lg-12 col-md-12">
-          <div className="form-group ">
+          <div className="form-group range-slider-one">
           <label>Disponibile a soistarsi entro</label>
             <InputRange
               formatLabel={(value) => ``}
@@ -604,6 +610,12 @@ const setArraySkillsToPush = (e) =>{
               onBlur={(e) => validateInput(e)}
               onChange={(value) => handleOnChange(value)}
             />
+             <div className="input-outer">
+                <div className="amount-outer">
+                    <span className="area-amount">{candidateToUse?.rangeWithin}</span>
+                    km
+                </div>
+                </div>
             </div>
           </div>
 

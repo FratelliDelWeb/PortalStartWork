@@ -19,7 +19,12 @@ const Applicants = () => {
                   {candidate.name} - {candidate.surname}
                 </Link>
               </h4>
+              
+              <ul className="candidate-info">
+                <li>{candidate.status}</li>
+              </ul>
               <h6 className="designation">{candidate.mansione}</h6>
+
               <ul className="candidate-info">
               
                 <li>
