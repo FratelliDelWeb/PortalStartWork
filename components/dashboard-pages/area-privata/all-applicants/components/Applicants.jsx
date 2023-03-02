@@ -30,6 +30,9 @@ const Applicants = () => {
                 <i class="las la-route"></i>
                   {candidate.rangeWithin} /Km
                 </li>
+                <li>
+                          <span className="icon flaticon-clock"></span> {candidate?.created_at}
+                        </li>
               </ul>
               {/* End candidate-info */}
 

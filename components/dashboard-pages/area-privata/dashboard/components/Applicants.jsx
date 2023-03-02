@@ -1,7 +1,11 @@
 import Link from "next/link";
 import candidatesData from "../../../../../data/candidates";
 
+
 const Applicants = ({dataCL}) => {
+  const getITDateTime = (now) => {
+    return new Date(now).toLocaleDateString("it-IT");
+  };
   return (
     <>
       {dataCL.map((candidate) => (
@@ -21,7 +25,7 @@ const Applicants = ({dataCL}) => {
               </h4>
               <h6>{candidate.satatus}</h6>
               <h6 className="designation">{candidate.mansione}</h6>
-              
+
               <ul className="candidate-info">
               
                 <li>
@@ -32,6 +36,9 @@ const Applicants = ({dataCL}) => {
                 <i class="las la-route"></i>
                   {candidate.rangeWithin} /Km
                 </li>
+                <li>
+                          <span className="icon flaticon-clock"></span>{getITDateTime(candidate.created_at)}
+                        </li>
               </ul>
               {/* End candidate-info */}
 
