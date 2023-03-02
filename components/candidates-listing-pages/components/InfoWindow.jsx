@@ -14,6 +14,7 @@ export default function InfoWindow({ dataCL, visible }) {
   const [state, setstate] = useState(initialState);
 
   useEffect(() => {
+    debugger;
     setstate({
       publicName: dataCL.publicName,
       mansione: dataCL.mansione,
@@ -21,6 +22,8 @@ export default function InfoWindow({ dataCL, visible }) {
       linkProfile: "/candidates/" + dataCL.publicName,
       visible: visible,
     });
+    console.log("dataCL", dataCL);
+    console.log("state", state);
   }, [dataCL, visible]);
 
   const innerBoxStyle = {

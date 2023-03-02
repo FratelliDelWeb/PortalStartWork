@@ -60,6 +60,7 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
     setActiveElement(elementOnHover);
   }, [elementOnHover]);
 
+  console.log("rendering map");
   return (
     // Important! Alwys set the container height explicitlya
 

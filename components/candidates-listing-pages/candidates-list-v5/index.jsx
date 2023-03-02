@@ -14,10 +14,6 @@ const Index = ({ dataCL }) => {
 
   const [state, setState] = useState(initialState);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   return (
     <>
       {/* <!-- Header Span --> */}
