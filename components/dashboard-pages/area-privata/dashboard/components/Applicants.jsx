@@ -1,10 +1,21 @@
 import Link from "next/link";
+import { useState } from "react";
+import { useEffect } from "react";
 import candidatesData from "../../../../../data/candidates";
 
+
 const Applicants = ({dataCL}) => {
+  const getITDateTime = (now) => {
+    return new Date(now).toLocaleDateString("it-IT");
+  };
+const [dataCLOrder ,setdataCLOrder ] = useState()
+
+  useEffect(()=> {
+    setdataCLOrder(dataCL.filter(function (el) { return el.status === "new"}).reverse());
+  },[dataCL])
   return (
     <>
-      {dataCL.map((candidate) => (
+      {dataCLOrder?.map((candidate) => (
         <div
           className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
           key={candidate._id}
@@ -14,22 +25,30 @@ const Applicants = ({dataCL}) => {
               <figure className="image">
                 <img src={candidate.avatar} alt="candidates" />
               </figure>
+              <div className="align-items-baseline d-flex justify-content-between">
               <h4 className="name">
                 <Link href={`/area-privata/candidates/${candidate._id}`}>
-                  {candidate.name}
+                  {candidate.name} - {candidate.surname}
                 </Link>
               </h4>
+              <ul className="post-tags"><li  className="colored shadow-sm">{candidate.status}</li></ul>  
+              </div>
+         
+              <h6 className="designation">{candidate.mansione}</h6>
 
               <ul className="candidate-info">
-                <li className="designation">{candidate.designation}</li>
+              
                 <li>
                   <span className="icon flaticon-map-locator"></span>{" "}
                   {candidate.location.city}
                 </li>
                 <li>
-                  <span className="icon flaticon-money"></span> $
-                  {candidate.hourlyRate} /ora
+                <i className="las la-route"></i>
+                  {candidate.rangeWithin} /Km
                 </li>
+                <li>
+                          <span className="icon flaticon-clock"></span>{getITDateTime(candidate.created_at)}
+                        </li>
               </ul>
               {/* End candidate-info */}
 

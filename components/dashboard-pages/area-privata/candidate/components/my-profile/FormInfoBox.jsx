@@ -6,8 +6,8 @@ import InputRange from "react-input-range";
 import Education from "./Education";
 import Map from "../../../../Map";
 import AwardsCertificates from "./AwardsCertificates";
-import Experience from "./Experience";
-import Loader from "../../../../../loader/Loader";
+/* import Experience from "./Experience";
+ */import Loader from "../../../../../loader/Loader";
 import { useEffect } from "react";
 import {modifyCandidates} from "../../../../../../services/private/modifyCandidates";
 
@@ -30,13 +30,13 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   const [candidateEdit, setCandidateEdit] = useState();
   const [candidateToUse , setCandidateToUse ] = useState();
 
-  const [getDestination, setDestination] = useState({min: 0,max: 100,});
+  const [getDestination, setDestination] = useState({min: 0, max: 100});
 
 
 
   const handleOnChange = (value) => {
     setDestination(value);
-    setCandidateToUse({ ...candidateToUse, rangeWithin: value.max });
+    setCandidateEdit({ ...candidateEdit, rangeWithin: value.max });
   };
 
 
@@ -56,8 +56,12 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   gender:`${cand?.gender}`,
   category:`${cand?.category}`,
   age:`${cand?.age}`,
-  skills:`${cand?.skills}`,
-  educazione:`${cand?.educazione}`,
+  skills:cand?.skills,
+  rangeWithin:cand?.rangeWithin,
+  languages:`${cand?.languages}`,
+  esperienze: cand?.esperienze,
+  educazione: cand?.educazione,
+  location: cand?.location
 });
   setCandidateEdit({ id: `${cand?._id}`,
   surname: `${cand?.surname}`,
@@ -72,13 +76,19 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   gender:`${cand?.gender}`,
   category:`${cand?.category}`,
   age:`${cand?.age}`,
-  skills:`${cand?.skills}`,
+  skills:cand?.skills,
+  rangeWithin: cand?.rangeWithin,
+  languages:`${cand?.languages}`,
+  esperienze: cand?.esperienze,
+  educazione: cand?.educazione,
+  location: cand?.location
 });
   },[cand])
 
 
   console.log("USER DA USARE " , candidateToUse)
 
+  console.log("USER DA edit " , candidateEdit)
   const setEditData = (candidateToUse ,candidateEdit ) => {
 
     let  editData= {
@@ -123,13 +133,44 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
       "name" : "category",
       "from" : candidateToUse?.category,
       "to" : candidateEdit?.category,
+    }, {
+      "name" : "skills",
+      "from" : candidateToUse?.skills,
+      "to" : candidateEdit?.skills,
     },
+    {
+      "name" : "status",
+      "from" : candidateToUse?.status,
+      "to" : candidateEdit?.status,
+    },
+    {
+      "name" : "rangeWithin",
+      "from" : candidateToUse?.rangeWithin,
+      "to" : candidateEdit?.rangeWithin,
+    },
+    {
+      "name" : "languages",
+      "from" : candidateToUse?.languages,
+      "to" : candidateEdit?.languages,
+    },
+    {
+      "name" : "esperienze",
+      "from" : candidateToUse?.esperienze,
+      "to" : candidateEdit?.esperienze,
+    },
+    {
+      "name" : "location",
+      "from" : candidateToUse?.location,
+      "to" : candidateEdit?.location,
+    }
+
+    
     ]
      };
 
      console.log(editData)
      editCandidate(editData,cookie)
-    
+     console.log("USER DA edidtao " , candidateEdit)
      
    } 
 
@@ -150,16 +191,16 @@ const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
   const [passwordType, setPasswordType] = useState("password");
 
 
- /*  const setEducazioneToSend = (educazione) => {
-    setCandidateToUse({ ...candidateToUse, educazione: educazione });
+ const setEducazioneToSend = (educazione) => {
+    setCandidateEdit({ ...candidateEdit, educazione: educazione });
     console.log(candidateToUse?.educazione);
   };
-  const setPremiCertificatiToSend = (premi) => {
+/*   const setPremiCertificatiToSend = (premi) => {
     setCandidateToUse({ ...candidateToUse, premi: premi });
     console.log(candidateToUse?.premi);
   }; 
   const setEsperienzeToSend = (esperienze) => {
-    setCandidateToUse({ ...candidateToUse, esperienze: esperienze });
+    setCandidateEdit({ ...candidateEdit, esperienze: esperienze });
     console.log(candidateToUse?.esperienze);
   };  */
 const setArrayLinguagesToPush = (e) =>{
@@ -188,13 +229,16 @@ const candidatoEditato = res.client;
 console.log("originale",cand) }})} 
 
 const setArraySkillsToPush = (e) =>{
+  debugger
+  console.log(e)
+  console.log("set" );
   let newArry = []
   for(var skill  of e  ){
     newArry.push(skill.value);
   }
-  console.log(newArry);
+  console.log("arratttttttttttttt" + newArry);
   setCandidateEdit({ ...candidateEdit, skills: newArry });
-  console.log(candidateToUse)
+  console.log(candidateEdit)
 }
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -489,7 +533,24 @@ const setArraySkillsToPush = (e) =>{
 
   </div>
 
-
+  <div className="col-6 mt-20">
+              <div className="form-group">
+              <label>Stato</label>
+                   <select
+                     value={candidateEdit?.role}
+                     className= " chosen-single form-select"
+                     name="status"
+                     onChange={(e) =>
+                      setCandidateEdit({ ...candidateEdit, status: e.target.value })
+                     }
+                     required
+                   >
+                     <option>new</option>
+                     <option>approved</option>
+                     <option>waiting</option>
+                   </select>
+             </div> 
+          </div>
         <div className="row">
           
         <div className="col-lg-6 col-md-12">
@@ -498,14 +559,14 @@ const setArraySkillsToPush = (e) =>{
         <div className="form-group col-lg-12 col-md-12">
        <label>Città</label>
             <input
-              value={candidateToUse?.location?.city}
+              value={candidateEdit?.location?.city}
               onBlur={(e) => validateInput(e)}
               className={error.location ? "errorInput" : ""}
               onChange={(e) =>
-                setCandidateToUse((candidateToUse) => ({
-                  ...candidateToUse,
+                setCandidateEdit((candidateEdit) => ({
+                  ...candidateEdit,
                   location: {
-                    ...candidateToUse?.location,
+                    ...candidateEdit?.location,
                     city: e.target.value,
                   },
                 }))
@@ -517,7 +578,7 @@ const setArraySkillsToPush = (e) =>{
             />
         </div>
 
-
+{/* 
         <div className=" col-lg-6 col-md-6">
         <div className="form-group">
        
@@ -526,19 +587,19 @@ const setArraySkillsToPush = (e) =>{
 
           </div>
         
-        </div>
+        </div> */}
 
         {/* <!-- Input --> */}
-        <div className="col-lg-6 col-md-6">
+      {/*   <div className="col-lg-6 col-md-6">
         <div className="form-group ">
          
           <label>Longitude</label>
           <input type="text" name="name" placeholder="Melbourne" />
           </div>
         
-        </div>
+        </div> */}
         <div className="col-lg-12 col-md-12">
-          <div className="form-group ">
+          <div className="form-group range-slider-one">
           <label>Disponibile a soistarsi entro</label>
             <InputRange
               formatLabel={(value) => ``}
@@ -549,6 +610,12 @@ const setArraySkillsToPush = (e) =>{
               onBlur={(e) => validateInput(e)}
               onChange={(value) => handleOnChange(value)}
             />
+             <div className="input-outer">
+                <div className="amount-outer">
+                    <span className="area-amount">{candidateToUse?.rangeWithin}</span>
+                    km
+                </div>
+                </div>
             </div>
           </div>
 
@@ -579,23 +646,22 @@ const setArraySkillsToPush = (e) =>{
                 setCandidateEdit({ ...candidateEdit, note: e.target.value })
               } placeholder={candidateEdit?.note}></textarea>
         </div>
-{/* 
-        <Education
+       <Education
           setEducazioneToSend={setEducazioneToSend}
-          educazioneList={candidateToUse?.educazione}
-        ></Education>
-
+          educazioneList={candidateEdit?.educazione}
+        ></Education> 
+{/* 
          <Experience
           setEsperienzeToSend={setEsperienzeToSend}
           esperienzeList={candidateToUse?.esperienze}
         ></Experience>
 
-
-        <AwardsCertificates
+ */}
+   {/*      <AwardsCertificates
           setPremiCertificatiToSend={setPremiCertificatiToSend}
           educazioneList={candidateToUse?.premi}
-        ></AwardsCertificates> */}
-
+        ></AwardsCertificates> 
+ */}
 
 
 

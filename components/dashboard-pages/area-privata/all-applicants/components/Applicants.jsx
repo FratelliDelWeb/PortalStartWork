@@ -15,21 +15,29 @@ const Applicants = () => {
                 <img src={candidate.avatar} alt="candidates" />
               </figure>
               <h4 className="name">
-                <Link href={`/candidates-single-v1/${candidate.id}`}>
-                  {candidate.name}
+              <Link href={`/area-privata/candidates/${candidate._id}`}>
+                  {candidate.name} - {candidate.surname}
                 </Link>
               </h4>
+              
+              <ul className="candidate-info">
+                <li>{candidate.status}</li>
+              </ul>
+              <h6 className="designation">{candidate.mansione}</h6>
 
               <ul className="candidate-info">
-                <li className="designation">{candidate.designation}</li>
+              
                 <li>
                   <span className="icon flaticon-map-locator"></span>{" "}
                   {candidate.location.city}
                 </li>
                 <li>
-                  <span className="icon flaticon-money"></span> $
-                  {candidate.hourlyRate} / hour
+                <i class="las la-route"></i>
+                  {candidate.rangeWithin} /Km
                 </li>
+                <li>
+                          <span className="icon flaticon-clock"></span> {candidate?.created_at}
+                        </li>
               </ul>
               {/* End candidate-info */}
 

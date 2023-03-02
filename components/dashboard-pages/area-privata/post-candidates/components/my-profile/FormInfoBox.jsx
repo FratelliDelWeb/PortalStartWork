@@ -57,7 +57,7 @@ const FormInfoBox = (props) => {
     skills: ["App", "Web", "Pulizie"],
     gender: `Male`,
     location: {
-      city: "",
+      city: "Napoli",
       lng: "",
       lat: "",
     },
@@ -461,7 +461,7 @@ const FormInfoBox = (props) => {
                       />
                     </div>
 
-                    <div className=" col-lg-6 col-md-6">
+                  {/*   <div className=" col-lg-6 col-md-6">
                       <div className="form-group">
                         <label>Latitude</label>
                         <input
@@ -471,9 +471,9 @@ const FormInfoBox = (props) => {
                         />
                       </div>
                     </div>
-
+ */}
                     {/* <!-- Input --> */}
-                    <div className="col-lg-6 col-md-6">
+                   {/*  <div className="col-lg-6 col-md-6">
                       <div className="form-group ">
                         <label>Longitude</label>
                         <input
@@ -483,8 +483,9 @@ const FormInfoBox = (props) => {
                         />
                       </div>
                     </div>
+                     */}
                     <div className="col-lg-12 col-md-12">
-                      <div className="form-group ">
+                      <div className="form-group range-slider-one">
                         <label>Disponibile a soistarsi entro</label>
                         <InputRange
                           formatLabel={(value) => ``}
@@ -495,7 +496,14 @@ const FormInfoBox = (props) => {
                           onBlur={(e) => validateInput(e)}
                           onChange={(value) => handleOnChange(value)}
                         />
+                           <div className="input-outer">
+                <div className="amount-outer">
+                    <span className="area-amount">{newUser.rangeWithin}</span>
+                    km
+                </div>
+            </div>
                       </div>
+                   
                     </div>
 
                     <div className="col-lg-6 col-md-12">
