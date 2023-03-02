@@ -8,46 +8,132 @@ import Map from "../../../../Map";
 import AwardsCertificates from "./AwardsCertificates";
 import Experience from "./Experience";
 import Loader from "../../../../../loader/Loader";
+import { useEffect } from "react";
+import {modifyCandidates} from "../../../../../../services/private/modifyCandidates";
+
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
-const FormInfoBox = ({props,dataCL}) => {
+const FormInfoBox = ({props,cand,cookie,setCandidatoEditato}) => {
+
+
+  console.log(" USER compoentnBOX =>" , cand);
+  console.log("Cookie compoentnBOX=>", cookie);
+
+  const [cookieToSend,setcookieToSend]= useState(cookie);
+
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setnewUserSend("send");
+ 
 
-    axios
-      .post(api + "/public/candidates/modify", newUser)
-      .then((res) => {
-        console.log("res", res.data);
-        setnewUserSend("ok");
-        console.log(newUserSend)
-      })
-      .catch((err) => {
-        console.log(err);
-        setnewUserSend("error");
-        console.log("error in request", err.response.data);
-        let errorTextMessage = err.response.data.message;
-        let errorTextError = err.response.data?.error;
+  const [candidateToUseSend, setCandidateToUseSend] = useState();
+  const [statoEdit,setStatoEdit] = useState("start");
 
-        console.log("errore", errorTextMessage);
-        if (!errorTextError) {
-          setErrorSend(errorTextMessage);
-        } else setErrorSend(errorTextMessage + errorTextError);
-      });
-  };
-  const [newUserSend, setnewUserSend] = useState();
-  const [getDestination, setDestination] = useState({
-    min: 0,
-    max: 100,
-  });
+  const [candidateEdit, setCandidateEdit] = useState();
+  const [candidateToUse , setCandidateToUse ] = useState();
+
+  const [getDestination, setDestination] = useState({min: 0,max: 100,});
+
+
 
   const handleOnChange = (value) => {
     setDestination(value);
-    setnewUser({ ...newUser, rangeWithin: value.max });
+    setCandidateToUse({ ...candidateToUse, rangeWithin: value.max });
   };
 
-  const [newUser, setnewUser] = useState(dataCL);
+
+  
+  useEffect(() => {
+  setCandidateToUse({ id: `${cand?._id}`,
+  surname: `${cand?.surname}`,
+  /* email: `${cand?.email}`, */
+/*   role : `${cand?.role}`,
+ */  status:`${cand?.status}`,
+  name:`${cand?.name}`,
+
+  mansione:`${cand?.mansione}`,
+  phone:`${cand?.phone}`,
+  note:`${cand?.note}`,
+  publicName:`${cand?.publicName}`,
+  gender:`${cand?.gender}`,
+  category:`${cand?.category}`,
+  age:`${cand?.age}`,
+  skills:`${cand?.skills}`,
+  educazione:`${cand?.educazione}`,
+});
+  setCandidateEdit({ id: `${cand?._id}`,
+  surname: `${cand?.surname}`,
+/*   email: `${cand?.email}`, */
+ /*  role : `${cand?.role}`, */
+  status:`${cand?.status}`,
+  name:`${cand?.name}`,
+  mansione:`${cand?.mansione}`,
+  phone:`${cand?.phone}`,
+  note:`${cand?.note}`,
+  publicName:`${cand?.publicName}`,
+  gender:`${cand?.gender}`,
+  category:`${cand?.category}`,
+  age:`${cand?.age}`,
+  skills:`${cand?.skills}`,
+});
+  },[cand])
+
+
+  console.log("USER DA USARE " , candidateToUse)
+
+  const setEditData = (candidateToUse ,candidateEdit ) => {
+
+    let  editData= {
+       "id": candidateToUse?._id,
+       "fields" : [
+         {
+           "name" : "surname",
+           "from" : candidateToUse?.surname,
+           "to" : candidateEdit?.surname,
+         },
+
+       {
+       "name" : "name",
+       "from" : candidateToUse?.name,
+       "to" : candidateEdit?.name,
+     },
+      {
+       "name" : "mansione",
+       "from" : candidateToUse?.mansione,
+       "to" : candidateEdit?.mansione,
+     },
+     {
+      "name" : "note",
+      "from" : candidateToUse?.note,
+      "to" : candidateEdit?.note,
+    },
+    {
+      "name" : "phone",
+      "from" : candidateToUse?.phone,
+      "to" : candidateEdit?.phone,
+    },
+    {
+      "name" : "age",
+      "from" : candidateToUse?.age,
+      "to" : candidateEdit?.age,
+    },
+    {
+      "name" : "gender",
+      "from" : candidateToUse?.gender,
+      "to" : candidateEdit?.gender,
+    },  {
+      "name" : "category",
+      "from" : candidateToUse?.category,
+      "to" : candidateEdit?.category,
+    },
+    ]
+     };
+
+     console.log(editData)
+     editCandidate(editData,cookie)
+    
+     
+   } 
+
+
 
   const [error, setError] = useState({
     name: ``,
@@ -62,30 +148,44 @@ const FormInfoBox = ({props,dataCL}) => {
   });
   const [errorSend, setErrorSend] = useState("errore");
   const [passwordType, setPasswordType] = useState("password");
-  console.log(newUser)
 
-  const setEducazioneToSend = (educazione) => {
-    setnewUser({ ...newUser, educazione: educazione });
-    console.log(newUser.educazione);
+
+ /*  const setEducazioneToSend = (educazione) => {
+    setCandidateToUse({ ...candidateToUse, educazione: educazione });
+    console.log(candidateToUse?.educazione);
   };
   const setPremiCertificatiToSend = (premi) => {
-    setnewUser({ ...newUser, premi: premi });
-    console.log(newUser.premi);
+    setCandidateToUse({ ...candidateToUse, premi: premi });
+    console.log(candidateToUse?.premi);
   }; 
   const setEsperienzeToSend = (esperienze) => {
-    setnewUser({ ...newUser, esperienze: esperienze });
-    console.log(newUser.esperienze);
-  }; 
+    setCandidateToUse({ ...candidateToUse, esperienze: esperienze });
+    console.log(candidateToUse?.esperienze);
+  };  */
 const setArrayLinguagesToPush = (e) =>{
   let newArry = []
   for(var lingue  of e  ){
     newArry.push(lingue.value);
   }
   console.log(newArry);
-  setnewUser({ ...newUser, languages: newArry });
-  console.log(newUser)
-}
+  setCandidateEdit({ ...candidateEdit, languages: newArry });
+  console.log(candidateToUse)
 
+}
+const editCandidate = async (candidateEdit,cookieToSend) => {
+  console.log(cookieToSend)
+  console.log("dati editatiToModify" ,candidateEdit);
+ const res = await modifyCandidates(candidateEdit,cookieToSend).then( (res) =>
+{   console.log(res)
+   const message = res.message;
+console.log(message)
+if(message == "Update successful"){
+
+setStatoEdit("ok")
+console.log("RESPONSEEE",res.client)
+const candidatoEditato = res.client;
+ setCandidatoEditato(candidatoEditato) 
+console.log("originale",cand) }})} 
 
 const setArraySkillsToPush = (e) =>{
   let newArry = []
@@ -93,8 +193,8 @@ const setArraySkillsToPush = (e) =>{
     newArry.push(skill.value);
   }
   console.log(newArry);
-  setnewUser({ ...newUser, skills: newArry });
-  console.log(newUser)
+  setCandidateEdit({ ...candidateEdit, skills: newArry });
+  console.log(candidateToUse)
 }
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -105,7 +205,7 @@ const setArraySkillsToPush = (e) =>{
   };
 
   const validateInput = (e) => {
-    console.log(newUser);
+    console.log(candidateToUse);
     let { name, value } = e.target;
     setError((prev) => {
       const stateObj = { ...prev, [name]: "" };
@@ -153,21 +253,27 @@ const setArraySkillsToPush = (e) =>{
     { value: "Probelm Solving", label: "Probelm Solving" },
   
   ];
+  const handleSubmit = function (e,can) {
+    setStatoEdit("loading")
+    e.preventDefault();
+    setEditData(can,candidateEdit)
+   
 
+  }
   return (
     <form
       method="POST"
-      onSubmit={(e) => handleSubmit(e, newUser)}
+      onSubmit={(e) => handleSubmit(e, cand)}
       className="default-form"
     >
-   {newUserSend === "ok" ? (<div>
-<h1>Candidato inserito correttamtne</h1>
+   {candidateToUseSend === "ok" ? (<div>
+<h1>Modificato</h1>
  </div>) : (<div>
 
 
-  {newUserSend !== "send" ? (
+  {candidateToUseSend !== "send" ? (
       <div className="row">
-     
+        
         <div className="col-6 mt-20">
           <div className="form-group">
             <label>Nome</label>
@@ -176,11 +282,11 @@ const setArraySkillsToPush = (e) =>{
               name="name"
               placeholder="Nome"
               id="name-field"
-              className={error.name ? "errorInput" : ""}
-              value={newUser.name}
-              onBlur={(e) => validateInput(e)}
-              onChange={(e) => setnewUser({ ...newUser, name: e.target.value })}
-              required
+            
+              defaultValue={candidateToUse?.name}
+             
+              onChange={(e) => setCandidateEdit({ ...candidateEdit,name: e.target.value })}
+              
             />
           </div>
 
@@ -191,17 +297,15 @@ const setArraySkillsToPush = (e) =>{
           <div className="form-group">
             <label>Cognome</label>
             <input
-              id="cognome-field"
+              id="surname-field"
               className={error.surname ? "errorInput" : ""}
               type="text"
-              name="cognome"
-              value={newUser.surname}
+              name="surname"
+              defaultValue={candidateToUse?.surname}
               placeholder="Cognome"
               onBlur={(e) => validateInput(e)}
-              onChange={(e) =>
-                setnewUser({ ...newUser, surname: e.target.value })
-              }
-              required
+              onChange={(e) => setCandidateEdit({ ...candidateEdit,surname: e.target.value })}
+
             />
           </div>
         </div>
@@ -214,16 +318,15 @@ const setArraySkillsToPush = (e) =>{
               type="text"
               name="phone"
               placeholder="Telefono"
-              value={newUser.phone}
+              value={candidateToUse?.phone}
               onBlur={(e) => validateInput(e)}
-              onChange={(e) =>
-                setnewUser({ ...newUser, phone: e.target.value })
-              }
+              onChange={(e) => setCandidateEdit({ ...candidateEdit,phone: e.target.value })}
+
               required
             />
           </div>
         </div>
-        <div className="col-6 mt-20">
+    {/*     <div className="col-6 mt-20">
           <div className="form-group">
             <label>Email</label>
             <input
@@ -232,20 +335,20 @@ const setArraySkillsToPush = (e) =>{
               name="email"
               placeholder="Email"
               className={error.email ? "errorInput" : ""}
-              value={newUser.email}
+              value="emai@emial.it"
               onBlur={(e) => validateInput(e)}
               onChange={(e) =>
-                setnewUser((newUser) => ({
-                  ...newUser,
+                setCandidateToUse((candidateToUse) => ({
+                  ...candidateToUse,
                   credentials: {
-                    ...newUser.credentials,
+                    ...candidateToUse?.credentials,
                     email: e.target.value,
                   },
                 }))
               }
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="col-6 mt-20">
           <div className="form-group">
@@ -253,13 +356,13 @@ const setArraySkillsToPush = (e) =>{
             <input
               type="number"
               name="age"
-              placeholder="Età"
+              placeholder={candidateEdit?.age}
               id="age-field"
               className={error.age ? "errorInput" : ""}
               onBlur={(e) => validateInput(e)}
-              value={newUser.age}
-              onChange={(e) => setnewUser({ ...newUser, age: e.target.value })}
-              required
+              value={candidateEdit?.age}
+              onChange={(e) => setCandidateEdit({ ...candidateEdit, age: e.target.value })}
+            
             />
           </div>
         </div>
@@ -269,14 +372,14 @@ const setArraySkillsToPush = (e) =>{
             <label>Sesso</label>
             <select
               onBlur={(e) => validateInput(e)}
-              value={newUser.gender}
+              value={candidateEdit?.gender}
               className={
                 error.gender
                   ? "errorInput chosen-single form-select"
                   : "chosen-single form-select"
               }
               onChange={(e) =>
-                setnewUser({ ...newUser, gender: e.target.value })
+                setCandidateEdit({ ...candidateEdit, gender: e.target.value })
               }
               required
             >
@@ -291,11 +394,11 @@ const setArraySkillsToPush = (e) =>{
           <div className="form-group">
             <label>Mansione</label>
             <input
-              value={newUser.mansione}
+              value={candidateEdit?.mansione}
               onBlur={(e) => validateInput(e)}
               className={error.mansione ? "errorInput" : ""}
               onChange={(e) =>
-                setnewUser({ ...newUser, mansione: e.target.value })
+                setCandidateEdit({ ...candidateEdit, mansione: e.target.value })
               }
               id="Mansione-field"
               type="text"
@@ -314,17 +417,17 @@ const setArraySkillsToPush = (e) =>{
            
 <select
               onBlur={(e) => validateInput(e)}
-              value={newUser.category}
+              value={candidateEdit?.category}
               className={
                 error.gender
                   ? "errorInput chosen-single form-select"
                   : "chosen-single form-select"
               }
               onChange={(e) =>
-                setnewUser({ ...newUser, category: e.target.value })
+                setCandidateEdit({ ...candidateEdit, category: e.target.value })
               }
               name="category"
-              placeholder="category"
+              placeholder= {candidateEdit?.category}
               required
             >
               <option>Industriale</option>
@@ -395,14 +498,14 @@ const setArraySkillsToPush = (e) =>{
         <div className="form-group col-lg-12 col-md-12">
        <label>Città</label>
             <input
-              value={newUser.location.city}
+              value={candidateToUse?.location?.city}
               onBlur={(e) => validateInput(e)}
               className={error.location ? "errorInput" : ""}
               onChange={(e) =>
-                setnewUser((newUser) => ({
-                  ...newUser,
+                setCandidateToUse((candidateToUse) => ({
+                  ...candidateToUse,
                   location: {
-                    ...newUser.location,
+                    ...candidateToUse?.location,
                     city: e.target.value,
                   },
                 }))
@@ -469,7 +572,34 @@ const setArraySkillsToPush = (e) =>{
           </div>
           </div>      
 
-        <div className="col-12 mt-20">
+     
+        <div className="form-group col-lg-12 col-md-12">
+          <label>Note</label>
+          <textarea   onChange={(e) =>
+                setCandidateEdit({ ...candidateEdit, note: e.target.value })
+              } placeholder={candidateEdit?.note}></textarea>
+        </div>
+{/* 
+        <Education
+          setEducazioneToSend={setEducazioneToSend}
+          educazioneList={candidateToUse?.educazione}
+        ></Education>
+
+         <Experience
+          setEsperienzeToSend={setEsperienzeToSend}
+          esperienzeList={candidateToUse?.esperienze}
+        ></Experience>
+
+
+        <AwardsCertificates
+          setPremiCertificatiToSend={setPremiCertificatiToSend}
+          educazioneList={candidateToUse?.premi}
+        ></AwardsCertificates> */}
+
+
+
+
+{/* <div className="col-6 mt-20">
           <div className="form-group">
             <label>Username</label>
             <input
@@ -477,14 +607,14 @@ const setArraySkillsToPush = (e) =>{
               className={error.username ? "errorInput" : ""}
               type="text"
               name="username"
-              value={newUser.username}
+              value={candidateToUse?.username}
               placeholder="Username"
               onBlur={(e) => validateInput(e)}
               onChange={(e) =>
-                setnewUser((newUser) => ({
-                  ...newUser,
+                setCandidateToUse((candidateToUse) => ({
+                  ...candidateToUse,
                   credentials: {
-                    ...newUser.credentials,
+                    ...candidateToUse?.credentials,
                     username: e.target.value,
                   },
                 }))
@@ -493,6 +623,26 @@ const setArraySkillsToPush = (e) =>{
             />
           </div>
         </div>
+
+        <div className="col-6 mt-20">
+              <div className="form-group">
+              <label>Stato</label>
+                   <select
+                     value={candidateToUse?.role}
+                     className= " chosen-single form-select"
+                     name="status"
+                     onChange={(e) =>
+                      setCandidateToUse({ ...candidateToUse, status: e.target.value })
+                     }
+                     required
+                   >
+                     <option>new</option>
+                     <option>approved</option>
+                     <option>waiting</option>
+                   </select>
+             </div> 
+          </div>
+
         <div className="col-6 mt-20">
           <div className="form-group">
             <label>Password</label>
@@ -503,10 +653,10 @@ const setArraySkillsToPush = (e) =>{
               placeholder="Password"
               required
               onChange={(e) =>
-                setnewUser((newUser) => ({
-                  ...newUser,
+                setCandidateToUse((candidateToUse) => ({
+                  ...candidateToUse,
                   credentials: {
-                    ...newUser.credentials,
+                    ...candidateToUse?.credentials,
                     password: e.target.value,
                   },
                 }))
@@ -535,8 +685,8 @@ const setArraySkillsToPush = (e) =>{
               onBlur={validateInput}
               className={error.confirmPassword ? "errorInput" : ""}
               onChange={(e) =>
-                setnewUser({
-                  ...newUser,
+                setCandidateToUse({
+                  ...candidateToUse,
                   confirmPassword: e.target.value,
                 })
               }
@@ -546,28 +696,7 @@ const setArraySkillsToPush = (e) =>{
           {error.confirmPassword && (
             <span className="err">{error.confirmPassword}</span>
           )}
-        </div>
-        <div className="form-group col-lg-12 col-md-12">
-          <label>Note</label>
-          <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
-        </div>
-
-        <Education
-          setEducazioneToSend={setEducazioneToSend}
-          educazioneList={newUser.educazione}
-        ></Education>
-
-         <Experience
-          setEsperienzeToSend={setEsperienzeToSend}
-          esperienzeList={newUser.esperienze}
-        ></Experience>
-
-
-        <AwardsCertificates
-          setPremiCertificatiToSend={setPremiCertificatiToSend}
-          educazioneList={newUser.premi}
-        ></AwardsCertificates>
-
+        </div> */}
         <div className="form-group col-lg-12 col-md-12">
           <button type="submit" className="theme-btn btn-style-one">
             Save

@@ -61,6 +61,7 @@ const FormInfoBox = (props) => {
       lng: "",
       lat: "",
     },
+    stastus: "new",
     credentials: {
       username: "JustToTry_02",
       password: "JustToTry",
@@ -516,7 +517,7 @@ const FormInfoBox = (props) => {
                 </div>
               </div>
 
-              <div className="col-12 mt-20">
+              <div className="col-6 mt-20">
                 <div className="form-group">
                   <label>Username</label>
                   <input
@@ -539,6 +540,25 @@ const FormInfoBox = (props) => {
                     required
                   />
                 </div>
+              </div>
+              <div className="col-6 mt-20">
+              <div className="form-group">
+       <label>Stato</label>
+                   <select
+                     value={newUser.role}
+                     className= " chosen-single form-select"
+                     name="status"
+                     onChange={(e) =>
+                      setnewUser({ ...newUser, status: e.target.value })
+                     }
+                     required
+                   >
+                     <option>new</option>
+                     <option>approved</option>
+                     <option>waiting</option>
+                   </select>
+        </div> 
+              
               </div>
               <div className="col-6 mt-20">
                 <div className="form-group">
@@ -598,7 +618,11 @@ const FormInfoBox = (props) => {
               </div>
               <div className="form-group col-lg-12 col-md-12">
                 <label>Note</label>
-                <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
+                <textarea onChange={(e) =>
+                      setnewUser({
+                        ...newUser,
+                        note: e.target.value,
+                      })} placeholder={newUser.note}></textarea>
               </div>
 
               <Education
