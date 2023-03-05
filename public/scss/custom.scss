@@ -1,0 +1,36 @@
+
+/* .map{
+    .gm-style .gm-style-iw-c{
+        padding: 0 !important;
+        .gm-style-iw-d{
+            overflow: hidden !important;
+        }
+    }
+    div[role=button]{
+        --b:5px;
+        color: #313149;
+        display: inline-block;
+        margin: 10px;
+        width: 150px;
+        aspect-ratio: 1;
+        position: relative;
+        z-index: 0;
+        &::before{
+            content:"";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            padding: 5px;
+            border-radius: 15px;
+            background: linear-gradient(to right, rgba(27,188,179,1), rgba(94,145,182,1) 50%,rgba(114,111,179,1) 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                    mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+        }
+    }
+} */

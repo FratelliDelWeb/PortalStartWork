@@ -13,14 +13,14 @@ const Wrapper = styled.div`
   border: 2px solid #fff;
   border-radius: 100%;
   user-select: none;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -100%);
   cursor: ${(state) => (state.onClick ? "pointer" : "default")};
   &:hover {
     z-index: 1;
   }
 `;
 
-export default function Marker({ text, onClick, data, modifyMap }) {
+export default function Marker({ text, onClick, data }) {
   const initialState = {
     text: "",
     onClick: null,
@@ -34,11 +34,13 @@ export default function Marker({ text, onClick, data, modifyMap }) {
   };
 
   useEffect(() => {
-    setstate({
-      text: text,
-      onClick: onClick,
-      active: data.active,
-    });
+    if (data) {
+      setstate({
+        text: text,
+        onClick: onClick,
+        active: data.active,
+      });
+    }
   }, [data]);
 
   return (

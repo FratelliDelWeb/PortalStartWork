@@ -116,13 +116,15 @@ candidatoSchema.pre("save", function (next) {
     .then(function (count) {
       console.log("...count: " + JSON.stringify(count));
       console.log("I'm the doc ==>");
-      doc.candidateID = count.seq;
-      doc.publicName =
-        Array.from(doc.name)[0] +
-        Array.from(doc.surname)[0] +
-        "_" +
-        doc.candidateID;
-      console.log(doc);
+      if (!doc.candidateID) {
+        doc.candidateID = count.seq;
+        doc.publicName =
+          Array.from(doc.name)[0] +
+          Array.from(doc.surname)[0] +
+          "_" +
+          doc.candidateID;
+        console.log(doc);
+      }
       next();
     })
     .catch(function (error) {

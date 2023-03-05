@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function InfoWindow({ dataCL, visible }) {
+export default function Info({ dataCL }) {
   const initialState = {
     publicName: "",
     mansione: "",
@@ -12,19 +12,6 @@ export default function InfoWindow({ dataCL, visible }) {
   };
 
   const [state, setstate] = useState(initialState);
-
-  useEffect(() => {
-    debugger;
-    setstate({
-      publicName: dataCL.publicName,
-      mansione: dataCL.mansione,
-      skills: dataCL.skills,
-      linkProfile: "/candidates/" + dataCL.publicName,
-      visible: visible,
-    });
-    console.log("dataCL", dataCL);
-    console.log("state", state);
-  }, [dataCL, visible]);
 
   const innerBoxStyle = {
     position: "relative",
@@ -104,42 +91,40 @@ export default function InfoWindow({ dataCL, visible }) {
 
   return (
     <>
-      {state.visible && (
-        <div className="map-container-info-marker" style={containerStyle}>
-          <div className="map-inner-box" style={innerBoxStyle}>
-            <div className="map-content" style={contentStyle}>
-              <h4 className="map-name" style={nameStyle}>
-                {state.publicName}
-              </h4>
+      <div className="map-container-info-marker" style={containerStyle}>
+        <div className="map-inner-box" style={innerBoxStyle}>
+          <div className="map-content" style={contentStyle}>
+            <h4 className="map-name" style={nameStyle}>
+              {dataCL.publicName}
+            </h4>
 
-              <ul className="map-candidate-info" style={infoStyle}>
-                <li className="map-designation" style={designationStyle}>
-                  {state.mansione}
+            <ul className="map-candidate-info" style={infoStyle}>
+              <li className="map-designation" style={designationStyle}>
+                {dataCL.mansione}
+              </li>
+            </ul>
+
+            <ul className="map-post-tags" style={postTagsStyle}>
+              {dataCL.skills.map((val, i) => (
+                <li key={i} style={postTagStyle}>
+                  <a href="#" style={linkPostStyle}>
+                    {val}
+                  </a>
                 </li>
-              </ul>
+              ))}
+            </ul>
 
-              <ul className="map-post-tags" style={postTagsStyle}>
-                {state.skills.map((val, i) => (
-                  <li key={i} style={postTagStyle}>
-                    <a href="#" style={linkPostStyle}>
-                      {val}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="btn-box">
-                <Link
-                  href={`/candidates/${state.publicName}`}
-                  className="theme-btn btn-style-three"
-                >
-                  <span className="btn-title">Dettagli</span>
-                </Link>
-              </div>
+            <div className="btn-box">
+              <Link
+                href={`/candidates/${dataCL.publicName}`}
+                className="theme-btn btn-style-three"
+              >
+                <span className="btn-title">Dettagli</span>
+              </Link>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
