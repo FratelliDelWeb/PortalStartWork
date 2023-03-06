@@ -272,7 +272,7 @@ const CandidateSingleDynamicV1 = ({ dataCL }) => {
       </section>
       {/* <!-- End Job Detail Section --> */}
 
-      <Footer />
+      <Footer  />
       {/* <!-- End Main Footer --> */}
     </>
   );

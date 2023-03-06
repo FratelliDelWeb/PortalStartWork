@@ -180,3 +180,16 @@ Buttons Styles
   line-height: 21px;
   border-radius: 5px;
 }
+
+.btn-map-innerModal{
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--primary-color);
+  background-color: #e2eaf8;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 8px;
+  font-weight: 400;
+  padding: 5px;
+}

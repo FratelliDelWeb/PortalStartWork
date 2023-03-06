@@ -43,7 +43,7 @@ const Index = ({ dataCL }) => {
           {/* End filter column for tablet and mobile devices */}
 
           <div className="map-column width-50">
-            <div className="map" style={{ height: "100vh", width: "100%" }}>
+            <div className="map" style={{ height: "90%", width: "100%" }}>
               <MapJobFinder dataCL={dataCL} elementOnHover={state.element} />
             </div>
             {/* <!-- Map --> */}

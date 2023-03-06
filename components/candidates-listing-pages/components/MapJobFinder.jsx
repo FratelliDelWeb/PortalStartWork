@@ -250,10 +250,10 @@ const markerStyle = {
   width: "18px",
   height: "18px",
   backgroundColor: "#000",
-  border: " 2px solid #fff !important",
-  borderRadius: "100%",
+  border: " 0px solid #fff !important",
+  borderRadius: "10px",
   transform: "translate(-50%, -100%)",
-};
+  };
 
 const containerStyle = {
   position: "relative",
@@ -286,6 +286,7 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
         skills: data.skills,
         mansione: data.mansione,
         lat: data.location.lat,
+        category: data.category,
         lng: data.location.lng,
         active: false,
         icon: data.avatar,
@@ -353,8 +354,9 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
                 lat: parseFloat(place.lat) || 0,
                 lng: parseFloat(place.lng) || 0,
               }}
-              icon={{
-                url: window.location.origin + place.icon + "#custom_markers",
+             
+             icon={{
+                url: window.location.origin + place.icon + "#custom_markers"
               }}
               onClick={() => handleActiveElement(place)}
               onLoad={(marker) => {}}

@@ -2,16 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import InfoWindow from "./InfoWindow";
+import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 18px;
+  width: 3318px;
   height: 18px;
   background-color: #000;
-  border: 2px solid #fff;
-  border-radius: 100%;
+  border: 0px solid #fff;
+  borderRadius: 20%;
   user-select: none;
   transform: translate(-50%, -100%);
   cursor: ${(state) => (state.onClick ? "pointer" : "default")};
@@ -45,10 +46,13 @@ export default function Marker({ text, onClick, data }) {
 
   return (
     <>
-      <Wrapper
+
+    <Wrapper
         alt={state.text}
         onClick={() => handleOnClick(state.active, data)}
-      ></Wrapper>
+        options={calssName = "pinMarker"}
+      ></Wrapper> 
+    
       <InfoWindow dataCL={data} visible={state.active}></InfoWindow>
     </>
   );

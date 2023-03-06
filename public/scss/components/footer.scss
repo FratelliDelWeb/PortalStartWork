@@ -683,6 +683,10 @@ Main Footer / Style Six
 
 .main-footer.style-six {
   background-color: #2f333c;
+  display: block;
+  position: absolute;
+  z-index: 1000 !important;
+  width: 100%;
 }
 
 .main-footer.style-six .widgets-section {
