@@ -11,6 +11,7 @@ import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
 import { useState , useEffect } from "react";
 import axios from "axios";
+import { CircularProgressbar ,buildStyles} from "react-circular-progressbar";
 
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
@@ -59,15 +60,47 @@ const  setUserIndex =( user) =>{
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-      <BreadCrumb title={ `Benventuo ,${user?.name} ${user?.surname} !`} stato={`La tua professione: ${user?.mansione}`} />
+       
+
+        <BreadCrumb title={ `Benventuo ,${user?.name} ${user?.surname} !`} stato={`La tua professione: ${user?.mansione}`} />
  
+      
+  
+   
          {/* breadCrumb */}
           
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
           <div className="row">
+      {/*     <div className="col-2">
+           <div className="">
+           <h6>Completamento profilo</h6>
+                    <p >
+                        `Inserisci tutte le informazioni richeiste nel <strong>tuo CV</strong>
+                        per raggiungere il  <strong>100%</strong>`
+                    </p>
+                    <div style={{ width: 100, height: 100, margin: "auto" }}>
+                        <CircularProgressbar
+                            background
+                            backgroundPadding={6}
+                            styles={buildStyles({
+                                backgroundColor: "#7367F0",
+                                textColor: "#fff",
+                                pathColor: "#fff",
+                                trailColor: "transparent",
+                            })}
+                            value="30"
+                            text={`30%`}
+                        />
+                    </div>{" "}
+                    
+                </div> 
+           </div> */}
+            <div className="col-12">
             <TopCardBlock user={user} />
+            </div>
+          
           </div>
           {/* End .row top card block */}
 

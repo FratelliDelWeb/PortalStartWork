@@ -21,7 +21,9 @@ const TopCardBlock = ({user}) => {
 
   return (
     <>
-      {cardContent.map((item) => (
+    <div className="row"> 
+    {cardContent.map((item) => (
+        
         <div
           className="ui-block col-xl-6 col-lg-6 col-md-6 col-sm-12"
           key={item.id}
@@ -37,6 +39,8 @@ const TopCardBlock = ({user}) => {
           </div>
         </div>
       ))}
+    </div>
+  
     </>
   );
 };

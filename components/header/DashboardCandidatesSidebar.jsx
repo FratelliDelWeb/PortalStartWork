@@ -85,8 +85,8 @@ const DashboardCandidatesSidebar = () => {
                             text={`${percentage}%`}
                         />
                     </div>{" "}
-                     <!-- Pie Graph --> 
-                </div> */}
+                    
+                </div>  */}
             </div>
         </div>
     );
