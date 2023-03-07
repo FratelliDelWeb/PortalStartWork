@@ -9,8 +9,36 @@ import CopyrightFooter from "../../CopyrightFooter";
 import JobApplied from "./components/JobApplied";
 import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
+import { useState , useEffect } from "react";
+import axios from "axios";
 
-const Index = () => {
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+
+const Index = ({dataOL,idUser,cookie}) => {
+  console.log("ID USER compoentnIndex=>" , idUser);
+  console.log("Cookie compoentnIndex=>", cookie);
+  const [user, setUser] = useState()
+
+useEffect(() => {
+  callProfile(idUser)
+ 
+},[idUser])
+const callProfile = async (id , cookie) =>{
+  await axios.get(api + "/candidates/" + id, {
+ withCredentials: true,
+ headers: {
+   Cookie: cookie,
+ },}).then((res)=> {
+   const data = res.data;
+    setUser(data)
+   console.log("data",data)
+ })
+
+}
+
+const  setUserIndex =( user) =>{
+ setUser(user)
+}
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -31,18 +59,35 @@ const Index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="NOME CANDIDATO" />
-          {/* breadCrumb */}
-
+      <BreadCrumb title={ `Benventuo ,${user?.name} ${user?.surname} !`} stato={`La tua professione: ${user?.mansione}`} />
+ 
+         {/* breadCrumb */}
+          
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
           <div className="row">
-            <TopCardBlock />
+            <TopCardBlock user={user} />
           </div>
           {/* End .row top card block */}
 
           <div className="row">
+            
+          <div className="col-lg-12">
+              {/* <!-- applicants Widget --> */}
+              <div className="applicants-widget ls-widget">
+                <div className="widget-title">
+                  <h4>Nuove Offerte di lavoro</h4>
+                </div>
+                <div className="widget-content">
+                  <div className="row">
+                    {/* <!-- Candidate block three --> */}
+
+                    <JobApplied dataOL={dataOL}/>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="col-xl-7 col-lg-12">
               {/* <!-- Graph widget --> */}
               <div className="graph-widget ls-widget">
@@ -65,21 +110,6 @@ const Index = () => {
             </div>
             {/* End .col */}
 
-            <div className="col-lg-12">
-              {/* <!-- applicants Widget --> */}
-              <div className="applicants-widget ls-widget">
-                <div className="widget-title">
-                  <h4>Jobs Applied Recently</h4>
-                </div>
-                <div className="widget-content">
-                  <div className="row">
-                    {/* <!-- Candidate block three --> */}
-
-                    <JobApplied />
-                  </div>
-                </div>
-              </div>
-            </div>
             {/* End .col */}
           </div>
           {/* End .row profile and notificatins */}
