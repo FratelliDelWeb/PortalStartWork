@@ -29,7 +29,7 @@ const index = ({dataOL}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Manage jobs!" />
+          <BreadCrumb title="OFFERTE DI LAVORO" />
           {/* breadCrumb */}
 
           <MenuToggler />

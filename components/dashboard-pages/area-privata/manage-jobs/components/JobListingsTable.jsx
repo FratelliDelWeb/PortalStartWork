@@ -26,11 +26,11 @@ const JobListingsTable = ({dataOL}) => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Applications</th>
-                <th>Created & Expired</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Titolo Offerta</th>
+                <th>Candidati</th>
+                <th>Pubblicata il:</th>
+                <th>Stato</th>
+                <th></th>
               </tr>
             </thead>
 
