@@ -104,7 +104,7 @@ const categoryStyle={
         <div className="map-inner-box" style={innerBoxStyle}>
           <div className="map-content" style={contentStyle}>
             <div className="headerModal d-flex">
-            <img style={imgStyle} src={ window.location.origin + "/" + dataCL.icon}/>
+            <img style={imgStyle} src={ window.location.origin + "/" + dataCL.icon} alt="avatar"/>
             <h6 className="map-name" style={nameStyle}>
               {dataCL.publicName}
             </h6>
