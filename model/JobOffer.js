@@ -40,7 +40,10 @@ const jobOffersSchema = new Mongoose.Schema({
   },
   note: {
     type: String,
-    require: true,
+    required: true,
+  },
+  candidatesList: {
+    type: [],
   },
 });
 

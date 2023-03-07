@@ -1,258 +1,19 @@
 import Select from "react-select";
-import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import InputRange from "react-input-range";
 import Map from "../../../../Map";
-import AwardsCertificates from "./AwardsCertificates";
-/* import Experience from "./Experience";
- */ import Loader from "../../../../../loader/Loader";
-import { useEffect } from "react";
+import Experience from "./Experience";
+import Loader from "../../../../../loader/Loader";
 import { modifyCandidates } from "../../../../../../services/private/modifyCandidates";
-
+import Education from "./Education";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
-const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
-  console.log(" USER compoentnBOX =>", cand);
-  console.log("Cookie compoentnBOX=>", cookie);
 
-  const [cookieToSend, setcookieToSend] = useState(cookie);
-
-  const router = useRouter();
-
-  const [candidateToUseSend, setCandidateToUseSend] = useState();
-  const [statoEdit, setStatoEdit] = useState("start");
-
-  const [candidateEdit, setCandidateEdit] = useState();
-  const [candidateToUse, setCandidateToUse] = useState();
-
-  const [getDestination, setDestination] = useState({ min: 0, max: 100 });
-
-  const handleOnChange = (value) => {
-    setDestination(value);
-    setCandidateEdit({ ...candidateEdit, rangeWithin: value.max });
-  };
-
-  useEffect(() => {
-    if (cand) {
-      setCandidateToUse({
-        id: `${cand?._id}`,
-        surname: `${cand?.surname}`,
-        status: `${cand?.status}`,
-        name: `${cand?.name}`,
-        mansione: `${cand?.mansione}`,
-        phone: `${cand?.phone}`,
-        note: `${cand?.note}`,
-        publicName: `${cand?.publicName}`,
-        gender: `${cand?.gender}`,
-        category: `${cand?.category}`,
-        age: `${cand?.age}`,
-        skills: cand?.skills,
-        rangeWithin: cand?.rangeWithin,
-        languages: `${cand?.languages}`,
-        esperienze: cand?.esperienze,
-        location: cand?.location,
-      });
-      setCandidateEdit({
-        id: `${cand?._id}`,
-        surname: `${cand?.surname}`,
-        status: `${cand?.status}`,
-        name: `${cand?.name}`,
-        mansione: `${cand?.mansione}`,
-        phone: `${cand?.phone}`,
-        note: `${cand?.note}`,
-        publicName: `${cand?.publicName}`,
-        gender: `${cand?.gender}`,
-        category: `${cand?.category}`,
-        age: `${cand?.age}`,
-        skills: cand?.skills,
-        rangeWithin: cand?.rangeWithin,
-        languages: `${cand?.languages}`,
-        esperienze: cand?.esperienze,
-        location: cand?.location,
-      });
-    }
-  }, [cand]);
-
-  console.log("USER DA USARE ", candidateToUse);
-
-  console.log("USER DA edit ", candidateEdit);
-  const setEditData = (candidateToUse, candidateEdit) => {
-    console.log("USER DA USARE ", candidateToUse);
-
-    console.log("USER DA edit ", candidateEdit);
-    let editData = {
-      id: candidateToUse?._id,
-      fields: [
-        {
-          name: "surname",
-          from: candidateToUse?.surname,
-          to: candidateEdit?.surname,
-        },
-
-        {
-          name: "name",
-          from: candidateToUse?.name,
-          to: candidateEdit?.name,
-        },
-        {
-          name: "mansione",
-          from: candidateToUse?.mansione,
-          to: candidateEdit?.mansione,
-        },
-        {
-          name: "note",
-          from: candidateToUse?.note,
-          to: candidateEdit?.note,
-        },
-        {
-          name: "phone",
-          from: candidateToUse?.phone,
-          to: candidateEdit?.phone,
-        },
-        {
-          name: "age",
-          from: candidateToUse?.age,
-          to: candidateEdit?.age,
-        },
-        {
-          name: "gender",
-          from: candidateToUse?.gender,
-          to: candidateEdit?.gender,
-        },
-        {
-          name: "category",
-          from: candidateToUse?.category,
-          to: candidateEdit?.category,
-        },
-        {
-          name: "skills",
-          from: candidateToUse?.skills,
-          to: candidateEdit?.skills,
-        },
-        {
-          name: "status",
-          from: candidateToUse?.status,
-          to: candidateEdit?.status,
-        },
-        {
-          name: "rangeWithin",
-          from: candidateToUse?.rangeWithin,
-          to: candidateEdit?.rangeWithin,
-        },
-        {
-          name: "languages",
-          from: candidateToUse?.languages,
-          to: candidateEdit?.languages,
-        },
-        {
-          name: "esperienze",
-          from: candidateToUse?.esperienze,
-          to: candidateEdit?.esperienze,
-        },
-        {
-          name: "location",
-          from: candidateToUse?.location,
-          to: candidateEdit?.location,
-        },
-      ],
-    };
-
-    console.log(editData);
-    editCandidate(editData, cookie);
-    console.log("USER DA edidtao ", candidateEdit);
-  };
-
-  const [error, setError] = useState({
-    name: ``,
-    surname: ``,
-    phone: ``,
-    age: ``,
-    rangeWithin: ``,
-    gender: ``,
-    password: ``,
-    confirmPassword: ``,
-    location: ``,
-  });
-  const [errorSend, setErrorSend] = useState("errore");
-  const [passwordType, setPasswordType] = useState("password");
-
-  /*   const setPremiCertificatiToSend = (premi) => {
-    setCandidateToUse({ ...candidateToUse, premi: premi });
-    console.log(candidateToUse?.premi);
-  }; 
-  const setEsperienzeToSend = (esperienze) => {
-    setCandidateEdit({ ...candidateEdit, esperienze: esperienze });
-    console.log(candidateToUse?.esperienze);
-  };  */
-  const setArrayLinguagesToPush = (e) => {
-    let newArry = [];
-    for (var lingue of e) {
-      newArry.push(lingue.value);
-    }
-    console.log(newArry);
-    setCandidateEdit({ ...candidateEdit, languages: newArry });
-    console.log(candidateToUse);
-  };
-  const editCandidate = async (candidateEdit, cookieToSend) => {
-    console.log(cookieToSend);
-    debugger;
-    console.log("dati editatiToModify", candidateEdit);
-    const res = await modifyCandidates(candidateEdit, cookieToSend).then(
-      (res) => {
-        console.log(res);
-        const message = res.message;
-        console.log(message);
-        if (message == "Update successful") {
-          setStatoEdit("ok");
-          console.log("RESPONSEEE", res.client);
-          const candidatoEditato = res.client;
-          setCandidatoEditato(candidatoEditato);
-          console.log("originale", cand);
-        }
-      }
-    );
-  };
-
-  const setArraySkillsToPush = (e) => {
-    debugger;
-    console.log(e);
-    console.log("set");
-    let newArry = [];
-    for (var skill of e) {
-      newArry.push(skill.value);
-    }
-    console.log("arratttttttttttttt" + newArry);
-    setCandidateEdit({ ...candidateEdit, skills: newArry });
-    console.log(candidateEdit);
-  };
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
-  };
-
-  const validateInput = (e) => {
-    console.log(candidateToUse);
-    let { name, value } = e.target;
-    setError((prev) => {
-      const stateObj = { ...prev, [name]: "" };
-
-      switch (name) {
-        case "name":
-          if (!value) {
-            stateObj[name] = "Per favore inserire il nome.";
-          }
-          break;
-
-        default:
-          break;
-      }
-
-      return stateObj;
-    });
-  };
+const FormInfoBox = ({
+  candidate,
+  candidateEdit,
+  setCandidateView,
+  setCandidate,
+}) => {
   const catOptions = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -271,6 +32,7 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
     { value: "Tedesco", label: "Tedesco" },
     { value: "Cinese", label: "Cinese" },
   ];
+
   const skills = [
     { value: "Programmazione", label: "Programmazione" },
     { value: "Web", label: "Web" },
@@ -280,24 +42,205 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
     { value: "Scrittura", label: "Scrittura" },
     { value: "Probelm Solving", label: "Probelm Solving" },
   ];
-  const handleSubmit = function (e, can) {
-    setStatoEdit("loading");
-    e.preventDefault();
-    setEditData(can, candidateEdit);
+
+  const [state, setState] = useState("start");
+  const [getDestination, setDestination] = useState({ min: 0, max: 100 });
+
+  const handleOnChange = (value) => {
+    setDestination(value);
+    setCandidateView({ ...candidateEdit, rangeWithin: value.max });
   };
+
+  const setEditData = () => {
+    console.log("Candidate => ", candidate);
+    console.log("CandidateView => ", candidateEdit);
+    let editData = {
+      id: candidate?._id,
+      fields: [
+        {
+          name: "surname",
+          from: candidate?.surname,
+          to: candidateEdit?.surname,
+        },
+
+        {
+          name: "name",
+          from: candidate?.name,
+          to: candidateEdit?.name,
+        },
+        {
+          name: "mansione",
+          from: candidate?.mansione,
+          to: candidateEdit?.mansione,
+        },
+        {
+          name: "note",
+          from: candidate?.note,
+          to: candidateEdit?.note,
+        },
+        {
+          name: "phone",
+          from: candidate?.phone,
+          to: candidateEdit?.phone,
+        },
+        {
+          name: "age",
+          from: candidate?.age,
+          to: candidateEdit?.age,
+        },
+        {
+          name: "gender",
+          from: candidate?.gender,
+          to: candidateEdit?.gender,
+        },
+        {
+          name: "category",
+          from: candidate?.category,
+          to: candidateEdit?.category,
+        },
+        {
+          name: "skills",
+          from: candidate?.skills,
+          to: candidateEdit?.skills,
+        },
+        {
+          name: "status",
+          from: candidate?.status,
+          to: candidateEdit?.status,
+        },
+        {
+          name: "rangeWithin",
+          from: candidate?.rangeWithin,
+          to: candidateEdit?.rangeWithin,
+        },
+        {
+          name: "languages",
+          from: candidate?.languages,
+          to: candidateEdit?.languages,
+        },
+        {
+          name: "esperienze",
+          from: candidate?.esperienze,
+          to: candidateEdit?.esperienze,
+        },
+        {
+          name: "location",
+          from: candidate?.location,
+          to: candidateEdit?.location,
+        },
+        {
+          name: "educazione",
+          from: candidate?.educazione,
+          to: candidateEdit?.educazione,
+        },
+      ],
+    };
+    saveCandidate(editData);
+  };
+
+  const [error, setError] = useState({
+    name: ``,
+    surname: ``,
+    phone: ``,
+    age: ``,
+    rangeWithin: ``,
+    gender: ``,
+    password: ``,
+    confirmPassword: ``,
+    location: ``,
+  });
+
+  const [passwordType, setPasswordType] = useState("password");
+
+  const setArrayLinguagesToPush = (e) => {
+    let newArry = [];
+    for (var lingue of e) {
+      newArry.push(lingue.value);
+    }
+    setCandidateView((el) => {
+      return {
+        ...el,
+        languages: newArry,
+      };
+    });
+  };
+
+  const saveCandidate = async (candidateEdit) => {
+    await modifyCandidates(candidateEdit).then((res) => {
+      const message = res.message;
+      if (message == "Update successful") {
+        setState("ok");
+        const candidatoEditato = res.client;
+        setCandidate(candidatoEditato);
+        setCandidateView(candidatoEditato);
+        setTimeout(() => {
+          setState("start");
+        }, 1000);
+      }
+    });
+  };
+
+  const setArraySkillsToPush = (e) => {
+    let newArry = [];
+    for (var skill of e) {
+      newArry.push(skill.value);
+    }
+    setCandidateView((el) => {
+      return {
+        ...el,
+        skills: newArry,
+      };
+    });
+  };
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+
+  const validateInput = (e) => {
+    let { name, value } = e.target;
+    setError((prev) => {
+      const stateObj = { ...prev, [name]: "" };
+
+      switch (name) {
+        case "name":
+          if (!value) {
+            stateObj[name] = "Per favore inserire il nome.";
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return stateObj;
+    });
+  };
+
+  const handleSubmit = function (e) {
+    setState("loading");
+    e.preventDefault();
+    setEditData();
+  };
+
+  console.log("CANDIDATE =>", candidate);
   return (
     <form
       method="POST"
-      onSubmit={(e) => handleSubmit(e, cand)}
+      onSubmit={(e) => handleSubmit(e)}
       className="default-form"
     >
-      {candidateToUseSend === "ok" ? (
+      {state === "ok" ? (
         <div>
           <h1>Modificato</h1>
         </div>
       ) : (
         <div>
-          {candidateToUseSend !== "send" ? (
+          {state !== "send" ? (
             <div className="row">
               <div className="col-6 mt-20">
                 <div className="form-group">
@@ -307,11 +250,13 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     name="name"
                     placeholder="Nome"
                     id="name-field"
-                    defaultValue={candidateToUse?.name}
+                    defaultValue={candidateEdit?.name}
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        name: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          name: e.target.value,
+                        };
                       })
                     }
                   />
@@ -328,13 +273,15 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     className={error.surname ? "errorInput" : ""}
                     type="text"
                     name="surname"
-                    defaultValue={candidateToUse?.surname}
+                    defaultValue={candidateEdit?.surname}
                     placeholder="Cognome"
                     onBlur={(e) => validateInput(e)}
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        surname: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          surname: e.target.value,
+                        };
                       })
                     }
                   />
@@ -349,12 +296,14 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     type="text"
                     name="phone"
                     placeholder="Telefono"
-                    value={candidateToUse?.phone}
+                    value={candidateEdit?.phone}
                     onBlur={(e) => validateInput(e)}
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        phone: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          phone: e.target.value,
+                        };
                       })
                     }
                     required
@@ -373,10 +322,10 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
               value="emai@emial.it"
               onBlur={(e) => validateInput(e)}
               onChange={(e) =>
-                setCandidateToUse((candidateToUse) => ({
-                  ...candidateToUse,
+                setcandidate((candidate) => ({
+                  ...candidate,
                   credentials: {
-                    ...candidateToUse?.credentials,
+                    ...candidate?.credentials,
                     email: e.target.value,
                   },
                 }))
@@ -397,9 +346,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     onBlur={(e) => validateInput(e)}
                     value={candidateEdit?.age}
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        age: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          age: e.target.value,
+                        };
                       })
                     }
                   />
@@ -418,9 +369,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                         : "chosen-single form-select"
                     }
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        gender: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          gender: e.target.value,
+                        };
                       })
                     }
                     required
@@ -440,9 +393,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     onBlur={(e) => validateInput(e)}
                     className={error.mansione ? "errorInput" : ""}
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        mansione: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          mansione: e.target.value,
+                        };
                       })
                     }
                     id="Mansione-field"
@@ -469,9 +424,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                         : "chosen-single form-select"
                     }
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        category: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          category: e.target.value,
+                        };
                       })
                     }
                     name="category"
@@ -526,9 +483,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                     className=" chosen-single form-select"
                     name="status"
                     onChange={(e) =>
-                      setCandidateEdit({
-                        ...candidateEdit,
-                        status: e.target.value,
+                      setCandidateView((el) => {
+                        return {
+                          ...el,
+                          status: e.target.value,
+                        };
                       })
                     }
                     required
@@ -549,13 +508,15 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                         onBlur={(e) => validateInput(e)}
                         className={error.location ? "errorInput" : ""}
                         onChange={(e) =>
-                          setCandidateEdit((candidateEdit) => ({
-                            ...candidateEdit,
-                            location: {
-                              ...candidateEdit?.location,
-                              city: e.target.value,
-                            },
-                          }))
+                          setCandidateView((el) => {
+                            return {
+                              ...el,
+                              location: {
+                                ...el?.location,
+                                city: e.target.value,
+                              },
+                            };
+                          })
                         }
                         id="location-field"
                         type="text"
@@ -586,7 +547,7 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
         </div> */}
                     <div className="col-lg-12 col-md-12">
                       <div className="form-group range-slider-one">
-                        <label>Disponibile a soistarsi entro</label>
+                        <label>Disponibile a spostarsi entro</label>
                         <InputRange
                           formatLabel={(value) => ``}
                           minValue={0}
@@ -599,7 +560,7 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                         <div className="input-outer">
                           <div className="amount-outer">
                             <span className="area-amount">
-                              {candidateToUse?.rangeWithin}
+                              {candidateEdit?.rangeWithin}
                             </span>
                             km
                           </div>
@@ -630,22 +591,31 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
                 <label>Note</label>
                 <textarea
                   onChange={(e) =>
-                    setCandidateEdit({ ...candidateEdit, note: e.target.value })
+                    setCandidateView((el) => {
+                      return {
+                        ...el,
+                        note: e.target.value,
+                      };
+                    })
                   }
                   placeholder={candidateEdit?.note}
                 ></textarea>
               </div>
-
-              {/* 
-         <Experience
-          setEsperienzeToSend={setEsperienzeToSend}
-          esperienzeList={candidateToUse?.esperienze}
-        ></Experience>
-
- */}
+              {
+                <Education
+                  setCandidateView={setCandidateView}
+                  educazione={candidateEdit?.educazione}
+                ></Education>
+              }
+              {
+                <Experience
+                  setCandidateView={setCandidateView}
+                  esperienze={candidateEdit?.esperienze}
+                ></Experience>
+              }
               {/*      <AwardsCertificates
           setPremiCertificatiToSend={setPremiCertificatiToSend}
-          educazioneList={candidateToUse?.premi}
+          educazioneList={candidate?.premi}
         ></AwardsCertificates> 
  */}
 
@@ -657,14 +627,14 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
               className={error.username ? "errorInput" : ""}
               type="text"
               name="username"
-              value={candidateToUse?.username}
+              value={candidate?.username}
               placeholder="Username"
               onBlur={(e) => validateInput(e)}
               onChange={(e) =>
-                setCandidateToUse((candidateToUse) => ({
-                  ...candidateToUse,
+                setcandidate((candidate) => ({
+                  ...candidate,
                   credentials: {
-                    ...candidateToUse?.credentials,
+                    ...candidate?.credentials,
                     username: e.target.value,
                   },
                 }))
@@ -678,11 +648,11 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
               <div className="form-group">
               <label>Stato</label>
                    <select
-                     value={candidateToUse?.role}
+                     value={candidate?.role}
                      className= " chosen-single form-select"
                      name="status"
                      onChange={(e) =>
-                      setCandidateToUse({ ...candidateToUse, status: e.target.value })
+                      setcandidate({ ...candidate, status: e.target.value })
                      }
                      required
                    >
@@ -703,10 +673,10 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
               placeholder="Password"
               required
               onChange={(e) =>
-                setCandidateToUse((candidateToUse) => ({
-                  ...candidateToUse,
+                setcandidate((candidate) => ({
+                  ...candidate,
                   credentials: {
-                    ...candidateToUse?.credentials,
+                    ...candidate?.credentials,
                     password: e.target.value,
                   },
                 }))
@@ -735,8 +705,8 @@ const FormInfoBox = ({ props, cand, cookie, setCandidatoEditato }) => {
               onBlur={validateInput}
               className={error.confirmPassword ? "errorInput" : ""}
               onChange={(e) =>
-                setCandidateToUse({
-                  ...candidateToUse,
+                setcandidate({
+                  ...candidate,
                   confirmPassword: e.target.value,
                 })
               }
