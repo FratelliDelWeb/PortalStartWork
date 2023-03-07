@@ -6,17 +6,41 @@ import MyProfile from "./components/my-profile";
 import SocialNetworkBox from "./components/SocialNetworkBox";
 import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
-import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
+import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
-import { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
 import Form from "./components/Form";
 
-const index = ({user , cookie}) => {
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-  console.log(user)
+const index = ({props,idUser ,cookie}) => {
+  console.log("ID USER compoentnIndex=>" , idUser);
+  console.log("Cookie compoentnIndex=>", cookie);
+  const [user, setUser] = useState()
 
-  
+useEffect(() => {
+  callProfile(idUser)
+ 
+},[idUser])
 
+const callProfile = async (id , cookie) =>{
+   await axios.get(api + "/users/" + id, {
+  withCredentials: true,
+  headers: {
+    Cookie: cookie,
+  },}).then((res)=> {
+    const data = res.data;
+     setUser(data)
+    console.log("data",data)
+  })
+
+}
+
+const  setUserIndex =( user) =>{
+  setUser(user)
+ }
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -25,7 +49,7 @@ const index = ({user , cookie}) => {
       <LoginPopup />
       {/* End Login Popup Modal */}
 
-      <DashboardCandidatesHeader />
+      <DashboardHeader />
       {/* End Header */}
 
       <MobileMenu />
@@ -37,20 +61,21 @@ const index = ({user , cookie}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Il mio Account" />
+          <BreadCrumb title="Profilo" />
           {/* breadCrumb */}
 
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <div className="row mt-30">
+          <div className="row">
             <div className="col-lg-12">
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Ciao, ecco le informazioni del tuo account :  {user.username}</h4>
+                  <h5>{user?.username} </h5>
+                    <p>{user?._id}</p>
                   </div>
-                  <MyProfile user={user} cookie= {cookie}/>
+                   <MyProfile user = {user} cookie={cookie} setUserIndex ={setUserIndex} /> 
                 </div>
               </div>
               {/* <!-- Ls widget --> */}
@@ -72,18 +97,32 @@ const index = ({user , cookie}) => {
               </div> 
            
              </div>
-            {/*   <div className="ls-widget">
+          {/*     <div className="ls-widget">
+                <div className="tabs-box">
+                  <div className="widget-title">
+                    <h4>Social Network</h4>
+                  </div>
+                  {/* End widget-title 
+
+                  <div className="widget-content">
+                    <SocialNetworkBox />
+                  </div>
+                </div>
+              </div> */}
+              {/* <!-- Ls widget --> */}
+
+              {/* <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
                     <h4>Contact Information</h4>
                   </div>
-                  {/* End widget-title 
+                  {/* End widget-title
                   <div className="widget-content">
-                    <ContactInfoBox user = {user} cookie= {cookie} />
+                    <ContactInfoBox  user ={user} />
                   </div>
                 </div>
-              </div> 
-               <!-- Ls widget --> */}
+              </div> */}
+              {/* <!-- Ls widget --> */}
             </div>
           </div>
           {/* End .row */}

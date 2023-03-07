@@ -1,85 +1,134 @@
 import Select from "react-select";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios"
-import {modifyJob} from "../../../../../../services/private/modifyJob";
+import { useRouter } from "next/router";
+import {modifyUser} from "../../../../../../services/private/modifyUser";
+import Loader from "../../../../../loader/Loader";
+const FormInfoBox = ({props,user ,cookie , setUserEditato}) => {
+
+  
+  console.log(" USER compoentnBOX =>" , user);
+  console.log("Cookie compoentnBOX=>", cookie);
 
 
+  const router = useRouter();
+  const [cookieToSend,setcookieToSend]= useState(cookie);
+  const [statoEdit,setStatoEdit] = useState("start");
 
-const FormInfoBox = ({user ,cookie}) => {
+
+  const [userToUse , setUserData ] = useState();
+
+  useEffect(() => {
+setUserData({ id: `${user?._id}`,
+  username: `${user?.username}`,
+  email: `${user?.email}`,
+  role : `${user?.role}`});
+  setClienteEdit( {
+    id: `${user?._id}`,
+    username: `${user?.username}`,
+    email: `${user?.email}`,
+    role : `${user?.role}`
+    })
+  },[user])
+
+
+  console.log("USER DA USARE " , userToUse)
+
+
+    const [ClienteEdit, setClienteEdit] = useState();
+
+    console.log("USERT TO START EDIT" ,ClienteEdit)
+    console.log("startCookie" ,cookieToSend);
  
-  const [ClienteEdit, setClienteEdit] = useState({
-    id: `${user._id}`,
-    username: `${user.username}`,
-    email: `${user.email}`,
-    role : `${user.role}`
-    });
-
-    console.log(ClienteEdit)
-
+/* 
     const setEditData = (user ,ClienteEdit ) => {
 
+   
+       console.log("dati editati" ,ClienteEdit);
+  debugger
+       
+       editCliente(ClienteEdit,cookieToSend);
+       
+     } */
+    const setEditData = (userToUse ,ClienteEdit ) => {
+
       let  editData= {
-         "id": user._id,
+         "id": userToUse?._id,
          "fields" : [
            {
              "name" : "username",
-             "from" : user.username,
-             "to" : ClienteEdit.username,
+             "from" : userToUse?.username,
+             "to" : ClienteEdit?.username,
            },
           
          {
            "name" : "email",
-           "from" : user.email,
-           "to" : ClienteEdit.email,
+           "from" : userToUse?.email,
+           "to" : ClienteEdit?.email,
          },
          {
          "name" : "role",
-         "from" : user.role,
-         "to" : ClienteEdit.role,
+         "from" : userToUse?.role,
+         "to" : ClienteEdit?.role,
        },
      
       ]
        };
+
+       console.log(editData)
         editCliente(editData,cookie)
       
        
-     }
+     } 
+    
+    const editCliente = async (editData,cookieToSend) => {
+      console.log(cookieToSend)
+      console.log("dati editatiToModify" ,editData);
+     const res = await modifyUser(editData,cookieToSend).then( (res) =>
+   {   console.log(res)
+       const message = res.message;
+   console.log(message)
+   if(message == "Update successful"){
+    
+    setStatoEdit("ok")
+    console.log("RESPONSEEE",res.client)
+    const clientEditato = res.client;
+    setUserEditato(clientEditato)
+   console.log("originale",user) }})} 
 
-     const editCliente = async (editData,cookie) => {
-      console.log(cookie)
-      console.log(editData)
-     const res =  modifyJob(editData,cookie)
-       
-       
-     }
 
   const roleUser = [
-    { value: "Admin", label: "AMMINISTRATORE" },
-    { value: "Operator", label: "OPERATORE" },
-    { value: "Candidate", label: "CANDIDATO" },
+    { value: "admin", label: "AMMINISTRATORE" },
+    { value: "Basic", label: "OPERATORE" },
+    { value: "candidate", label: "CANDIDATO" },
   ];
 
 
-
-  const handleSubmit = function (e) {
+  const handleSubmit = function (e,user) {
+    setStatoEdit("loading")
     e.preventDefault();
     setEditData(user,ClienteEdit)
    
 
   }
+
+
+  
   return (
-    <form onSubmit={(e) => handleSubmit(e)} method="POST" className="default-form">
-      <div className="row">
-        {/* <!-- Input --> */}
+    <form  onSubmit={(e) => handleSubmit(e,user)} method="POST" className="default-form">
+      {statoEdit === "ok" ? (<><h2> Modifica Effettuata</h2><button href="area-privata/my-profile" onClick={(setStatoEdit("start"))}>TORNA AL PROFILO</button></> ) : (<> 
+       
+          <div className="row">
+          {statoEdit === "loading" ? (<><h4>Stiamo inviando le tue modifiche </h4><Loader></Loader></>) : (<>      {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Username</label>
-          <input  onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })} type="text" name="username" placeholder={user?.username}  defaultValue={user?.username} required />
-        </div>
+          <input   onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })} type="text" name="username" placeholder={userToUse?.username}   required />
+      </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Email</label>
-          <input onChange={(e) => setClienteEdit({ ...ClienteEdit,email: e.target.value })}  type="text" name="email" placeholder={user?.email} defaultValue={user?.email}  required/>
+          <input type="email" name="email"    onChange={(e) => setClienteEdit({ ...ClienteEdit,email: e.target.value })} placeholder={user?.email} defaultValue={user?.email}  required/>
         </div>
 
         {/* <!-- Input --> */}
@@ -88,40 +137,37 @@ const FormInfoBox = ({user ,cookie}) => {
           <input
             type="text"
             name="name"
-            placeholder={user._id}
-            defaultValue={user?._id} 
+            placeholder={userToUse?.id}
+            defaultValue={userToUse?.id} 
+            onChange={(e) => setClienteEdit({ ...ClienteEdit,id: e.target.value })} 
           />
         </div>
-
-    
-
-        {/* <!-- Search Select --> */}
-       <div className="form-group col-lg-6 col-md-12">
-       <label>Ruolo</label>
-                   <select
-                     value={user.role}
-                     className= " chosen-single form-select"
-                      
-                     onChange={(e) =>
-                      setClienteEdit({ ...ClienteEdit, role: e.target.value })
-                     }
-                     required
-                   >
-                     <option>AMMINISTRATORE</option>
-                     <option>CANDIDATO</option>
-                     <option>OPERATORE</option>
-                   </select>
+ {/* <!-- Search Select --> */}
+ <div className="form-group col-lg-6 col-md-12">
+          <label>Ruolo </label>
+          <Select
+            defaultValue={userToUse?.role}
+            onChange={(e) => setClienteEdit({ ...ClienteEdit,role: e.value })}  
+            name="colors"
+            options={roleUser}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            required
+          />
         </div> 
 
-    
 
-        {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <button type="submit" className="theme-btn btn-style-one">
-            Save
+            Salva
           </button>
-        </div>
-      </div>
+        </div></>)}
+      
+      
+      </div></>)
+      
+      }
+   
     </form>
   );
 };

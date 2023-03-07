@@ -47,20 +47,20 @@ const DashboardCandidatesSidebar = () => {
                         </li>
                     ))}
                     {
-                        <li
-                        className={`${
-                            isActiveLink('/area-privata-candidates/my-profile/' + window.sessionStorage.getItem("token"), router.asPath)
-                                ? "active"
-                                : ""
-                        } mb-1`}
-                        key={5}
-                        onClick={menuToggleHandler}
-                    >   
-                        <Link href={'/area-privata-candidates/my-profile/' + window.sessionStorage.getItem("token")}>
-                            <i className={`la la-user-tie`}></i>{" "}
-                            {"Account"}
-                        </Link>
-                    </li>
+                       <li
+                       className={`${
+                           isActiveLink('/area-privata-candidates/my-profile/' + window.localStorage.getItem("token"), router.asPath)
+                               ? "active"
+                               : ""
+                       } mb-1`}
+                       key={5}
+                       onClick={menuToggleHandler}
+                   >   
+                       <Link href={'/area-privata-candidates/my-profile/' + window.localStorage.getItem("token")}>
+                           <i className={`la la-user-tie`}></i>{" "}
+                           {"Account"}
+                       </Link>
+                   </li>
                     }
                 </ul>
                 {/* End navigation */}
