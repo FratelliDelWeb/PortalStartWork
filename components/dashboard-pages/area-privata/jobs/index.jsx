@@ -8,10 +8,44 @@ import PostJobSteps from "./components/PostJobSteps";
 import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
 
-const index = ({dataOL}) => {
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-  console.log(dataOL)
+const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
+const index = ({idJob}) => {
+  const defaultProps = {
+    category:"",
+    codiceJod: "3" ,
+    company:"",
+    created_at:"",
+    id:"",
+    jobTitle:"Social Media Manager SM",
+    jobType:"Full Time",
+    location: "Pavia, IT",
+    note:"",
+  };
+
+
+  const [job, setJob] = useState(defaultProps);
+
+  const [jobView, setJobView] = useState(defaultProps);
+
+  useEffect(() => {
+    callCandidate(idJob);
+  }, []);
+
+  const callCandidate = async (id) => {
+    await axios
+      .get(api + "/jobOffers/" + id, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const data = res.data;
+         setJob(data);
+         setJobView(data); 
+      });
+  };
 
 
   return (
@@ -34,7 +68,7 @@ const index = ({dataOL}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title= {dataOL.jobTitle} />
+          <BreadCrumb title= {jobView.jobTitle} />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -47,14 +81,18 @@ const index = ({dataOL}) => {
                 <div className="tabs-box">
                   <div className="widget-title">
                    
-                    <h4>Lavoro ID : {dataOL.codiceJod} </h4>
-                    <h6> {dataOL.created_at}</h6>
+                    <h4>Lavoro ID : {jobView.codiceJod} </h4>
+                    <h6> {jobView.created_at}</h6>
                   </div>
 
                   <div className="widget-content">
                     <PostJobSteps  />
                     {/* End job steps form */}
-                    <PostBoxForm dataOL={dataOL} />
+                    <PostBoxForm 
+                    job={job}
+                    jobView={jobView}
+                    setJob={setJob}
+                    setJobView={setJobView} />
                     {/* End post box form */}
                   </div>
                 </div>

@@ -40,7 +40,7 @@ export default async function handler(req, res, next) {
     await Model.create({
         jobTitle: jobTitle,
         logo: logo,
-        descrizione: descrizione,
+        note: descrizione,
         codiceJob: codiceJob,
         company: company,
         jobType: jobType,

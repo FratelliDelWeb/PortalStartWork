@@ -6,21 +6,19 @@ import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps(context) {
-  const id = context.query.id;
-  const res = await axios.get(api + "/jobOffers/" + id, {
-    withCredentials: true,
-    headers: {
-      Cookie: context.req.headers.cookie,
-    },
-  });
-  const data = await res.data;
-  return { props: { dataOL: data } };
+  const idJob = context.query.id;
+  const cookie = context.req.headers.cookie
+
+  return { props: { cookie: cookie ,idJob :idJob } };
 }
-const SingleCandidate = ({ dataOL }) => {
+
+
+
+const SingleCandidate = ({ cookie,idJob }) => {
   return (
     <>
       <Seo pageTitle="Lavoro" />
-      <Jobs dataOL={dataOL} />
+      <Jobs cookie = {cookie} idJob={idJob}   />
     </>
   );
 };
