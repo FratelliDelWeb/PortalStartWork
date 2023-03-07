@@ -51,7 +51,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente, cookieSend }) => {
     });
     const data = await res.data;
 
-    const interted = data.interstedTo;
+    const interted = data?.interstedTo;
     return interted;
   };
 
@@ -66,25 +66,47 @@ const ApplyJobModalContent = ({ idOffer, idCliente, cookieSend }) => {
   const setDataToSend = async (idOfferta, idCliente, interseted) => {
     console.log(interseted);
     const to = [];
-    for (var offer of interseted) {
+    if(interseted){
+for (var offer of interseted) {
       to.push(offer);
     }
+    }
+    
 
     to.push(idOfferta._id);
 
-    let eitData = {
-      id: idCliente,
-      fields: [
-        {
-          name: "interstedTo",
-          from: interseted,
-          to: to,
-        },
-      ],
-    };
 
+    if(!interseted){
+      let eitData = {
+        id: idCliente,
+        fields: [
+          {
+            name: "interstedTo",
+            from: ([" "]),
+            to: to,
+          },
+        ],
+      };
+      
     console.log(eitData);
     addOffers(eitData);
+    }else{
+      let eitData = {
+        id: idCliente,
+        fields: [
+          {
+            name: "interstedTo",
+            from: interseted,
+            to: to,
+          },
+        ],
+      };
+      
+    console.log(eitData);
+    addOffers(eitData);
+    }
+  
+
   };
 
   return (

@@ -52,13 +52,15 @@ const JobSingleJob = ({ dataOL, userinterstedTo, cookieSend }) => {
 
   const setStatusOffer = async (dataOL, userinterstedTo) => {
     let status = [];
-
-    for (let i = 0; i < userinterstedTo.length; i++) {
-      if (userinterstedTo[i] === dataOL._id) {
-        status.push(userinterstedTo[i]);
-        setStatusOffers("attivo");
-      }
+if(userinterstedTo){
+  for (let i = 0; i < userinterstedTo.length; i++) {
+    if (userinterstedTo[i] === dataOL._id) {
+      status.push(userinterstedTo[i]);
+      setStatusOffers("attivo");
     }
+  }
+}else      status.push([""]);
+   
     console.log("status push" + status);
 
     /*       console.log("lista da monstare ", userOffer)
