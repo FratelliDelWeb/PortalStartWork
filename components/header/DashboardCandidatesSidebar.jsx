@@ -46,6 +46,22 @@ const DashboardCandidatesSidebar = () => {
                             </Link>
                         </li>
                     ))}
+                     {
+                       <li
+                       className={`${
+                           isActiveLink('/area-privata-candidates/my-resume/' + window.localStorage.getItem("token"), router.asPath)
+                               ? "active"
+                               : ""
+                       } mb-1`}
+                       key={10}
+                       onClick={menuToggleHandler}
+                   >   
+                       <Link href={'/area-privata-candidates/my-resume/' + window.localStorage.getItem("token")}>
+                           <i className={`la la-address-card`}></i>{" "}
+                           {"Il mio CV"}
+                       </Link>
+                   </li>
+                    }
                     {
                        <li
                        className={`${
@@ -62,6 +78,8 @@ const DashboardCandidatesSidebar = () => {
                        </Link>
                    </li>
                     }
+                    
+                    
                 </ul>
                 {/* End navigation */}
 

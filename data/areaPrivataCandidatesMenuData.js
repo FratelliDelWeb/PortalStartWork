@@ -28,13 +28,7 @@ module.exports = [
     routePath: "/area-privata-candidates/applied-jobs",
     active: "",
   },
-  {
-    id: 4,
-    name: "Il mio CV",
-    icon: "la-address-card",
-    routePath: "/area-privata-candidates/applied-jobs",
-    active: "",
-  },
+ 
 
 
  /*  {
