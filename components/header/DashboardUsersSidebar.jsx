@@ -54,7 +54,7 @@ const DashboardUsersSidebar = () => {
                         onClick={menuToggleHandler}
                     >   
                         <Link href={'/area-privata/users-profile/' + window.localStorage.getItem("token")}>
-                            <i className={`la la-user-tie`}></i>{" "}
+                            <i className={`la la-user-cog`}></i>{" "}
                             {"Account"}
                         </Link>
                     </li>

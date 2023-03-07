@@ -79,7 +79,7 @@ const index = ({  idUser }) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Profilo CANDIDATO" />
+          <BreadCrumb title="Il mio Curriculum"  stato= "Qui potrai visualizzare e modificare le tu informazioni " />
           {/* breadCrumb */}
 
           <MenuToggler />

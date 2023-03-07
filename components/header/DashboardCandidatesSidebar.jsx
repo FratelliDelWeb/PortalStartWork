@@ -73,12 +73,21 @@ const DashboardCandidatesSidebar = () => {
                        onClick={menuToggleHandler}
                    >   
                        <Link href={'/area-privata-candidates/my-profile/' + window.localStorage.getItem("token")}>
-                           <i className={`la la-user-tie`}></i>{" "}
+                           <i className={`la la-user-cog`}></i>{" "}
                            {"Account"}
                        </Link>
                    </li>
                     }
                     
+                    {
+                       <li
+                   >   
+                       <Link href={'/logout/' + window.localStorage.getItem("token")}>
+                           <i className={`la la-sign-out`}></i>{" "}
+                           {"logout"}
+                       </Link>
+                   </li>
+                    }
                     
                 </ul>
                 {/* End navigation */}

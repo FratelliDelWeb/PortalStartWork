@@ -61,13 +61,13 @@ module.exports = [
     routePath: "/area-privata-candidates/change-password",
     active: "",
   }, */
-  {
+ /*  {
     id: 11,
     name: "Logout",
     icon: "la-sign-out",
     routePath: "/login",
     active: "",
-  },
+  }, */
 /*   {
     id: 12,
     name: "Delete Profile",

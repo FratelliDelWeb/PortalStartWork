@@ -2,8 +2,7 @@ import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
 import DashboadHome from "../../../components/dashboard-pages/area-privata/dashboard";
 import axios from "axios";
-import {getCandidatesPrivate} from "../../../services/private/getCandidatesPrivate"
-import axios from "axios";
+import {getCandidatesPrivate} from "../../../services/private/getCandidatesPrivate";
 import React, { useState, useEffect } from "react";
 import { signIn, useSession,getSession } from "next-auth/react"; 
 
