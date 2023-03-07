@@ -14,16 +14,21 @@ console.log(userinterstedTo); */
   const [checkOffer,setCechkOffer] = useState()
 
   useEffect(() => {
-    DataToSend(dataOL ,userinterstedTo );
-   
+    console.log(dataOL)
+    if(userinterstedTo){
+      DataToSend(dataOL ,userinterstedTo );
+    }   
    }, [userinterstedTo])
 
     const DataToSend = async (dataOL ,userinterstedTo ) =>{
       let leaderPhotos = [];
       for(let i = 0; i < dataOL.length; i++) {
-        if(dataOL[i]._id === userinterstedTo[i]) {
-          leaderPhotos.push(dataOL[i]);
-        }
+   
+          if(dataOL[i]._id === userinterstedTo[i]) {
+            leaderPhotos.push(dataOL[i]);
+          }
+        
+       
       }
       setUserOffer(leaderPhotos)
       setCechkOffer(dataOL.length)

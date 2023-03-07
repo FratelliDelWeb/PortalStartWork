@@ -41,7 +41,7 @@ const index = ({ dataOL, cookieSend }) => {
     });
     const data = await res.data;
 
-    const interted = data.interstedTo;
+    const interted = data?.interstedTo;
     return interted;
   };
 
