@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import InfoWindow from "./InfoWindow";
-import styled from "@emotion/styled";
+
 
 const Wrapper = styled.div`
   position: absolute;
