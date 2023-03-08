@@ -2,7 +2,7 @@ import Link from "next/link";
 import InfoBox from "./InfoBox";
 import TableInvoice from "./TableInvoice";
 
-const index = () => {
+const index = ({candidateView}) => {
   return (
     <>
       {/* <!-- Invoice Section --> */}
@@ -27,7 +27,7 @@ const index = () => {
                   </Link>
                 </div>
                 <div className="invoice-id">
-                  Invoice # <span>0043128641</span>
+                  Invoice # <span>{candidateView._id}</span>
                 </div>
               </div>
               {/* End logobox */}
