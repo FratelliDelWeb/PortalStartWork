@@ -92,8 +92,9 @@ const candidatoSchema = new mongoose.Schema({
   },
   interstedTo: [
     {
-      type: mongoose.Types.ObjectId,
+      type: [mongoose.Types.ObjectId],
       ref: "JobOffer",
+      default: [],
     },
   ],
   credentials: {
