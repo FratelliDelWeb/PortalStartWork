@@ -42,11 +42,7 @@ const PostBoxForm = ({ job,
           from: job?.company,
           to: jobView?.company,
         },
-        {
-          name: "codiceJob",
-          from:"2",
-          to: "30",
-        },
+       
      
        
       ],
@@ -58,12 +54,12 @@ const PostBoxForm = ({ job,
     await modifyJob(jobView).then((res) => {
       const message = res.message;
       if (message == "Update successful") {
-        setState("ok");
+      /*   setState("ok"); */
         const job = res.client;
         setJob(job);
         setJobView(job);
         setTimeout(() => {
-          setState("start");
+        /*   setState("start"); */
         }, 1000);
       }
     });

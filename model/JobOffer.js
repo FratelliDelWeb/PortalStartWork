@@ -1,6 +1,13 @@
-const Mongoose = require("mongoose");
+import mongoose from "mongoose";
+const job_seq = mongoose.Schema({
+  _id: { type: String, required: true },
+  seq: { type: Number, default: 0 },
+});
+var counter =
+  mongoose.models.job_seq ||
+  mongoose.model("job_seq", job_seq);
 
-const jobOffersSchema = new Mongoose.Schema({
+const jobOffersSchema = new mongoose.Schema({
   // no _id designation, mongo will create
   jobTitle: {
     type: String,
@@ -16,7 +23,6 @@ const jobOffersSchema = new Mongoose.Schema({
   },
   codiceJob: {
     type: String,
-    required: true,
   },
   company: {
     type: String,
@@ -49,6 +55,29 @@ const jobOffersSchema = new Mongoose.Schema({
 
 //jobType . *style, *class
 //location : *city *lat* lang*
+jobOffersSchema.pre("save", function (next) {
+  var doc = this;
+  counter
+    .findByIdAndUpdate(
+      { _id: "entityId" },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    )
+    .then(function (count) {
+      console.log("...count: " + JSON.stringify(count));
+      console.log("I'm the doc ==>");
+      if (!doc.codiceJob) {
+        doc.codiceJob = count.seq;
+        console.log(doc);
+      }
+      next();
+    })
+    .catch(function (error) {
+      console.error("counter error-> : " + error);
+      next(error);
+    });
+});
 
 module.exports =
-  Mongoose.models.joboffers || Mongoose.model("joboffers", jobOffersSchema);
+  mongoose.models.joboffers || mongoose.model("joboffers", jobOffersSchema);
+

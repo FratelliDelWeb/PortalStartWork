@@ -16,7 +16,7 @@ const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const index = ({idJob}) => {
   const defaultProps = {
     category:"",
-    codiceJod: "3" ,
+    codiceJod: "" ,
     company:"",
     created_at:"",
     id:"",
