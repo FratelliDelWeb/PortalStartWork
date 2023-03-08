@@ -40,17 +40,15 @@ export default async function handler(req, res) {
           if(fieldName === "interstedTo"){
             console.log('Candidate - Check Offers...')
               if(Array.isArray(toValue)){
-                for (var offer of toValue){
-                  if(client[fieldName].indexOf(offer) >= 0){
+                  if(client[fieldName].indexOf(client[fieldName][client[fieldName].length - 1]) >= 0){
                     console.log("Offer => ")
-                    console.log(offer)
+                    console.log(client[fieldName][client.fieldName.length - 1])
                     res
                       .status(402)
                       .json({ field: fieldName, message: "Already candidated to this offer" });
                     process.exit(1);
                   }
                 }
-              }
           }
 
           if (JSON.stringify(client[fieldName]) === JSON.stringify(fromValue)) {
