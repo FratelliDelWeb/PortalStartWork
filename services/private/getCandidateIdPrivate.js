@@ -1,12 +1,9 @@
 import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-export async function getCandidateIdPrivate(context, id) {
+export async function getCandidateIdPrivate(id) {
   const res = await axios.get(api + "/candidates/" + id, {
     withCredentials: true,
-    headers: {
-      Cookie: context.req.headers.cookie,
-    },
   });
   const data = await res.data;
 

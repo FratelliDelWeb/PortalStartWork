@@ -29,7 +29,7 @@ export default NextAuth({
     jwt: async ({ token, user }) => {
       user && (token.user = user.user);
       user && (token.role = user.role);
-      console.log("JWT - Token => ", token);
+
       return token;
     },
     session: async ({ session, token }) => {
@@ -37,7 +37,7 @@ export default NextAuth({
         user: token.user,
         role: token.role,
       };
-      console.log("Session => ", session);
+
       return session;
     },
   },

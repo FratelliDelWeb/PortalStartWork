@@ -24,7 +24,7 @@ const Education = ({ setCandidateView, educazione }) => {
   };
 
   const handleRemoveClick = (index) => {
-    const items = [...educazione];
+    let items = [...educazione];
     items.splice(index, 1);
 
     setCandidateView((el) => {
@@ -36,21 +36,34 @@ const Education = ({ setCandidateView, educazione }) => {
   };
 
   const handleAddClick = () => {
+    addEmptyObject();
+  };
+
+  const addEmptyObject = () => {
     const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
-    educazione.push(obj);
+    let items = [...educazione];
+    items.push(obj);
     setCandidateView((el) => {
       return {
         ...el,
-        educazione: educazione,
+        educazione: items,
       };
     });
   };
 
   const setModeOn = () => {
+    if (educazione) {
+      if (educazione.length < 1) addEmptyObject();
+    }
     setEditMode("on");
   };
 
   const setModeOff = () => {
+    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    if (educazione) {
+      if (JSON.stringify(educazione[0]) === JSON.stringify(obj))
+        educazione.shift();
+    }
     setEditMode("off");
   };
 

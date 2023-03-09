@@ -78,9 +78,12 @@ const candidatoSchema = new mongoose.Schema({
   languages: {
     type: [String],
   },
-  educazione: {
-    type: [{}],
-  },
+  educazione: [
+    {
+      type: {},
+      default: [],
+    },
+  ],
   note: {
     type: String,
   },
@@ -92,8 +95,7 @@ const candidatoSchema = new mongoose.Schema({
   },
   interstedTo: [
     {
-      type: [mongoose.Types.ObjectId],
-      ref: "JobOffer",
+      type: String, //ref jobOffers
       default: [],
     },
   ],

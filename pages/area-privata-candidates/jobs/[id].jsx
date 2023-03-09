@@ -1,65 +1,52 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Seo from "../../../components/common/Seo";
 import Jobs from "../../../components/dashboard-pages/area-privata-candidates/jobs/index";
 import axios from "axios";
+import { getSession } from "next-auth/react";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps(context) {
   const id = context.query.id;
-  const cookieSend = context.req.headers.cookie;
   const res = await axios.get(api + "/jobOffers/" + id, {
     withCredentials: true,
-    headers: {
-      Cookie: context.req.headers.cookie,
-    },
   });
+  const req = context.req;
+  const session = await getSession({ req });
   const data = await res.data;
-  return { props: { dataOL: data, cookie: cookieSend } };
+  return { props: { dataOL: data, session: session } };
 }
 
-function setIdUser() {
-  const [idUser, setIdUser] = useState();
-  const token = window.localStorage.getItem("token");
-  useEffect(() => {
-    setIdUser(token);
-  }, [token]);
-  return idUser;
-}
-
-const SingleCandidate = ({ dataOL, cookie }) => {
-  const [userinterstedTo, setinterstedTo] = useState([""]);
-  const id = setIdUser();
+const SingleCandidate = ({ dataOL, session }) => {
+  const [idUser, setIdUser] = useState(session.user.user);
+  const [interstedTo, setInterstedTo] = useState([]);
+  const router = useRouter();
+  const idJob = router.query.id;
 
   useEffect(() => {
-    if (id) {
-      addArrayUser(id);
-    }
-  }, [id]);
+    getListOfInterests();
+  }, []);
 
-  const addUserInterstedTo = async (idCliente) => {
+  const getListOfInterests = async () => {
     const res = await axios({
       method: "post",
-      url: api + "/candidates/" + idCliente,
-      headers: { Cookie: { cookie } },
+      url: api + "/candidates/" + idUser,
     });
     const data = await res.data;
-
-    const interted = data?.interstedTo;
-    return interted;
+    const intersted = data.interstedTo;
+    setInterstedTo(intersted);
   };
 
-  const addArrayUser = async (idCliente) => {
-    setinterstedTo(await addUserInterstedTo(idCliente));
-  };
-
+  console.log("idUser", idUser);
   return (
     <>
       <Seo pageTitle="Lavoro" />
       <Jobs
         dataOL={dataOL}
-        userinterstedTo={userinterstedTo}
-        cookieSend={cookie}
+        userinterstedTo={interstedTo}
+        idCliente={idUser}
+        idJob={idJob}
       />
     </>
   );

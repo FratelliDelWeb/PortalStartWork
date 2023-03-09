@@ -1,36 +1,25 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { getCandidateIdPrivate } from "../../../../../../services/private/getCandidateIdPrivate";
 import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-const ApplyJobModalContent = ({ idOffer, idCliente, cookieSend }) => {
-  console.log(idCliente);
-  const [idOfferta, setidOfferta] = useState(idOffer._id);
-  const [userinterstedTo, setinterstedTo] = useState([""]);
-  const router = useRouter();
+const ApplyJobModalContent = ({ idOffer, idCliente }) => {
   const [stato, setStato] = useState("start");
   const [ErrorMessage, setErrorMessage] = useState();
-  useEffect(() => {
-    setOffer(idOfferta, idCliente);
+  const [interests, setInterests] = useState();
 
-    return () => {};
-  }, [idCliente, idOfferta]);
-
-  const handleSubmit = async (e, idOfferta) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStato("send");
-    setDataToSend(idOfferta, idCliente, userinterstedTo);
+    setDataToSend();
   };
 
-  const addOffers = async (eitData, cookieSend) => {
-    console.log("SATIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII", eitData);
-
+  const addOffers = async (modifies) => {
     await axios({
       method: "post",
       url: api + "/candidates/modify",
-      headers: { Cookie: { cookieSend } },
-      data: eitData,
+      data: modifies,
     })
       .then((response) => {
         const data = response.data;
@@ -43,77 +32,63 @@ const ApplyJobModalContent = ({ idOffer, idCliente, cookieSend }) => {
       });
   };
 
-  const addUserInterstedTo = async (idCliente) => {
-    const res = await axios({
-      method: "post",
-      url: api + "/candidates/" + idCliente,
-      headers: { Cookie: { cookieSend } },
-    });
-    const data = await res.data;
-
-    const interted = data?.interstedTo;
-    return interted;
-  };
-
-  const setOffer = async (idOfferta, idCliente) => {
-    const interseted = await addUserInterstedTo(idCliente);
-    console.log(interseted);
-    setinterstedTo(interseted);
-
-    console.log(userinterstedTo);
-  };
-
-  const setDataToSend = async (idOfferta, idCliente, interseted) => {
-    console.log(interseted);
+  const setDataToSend = async () => {
     const to = [];
-    if(interseted){
-for (var offer of interseted) {
-      to.push(offer);
+    if (interests) {
+      for (var offer of interests) {
+        to.push(offer);
+      }
     }
-    }
-    
+    to.push(idOffer);
 
-    to.push(idOfferta._id);
-
-
-    if(!interseted){
+    if (!interests) {
       let eitData = {
         id: idCliente,
         fields: [
           {
             name: "interstedTo",
-            from: ([" "]),
+            from: [" "],
             to: to,
           },
         ],
       };
-      
-    console.log(eitData);
-    addOffers(eitData);
-    }else{
+
+      console.log(eitData);
+      addOffers(eitData);
+    } else {
       let eitData = {
         id: idCliente,
         fields: [
           {
             name: "interstedTo",
-            from: interseted,
+            from: interests,
             to: to,
           },
         ],
       };
-      
-    console.log(eitData);
-    addOffers(eitData);
-    }
-  
 
+      console.log(eitData);
+      addOffers(eitData);
+    }
   };
+
+  const getUserInterstedTo = async (idCliente) => {
+    await getCandidateIdPrivate(idCliente).then((res) => {
+      console.log("res", res);
+      const intersted = res.interstedTo;
+      setInterests(intersted);
+    });
+  };
+
+  useEffect(() => {
+    getUserInterstedTo(idCliente);
+  }, []);
 
   return (
     <form
       metod="post"
       className="default-form job-apply-form"
-      onSubmit={(e) => handleSubmit(e, idOffer)}
+      onSubmit={(e) => handleSubmit(e)}
     >
       <div className="row">
         {stato !== "send" && stato !== "error" ? (

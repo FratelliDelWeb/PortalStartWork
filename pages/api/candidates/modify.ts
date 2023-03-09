@@ -29,8 +29,6 @@ export default async function handler(req, res) {
   if (id) {
     await Model.findById(id)
       .then((client) => {
-        console.log("Il Candidato =>");
-        console.log(client);
         for (var field of fields) {
           let fieldName = field.name;
           let fromValue = field.from;
@@ -40,14 +38,12 @@ export default async function handler(req, res) {
           if(fieldName === "interstedTo"){
             console.log('Candidate - Check Offers...')
               if(Array.isArray(toValue)){
-                  const length = client[fieldName].length;
-                  if(client[fieldName].indexOf(client[fieldName][length - 1]) >= 0){
-                    console.log("Offer => ")
-                    console.log(client[fieldName][length - 1])
-                    res
+                  console.log("Offers => ")
+                  console.log(toValue[toValue.length - 1])
+                  if(client[fieldName].indexOf(toValue[toValue.length - 1]) >= 0){
+                    return res
                       .status(402)
                       .json({ field: fieldName, message: "Already candidated to this offer" });
-                    process.exit(1);
                   }
                 }
           }

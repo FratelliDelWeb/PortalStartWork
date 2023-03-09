@@ -1,17 +1,14 @@
 import dynamic from "next/dynamic";
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Seo from "../../../../components/common/Seo";
 import RelatedJobs from "../../../../components/job-single-pages/related-jobs/RelatedJobs";
-
 import JobSkills from "../../../../components/job-single-pages/shared-components/JobSkills";
 import CompnayInfo from "../../../../components/job-single-pages/shared-components/CompanyInfo";
 import MapJobFinder from "../../../../components/job-listing-pages/components/MapJobFinder";
 import SocialTwo from "../../../../components/job-single-pages/social/SocialTwo";
 import JobDetailsDescriptions from "../../../../components/job-single-pages/shared-components/JobDetailsDescriptions";
 import ApplyJobModalContent from "./components/shared-components/ApplyJobModalContent";
-
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
 import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
 import MobileMenu from "../../../header/MobileMenu";
@@ -20,51 +17,35 @@ import BreadCrumb from "../../BreadCrumb";
 
 import JobOverView from "./components/job-overview/JobOverView";
 import jobs from "../../../../data/job-featured";
-import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const res = await fetch(api + "/public/jobOffers/" + id);
   const data = await res.json();
   return { props: { dataOL: data } };
 };
-const JobSingleJob = ({ dataOL, userinterstedTo, cookieSend }) => {
-  console.log(userinterstedTo);
 
-  const [idCliente, setIdCliente] = useState(
-    window.localStorage.getItem("token")
-  );
-  const [user, setUser] = useState();
+const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
   const [statusOffer, setStatusOffers] = useState("non attivo");
-
-  console.log({ idCliente });
-
-  const router = useRouter();
   const [company, setCompany] = useState({});
-  const id = router.query.id;
 
   useEffect(() => {
     if (!id) <h1>Loading...</h1>;
     else setCompany(jobs.find((item) => item.id == id));
     setStatusOffer(dataOL, userinterstedTo);
-    return () => {};
-  }, [idCliente, userinterstedTo]);
+  }, []);
 
-  const setStatusOffer = async (dataOL, userinterstedTo) => {
+  const setStatusOffer = (dataOL, userinterstedTo) => {
     let status = [];
-if(userinterstedTo){
-  for (let i = 0; i < userinterstedTo.length; i++) {
-    if (userinterstedTo[i] === dataOL._id) {
-      status.push(userinterstedTo[i]);
-      setStatusOffers("attivo");
-    }
-  }
-}else      status.push([""]);
-   
-    console.log("status push" + status);
-
-    /*       console.log("lista da monstare ", userOffer)
-     */
+    if (userinterstedTo) {
+      for (let i = 0; i < userinterstedTo.length; i++) {
+        if (userinterstedTo[i] === dataOL._id) {
+          status.push(userinterstedTo[i]);
+          setStatusOffers("attivo");
+        }
+      }
+    } else status.push([""]);
   };
 
   return (
@@ -194,9 +175,8 @@ if(userinterstedTo){
                                   {/* End modal-header */}
 
                                   <ApplyJobModalContent
-                                    idOffer={dataOL}
+                                    idOffer={idJob}
                                     idCliente={idCliente}
-                                    cookieSend={cookieSend}
                                   />
                                   {/* End PrivateMessageBox */}
                                 </div>
