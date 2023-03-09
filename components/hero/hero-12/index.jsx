@@ -42,7 +42,7 @@ const index = () => {
                               </h3>
                               {category === "Lavoro" ? (
                    <div className="text">
-                   Trova lavoro, opportunità di lavoro e di carriera!
+                   Trova lavoro, opportunità di lavoro e di carriera!!
                    </div> ) : (  <div className="text">
                               Trova il candidato giusto per te!
                               </div> )}
