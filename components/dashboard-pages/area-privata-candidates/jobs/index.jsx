@@ -31,8 +31,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
   const [company, setCompany] = useState({});
 
   useEffect(() => {
-    if (!id) <h1>Loading...</h1>;
-    else setCompany(jobs.find((item) => item.id == id));
+    setCompany(jobs.find((item) => item.id == idJob));
     setStatusOffer(dataOL, userinterstedTo);
   }, []);
 
