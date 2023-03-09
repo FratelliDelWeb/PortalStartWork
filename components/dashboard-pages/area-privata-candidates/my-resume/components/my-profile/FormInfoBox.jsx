@@ -1,12 +1,12 @@
 import Select from "react-select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputRange from "react-input-range";
-import Map from "../../../../Map";
 import Experience from "./Experience";
 import Loader from "../../../../../loader/Loader";
 import { modifyCandidates } from "../../../../../../services/private/modifyCandidates";
 import Education from "./Education";
-const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
+import { StandaloneSearchBox, useJsApiLoader } from "@react-google-maps/api";
+const map_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 const FormInfoBox = ({
   candidate,
@@ -14,6 +14,13 @@ const FormInfoBox = ({
   setCandidateView,
   setCandidate,
 }) => {
+  const libraries = ["places"];
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: map_key, // ,
+    libraries: libraries,
+  });
+
   const catOptions = [
     { value: "Banking", label: "Banking" },
     { value: "Digital & Creative", label: "Digital & Creative" },
@@ -44,6 +51,7 @@ const FormInfoBox = ({
   ];
 
   const [state, setState] = useState("start");
+  const [searchBox, setSearchBox] = useState(null);
   const [getDestination, setDestination] = useState({ min: 0, max: 100 });
 
   const handleOnChange = (value) => {
@@ -227,6 +235,29 @@ const FormInfoBox = ({
     setEditData();
   };
 
+  const onPlacesChanged = () => {
+    let places = searchBox.getPlaces();
+    let place = places[0];
+    let city = place.formatted_address;
+    let lat = place.geometry.location.lat();
+    let lng = place.geometry.location.lng();
+
+    setCandidateView((el) => {
+      return {
+        ...el,
+        location: {
+          city: city,
+          lat: lat,
+          lng: lng,
+        },
+      };
+    });
+  };
+
+  const onLoadAutocomplete = (searchBox) => {
+    setSearchBox(searchBox);
+  };
+
   console.log("CANDIDATE =>", candidate);
   return (
     <form
@@ -310,30 +341,6 @@ const FormInfoBox = ({
                   />
                 </div>
               </div>
-              {/*     <div className="col-6 mt-20">
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              id="email-field"
-              type="email"
-              name="email"
-              placeholder="Email"
-              className={error.email ? "errorInput" : ""}
-              value="emai@emial.it"
-              onBlur={(e) => validateInput(e)}
-              onChange={(e) =>
-                setcandidate((candidate) => ({
-                  ...candidate,
-                  credentials: {
-                    ...candidate?.credentials,
-                    email: e.target.value,
-                  },
-                }))
-              }
-            />
-          </div>
-        </div> */}
-
               <div className="col-6 mt-20">
                 <div className="form-group">
                   <label>Età</label>
@@ -503,26 +510,33 @@ const FormInfoBox = ({
                   <div className="row">
                     <div className="form-group col-lg-12 col-md-12">
                       <label>Città</label>
-                      <input
-                        value={candidateEdit?.location?.city}
-                        onBlur={(e) => validateInput(e)}
-                        className={error.location ? "errorInput" : ""}
-                        onChange={(e) =>
-                          setCandidateView((el) => {
-                            return {
-                              ...el,
-                              location: {
-                                ...el?.location,
-                                city: e.target.value,
-                              },
-                            };
-                          })
-                        }
-                        id="location-field"
-                        type="text"
-                        name="cittaà"
-                        placeholder="Città"
-                      />
+                      {isLoaded && (
+                        <StandaloneSearchBox
+                          onLoad={onLoadAutocomplete}
+                          onPlacesChanged={onPlacesChanged}
+                        >
+                          <input
+                            value={candidateEdit?.location?.city}
+                            onBlur={(e) => validateInput(e)}
+                            className={error.location ? "errorInput" : ""}
+                            onChange={(e) =>
+                              setCandidateView((el) => {
+                                return {
+                                  ...el,
+                                  location: {
+                                    ...el?.location,
+                                    city: e.target.value,
+                                  },
+                                };
+                              })
+                            }
+                            id="location-field"
+                            type="text"
+                            name="città"
+                            placeholder="Città"
+                          />
+                        </StandaloneSearchBox>
+                      )}
                     </div>
 
                     {/* 
@@ -576,7 +590,7 @@ const FormInfoBox = ({
                   </div>
                 </div>
 
-                <div className="col-lg-6 col-md-12">
+                {/* <div className="col-lg-6 col-md-12">
                   <div className="form-group ">
                     <div className="map-outer">
                       <div style={{ height: "420px", width: "100%" }}>
@@ -584,7 +598,7 @@ const FormInfoBox = ({
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="form-group col-lg-12 col-md-12">

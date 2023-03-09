@@ -8,168 +8,168 @@ import {
 } from "@react-google-maps/api";
 import Info from "./InfoWindow";
 import Loader from "../../loader/Loader";
+const map_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 const mapStyle = [
-  
-    {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#f5f5f5"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#f5f5f5"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#bdbdbd"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#ffffff"
-        }
-      ]
-    },
-    {
-      "featureType": "road.arterial",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#dadada"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
-    },
-    {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#c9c9c9"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    }
-  ];
+  {
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#f5f5f5",
+      },
+    ],
+  },
+  {
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#616161",
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#f5f5f5",
+      },
+    ],
+  },
+  {
+    featureType: "administrative.land_parcel",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#bdbdbd",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#eeeeee",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#757575",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#e5e5e5",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#9e9e9e",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#ffffff",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#757575",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#dadada",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#616161",
+      },
+    ],
+  },
+  {
+    featureType: "road.local",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#9e9e9e",
+      },
+    ],
+  },
+  {
+    featureType: "transit.line",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#e5e5e5",
+      },
+    ],
+  },
+  {
+    featureType: "transit.station",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#eeeeee",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#c9c9c9",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#9e9e9e",
+      },
+    ],
+  },
+];
 
 const markerStyle = {
   position: "absolute",
@@ -181,7 +181,7 @@ const markerStyle = {
   border: " 0px solid #fff !important",
   borderRadius: "10px",
   transform: "translate(-50%, -100%)",
-  };
+};
 
 const containerStyle = {
   position: "relative",
@@ -191,7 +191,7 @@ const containerStyle = {
 
 export default function SimpleMap({ dataCL, elementOnHover }) {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyA5drS5V0FiTdpd9XqLPlr7cEaFF55Pevo", // ,
+    googleMapsApiKey: map_key, // ,
     // ...otherOptions
   });
 
@@ -282,9 +282,10 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
                 lat: parseFloat(place.lat) || 0,
                 lng: parseFloat(place.lng) || 0,
               }}
-             
-             icon={{
-                url: `${window.location.origin}`+ `/images/resource/pin-startwork.png`
+              icon={{
+                url:
+                  `${window.location.origin}` +
+                  `/images/resource/pin-startwork.png`,
               }}
               onClick={() => handleActiveElement(place)}
               onLoad={(marker) => {}}
