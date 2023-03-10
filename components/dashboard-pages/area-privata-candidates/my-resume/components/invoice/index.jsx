@@ -88,7 +88,7 @@ const index = ({candidateView}) => {
          
               {/* End infobox */}
               
-              <Education></Education>
+              <Education educazione={candidateView.educazione}></Education>
               
              
               <div className="table-outer">

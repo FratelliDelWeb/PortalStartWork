@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Education = ({ setCandidateView, educazione }) => {
-  
+  console.log(educazione)
 
   console.log("Educazione => ", educazione);
   return (
