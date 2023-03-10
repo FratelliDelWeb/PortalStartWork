@@ -43,11 +43,12 @@ const index = ({  idUser }) => {
   const [candidate, setCandidate] = useState(defaultProps);
 
   const [candidateView, setCandidateView] = useState(defaultProps);
-const [state,setState] = useState("view")
+  const [tabIndex, setTabIndex] = useState(0);
+  console.log(tabIndex)
   useEffect(() => {
     callCandidate(idUser);
   }, []);
-
+ const[editOn , setEditOn] = useState("off")
   const callCandidate = async (id) => {
     await axios
       .get(api + "/candidates/" + id, {
@@ -86,70 +87,23 @@ const [state,setState] = useState("view")
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <Tabs>
+          <Tabs   onSelect={(index) => setTabIndex(index)} >
           <div className="row">
             <div class="col-12">
                 <div className="row">
                 <div className="col-10">
-                  <div className="tabs-box">
-                      <section className="candidate-detail-section">
-                        <div className="candidate-detail-outer">
-                          <div className="auto-container">
-                            <div className="row">
-                              <div className="content-column col-lg-8 col-md-12 col-sm-12">
-                                <div className="candidate-block-five">
-                                  <div className="inner-box">
-                                    <div className="content">
-                                      <figure className="image">
-                                        <img
-                                          src={candidateView?.avatar}
-                                          alt="avatar"
-                                        />
-                                      </figure>
-                                      <h4 className="name">
-                                        {candidateView?.name}{" "}
-                                        {candidateView?.surname} -{" "}
-                                        {candidateView?.publicName}
-                                      </h4>
-
-                                      <ul className="candidate-info">
-                                        <li className="designation">
-                                          {candidateView?.mansione}
-                                        </li>
-                                        <li>
-                                          <span className="icon flaticon-map-locator"></span>
-                                          {candidateView?.location?.city}
-                                        </li>
-                                        {/*  <li>
-                              <span className="icon flaticon-money"></span> $
-                              {dataCL?.hourlyRate} / hour
-                            </li> */}
-                                        <li>
-                                          <span className="icon flaticon-clock"></span>{" "}
-                                          Aggiunto il: {candidateView?.created_at}
-                                        </li>
-                                      </ul>
-
-                                      <ul className="post-tags">
-                                        {candidateView?.skills?.map((val, i) => (
-                                          <li key={i}>{val}</li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                    </div> 
+                  
                 
                 </div>
                 <div className="col-2">
                 <TabList className="d-flex justify-content-end">
-                <Tab className="tab-btn btn-map-innerModal m-1  approved">  <i class="las la-user-edit"></i> Modifica</Tab>
-                    <Tab className="tab-btn  btn-map-innerModal m-1 totals"> <i class="lar la-file-pdf"></i> Anteprima PDF</Tab>
+              
+                    <Tab  className={tabIndex == "0" ? ("d-none") : ("tab-btn  btn-map-innerModal m-1 totals")}> <i class="las la-backspace"></i>Torna dietro </Tab>
+                    <Tab className={tabIndex == "1" ? ("d-none") : (" tab-btn btn-map-innerModal m-1  approved")}>  <i class="las la-user-edit"></i> Modifica</Tab>
+
+
+                     {tabIndex == "0" ?  ( <button  className="tab-btn  btn-map-innerModal m-1 totals"><i class="las la-print"></i>Stampa</button>) :(<div></div> )} 
+                   
                  
                     </TabList>
                 </div>
@@ -163,6 +117,13 @@ const [state,setState] = useState("view")
             
              
 
+
+
+                <TabPanel>
+                <Invoice candidateView={candidateView} ></Invoice>
+                </TabPanel>
+
+             
                 <TabPanel>
                 <div>
                   
@@ -173,11 +134,6 @@ const [state,setState] = useState("view")
                     setCandidateView={setCandidateView}
                   /></div>
                 </TabPanel>
-                <TabPanel>
-                <Invoice candidateView={candidateView} ></Invoice>
-                </TabPanel>
-
-             
 
 
              

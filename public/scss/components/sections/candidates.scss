@@ -710,7 +710,7 @@ Candidate Detail Section
 }
 
 .candidate-detail-outer {
-  padding: 50px 0 50px;
+  padding: 50px 0 0px;
 }
 
 /* Candidate block Five */
@@ -808,9 +808,10 @@ Candidate Detail Section
   line-height: 22px;
   color: #696969;
   font-weight: 400;
-  padding-left: 25px;
+  
+  margin: 0 5px;
+  
   margin-bottom: 5px;
-  margin-right: 30px;
 }
 
 .candidate-block-five .candidate-info li .icon {
@@ -821,7 +822,9 @@ Candidate Detail Section
   line-height: 22px;
   color: #696969;
 }
-
+i.las.la-map-marker-alt {
+  margin: 0 5px !important;
+}
 .candidate-block-five .candidate-info li a {
   color: #696969;
 }

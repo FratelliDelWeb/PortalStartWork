@@ -54,7 +54,7 @@ const FormInfoBox = ({
   const setEditData = () => {
     console.log("Candidate => ", candidate);
     console.log("CandidateView => ", candidateEdit);
-    let editData = {
+       let editData = {
       id: candidate?._id,
       fields: [
         {
