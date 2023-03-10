@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Education from "./Education";
 import InfoBox from "./InfoBox";
 import TableInvoice from "./TableInvoice";
 
@@ -84,10 +85,11 @@ const index = ({candidateView}) => {
               {/* End logobox */}
 
            {/*    <InfoBox /> */}
-           <h4> ESPERIENZA LAVORATIVA </h4>
+         
               {/* End infobox */}
-              <h4> ISTRUZIONE E FORMAZIONE </h4>
-              <h4>  ULTERIORI INFORMAZIONI </h4>
+              
+              <Education></Education>
+              
              
               <div className="table-outer">
                {/*  <TableInvoice /> */}
