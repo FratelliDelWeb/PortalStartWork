@@ -12,30 +12,61 @@ const index = ({dataOL, userinterstedTo }) => {
 console.log(userinterstedTo); */
   const [userOffer, setUserOffer] = useState()
   const [checkOffer,setCechkOffer] = useState()
-
+ 
   useEffect(() => {
-    console.log(dataOL)
+    console.log(userinterstedTo)
     if(userinterstedTo){
-      DataToSend(dataOL ,userinterstedTo );
+  /*     DataToSend(dataOL ,userinterstedTo ); */
+      findCommonElement(dataOL, userinterstedTo)
     }   
    }, [userinterstedTo])
 
     const DataToSend = async (dataOL ,userinterstedTo ) =>{
-      let leaderPhotos = [];
+      let leaderPhotos = []; 
       for(let i = 0; i < dataOL.length; i++) {
-   
+        console.log(dataOL[i]._id , userinterstedTo[i])
           if(dataOL[i]._id === userinterstedTo[i]) {
-            leaderPhotos.push(dataOL[i]);
+            leaderPhotos.push (userinterstedTo[i]);
+            console.log("array" ,leaderPhotos)
           }
-        
+          console.log("array" ,leaderPhotos) 
        
       }
       setUserOffer(leaderPhotos)
+      console.log(userOffer)
       setCechkOffer(dataOL.length)
 /*       console.log("lista da monstare ", userOffer)
  */ }
  
- 
+ const  findCommonElement = async (dataOL, userinterstedTo) => {
+  let leaderPhotos = []; 
+  for(let i = 0; i < dataOL.length; i++) {
+      for(let j = 0; j < userinterstedTo.length; j++) {
+           console.log(dataOL[i]._id);
+           
+           console.log(userinterstedTo[j] );
+           console.log(userinterstedTo.length)
+          if(dataOL[i]._id === userinterstedTo[j]) {
+            console.log( "nuovo metodo",dataOL[i]._id , userinterstedTo[j] )
+              // Return if common element found
+              console.log("pust to array ",userinterstedTo[j])
+              leaderPhotos.push(dataOL[i]);
+           
+          }
+      }
+      setUserOffer(leaderPhotos)
+      console.log("ARRAY",leaderPhotos)
+  }
+
+  
+  console.log("ARRAY",leaderPhotos)
+  setCechkOffer(dataOL.length)
+   console.log(userOffer) 
+  // Return if no common element exist
+  return false;
+}
+
+
  
   
   return (
@@ -58,7 +89,8 @@ console.log(userinterstedTo); */
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Candidature Effettuate" />
+           <h3>CANDDIDATURE EFFETTUATE</h3>
+           <h6>Scopri e visualizza tutte le candidature inviate da te</h6>
           {/* breadCrumb */}
 
           <MenuToggler />

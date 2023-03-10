@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 import { getjobOffersPrivate } from "../../../services/private/getjobOffersPrivate";
+import { getSession } from "next-auth/react";
 
 export async function getServerSideProps({ req }) {
   const data = await getjobOffersPrivate(req);
   const cookie = await req.headers.cookie;
-  return { props: { dataOL: data, cookieSend: cookie } };
+  const session = await getSession({req})
+  return { props: { dataOL: data, cookieSend: cookie ,idCandidato : session.user.user} };
 }
 
 function setIdUser() {
@@ -22,16 +24,16 @@ function setIdUser() {
   return idUser;
 }
 
-const index = ({ dataOL, cookieSend }) => {
+const index = ({ dataOL, cookieSend ,idCandidato }) => {
   const [userinterstedTo, setinterstedTo] = useState([""]);
-  const id = setIdUser();
-  console.log(id);
+  const [idUser, setIdUser] = useState(idCandidato);
+  console.log(idUser);
 
   useEffect(() => {
-    if (id) {
-      addArrayUser(id);
+    if (idUser) {
+      addArrayUser(idUser);
     }
-  }, [id]);
+  }, [idUser]);
 
   const addUserInterstedTo = async (idCliente) => {
     const res = await axios({
@@ -42,6 +44,7 @@ const index = ({ dataOL, cookieSend }) => {
     const data = await res.data;
 
     const interted = data?.interstedTo;
+    console.log(interted)
     return interted;
   };
 

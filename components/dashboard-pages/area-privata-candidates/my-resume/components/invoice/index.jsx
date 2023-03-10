@@ -9,10 +9,10 @@ const index = ({candidateView}) => {
       <section className="invoice-section">
         <div className="auto-container">
           <div className="upper-box btn-box">
-            <Link href="/" className="theme-btn btn-style-three">
+         {/*    <Link href="/" className="theme-btn btn-style-three">
               Back Home
-            </Link>
-            <button className="theme-btn btn-style-one ms-3">Print</button>
+            </Link> */}
+            <button className="theme-btn btn-style-one ms-3">STAMPA</button>
           </div>
         </div>
         {/* End auto-container */}
@@ -25,9 +25,10 @@ const index = ({candidateView}) => {
                   <Link href="/">
                     <img src="images/logo.svg" alt="logo" />
                   </Link>
+                  <h5>  {candidateView.name}  {candidateView.surname} </h5>
                 </div>
                 <div className="invoice-id">
-                  Invoice # <span>{candidateView._id}</span>
+                  N.S<span>{candidateView._id}</span>
                 </div>
               </div>
               {/* End logobox */}

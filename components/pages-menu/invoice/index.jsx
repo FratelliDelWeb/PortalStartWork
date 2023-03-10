@@ -9,10 +9,10 @@ const index = () => {
       <section className="invoice-section">
         <div className="auto-container">
           <div className="upper-box btn-box">
-            <Link href="/" className="theme-btn btn-style-three">
+          {/*   <Link href="/" className="theme-btn btn-style-three">
               Back Home
-            </Link>
-            <button className="theme-btn btn-style-one ms-3">Print</button>
+            </Link> */}
+            <button className="theme-btn btn-style-one ms-3">STAMPA</button>
           </div>
         </div>
         {/* End auto-container */}

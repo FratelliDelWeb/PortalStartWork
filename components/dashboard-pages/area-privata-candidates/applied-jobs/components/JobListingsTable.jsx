@@ -1,7 +1,17 @@
 import Link from "next/link.js";
+import { useEffect, useState } from "react";
 import jobs from "../../../../../data/job-featured.js";
 
 const JobListingsTable = ({dataOL}) => {
+
+ const [listaOfferte, setListaOfferte]= useState();
+ 
+ useEffect(() => {
+  console.log(dataOL)
+  setListaOfferte(dataOL)
+ },[dataOL])
+
+  
   return (
     <div className="tabs-box">
       <div className="widget-title">
@@ -36,18 +46,18 @@ const JobListingsTable = ({dataOL}) => {
 
               <tbody>
                 {dataOL?.map((item) => (
-                  <tr key={item._id}>
+                  <tr key={item?._id}>
                     <td>
                       {/* <!-- Job Block --> */}
                       <div className="job-block">
                         <div className="inner-box">
                           <div className="content">
                             <span className="company-logo">
-                              <img src={item.logo} alt="logo" />
+                              <img src={item?.logo} alt="logo" />
                             </span>
                             <h4>
-                              <Link href={`/area-privata-candidates/jobs/${item._id}`}>
-                                {item.jobTitle}
+                              <Link href={`/area-privata-candidates/jobs/${item?._id}`}>
+                                {item?.jobTitle}
                               </Link>
                             </h4>
                             <ul className="job-info">
