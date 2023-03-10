@@ -1,5 +1,6 @@
 import Link from "next/link.js";
 import { useEffect, useState } from "react";
+import { isTemplateSpan } from "typescript";
 import jobs from "../../../../../data/job-featured.js";
 
 const JobListingsTable = ({dataOL}) => {
@@ -37,10 +38,10 @@ const JobListingsTable = ({dataOL}) => {
             <table className="default-table manage-job-table">
               <thead>
                 <tr>
-                  <th>Job Title</th>
-                  <th>Date Applied</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th>Titolo Offerta</th>
+                  <th>Data di aggiunta</th>
+                  <th>Stato</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -63,19 +64,19 @@ const JobListingsTable = ({dataOL}) => {
                             <ul className="job-info">
                               <li>
                                 <span className="icon flaticon-briefcase"></span>
-                                Segment
+                              {item?.category}
                               </li>
                               <li>
                                 <span className="icon flaticon-map-locator"></span>
-                                London, UK
+                                {item?.location}
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td>Dec 5, 2020</td>
-                    <td className="status">Active</td>
+                    <td>{item?.created_at}</td>
+                    <td className="status">{item?.status}</td>
                     <td>
                       <div className="option-box">
                         <ul className="option-list">

@@ -89,8 +89,11 @@ console.log(userinterstedTo); */
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-           <h3>CANDDIDATURE EFFETTUATE</h3>
-           <h6>Scopri e visualizza tutte le candidature inviate da te</h6>
+          <div className=" upper-title-box">
+          <h3>CANDDIDATURE EFFETTUATE</h3>
+           <h6>Scopri e visualizza tutte le candidature inviate da te ,puoi filtrarle e scoprire il loro stato attuale.</h6>
+          </div>
+          
           {/* breadCrumb */}
 
           <MenuToggler />
