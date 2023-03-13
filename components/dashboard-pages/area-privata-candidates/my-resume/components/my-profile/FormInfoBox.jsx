@@ -1,7 +1,7 @@
 import Select from "react-select";
 import { useState, useEffect } from "react";
 import InputRange from "react-input-range";
-import Experience from "./Experience";
+import AwardsCertificates from "./AwardsCertificates";
 import Loader from "../../../../../loader/Loader";
 import { modifyCandidates } from "../../../../../../services/private/modifyCandidates";
 import Education from "./Education";
@@ -140,6 +140,11 @@ const FormInfoBox = ({
           name: "educazione",
           from: candidate?.educazione,
           to: candidateEdit?.educazione,
+        },
+        {
+          name: "premi",
+          from: candidate?.premi,
+          to: candidateEdit?.premi,
         },
       ],
     };
@@ -622,10 +627,10 @@ const FormInfoBox = ({
                 ></Education>
               }
               {
-                <Experience
+                <AwardsCertificates
                   setCandidateView={setCandidateView}
-                  esperienze={candidateEdit?.esperienze}
-                ></Experience>
+                  premi={candidateEdit?.premi}
+                ></AwardsCertificates>
               }
               {/*      <AwardsCertificates
           setPremiCertificatiToSend={setPremiCertificatiToSend}

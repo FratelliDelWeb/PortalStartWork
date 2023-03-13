@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Education from "./Education";
+import Experiences from "./Experiences";
+import AwardsCertificates from "./AwardsCertificates";
+
 import InfoBox from "./InfoBox";
 import TableInvoice from "./TableInvoice";
 
 const index = ({candidateView}) => {
+  console.log(candidateView)
   return (
     <>
       {/* <!-- Invoice Section --> */}
@@ -25,7 +29,7 @@ const index = ({candidateView}) => {
                                           alt="avatar"
                                         />
                                       </figure>
-                                      <h4 className="name w-50">
+                                      <h4 className="name d-flex ">
                                         {candidateView?.name}{" "}
                                         {candidateView?.surname} -{" "}
                                         {candidateView?.publicName}
@@ -76,9 +80,9 @@ const index = ({candidateView}) => {
         </div>
         {/* End auto-container */}
 
-        <div className="auto-container">
+        <div className="auto-container pt-0 p-5">
           <div className="invoice-wrap">
-            <div className="invoice-content">
+            <div className="invoice-content p-4 ">
               <div className="logo-box">
                
               </div>
@@ -87,10 +91,111 @@ const index = ({candidateView}) => {
            {/*    <InfoBox /> */}
          
               {/* End infobox */}
+              <div className="row">
+                <div className="col-8">
+                <Education educazione={candidateView.educazione}></Education>
               
-              <Education educazione={candidateView.educazione}></Education>
-              
-             
+              <Experiences esperienze ={candidateView.esperienze}></Experiences>
+             <AwardsCertificates premi ={candidateView.premi}></AwardsCertificates> 
+                </div>
+                <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                <aside className="sidebar">
+                {/*   <div className="btn-box">
+                    <a
+                      className="theme-btn btn-style-one"
+                      href="/images/sample.pdf"
+                      download
+                    >
+                      Download CV
+                    </a>
+                    <button className="bookmark-btn">
+                      <i className="flaticon-bookmark"></i>
+                    </button>
+                  </div> */}
+
+                  <div className="sidebar-widget">
+                    <div className="widget-content">
+                      <ul className="job-overview">
+                        <li>
+                          <i className="icon icon-calendar"></i>
+                          <h5>Categoria</h5>
+                          <span>{candidateView.category}</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-expiry"></i>
+                          <h5>Età:</h5>
+                          <span>{candidateView.age}</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-rate"></i>
+                          <h5>Nome Pubblico</h5>
+                          <span>{candidateView.publicName}</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-salary"></i>
+                          <h5>Expected Salary:</h5>
+                          <span>26K - 30K</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-user-2"></i>
+                          <h5>Genere:</h5>
+                          <span>{candidateView.gender}</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-language"></i>
+                          <h5>Lingue:</h5>
+                          <span>{candidateView.languages}</span>
+                        </li>
+
+                        <li>
+                          <i className="icon icon-degree"></i>
+                          <h5>Education Level:</h5>
+                          <span>Master Degree</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {/* End .sidebar-widget conadidate overview */}
+
+                 {/*  <div className="sidebar-widget social-media-widget">
+                    <h4 className="widget-title">Social media</h4>
+                    <div className="widget-content">
+                      <div className="social-links">
+                       <Social /> 
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* End .sidebar-widget social-media-widget */}
+
+                 {/*  <div className="sidebar-widget">
+                    <h4 className="widget-title">Professional Skills</h4>
+                    <div className="widget-content">
+                      <ul className="job-skills">
+                         <JobSkills />
+                      </ul>
+                    </div>
+                  </div> */}
+                  {/* End .sidebar-widget skill widget */}
+
+                {/*   <div className="sidebar-widget contact-widget">
+                    <h4 className="widget-title">Contact Us</h4>
+                    <div className="widget-content">
+                      <div className="default-form">
+                       <Contact /> 
+                      </div>
+                    </div>
+                  </div> */}
+                  {/* End .sidebar-widget contact-widget */}
+                </aside>
+                {/* End .sidebar */}
+              </div>
+              </div>
+     
               <div className="table-outer">
                {/*  <TableInvoice /> */}
               </div>

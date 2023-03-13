@@ -1,77 +1,90 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Experience = ({
-  setCandidateView,
-  esperienze = { titolo: "", startTo: "", finishTo: "", luogo: "", desc: "" },
-}) => {
-  /* INPUT DINAMICI
-   */
-  const [editModeX, setEditMode] = useState(false);
+const Experience = ({ setCandidateView, esperienze }) => {
+  const [editModeX, setEditMode] = useState("off");
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...esperienze];
-    list[index][name] = value;
-
+    // 1. Make a shallow copy of the items
+    let items = [...esperienze];
+    // 2. Make a shallow copy of the item you want to mutate
+    let item = { ...items[index] };
+    // 3. Replace the property you're intested in
+    item[name] = value;
+    // 4. Put it back into our array. N.B. we *are* mutating the array here,
+    //    but that's why we made a copy first
+    items[index] = item;
+    // 5. Set the state to our new copy
     setCandidateView((el) => {
       return {
         ...el,
-        esperienze: list,
+        esperienze: items,
       };
     });
   };
 
   const handleRemoveClick = (index) => {
-    const list = [...esperienze];
-    list.splice(index, 1);
+    let items = [...esperienze];
+    items.splice(index, 1);
 
     setCandidateView((el) => {
       return {
         ...el,
-        esperienze: list,
+        esperienze: items,
       };
     });
   };
 
   const handleAddClick = () => {
-    const obj = { titolo: "", startTo: "", finishTo: "", luogo: "", desc: "" };
-    const esperienze = esperienze.push(obj);
+    addEmptyObject();
+  };
+
+  const addEmptyObject = () => {
+    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    let items = [...esperienze];
+    items.push(obj);
     setCandidateView((el) => {
       return {
         ...el,
-        esperienze: esperienze,
+        esperienze: items,
       };
     });
   };
 
   const setModeOn = () => {
-    setEditMode(true);
-    console.log(editModeX);
+    if (esperienze) {
+      if (esperienze.length < 1) addEmptyObject();
+    }
+    setEditMode("on");
   };
 
   const setModeOff = () => {
-    setEditMode(false);
-    console.log(editModeX);
+    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    if (esperienze) {
+      if (JSON.stringify(esperienze[0]) === JSON.stringify(obj))
+        esperienze.shift();
+    }
+    setEditMode("off");
   };
 
+  console.log("Educazione => ", esperienze);
   return (
     <div className="form-group col-lg-12 col-md-12">
-      <div className="resume-outer  theme-yellow">
+      <div className="resume-outer  theme-blue">
         <div className="align-items-start justify-content-start upper-title">
           <h4 id="education">
-            <i class="las la-toolbox"></i>Esperienze lavorative
+            <i class="las la-university"></i>Educazione
           </h4>
           <div className="resume-block ">
             <div className="inner">
               <div className="edit-box">
                 <div className="edit-btns">
-                  {editModeX === false ? (
-                    <div onClick={() => setModeOn()} href="/#education">
+                  {editModeX === "off" ? (
+                    <div onClick={setModeOn} href="/#education">
                       <span className="la la-pencil"></span>
                     </div>
                   ) : (
-                    <div onClick={() => setModeOff()} href="/#education">
+                    <div onClick={setModeOff} href="/#education">
                       <i class="las la-trash-restore-alt"></i>
                     </div>
                   )}
@@ -81,19 +94,19 @@ const Experience = ({
           </div>
         </div>
         <div>
-          {editModeX === false ? (
+          {editModeX === "off" ? (
             <div>
               {esperienze?.map((ed, i) => (
                 <div key={i} className="resume-block ">
                   <div className="inner">
                     <span className="name">
                       {" "}
-                      <i class="las la-file-invoice"></i>
+                      <i class="las la-graduation-cap"></i>
                     </span>
 
                     <div className="title-box">
                       <div className="info-box">
-                        <h3>{ed.titolo}</h3>
+                        <h3>{ed.titoloStudio}</h3>
                         <span>{ed.luogo}</span>
                       </div>
                       <div className="edit-box">
@@ -109,6 +122,7 @@ const Experience = ({
             </div>
           ) : (
             <div class="box-resumes-edit">
+              {" "}
               {esperienze?.map((x, i) => {
                 return (
                   <div
@@ -117,11 +131,11 @@ const Experience = ({
                   >
                     <div className="col-6 mt-20">
                       <div className="form-group">
-                        <label>Titolo lavoro</label>
+                        <label>Titolo studio</label>
                         <input
                           type="text"
-                          name="titolo"
-                          placeholder={x.titolo}
+                          name="titoloStudio"
+                          placeholder={x.titoloStudio}
                           onChange={(e) => handleInputChange(e, i)}
                           required
                         />
@@ -129,7 +143,7 @@ const Experience = ({
                     </div>
                     <div className="col-6 mt-20">
                       <div className="form-group">
-                        <label>Luogo</label>
+                        <label>Nome Istituto</label>
                         <input
                           type="text"
                           name="luogo"
@@ -179,7 +193,7 @@ const Experience = ({
                     </div>
 
                     <div className="btn-box">
-                      {esperienze.length > 1 && (
+                      {esperienze?.length !== 1 && (
                         <div
                           onClick={() => handleRemoveClick(i)}
                           className="add-info-btn float-lg-end d-flex"
@@ -188,11 +202,8 @@ const Experience = ({
                           <i className="las la-trash-alt"></i> Rimuovi
                         </div>
                       )}
-                      {esperienze.length - 1 === i && (
-                        <div
-                          className="add-info-btn"
-                          onClick={() => handleAddClick()}
-                        >
+                      {esperienze?.length - 1 === i && (
+                        <div className="add-info-btn" onClick={handleAddClick}>
                           <span className="icon flaticon-plus"></span> Aggiungi
                           Campo
                         </div>
