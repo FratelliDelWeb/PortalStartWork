@@ -13,6 +13,9 @@ import Invoice from "./components/invoice/index"
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import ReactToPrint from "react-to-print";
+import PrintComponent from "./components/invoice/PrintComponent"
+
 
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
@@ -61,6 +64,8 @@ const index = ({  idUser }) => {
       });
   };
 
+
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -100,9 +105,9 @@ const index = ({  idUser }) => {
               
                     <Tab  className={tabIndex == "0" ? ("d-none") : ("tab-btn  btn-map-innerModal m-1 totals")}> <i class="las la-backspace"></i>Torna dietro </Tab>
                     <Tab className={tabIndex == "1" ? ("d-none") : (" tab-btn btn-map-innerModal m-1  approved")}>  <i class="las la-user-edit"></i> Modifica</Tab>
+                    
 
-
-                     {tabIndex == "0" ?  ( <button  className="tab-btn  btn-map-innerModal m-1 totals"><i class="las la-print"></i>Stampa</button>) :(<div></div> )} 
+                     <PrintComponent candidateView={candidateView}></PrintComponent>
                    
                  
                     </TabList>
@@ -120,7 +125,7 @@ const index = ({  idUser }) => {
 
 
                 <TabPanel>
-                <Invoice candidateView={candidateView} ></Invoice>
+                <Invoice candidateView={candidateView}></Invoice>
                 </TabPanel>
 
              
