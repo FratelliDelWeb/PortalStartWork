@@ -4,7 +4,7 @@ import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSideb
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
 import JobFavouriteTable from "./components/JobFavouriteTable";
-import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
+import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
 import JobListV9 from "../../../../components/job-listing-pages/job-list-v9";
 
@@ -17,7 +17,7 @@ const index = ({dataOL}) => {
       <LoginPopup />
       {/* End Login Popup Modal */}
 
-      <DashboardCandidatesHeader />
+      <DashboardHeader />
       {/* End Header */}
 
       <MobileMenu />
@@ -29,7 +29,7 @@ const index = ({dataOL}) => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Annucni di lavoro!" />
+          <BreadCrumb title="Annucni di lavoro!" stato="Tutti gli annunci di lavoro pubblicati sul nostro portale" />
           {/* breadCrumb */}
 
           <MenuToggler />

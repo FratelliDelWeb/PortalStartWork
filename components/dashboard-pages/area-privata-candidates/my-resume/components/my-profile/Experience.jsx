@@ -40,7 +40,7 @@ const Experience = ({ setCandidateView, esperienze }) => {
   };
 
   const addEmptyObject = () => {
-    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    const obj = { titolo: "", startTo: "", finishTo:"", luogo: "", desc: "" };
     let items = [...esperienze];
     items.push(obj);
     setCandidateView((el) => {
@@ -59,7 +59,7 @@ const Experience = ({ setCandidateView, esperienze }) => {
   };
 
   const setModeOff = () => {
-    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    const obj = { titolo: "", startTo: "", finishTo:"", luogo: "", desc: "" };
     if (esperienze) {
       if (JSON.stringify(esperienze[0]) === JSON.stringify(obj))
         esperienze.shift();
@@ -70,10 +70,10 @@ const Experience = ({ setCandidateView, esperienze }) => {
   console.log("Educazione => ", esperienze);
   return (
     <div className="form-group col-lg-12 col-md-12">
-      <div className="resume-outer  theme-blue">
+      <div className="resume-outer  theme-red">
         <div className="align-items-start justify-content-start upper-title">
-          <h4 id="education">
-            <i class="las la-university"></i>Educazione
+        <h4 id="education">
+          <i class="las la-toolbox"></i>Esperienze Lavorative
           </h4>
           <div className="resume-block ">
             <div className="inner">
@@ -101,7 +101,7 @@ const Experience = ({ setCandidateView, esperienze }) => {
                   <div className="inner">
                     <span className="name">
                       {" "}
-                      <i class="las la-graduation-cap"></i>
+                      <i class="las la-toolbox"></i>
                     </span>
 
                     <div className="title-box">
@@ -131,11 +131,11 @@ const Experience = ({ setCandidateView, esperienze }) => {
                   >
                     <div className="col-6 mt-20">
                       <div className="form-group">
-                        <label>Titolo studio</label>
+                        <label>Titolo </label>
                         <input
                           type="text"
-                          name="titoloStudio"
-                          placeholder={x.titoloStudio}
+                          name="titolo"
+                          placeholder={x.titolo}
                           onChange={(e) => handleInputChange(e, i)}
                           required
                         />
@@ -143,7 +143,7 @@ const Experience = ({ setCandidateView, esperienze }) => {
                     </div>
                     <div className="col-6 mt-20">
                       <div className="form-group">
-                        <label>Nome Istituto</label>
+                        <label>Luogo</label>
                         <input
                           type="text"
                           name="luogo"

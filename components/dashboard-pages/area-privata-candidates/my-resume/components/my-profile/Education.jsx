@@ -40,7 +40,7 @@ const Education = ({ setCandidateView, educazione }) => {
   };
 
   const addEmptyObject = () => {
-    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    const obj = { titoloStudio: "", startTo: "", finishTo:"", luogo: "", desc: "" };
     let items = [...educazione];
     items.push(obj);
     setCandidateView((el) => {
@@ -59,7 +59,7 @@ const Education = ({ setCandidateView, educazione }) => {
   };
 
   const setModeOff = () => {
-    const obj = { titoloStudio: "", anno: "", luogo: "", desc: "" };
+    const obj = { titoloStudio: "", startTo: "", finishTo:"", luogo: "", desc: "" };
     if (educazione) {
       if (JSON.stringify(educazione[0]) === JSON.stringify(obj))
         educazione.shift();

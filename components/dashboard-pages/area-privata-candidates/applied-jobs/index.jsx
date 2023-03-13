@@ -1,5 +1,5 @@
 import MobileMenu from "../../../header/MobileMenu";
-import DashboardCandidatesHeader from "../../../header/DashboardCandidatesHeader";
+import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
 import BreadCrumb from "../../BreadCrumb";
@@ -77,7 +77,7 @@ console.log(userinterstedTo); */
       <LoginPopup />
       {/* End Login Popup Modal */}
 
-      <DashboardCandidatesHeader />
+      <DashboardHeader />
       {/* End Header */}
 
       <MobileMenu />

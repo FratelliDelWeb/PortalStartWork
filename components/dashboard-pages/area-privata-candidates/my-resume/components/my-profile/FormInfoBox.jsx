@@ -6,6 +6,7 @@ import Loader from "../../../../../loader/Loader";
 import { modifyCandidates } from "../../../../../../services/private/modifyCandidates";
 import Education from "./Education";
 import { StandaloneSearchBox, useJsApiLoader } from "@react-google-maps/api";
+import Experience from "./Experience";
 const map_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 const FormInfoBox = ({
@@ -631,6 +632,12 @@ const FormInfoBox = ({
                   setCandidateView={setCandidateView}
                   premi={candidateEdit?.premi}
                 ></AwardsCertificates>
+              }
+               {
+                <Experience
+                  setCandidateView={setCandidateView}
+                  esperienze={candidateEdit?.esperienze}
+                ></Experience>
               }
               {/*      <AwardsCertificates
           setPremiCertificatiToSend={setPremiCertificatiToSend}
