@@ -4,7 +4,7 @@ import { getCandidateIdPrivate } from "../../../../../../services/private/getCan
 import axios from "axios";
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-const ApplyJobModalContent = ({ idOffer, idCliente }) => {
+const ApplyJobModalContent = ({ idOffer, idCliente ,setStatusOffers }) => {
   const [stato, setStato] = useState("start");
   const [ErrorMessage, setErrorMessage] = useState();
   const [interests, setInterests] = useState();
@@ -97,7 +97,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente }) => {
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="row">
-        {stato !== "send"  ? (
+        {stato === "start"  ? (
           <>
             <div className="col-lg-12 col-md-12 col-sm-12 form-group">
               <h6>{idOffer.jobTitle}</h6>
@@ -139,7 +139,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente }) => {
             </div>
           </>
         ) : (<>
-                  {stato !== "ok" ? (<div>Candidatura inviata con success </div>) : (<div>{ErrorMessage}</div>)}
+       {stato !== "ok" ? (<div>Candidatura inviata con Successo </div>) : (<div>{stato ==="ok" ? (<><i class="d-flex fa-2x la-check-circle las"></i><h5>Complimenti ti sei candidato a quest offerta!</h5><p>Il nostro consulente del lavoro ti ricontatterà quanto prima</p></>) :(<>{ErrorMessage}</>)}</div>)}
         </>
 
           

@@ -177,6 +177,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
                                   <ApplyJobModalContent
                                     idOffer={idJob}
                                     idCliente={idCliente}
+                                    setStatusOffers ={setStatusOffers}
                                   />
                                   {/* End PrivateMessageBox */}
                                 </div>

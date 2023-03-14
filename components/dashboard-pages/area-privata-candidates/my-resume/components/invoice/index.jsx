@@ -132,11 +132,7 @@ const index = ({candidateView}) => {
                           <h5>Disponibile a spostarsi entro :</h5>
                           <span>{candidateView.rangeWithin} /Km</span>
                         </li>
-                        <li>
-                        <i class="las icon  la-2x  iconB la-language"></i>
-                          <h5>Lingue:</h5>
-                          <span>{candidateView.languages}</span>
-                        </li>
+
 
 
                         <li>
@@ -152,7 +148,11 @@ const index = ({candidateView}) => {
                           <span>{candidateView.gender}</span>
                         </li>
 
-                       
+                        <li>
+                        <i class="las icon  la-2x  iconB la-language"></i>
+                          <h5>Lingue:</h5>
+                          <span>{candidateView.languages}</span>
+                        </li>
 
                     {/*     <li>
                         <i class="las  icon  la-2x  iconB la-graduation-cap"></i>

@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps  }) {
            
           </Auth>
         ) : (
-          <><Component {...pageProps} /><div><Loader></Loader></div></>
+          <><Component {...pageProps} /><div>{/* <Loader></Loader> */}</div></>
         )}
         </Provider>
       </SessionProvider>
