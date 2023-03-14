@@ -134,7 +134,7 @@ const  setUserIndex =( user) =>{
               {/* <!-- Notification Widget --> */}
               <div className="notification-widget ls-widget">
                 <div className="widget-title">
-                  <h4>Notifications</h4>
+                  <h4>Notifiche</h4>
                 </div>
                 <div className="widget-content">
                   <Notification />

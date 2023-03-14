@@ -33,7 +33,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
   useEffect(() => {
     setCompany(jobs.find((item) => item.id == idJob));
     setStatusOffer(dataOL, userinterstedTo);
-  }, []);
+  }, [userinterstedTo]);
 
   const setStatusOffer = (dataOL, userinterstedTo) => {
     let status = [];
@@ -41,6 +41,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
       for (let i = 0; i < userinterstedTo.length; i++) {
         if (userinterstedTo[i] === dataOL._id) {
           status.push(userinterstedTo[i]);
+          console.log("attivo")
           setStatusOffers("attivo");
         }
       }
@@ -65,7 +66,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
         {/* <!-- Dashboard --> */}
         <section className="user-dashboard">
           <div className="dashboard-outer">
-            <BreadCrumb title="Offerta di lavoro" />
+            <BreadCrumb title="Offerta di lavoro" stato="Ecco tutte le informazioni sull offerta , invia la tua candidatura! " />
             {/* breadCrumb */}
 
             {/* Collapsible sidebar button */}
@@ -196,18 +197,18 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
                           {/* End jobdetails content */}
 
                           <div className="other-options">
-                            <div className="social-share">
+                          {/*   <div className="social-share">
                               <h5>Share this job</h5>
                               <SocialTwo />
-                            </div>
+                            </div> */}
                           </div>
                           {/* <!-- Other Options --> */}
 
                           <div className="related-jobs">
                             <div className="title-box">
-                              <h3>Related Jobs</h3>
+                              <h3>Altri annunci di lavoro</h3>
                               <div className="text">
-                                2020 jobs live - 293 added today.
+                                2020 annunci pubblicati - 10 aggiunti oggi.
                               </div>
                             </div>
                             {/* End title box */}
@@ -228,7 +229,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
                               <JobOverView dataOL={dataOL} />
 
                               {/* <!-- Map Widget --> */}
-                              <h4 className="widget-title">Job Location</h4>
+                            {/*   <h4 className="widget-title">Job Location</h4>
                               <div className="widget-content">
                                 <div className="map-outer">
                                   <div
@@ -237,47 +238,18 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
                                     <MapJobFinder />
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
                               {/* <!--  Map Widget --> */}
 
-                              <h4 className="widget-title">Job Skills</h4>
+                            {/*   <h4 className="widget-title">Job Skills</h4>
                               <div className="widget-content">
                                 <JobSkills />
-                              </div>
+                              </div> */}
                               {/* <!-- Job Skills --> */}
                             </div>
                             {/* End .sidebar-widget */}
 
-                            <div className="sidebar-widget company-widget">
-                              <div className="widget-content">
-                                <div className="company-title">
-                                  <div className="company-logo">
-                                    <img src={dataOL.logo} alt="resource" />
-                                  </div>
-                                  <h5 className="company-name">
-                                    {dataOL.company}
-                                  </h5>
-                                  <a href="#" className="profile-link">
-                                    View company profile
-                                  </a>
-                                </div>
-                                {/* End company title */}
-
-                                <CompnayInfo />
-
-                                <div className="btn-box">
-                                  <a
-                                    href="#"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="theme-btn btn-style-three"
-                                  >
-                                    {company?.link}
-                                  </a>
-                                </div>
-                                {/* End btn-box */}
-                              </div>
-                            </div>
+                       
                             {/* End .company-widget */}
                           </aside>
                           {/* End .sidebar */}

@@ -24,11 +24,17 @@ const ApplyJobModalContent = ({ idOffer, idCliente }) => {
       .then((response) => {
         const data = response.data;
         console.log(data);
+        if(data?.message ==="Update successful"){
+          setStato("ok");
+          setStatusOffers("attivo");
+        }
+    
       })
       .catch((e) => {
         setStato("error");
-        setErrorMessage(e.response.data.message),
-          console.log(e.response.data.message);
+        console.log(e.response.data?.message)
+        setErrorMessage(e.response.data?.message)
+          
       });
   };
 
@@ -91,7 +97,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente }) => {
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="row">
-        {stato !== "send" && stato !== "error" ? (
+        {stato !== "send"  ? (
           <>
             <div className="col-lg-12 col-md-12 col-sm-12 form-group">
               <h6>{idOffer.jobTitle}</h6>
@@ -132,8 +138,11 @@ const ApplyJobModalContent = ({ idOffer, idCliente }) => {
               </button>
             </div>
           </>
-        ) : (
-          <div>{ErrorMessage}</div>
+        ) : (<>
+                  {stato !== "ok" ? (<div>Candidatura inviata con success </div>) : (<div>{ErrorMessage}</div>)}
+        </>
+
+          
         )}
 
         {/* End .col */}
