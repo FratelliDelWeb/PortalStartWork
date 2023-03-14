@@ -549,7 +549,29 @@ const FormInfoBox = ({
                   />
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12">
+              <div className="col-lg-6 col-md-12">
+                <div className="form-group range-slider-one">
+                  <label>Disponibile a spostarsi entro</label>
+                  <InputRange
+                    formatLabel={(value) => ``}
+                    minValue={0}
+                    maxValue={100}
+                    value={getDestination}
+                    className={error.getDestination ? "errorInput" : ""}
+                    onBlur={(e) => validateInput(e)}
+                    onChange={(value) => handleOnChange(value)}
+                  />
+                  <div className="input-outer">
+                    <div className="amount-outer">
+                      <span className="area-amount">
+                        {candidateEdit?.rangeWithin}
+                      </span>
+                      km
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-8 col-md-12">
                 <div className="form-group">
                   <label>Via</label>
                   {isLoaded && (
@@ -582,34 +604,7 @@ const FormInfoBox = ({
                   )}
                 </div>
               </div>
-              <div className="col-lg-6 col-md-6">
-                <div className="form-group">
-                  <label>Città</label>
-                  {isLoaded && (
-                    <input
-                      value={candidateEdit?.location?.city}
-                      onBlur={(e) => validateInput(e)}
-                      className={error.location ? "errorInput" : ""}
-                      onChange={(e) =>
-                        setCandidateView((el) => {
-                          return {
-                            ...el,
-                            location: {
-                              ...el?.location,
-                              city: e.target.value,
-                            },
-                          };
-                        })
-                      }
-                      id="location-field"
-                      type="text"
-                      name="città"
-                      placeholder="Città"
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6">
+              <div className="col-lg-4 col-md-6">
                 <div className="form-group">
                   <label>Numero Civico</label>
                   {isLoaded && (
@@ -636,7 +631,35 @@ const FormInfoBox = ({
                   )}
                 </div>
               </div>
-              <div className="col-log-6 col-md-6">
+              <div className="col-lg-8 col-md-6">
+                <div className="form-group">
+                  <label>Città</label>
+                  {isLoaded && (
+                    <input
+                      value={candidateEdit?.location?.city}
+                      onBlur={(e) => validateInput(e)}
+                      className={error.location ? "errorInput" : ""}
+                      onChange={(e) =>
+                        setCandidateView((el) => {
+                          return {
+                            ...el,
+                            location: {
+                              ...el?.location,
+                              city: e.target.value,
+                            },
+                          };
+                        })
+                      }
+                      id="location-field"
+                      type="text"
+                      name="città"
+                      placeholder="Città"
+                    />
+                  )}
+                </div>
+              </div>
+             
+              <div className="col-lg-4 col-md-6">
                 <div className="form-group">
                   <label>CAP</label>
                   {isLoaded && (
@@ -663,28 +686,7 @@ const FormInfoBox = ({
                   )}
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12">
-                <div className="form-group range-slider-one">
-                  <label>Disponibile a spostarsi entro</label>
-                  <InputRange
-                    formatLabel={(value) => ``}
-                    minValue={0}
-                    maxValue={100}
-                    value={getDestination}
-                    className={error.getDestination ? "errorInput" : ""}
-                    onBlur={(e) => validateInput(e)}
-                    onChange={(value) => handleOnChange(value)}
-                  />
-                  <div className="input-outer">
-                    <div className="amount-outer">
-                      <span className="area-amount">
-                        {candidateEdit?.rangeWithin}
-                      </span>
-                      km
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
               <div className="form-group col-lg-12 col-md-12">
                 <label>Note</label>
                 <textarea
