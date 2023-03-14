@@ -106,8 +106,8 @@ const index = ({  idUser }) => {
                     <Tab  className={tabIndex == "0" ? ("d-none") : ("tab-btn  btn-map-innerModal m-1 totals")}> <i class="las la-backspace"></i>Torna dietro </Tab>
                     <Tab className={tabIndex == "1" ? ("d-none") : (" tab-btn btn-map-innerModal m-1  approved")}>  <i class="las la-user-edit"></i> Modifica</Tab>
                     
-
-                     <PrintComponent candidateView={candidateView}></PrintComponent>
+                    {tabIndex == "0" ? ( <PrintComponent candidateView={candidateView}></PrintComponent>) : (<></>)}
+                    
                    
                  
                     </TabList>
