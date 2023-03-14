@@ -21,11 +21,9 @@ const JobListingsTable = ({dataOL}) => {
         <div className="chosen-outer">
           {/* <!--Tabs Box--> */}
           <select className="chosen-single form-select">
-            <option>Last 6 Months</option>
-            <option>Last 12 Months</option>
-            <option>Last 16 Months</option>
-            <option>Last 24 Months</option>
-            <option>Last 5 year</option>
+            <option>Più recenti</option>
+            <option>Più vecchi</option>
+           
           </select>
         </div>
       </div>

@@ -161,10 +161,7 @@ const FilterJobsBox = ({dataOL}) => {
                                 {item.time}
                             </li>
                             {/* time info */}
-                            <li>
-                                <span className="icon flaticon-money"></span>{" "}
-                                {item.salary}
-                            </li>
+                           
                             {/* salary info */}
                         </ul>
                         {/* End .job-info */}
