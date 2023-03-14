@@ -89,7 +89,7 @@ setUserData({ id: `${user?._id}`,
        const message = res.message;
    console.log(message)
    if(message == "Update successful"){
-    
+    debugger;
     setStatoEdit("ok")
     console.log("RESPONSEEE",res.client)
     const clientEditato = res.client;
@@ -119,16 +119,21 @@ setUserData({ id: `${user?._id}`,
       {statoEdit === "ok" ? (<><h2> Modifica Effettuata</h2><button href="area-privata/my-profile" onClick={(setStatoEdit("start"))}>TORNA AL PROFILO</button></> ) : (<> 
        
           <div className="row">
-          {statoEdit === "loading" ? (<><h4>Stiamo inviando le tue modifiche </h4><Loader></Loader></>) : (<>      {/* <!-- Input --> */}
+          {statoEdit === "loading" ? ( <div className="align-items-center flex-column d-block d-flex flex-wrap justify-content-center">
+             <div> <Loader></Loader></div>
+          <div className="mt-1"> <h5>Stiamo inoltrando le tue modifiche...</h5></div>
+      
+         
+        </div>) : (<>      {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Username</label>
-          <input   onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })} type="text" name="username" placeholder={userToUse?.username}   required />
+          <input   onChange={(e) => setClienteEdit({ ...ClienteEdit,username: e.target.value })} type="text" name="username" placeholder={userToUse?.username} defaultValue={userToUse?.username}   />
       </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Email</label>
-          <input type="email" name="email"    onChange={(e) => setClienteEdit({ ...ClienteEdit,email: e.target.value })} placeholder={user?.email} defaultValue={user?.email}  required/>
+          <input type="email" name="email"    onChange={(e) => setClienteEdit({ ...ClienteEdit,email: e.target.value })} placeholder={user?.email} defaultValue={user?.email}  />
         </div>
 
         {/* <!-- Input --> */}
