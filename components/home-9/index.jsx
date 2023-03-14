@@ -11,8 +11,8 @@ import Funfact from "../fun-fact-counter/Funfact";
 import Testimonia4 from "../testimonial/Testimonial4";
 import JobCategorie1 from "../job-categories/JobCategorie1";
 import JobCategorie7 from "../job-categories/JobCategorie7";
-import  About9 from "../about/About9"
-import  About10 from "../about/About10"
+import About9 from "../about/About9";
+import About10 from "../about/About10";
 
 import Block6 from "../block/Block6";
 import JobFeatured3 from "../job-featured/JobFeatured3";
@@ -24,28 +24,27 @@ import RegBanner2 from "../block/RegBanner2";
 
 import DefaulHeader2 from "../header/DefaulHeader2";
 
-
-const index = ({dataCL ,dataOL}) => {
-console.log(dataCL )
-console.log(dataOL )
+const index = ({ dataCL, dataOL }) => {
+  console.log(dataCL);
+  console.log(dataOL);
   return (
     <>
       <LoginPopup />
       <CandidatiPopup></CandidatiPopup>
       {/* End Login Popup Modal */}
       <div className="mb-30">
-      <DefaulHeader2 />
+        <DefaulHeader2 />
       </div>
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
       {/* End MobileMenu */}
       <div className="mt-56">
-      <Hero12  />
-        </div>
-    
+        <Hero12 />
+      </div>
+
       {/* <!-- End Hero Section --> */}
-      
+
       <section className="layout-pt-120 layout-pb-60">
         <div className="auto-container">
           <div className="row justify-content-between align-items-end">
@@ -77,41 +76,38 @@ console.log(dataOL )
       <section className="registeration-banners">
         <div className="auto-container">
           <div className="row" data-aos="fade-up">
-            <About10/>
+            <About10 />
           </div>
         </div>
       </section>
 
-
       <div className="auto-container">
-          <div className="text-center">
-            <h2>Utlime Offerte di lavoro </h2>
-            <div className="text">
+        <div className="text-center">
+          <h2>Ultime Offerte di lavoro </h2>
+          <div className="text">
             Conosci il tuo valore e trova il lavoro che qualifica la tua vita!
-            </div>
-          </div>
-          {/* End .sec-title */}
-
-          <div className="row" data-aos="fade-up">
-            <JobFeatured3 dataOL={dataOL} />
-          </div>
-
-          <div className="btn-box">
-            <Link
-              href="/job-list-v3"
-              className="theme-btn btn-style-one bg-blue"
-            >
-              <span className="btn-title">Vedi tutte le offerte</span>
-            </Link>
           </div>
         </div>
-        <About9 />
-        <section className="candidates-section">
+        {/* End .sec-title */}
+
+        <div className="row" data-aos="fade-up">
+          <JobFeatured3 dataOL={dataOL} />
+        </div>
+
+        <div className="btn-box">
+          <Link href="/job-list-v3" className="theme-btn btn-style-one bg-blue">
+            <span className="btn-title">Vedi tutte le offerte</span>
+          </Link>
+        </div>
+      </div>
+      <About9 />
+      <section className="candidates-section">
         <div className="auto-container">
           <div className="sec-title">
-            <h2>Featured Candidates</h2>
+            <h2>Gli ultimi candidati</h2>
             <div className="text">
-              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
+              Visualizza gli ultimi candidati che si sono registrati alla
+              piattaforma per ricevere il nostro supporto
             </div>
           </div>
 
@@ -122,13 +118,9 @@ console.log(dataOL )
           </div>
         </div>
       </section>
-      
 
-
-
-     
       {/* <!-- End Candidates Section --> */}
-       {/*
+      {/*
       <section className="job-section">
         <div className="auto-container wow fadeInUp">
           <div className="sec-title text-center">
@@ -143,14 +135,14 @@ console.log(dataOL )
         </div>
       </section>
       <!-- End Job Section --> */}
-     
-      {/* <!-- End Registeration Banners --> */}
-    
-            {/* <!-- End Steps Section --> */}
 
-     {/*  <CallToAction7 /> */}
+      {/* <!-- End Registeration Banners --> */}
+
+      {/* <!-- End Steps Section --> */}
+
+      {/*  <CallToAction7 /> */}
       {/* <!-- End Call To Action --> */}
-  {/*
+      {/*
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
@@ -229,7 +221,5 @@ console.log(dataOL )
     </>
   );
 };
-
-
 
 export default index;

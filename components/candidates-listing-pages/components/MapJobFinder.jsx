@@ -10,6 +10,12 @@ import Info from "./InfoWindow";
 import Loader from "../../loader/Loader";
 const map_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
+const ITALY_BOUNDS = {
+  north: 47.1153931748,
+  south: 36.619987291,
+  west: 6.7499552751,
+  east: 18.4802470232,
+};
 const mapStyle = [
   {
     elementType: "geometry",
@@ -170,7 +176,6 @@ const mapStyle = [
     ],
   },
 ];
-
 const markerStyle = {
   position: "absolute",
   top: "50%",
@@ -182,7 +187,6 @@ const markerStyle = {
   borderRadius: "10px",
   transform: "translate(-50%, -100%)",
 };
-
 const containerStyle = {
   position: "relative",
   width: "100%",
@@ -203,8 +207,10 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
     zoom: 6,
   };
 
+  const [mapRestriction, setMapRescriction] = useState(null);
   const [places, setPlaces] = useState([]);
   const [propsMap, setPropsMap] = useState(defaultProps);
+  const [map, setMap] = useState(null);
 
   const getAvailableLocations = (dataCL) => {
     const locations = dataCL.map((data) => {
@@ -229,14 +235,12 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
       if (element !== null) {
         var id = element._id || element.id;
         if (id === location.id) {
-          if (!element.active) {
+          let validCoordinates = checkCoordinates(location.lat, location.lng);
+          if (!element.active && validCoordinates) {
             location.active = true;
             setPropsMap({
-              center: {
-                lat: parseFloat(location.lat),
-                lng: parseFloat(location.lng),
-              },
-              zoom: 8,
+              center: validCoordinates,
+              zoom: 10,
             });
           } else {
             location.active = false;
@@ -261,13 +265,42 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
     setActiveElement(element);
   };
 
+  const onLoadMap = async (map) => {
+    setMap(map);
+    const bounds = new window.google.maps.LatLngBounds();
+    places.map((item) => {
+      let validCoordinates = checkCoordinates(item.lat, item.lng);
+      if (validCoordinates) {
+        bounds.extend(validCoordinates);
+      }
+    });
+    map.fitBounds(bounds);
+  };
+
+  const checkCoordinates = (lat, lng, active = true) => {
+    let bound = {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+    };
+    if (!active) return false;
+    if (!isNaN(bound.lat) && !isNaN(bound.lng)) return bound;
+    else return false;
+  };
+
   const renderMap = (propsMap, places) => {
     return (
       <GoogleMap
+        key="map-search-candidate"
+        onLoad={onLoadMap}
         options={{
           styles: mapStyle,
           streetViewControl: false,
           disableDefaultUI: false,
+          restriction: {
+            latLngBounds: ITALY_BOUNDS,
+            strictBounds: false,
+          },
+          minZoom: 6,
         }}
         mapContainerStyle={containerStyle}
         center={propsMap.center}
@@ -290,13 +323,13 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
               onClick={() => handleActiveElement(place)}
               onLoad={(marker) => {}}
             />
-            {place.active ? (
+            {checkCoordinates(place.lat, place.lng, place.active) !== false ? (
               <InfoWindow
                 options={{ pixelOffset: new window.google.maps.Size(0, -70) }}
                 key={"map-infowindow-marker-" + place.publicName}
                 position={{
-                  lat: parseFloat(place.lat) || 0,
-                  lng: parseFloat(place.lng) || 0,
+                  lat: parseFloat(place.lat),
+                  lng: parseFloat(place.lng),
                 }}
                 onCloseClick={() => handleActiveElement(null)}
               >
@@ -312,5 +345,9 @@ export default function SimpleMap({ dataCL, elementOnHover }) {
     );
   };
 
-  return isLoaded ? renderMap(propsMap, places) : <Loader></Loader>;
+  return isLoaded ? (
+    renderMap(propsMap, places)
+  ) : (
+    <Loader key="map-search-candidate-loader"></Loader>
+  );
 }

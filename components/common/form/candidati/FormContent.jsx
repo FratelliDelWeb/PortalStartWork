@@ -5,9 +5,17 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Loader from "../../../loader/Loader";
 import Experience from "./Experience";
+import { StandaloneSearchBox, useJsApiLoader } from "@react-google-maps/api";
+const map_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const FormContent = () => {
+  const libraries = ["places"];
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: map_key, // ,
+    libraries: libraries,
+  });
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -45,21 +53,21 @@ const FormContent = () => {
   };
 
   const [newUser, setnewUser] = useState({
-    name: `Roberto`,
-    surname: `Afragolese`,
-    phone: `+393923784332`,
-    age: `19`,
-    rangeWithin: 50,
-    gender: `Male`,
+    name: ``,
+    surname: ``,
+    phone: ``,
+    age: ``,
+    rangeWithin: 0,
+    gender: ``,
     location: {
       city: "",
       lng: "",
       lat: "",
     },
     credentials: {
-      username: "JustToTry_02",
-      password: "JustToTry",
-      email: "consfedes_justtotry@gmail.com",
+      username: "",
+      password: "",
+      email: "",
     },
     esperienze: [
       {
@@ -70,7 +78,7 @@ const FormContent = () => {
         desc: "",
       },
     ],
-    mansione: "Tuttoqualsiasi",
+    mansione: "",
   });
 
   const [error, setError] = useState({
@@ -117,6 +125,31 @@ const FormContent = () => {
       return;
     }
     setPasswordType("password");
+  };
+
+  const [searchBox, setSearchBox] = useState(null);
+
+  const onPlacesChanged = () => {
+    let places = searchBox.getPlaces();
+    let place = places[0];
+    let city = place.formatted_address;
+    let lat = place.geometry.location.lat();
+    let lng = place.geometry.location.lng();
+
+    setnewUser((el) => {
+      return {
+        ...el,
+        location: {
+          city: city,
+          lat: lat,
+          lng: lng,
+        },
+      };
+    });
+  };
+
+  const onLoadAutocomplete = (searchBox) => {
+    setSearchBox(searchBox);
   };
 
   return (
@@ -292,29 +325,38 @@ const FormContent = () => {
                 <div className="col-6">
                   <div className="form-group">
                     <label>Città</label>
-                    <input
-                      value={newUser.location.city}
-                      onBlur={(e) => validateInput(e)}
-                      className={error.location ? "errorInput" : ""}
-                      onChange={(e) =>
-                        setnewUser((newUser) => ({
-                          ...newUser,
-                          location: {
-                            ...newUser.location,
-                            city: e.target.value,
-                          },
-                        }))
-                      }
-                      id="location-field"
-                      type="text"
-                      name="cittaà"
-                      placeholder="Città"
-                    />
+                    {isLoaded && (
+                      <StandaloneSearchBox
+                        onLoad={onLoadAutocomplete}
+                        onPlacesChanged={onPlacesChanged}
+                      >
+                        <input
+                          value={newUser?.location?.city}
+                          onBlur={(e) => validateInput(e)}
+                          className={error.location ? "errorInput" : ""}
+                          onChange={(e) =>
+                            setnewUser((el) => {
+                              return {
+                                ...el,
+                                location: {
+                                  ...el?.location,
+                                  city: e.target.value,
+                                },
+                              };
+                            })
+                          }
+                          id="location-field"
+                          type="text"
+                          name="città"
+                          placeholder="Città"
+                        />
+                      </StandaloneSearchBox>
+                    )}
                   </div>
                 </div>
                 <div className="col-6">
                   <div className="form-group">
-                    <label>Disponibile a soistarsi entro</label>
+                    <label> Disponibile a spostarsi entro: </label>
                     <InputRange
                       formatLabel={(value) => ``}
                       minValue={0}

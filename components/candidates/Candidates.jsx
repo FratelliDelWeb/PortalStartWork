@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import candidates from "../../data/candidates";
 
-const Candidates = ({dataCL}) => {
+const Candidates = ({ dataCL }) => {
   const settings = {
     dots: true,
     speed: 1400,
@@ -48,15 +48,16 @@ const Candidates = ({dataCL}) => {
               </figure>
               <h4 className="name">{candidate.publicName}</h4>
               <span className="designation">{candidate.mansione}</span>
-              
+
               <div className="location">
-                <i className="flaticon-map-locator"></i> {candidate.location.city}
+                <i className="flaticon-map-locator"></i>{" "}
+                {candidate.location.city}
               </div>
               <Link
-                href={`/candidates/${candidate._id}`}
+                href={`/candidates/${candidate.publicName}`}
                 className="theme-btn btn-style-three"
               >
-                <span className="btn-title">View Profile</span>
+                <span className="btn-title">Visualizza</span>
               </Link>
             </div>
           </div>

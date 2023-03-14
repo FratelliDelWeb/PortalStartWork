@@ -15,7 +15,10 @@ const About9 = () => {
                   data-aos-delay="500"
                   data-aos="fade-in"
                 >
-                  <img src="images/index-13/images/1.png" alt="resource" />
+                  <img
+                    src="images/index-13/images/start-working-agezina-per-il-lavoro.png"
+                    alt="resource"
+                  />
                 </figure>
 
                 {/* <!-- Info BLock One --> */}
@@ -55,9 +58,7 @@ const About9 = () => {
                   <span className="icon flaticon-file"></span>
                   <div className="inner">
                     <p>Costruisci il tuo CV</p>
-                    <span className="sub-text">
-                      Entra nei candidati
-                    </span>
+                    <span className="sub-text">Entra nei candidati</span>
                   </div>
                 </div>
               </div>
@@ -69,20 +70,22 @@ const About9 = () => {
               <div data-aos="fade-right">
                 <div className="sec-title">
                   <h2 className="fw-700">
-                  Il CV professionale è il tuo biglietto per il lavoro dei sogni
+                    Il CV professionale è il tuo biglietto per il lavoro dei
+                    sogni
                   </h2>
                   <div className="text mt-30">
-                  Per iniziare a cercare lavoro, puoi inscriverti al nostro portale del lavoro o di persona!
-                  Inizia la tua nuova carriera, un reclutatore ti affianchera nella costruzione del tuo Profilo e verra inserito tra i nostri candidati.
+                    Per iniziare a cercare lavoro, puoi inscriverti al nostro
+                    portale del lavoro o di persona! Inizia la tua nuova
+                    carriera, un reclutatore ti affianchera nella costruzione
+                    del tuo Profilo e verra inserito tra i nostri candidati.
                   </div>
                 </div>
                 <a
-                  data-bs-target= "#candidatiPopupModal"
+                  data-bs-target="#candidatiPopupModal"
                   data-bs-toggle="modal"
-             
                   className="theme-btn btn-style-one"
                 >
-                 Compila modulo
+                  Compila modulo
                 </a>
               </div>
             </div>
