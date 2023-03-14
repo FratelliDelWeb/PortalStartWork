@@ -88,7 +88,7 @@ const JobSingleJob = ({ dataOL, userinterstedTo, idCliente, idJob }) => {
                               <p>Codice Offerta: {dataOL?.codiceJod}</p>
                               <ul className="job-info">
                                 <li>
-                                  <span className="icon flaticon-briefcase"></span>
+                                <i class="las la-tag"></i>
                                   {dataOL?.category}
                                 </li>
                                 {/* compnay info */}

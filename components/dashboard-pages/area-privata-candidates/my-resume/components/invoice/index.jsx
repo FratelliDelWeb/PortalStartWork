@@ -116,47 +116,49 @@ const index = ({candidateView}) => {
                   <div className="sidebar-widget">
                     <div className="widget-content">
                       <ul className="job-overview">
-                        <li>
-                          <i className="icon icon-calendar"></i>
-                          <h5>Categoria</h5>
-                          <span>{candidateView.category}</span>
-                        </li>
-
-                        <li>
-                          <i className="icon icon-expiry"></i>
-                          <h5>Età:</h5>
-                          <span>{candidateView.age}</span>
-                        </li>
-
-                        <li>
-                          <i className="icon icon-rate"></i>
+                      <li>
+                        <i class=" icon la-2x iconB   las la-user-tag"></i>
                           <h5>Nome Pubblico</h5>
                           <span>{candidateView.publicName}</span>
                         </li>
 
                         <li>
-                          <i className="icon icon-salary"></i>
-                          <h5>Expected Salary:</h5>
-                          <span>26K - 30K</span>
+                        <i class=" icon iconB la-2x las la-tag"></i>
+                          <h5>Categoria</h5>
+                          <span>{candidateView.category}</span>
                         </li>
-
                         <li>
-                          <i className="icon icon-user-2"></i>
-                          <h5>Genere:</h5>
-                          <span>{candidateView.gender}</span>
+                        <i class="icon  la-2x  iconB las la-route"></i>
+                          <h5>Disponibile a spostarsi entro :</h5>
+                          <span>{candidateView.rangeWithin} /Km</span>
                         </li>
-
                         <li>
-                          <i className="icon icon-language"></i>
+                        <i class="las icon  la-2x  iconB la-language"></i>
                           <h5>Lingue:</h5>
                           <span>{candidateView.languages}</span>
                         </li>
 
+
                         <li>
-                          <i className="icon icon-degree"></i>
+                        <i class="las icon iconB la-2x la-hourglass-half"></i>
+                          <h5>Età:</h5>
+                          <span>{candidateView.age}</span>
+                        </li>
+
+
+                        <li>
+                        <i class="las icon  la-2x  iconB  la-user"></i>
+                          <h5>Genere:</h5>
+                          <span>{candidateView.gender}</span>
+                        </li>
+
+                       
+
+                    {/*     <li>
+                        <i class="las  icon  la-2x  iconB la-graduation-cap"></i>
                           <h5>Education Level:</h5>
                           <span>Master Degree</span>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
