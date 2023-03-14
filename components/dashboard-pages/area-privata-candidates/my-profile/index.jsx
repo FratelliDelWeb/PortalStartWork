@@ -90,7 +90,7 @@ const  setUserIndex =( user) =>{
                   </div>
              
                   <div className="widget-content">
-                    <Form  user = {user} cookie={cookie} setUserIndex ={setUserIndex}/>
+                    <Form  user = {user} cookie={cookie} setUserEditato ={setUserIndex}/>
                   </div>
                 </div>
 

@@ -16,10 +16,28 @@ const Form = ({props,user ,cookie , setUserEditato}) => {
 
   const [userToUse , setUserData ] = useState();
 
-
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
 
   const [ClienteEdit, setClienteEdit] = useState();
-
+   const [errorSend, setErrorSend] = useState("errore");
+  const [passwordType, setPasswordType] = useState("password");
+  const [error, setError] = useState({
+    name: ``,
+    surname: ``,
+    phone: ``,
+    age: ``,
+    rangeWithin: ``,
+    gender: ``,
+    password: ``,
+    confirmPassword: ``,
+    location: ``,
+  });
   console.log("USERT TO START EDIT" ,ClienteEdit)
   console.log("startCookie" ,cookieToSend);
   useEffect(() => {
@@ -29,9 +47,8 @@ const Form = ({props,user ,cookie , setUserEditato}) => {
       });
       setClienteEdit( {
         id: `${user?._id}`,
-      
         password: `${user?.password}`,
-     
+        confirmPassword: `${user?.password}`,
         })
       },[user])
       const setEditData = (userToUse ,ClienteEdit ) => {
@@ -76,27 +93,97 @@ const Form = ({props,user ,cookie , setUserEditato}) => {
    
 
   }
+  const validateInput = (e) => {
+   
+    let { name, value } = e.target;
+    console.log( name, value );
+    setError((prev) => {
+      const stateObj = { ...prev, [name]: "" };
 
+      switch (name) {
+        case "confirmPassword":
+          if (ClienteEdit.password !== ClienteEdit.confirmPassword) {
+            stateObj[name] = "Le password non coincidono";
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return stateObj;
+    });
+  }
   return (
     <form  onSubmit={(e) => handleSubmit(e,user)} method="POST" className="default-form">
+
+      {statoEdit === "ok" ? (<><h2> Modifica Effettuata</h2><button href="area-privata/my-profile" onClick={(setStatoEdit("start"))}>TORNA AL PROFILO</button></> ) : (<> 
+       
+       <div className="row">
+       {statoEdit === "loading" ? ( <div className="align-items-center flex-column d-block d-flex flex-wrap justify-content-center">
+          <div> <Loader></Loader></div>
+       <div className="mt-1"> <h5>Stiamo inoltrando le tue modifiche...</h5></div>
+   
+      
+     </div>) : (<>       
       <div className="row">
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-7 col-md-12">
-          <label>Vecchia Password</label>
-          <input type="password" name="name" required />
+        <div className="form-group col-lg-6 col-md-12">
+          <label>UserId</label>
+          <input type="text" name="userID" placeholder={user?._id} disabled />
+        </div>
+        <div className="form-group col-lg-6 col-md-12">
+          <label> Username</label>
+          <input type="text" name="username" disabled  placeholder= {user?.username}/>
         </div>
 
         {/* <!-- Input --> */}
-        <div className="form-group col-lg-7 col-md-12">
-          <label>Nuova Password</label>
-          <input type="password" name="name" required />
-        </div>
+        <div className="col-6 mt-20">
+                <div className="form-group">
+                  <label>Nuova Password</label>
+                  <input
+                    type={passwordType}
+                    name="password"
+                    className={error.password ? "errorInput" : ""}
+                    placeholder="Password"
+                    required
+                     onBlur={(e) => validateInput(e)}
+                    onChange={(e) => setClienteEdit({ ...ClienteEdit,password: e.target.value })}
+                   
+                  />
+                  <span className="p-viewer2" onClick={togglePassword}>
+                    {passwordType === "password" ? (
+                      <i className="fa fa-eye"></i>
+                    ) : (
+                      <i className="fa fa-eye-slash"></i>
+                    )}
+                  </span>
+                </div>
 
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-7 col-md-12">
-          <label>Conferma Password</label>
-          <input type="password" name="name" required />
-        </div>
+                {error.password && (
+                  <span className="err">{error.password}</span>
+                )}
+              </div>
+
+              <div className="col-6 mt-20">
+                <div className="form-group">
+                  <label>Conferma passsword</label>
+                  <input
+                    id="sesso-field"
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Conferma passsword"
+                    onBlur={(e) => validateInput(e)}
+                    className={error.confirmPassword ? "errorInput" : ""}
+                    onChange={(e) => setClienteEdit({ ...ClienteEdit,confirmPassword: e.target.value })}
+                    
+                    required
+                  />
+                </div>
+                {error.confirmPassword && (
+                  <span className="err">{error.confirmPassword}</span>
+                )}
+              </div>
 
         {/* <!-- Input --> */}
         <div className="form-group col-lg-6 col-md-12">
@@ -104,7 +191,10 @@ const Form = ({props,user ,cookie , setUserEditato}) => {
             Aggiorna
           </button>
         </div>
-      </div>
+      </div></>)}
+   
+   
+   </div></>)}
     </form>
   );
 };
