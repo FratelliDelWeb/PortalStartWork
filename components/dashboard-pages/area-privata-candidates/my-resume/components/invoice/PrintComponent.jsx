@@ -13,9 +13,7 @@ export default function PrintComponent({candidateView}) {
 
   const [candidateV ,setCandidateV] = useState()
   
-  useEffect(( ) =>{
-    setCandidateV(candidateView)
-  },[candidateView])
+  useEffect(( ) =>{})
 
   return (
     <>
@@ -28,7 +26,7 @@ export default function PrintComponent({candidateView}) {
 
         {/* component to be printed */}
         <div style={{ display: "none" }}>
-          <ComponentToPrint candidateV={candidateV} ref={(el) => (componentRef = el)} />
+          <ComponentToPrint  ref={(el) => (componentRef = el)} />
         </div>
       </div>
     </>
@@ -36,10 +34,18 @@ export default function PrintComponent({candidateView}) {
 }
 
 // component to be printed
-class ComponentToPrint extends React.Component{
-   render() {
+class ComponentToPrint extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      candidateView: candidateView,
+    
+    };
+  }
+  render() {
     return (
-     <Invoice candidateView={candidateView}  ></Invoice>
+     <Invoice  ></Invoice>
     );
   }
 }

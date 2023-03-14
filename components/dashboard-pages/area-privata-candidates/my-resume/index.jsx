@@ -11,15 +11,22 @@ import DashboardHeader from "../../../header/DashboardHeader";
 import MenuToggler from "../../MenuToggler";
 import Invoice from "./components/invoice/index"
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ReactToPrint from "react-to-print";
 import PrintComponent from "./components/invoice/PrintComponent"
-
+import {useReactToPrint} from "react-to-print"
 
 const api = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const index = ({  idUser }) => {
+
+  const componentPrint = useRef()
+
+  const clickPrint = useReactToPrint({
+    content : () =>componentPrint.current,
+    documentTitle: "titolo",
+  });
   const defaultProps = {
     id: "",
     age: "",
@@ -106,10 +113,10 @@ const index = ({  idUser }) => {
                     <Tab  className={tabIndex == "0" ? ("d-none") : ("tab-btn  btn-map-innerModal m-1 totals")}> <i class="las la-backspace"></i>Torna dietro </Tab>
                     <Tab className={tabIndex == "1" ? ("d-none") : (" tab-btn btn-map-innerModal m-1  approved")}>  <i class="las la-user-edit"></i> Modifica</Tab>
                     
-                    {tabIndex == "0" ? ( <PrintComponent candidateView={candidateView}></PrintComponent>) : (<></>)}
-                    
+                    {tabIndex == "0" ? ( <button  onClick={clickPrint} className="tab-btn  btn-map-innerModal m-1 totals"><i class="las la-print"></i>Stampa</button>) : (<></>)}
+                  
                    
-                 
+                   
                     </TabList>
                 </div>
                 </div>
@@ -122,12 +129,16 @@ const index = ({  idUser }) => {
             
              
 
-
+                <div ref={componentPrint}>
 
                 <TabPanel>
-                <Invoice candidateView={candidateView}></Invoice>
-                </TabPanel>
+           
 
+                
+                <Invoice  candidateView={candidateView}></Invoice>
+              
+                </TabPanel>
+                </div>
              
                 <TabPanel>
                 <div>
