@@ -183,6 +183,7 @@ const FormInfoBox = ({
     await modifyCandidates(candidateEdit).then((res) => {
       const message = res.message;
       if (message == "Update successful") {
+        debugger;
         setState("ok");
         const candidatoEditato = res.client;
         setCandidate(candidatoEditato);
@@ -272,8 +273,11 @@ const FormInfoBox = ({
       className="default-form"
     >
       {state === "ok" ? (
-        <div>
-          <h1>Modificato</h1>
+      <div className="align-items-center d-block d-flex flex-wrap justify-content-center">
+             <div> <Loader></Loader></div>
+          <div className="mt-1"> <h5>Stiamo inoltrando le tue modifiche...</h5></div>
+      
+         
         </div>
       ) : (
         <div>
