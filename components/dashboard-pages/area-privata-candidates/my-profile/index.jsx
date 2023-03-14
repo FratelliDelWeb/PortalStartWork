@@ -61,7 +61,7 @@ const  setUserIndex =( user) =>{
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Profilo" />
+          <BreadCrumb title="Profilo" stato="Gestisci le informazioni del tuo account " />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -73,7 +73,7 @@ const  setUserIndex =( user) =>{
                 <div className="tabs-box">
                   <div className="widget-title">
                   <h5>{user?.username} </h5>
-                    <p>{user?._id}</p>
+                    <p>Codice Candidato :{user?._id}</p>
                   </div>
                    <MyProfile user = {user} cookie={cookie} setUserIndex ={setUserIndex} /> 
                 </div>

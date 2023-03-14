@@ -140,19 +140,18 @@ setUserData({ id: `${user?._id}`,
             placeholder={userToUse?.id}
             defaultValue={userToUse?.id} 
             onChange={(e) => setClienteEdit({ ...ClienteEdit,id: e.target.value })} 
+            disabled
           />
         </div>
  {/* <!-- Search Select --> */}
  <div className="form-group col-lg-6 col-md-12">
           <label>Ruolo </label>
-          <Select
+          <input
             defaultValue={userToUse?.role}
-            onChange={(e) => setClienteEdit({ ...ClienteEdit,role: e.value })}  
-            name="colors"
-            options={roleUser}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            required
+            placeholder={userToUse?.role}
+            type="text"
+            disabled
+       
           />
         </div> 
 

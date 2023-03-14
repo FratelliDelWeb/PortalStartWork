@@ -352,7 +352,8 @@ input:checked + .slider:before {
 .default-form .form-group input[type="tel"],
 .default-form .form-group input[type="date"],
 .default-form .form-group textarea,
-.default-form .form-group select {
+.default-form .form-group select ,
+.select--is-disabled  {
   position: relative;
   width: 100%;
   display: block;
