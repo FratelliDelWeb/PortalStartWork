@@ -95,8 +95,7 @@ const candidatoSchema = new mongoose.Schema({
   },
   interstedTo: [
     {
-      type: String, //ref jobOffers
-      default: [],
+      type: [{}],
     },
   ],
   credentials: {

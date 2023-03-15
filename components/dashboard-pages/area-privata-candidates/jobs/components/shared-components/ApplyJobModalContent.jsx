@@ -39,13 +39,17 @@ const ApplyJobModalContent = ({ idOffer, idCliente ,setStatusOffers }) => {
   };
 
   const setDataToSend = async () => {
-    const to = [];
-    if (interests) {
+    const to =  [];
+  
       for (var offer of interests) {
-        to.push(offer);
+        console.log("intersedddddddddddddddddddddddd",offer)
+       for(var insrt of offer){
+        to.push( {offer : insrt.offer ,data: insrt.data});
+       }
+             
       }
-    }
-    to.push(idOffer);
+    
+    to.push({offer:idOffer , data: new Date()});
 
     if (!interests) {
       let eitData = {
@@ -53,7 +57,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente ,setStatusOffers }) => {
         fields: [
           {
             name: "interstedTo",
-            from: [" "],
+            from: [],
             to: to,
           },
         ],
@@ -82,6 +86,7 @@ const ApplyJobModalContent = ({ idOffer, idCliente ,setStatusOffers }) => {
     await getCandidateIdPrivate(idCliente).then((res) => {
       console.log("res", res);
       const intersted = res.interstedTo;
+      console.log(intersted)
       setInterests(intersted);
     });
   };

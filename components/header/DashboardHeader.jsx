@@ -50,17 +50,45 @@ const DashboardHeader = () => {
                     {/* End .nav-outer */}
 
                     <div className="outer-box">
-                        <button className="menu-btn">
-                            <span className="count">1</span>
-                            <span className="icon la la-heart-o"></span>
-                        </button>
-                        {/* wishlisted menu */}
+                      
 
-                        <button className="menu-btn">
-                            <span className="icon la la-bell"></span>
-                        </button>
                         {/* End notification-icon */}
+                        <div className="dropdown dashboard-option">
+                            <a
+                                className="dropdown-toggle"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                            <button className="menu-btn">
+                            <span className="count">1</span>
+                                <span className="icon la la-bell"></span>
+                            </button>
+                            </a>
 
+                            <ul className="dropdown-menu">
+                                {areaPrivataMenuData.map((item) => (
+                                    <li
+                                        className={`${
+                                            isActiveLink(
+                                                item.routePath,
+                                                router.asPath
+                                            )
+                                                ? "active"
+                                                : ""
+                                        } mb-1`}
+                                        key={item.id}
+                                    >
+                                        <Link href={item.routePath}>
+                                            <i
+                                                className={`la ${item.icon}`}
+                                            ></i>{" "}
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                         {/* <!-- Dashboard Option --> */}
                         <div className="dropdown dashboard-option">
                             <a
